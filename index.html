@@ -1,0 +1,1970 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>PlantCare 🌿</title>
+    <meta name="description" content="Inteligentny asystent pielęgnacji roślin">
+    <meta name="theme-color" content="#0a0f0a">
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" href="favicon.ico">
+    <link rel="apple-touch-icon" href="icons/icon-192x192.png">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        :root {
+            --bg: #0d1117;
+            --bg-card: #161b22;
+            --bg-elevated: #21262d;
+            --border: #30363d;
+            --text: #f0f6fc;
+            --text-secondary: #8b949e;
+            --accent: #3fb950;
+            --accent-soft: rgba(63, 185, 80, 0.15);
+            --danger: #f85149;
+            --warning: #d29922;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            padding-bottom: 80px;
+        }
+        
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 16px;
+        }
+        
+        /* Header */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 0;
+            margin-bottom: 16px;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 20px;
+            font-weight: 700;
+        }
+        
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #3fb950, #238636);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+        
+        .header-btn {
+            width: 40px;
+            height: 40px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            cursor: pointer;
+        }
+        
+        /* Navigation */
+        .nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: var(--bg-card);
+            border-top: 1px solid var(--border);
+            padding: 8px 16px 20px;
+            z-index: 100;
+        }
+        
+        .nav-inner {
+            max-width: 500px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-around;
+        }
+        
+        .nav-btn {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            padding: 8px 16px;
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 11px;
+            cursor: pointer;
+            border-radius: 12px;
+            transition: all 0.2s;
+        }
+        
+        .nav-btn.active {
+            color: var(--accent);
+            background: var(--accent-soft);
+        }
+        
+        .nav-btn span:first-child {
+            font-size: 22px;
+        }
+        
+        /* Cards */
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 16px;
+            margin-bottom: 12px;
+        }
+        
+        .card-title {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        /* Stats */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+        
+        .stat {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 16px;
+            text-align: center;
+        }
+        
+        .stat-icon { font-size: 24px; margin-bottom: 8px; }
+        .stat-value { font-size: 28px; font-weight: 700; }
+        .stat-label { font-size: 12px; color: var(--text-secondary); }
+        
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 14px 20px;
+            border-radius: 12px;
+            font-family: inherit;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            transition: all 0.2s;
+        }
+        
+        .btn-primary {
+            background: var(--accent);
+            color: #000;
+        }
+        
+        .btn-primary:hover {
+            filter: brightness(1.1);
+        }
+        
+        .btn-secondary {
+            background: var(--bg-elevated);
+            color: var(--text);
+            border: 1px solid var(--border);
+        }
+        
+        .btn-block { width: 100%; }
+        
+        .btn-group {
+            display: flex;
+            gap: 12px;
+        }
+        
+        .btn-group .btn { flex: 1; }
+        
+        /* Quick Actions */
+        .actions-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+        
+        .action-btn {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 16px 8px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .action-btn:hover {
+            border-color: var(--accent);
+            background: var(--accent-soft);
+        }
+        
+        .action-btn span:first-child { font-size: 24px; }
+        .action-btn span:last-child { font-size: 11px; color: var(--text-secondary); }
+        
+        /* Pages */
+        .page { display: none; }
+        .page.active { display: block; }
+        
+        /* Scanner */
+        .scanner-box {
+            background: var(--bg-elevated);
+            border-radius: 16px;
+            overflow: hidden;
+            margin-bottom: 16px;
+        }
+        
+        .scanner-preview {
+            width: 100%;
+            height: 250px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #000;
+        }
+        
+        .scanner-preview img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .scanner-placeholder {
+            text-align: center;
+            color: var(--text-secondary);
+        }
+        
+        .scanner-placeholder div { font-size: 48px; margin-bottom: 12px; }
+        
+        .scanner-btns {
+            padding: 16px;
+            display: flex;
+            gap: 12px;
+        }
+        
+        .scanner-btns .btn { flex: 1; }
+        
+        #scanner-result {
+            margin-top: 16px;
+        }
+        
+        /* Grid */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+        
+        .plant-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .plant-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-2px);
+        }
+        
+        .plant-card-img {
+            width: 100%;
+            height: 140px;
+            object-fit: cover;
+            background: var(--bg-elevated);
+            display: block;
+        }
+        
+        .plant-card-emoji {
+            width: 100%;
+            height: 140px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 56px;
+            background: linear-gradient(135deg, #238636 0%, #0d1117 100%);
+        }
+        
+        .plant-card-body {
+            padding: 12px;
+        }
+        
+        .plant-card-visual {
+            width: 100%;
+            height: 140px;
+            overflow: hidden;
+            background: var(--bg-elevated);
+        }
+        
+        .plant-card-name {
+            font-weight: 600;
+            font-size: 15px;
+            margin-bottom: 4px;
+            line-height: 1.3;
+        }
+        
+        .plant-card-species {
+            font-size: 12px;
+            color: var(--text-secondary);
+            font-style: italic;
+            margin-bottom: 8px;
+            line-height: 1.3;
+        }
+        
+        /* Badges */
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 600;
+            margin-top: 4px;
+        }
+        
+        .badge-easy { background: rgba(63,185,80,0.2); color: #3fb950; }
+        .badge-medium { background: rgba(210,153,34,0.2); color: #d29922; }
+        .badge-hard { background: rgba(248,81,73,0.2); color: #f85149; }
+        
+        /* Filters */
+        .filters {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 6px;
+            margin-bottom: 16px;
+        }
+        
+        .filter-btn {
+            padding: 8px 4px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            color: var(--text-secondary);
+            font-size: 11px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .filter-btn.active {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: #000;
+        }
+        
+        /* Modal */
+        .modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.8);
+            z-index: 200;
+            display: none;
+            align-items: flex-end;
+            justify-content: center;
+        }
+        
+        .modal.active { display: flex; }
+        
+        .modal-content {
+            background: var(--bg-card);
+            border-radius: 24px 24px 0 0;
+            width: 100%;
+            max-width: 500px;
+            max-height: 85vh;
+            overflow-y: auto;
+        }
+        
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            background: var(--bg-card);
+        }
+        
+        .modal-title { font-size: 18px; font-weight: 600; }
+        
+        .modal-close {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: var(--bg-elevated);
+            border: none;
+            color: var(--text);
+            font-size: 18px;
+            cursor: pointer;
+        }
+        
+        .modal-body { padding: 20px; }
+        
+        /* Detail */
+        .detail-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 16px;
+            margin-bottom: 16px;
+        }
+        
+        .detail-header { text-align: center; margin-bottom: 20px; }
+        .detail-name { font-size: 24px; font-weight: 700; margin-bottom: 4px; }
+        .detail-species { color: var(--text-secondary); font-style: italic; margin-bottom: 12px; }
+        
+        .detail-desc {
+            background: var(--bg-elevated);
+            padding: 16px;
+            border-radius: 12px;
+            margin-bottom: 16px;
+            line-height: 1.6;
+        }
+        
+        .detail-fact {
+            background: linear-gradient(135deg, rgba(63,185,80,0.2), rgba(35,134,54,0.1));
+            border: 1px solid rgba(63,185,80,0.3);
+            padding: 16px;
+            border-radius: 12px;
+            margin-bottom: 16px;
+        }
+        
+        .detail-fact-title {
+            font-weight: 600;
+            color: var(--accent);
+            margin-bottom: 8px;
+        }
+        
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+        
+        .info-item {
+            background: var(--bg-elevated);
+            padding: 12px;
+            border-radius: 12px;
+        }
+        
+        .info-label { font-size: 11px; color: var(--text-secondary); margin-bottom: 4px; }
+        .info-value { font-weight: 600; font-size: 14px; }
+        
+        .care-list { margin-bottom: 16px; }
+        
+        .care-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px;
+            background: var(--bg-elevated);
+            border-radius: 12px;
+            margin-bottom: 8px;
+        }
+        
+        .care-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--accent-soft);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+        
+        .care-label { font-size: 12px; color: var(--text-secondary); }
+        .care-value { font-weight: 500; }
+        
+        /* Form */
+        .form-group { margin-bottom: 16px; }
+        .form-label { font-size: 13px; font-weight: 500; margin-bottom: 8px; display: block; }
+        
+        .form-input {
+            width: 100%;
+            padding: 14px;
+            background: var(--bg-elevated);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            color: var(--text);
+            font-family: inherit;
+            font-size: 15px;
+        }
+        
+        .form-input:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+        
+        /* Toast */
+        .toast {
+            position: fixed;
+            bottom: 100px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            padding: 14px 24px;
+            border-radius: 12px;
+            font-size: 14px;
+            z-index: 300;
+            opacity: 0;
+            transition: all 0.3s;
+        }
+        
+        .toast.show {
+            transform: translateX(-50%) translateY(0);
+            opacity: 1;
+        }
+        
+        /* Alert */
+        .alert {
+            padding: 16px;
+            border-radius: 12px;
+            margin-bottom: 16px;
+        }
+        
+        .alert-warning {
+            background: rgba(210,153,34,0.15);
+            border: 1px solid rgba(210,153,34,0.3);
+        }
+        
+        .alert-error {
+            background: rgba(248,81,73,0.15);
+            border: 1px solid rgba(248,81,73,0.3);
+        }
+        
+        .alert-title {
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        
+        .alert-text {
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+        
+        /* Search */
+        .search-box {
+            position: relative;
+            margin-bottom: 16px;
+        }
+        
+        .search-box input {
+            width: 100%;
+            padding: 14px 14px 14px 44px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            color: var(--text);
+            font-size: 14px;
+        }
+        
+        .search-box input:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+        
+        .search-box::before {
+            content: '🔍';
+            position: absolute;
+            left: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+        
+        /* Empty */
+        .empty {
+            text-align: center;
+            padding: 40px 20px;
+        }
+        
+        .empty-icon { font-size: 48px; margin-bottom: 12px; opacity: 0.5; }
+        .empty-title { font-size: 18px; font-weight: 600; margin-bottom: 8px; }
+        .empty-text { color: var(--text-secondary); margin-bottom: 20px; }
+        
+        /* Link */
+        a { color: var(--accent); }
+    
+        /* Photo upload for user plants */
+        .photo-upload-area {
+            width: 100%;
+            min-height: 150px;
+            border: 2px dashed var(--border);
+            border-radius: 12px;
+            background: var(--bg-elevated);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s;
+            margin: 16px 0;
+            padding: 20px;
+        }
+        
+        .photo-upload-area:hover {
+            border-color: var(--accent);
+            background: var(--accent-soft);
+        }
+        
+        .photo-upload-area.has-photo {
+            padding: 0;
+            border: none;
+            min-height: 200px;
+        }
+        
+        .plant-user-photo {
+            width: 100%;
+            max-height: 200px;
+            object-fit: cover;
+            border-radius: 12px;
+        }
+        
+        .photo-actions {
+            display: flex;
+            gap: 8px;
+            margin-top: 8px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo">
+                <div class="logo-icon">🌿</div>
+                <span>PlantCare</span>
+            </div>
+            <button class="header-btn" onclick="showPage('settings')">⚙️</button>
+        </header>
+        
+        <!-- HOME -->
+        <div id="page-home" class="page active">
+            <div class="stats">
+                <div class="stat">
+                    <div class="stat-icon">🌱</div>
+                    <div class="stat-value" id="stat-total">0</div>
+                    <div class="stat-label">Rośliny</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-icon">💧</div>
+                    <div class="stat-value" id="stat-water">0</div>
+                    <div class="stat-label">Do podlania</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-icon">⚠️</div>
+                    <div class="stat-value" id="stat-issues">0</div>
+                    <div class="stat-label">Problemy</div>
+                </div>
+            </div>
+            
+            <div class="actions-grid">
+                <div class="action-btn" onclick="showPage('scanner')">
+                    <span>📷</span>
+                    <span>Skanuj</span>
+                </div>
+                <div class="action-btn" onclick="openAddPlant()">
+                    <span>➕</span>
+                    <span>Dodaj</span>
+                </div>
+                <div class="action-btn" onclick="showPage('encyclopedia')">
+                    <span>📚</span>
+                    <span>Baza</span>
+                </div>
+                <div class="action-btn" onclick="showPage('settings')">
+                    <span>⚙️</span>
+                    <span>Ustawienia</span>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-title">🌿 Twoje rośliny</div>
+                <div id="home-plants"></div>
+            </div>
+        </div>
+        
+        <!-- PLANTS -->
+        <div id="page-plants" class="page">
+            <h2 style="margin-bottom:16px;">Wszystkie rośliny</h2>
+            <div class="grid" id="plants-grid"></div>
+        </div>
+        
+        <!-- SCANNER -->
+        <div id="page-scanner" class="page">
+            <h2 style="margin-bottom:16px;">📷 Skanuj roślinę</h2>
+            
+            <div id="api-warning" class="alert alert-warning" style="display:none;">
+                <div class="alert-title">⚠️ Wymagany klucz API</div>
+                <div class="alert-text">Aby skanować rośliny, dodaj darmowy klucz API Gemini w ustawieniach.</div>
+                <button class="btn btn-primary btn-block" style="margin-top:12px;" onclick="showPage('settings')">Przejdź do ustawień</button>
+            </div>
+            
+            <div class="scanner-box">
+                <div class="scanner-preview" id="scanner-preview">
+                    <div class="scanner-placeholder">
+                        <div>📷</div>
+                        <p>Wybierz lub zrób zdjęcie</p>
+                    </div>
+                </div>
+                <div class="scanner-btns">
+                    <button class="btn btn-secondary" onclick="document.getElementById('fileInput').click()">
+                        🖼️ Galeria
+                    </button>
+                    <button class="btn btn-primary" onclick="document.getElementById('cameraInput').click()">
+                        📸 Aparat
+                    </button>
+                </div>
+            </div>
+            
+            <input type="file" id="fileInput" accept="image/*" onchange="handleFile(event)" style="display:none;">
+            <input type="file" id="cameraInput" accept="image/*" capture="environment" onchange="handleFile(event)" style="display:none;">
+            
+            <div id="scanner-result"></div>
+            
+            <div class="card" style="margin-top:16px;">
+                <div class="card-title">💡 Wskazówki</div>
+                <ul style="padding-left:20px; color:var(--text-secondary); font-size:13px;">
+                    <li>Zrób wyraźne zdjęcie całej rośliny</li>
+                    <li>Dobre oświetlenie pomoże w rozpoznaniu</li>
+                    <li>Na telefonie wybierz aparat lub galerię</li>
+                    <li>Możesz też sfotografować liść</li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- ENCYCLOPEDIA -->
+        <div id="page-encyclopedia" class="page">
+            <h2 style="margin-bottom:16px;">📚 Encyklopedia</h2>
+            
+            <div class="search-box">
+                <input type="text" placeholder="Szukaj rośliny..." id="encyc-search" oninput="filterPlants()">
+            </div>
+            
+            <div class="filters" id="filters">
+                <button class="filter-btn active" onclick="setFilter('all', this)">Wszystkie</button>
+                <button class="filter-btn" onclick="setFilter('popular', this)">🌟 Popularne</button>
+                <button class="filter-btn" onclick="setFilter('easy', this)">👶 Łatwe</button>
+                <button class="filter-btn" onclick="setFilter('flowering', this)">🌸 Kwitnące</button>
+                <button class="filter-btn" onclick="setFilter('succulents', this)">🌵 Sukulenty</button>
+                <button class="filter-btn" onclick="setFilter('tropical', this)">🌴 Tropikalne</button>
+                <button class="filter-btn" onclick="setFilter('special', this)">✨ Specjalne</button>
+            </div>
+            
+            <div class="grid" id="encyc-grid"></div>
+        </div>
+        
+        <!-- SETTINGS -->
+        <div id="page-settings" class="page">
+            <h2 style="margin-bottom:16px;">⚙️ Ustawienia</h2>
+            
+            <div class="card">
+                <div class="card-title">🔑 Klucz API Gemini</div>
+                <div class="form-group">
+                    <input type="password" class="form-input" id="api-key" placeholder="Wklej klucz API...">
+                </div>
+                <p style="font-size:12px;color:var(--text-secondary);margin-bottom:12px;">
+                    Pobierz darmowy klucz z <a href="https://aistudio.google.com/apikey" target="_blank">Google AI Studio</a>
+                </p>
+                <button class="btn btn-primary btn-block" onclick="saveApiKey()">💾 Zapisz klucz</button>
+            </div>
+            
+            <div class="card">
+                <div class="card-title">📦 Dane</div>
+                <div class="btn-group">
+                    <button class="btn btn-secondary" onclick="exportData()">📤 Eksport</button>
+                    <button class="btn btn-secondary" onclick="importData()">📥 Import</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-inner">
+            <button class="nav-btn active" onclick="showPage('home')" data-page="home">
+                <span>🏠</span>
+                <span>Start</span>
+            </button>
+            <button class="nav-btn" onclick="showPage('plants')" data-page="plants">
+                <span>🌿</span>
+                <span>Rośliny</span>
+            </button>
+            <button class="nav-btn" onclick="showPage('scanner')" data-page="scanner">
+                <span>📷</span>
+                <span>Skanuj</span>
+            </button>
+            <button class="nav-btn" onclick="showPage('encyclopedia')" data-page="encyclopedia">
+                <span>📚</span>
+                <span>Baza</span>
+            </button>
+        </div>
+    </nav>
+    
+    <!-- Modal -->
+    <div class="modal" id="modal" onclick="closeModal(event)">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <div class="modal-header">
+                <div class="modal-title" id="modal-title">Szczegóły</div>
+                <button class="modal-close" onclick="closeModal()">✕</button>
+            </div>
+            <div class="modal-body" id="modal-body"></div>
+        </div>
+    </div>
+    
+    <!-- Toast -->
+    <div class="toast" id="toast"></div>
+
+    <script>
+        // ===== DATABASE - 55 roślin z unikalnymi zdjęciami =====
+        // ===== ROZSZERZONA BAZA 55 ROŚLIN =====
+        const encyclopediaDB = [
+            // === POPULARNE ===
+            { 
+                id: 'monstera', name: 'Monstera', species: 'Monstera deliciosa', emoji: '🌿', 
+                image: 'https://images.unsplash.com/photo-1459411552884-841db9b3cc2a?w=400&h=300&fit=crop', 
+                category: ['popular', 'tropical'], difficulty: 'easy', origin: 'Meksyk, Panama', toxic: 'Tak - kryształy szczawianu', maxHeight: '2-3m w domu',
+                care: { water: 'Co 7-10 dni gdy wierzch przeschnie', light: 'Jasne rozproszone, bez bezpośredniego słońca', humidity: '60-80%', temperature: '18-27°C' }, 
+                description: 'Królowa roślin doniczkowych! Charakterystyczne dziury w liściach (fenestracja) pomagają przetrwać tropikalne burze. Im starsza roślina i więcej światła, tym więcej dziur.',
+                funFacts: ['W naturze wspina się na drzewa do 20m', 'Owoce są jadalne i smakują jak mix banana z ananasem', 'Dziury pojawiają się dopiero po 2-3 roku życia', 'Korzenie powietrzne można kierować do ziemi'],
+                diseases: ['Żółte liście = przelanie lub brak składników', 'Brązowe plamy = oparzenie słoneczne', 'Czarne plamy = grzyb od nadmiaru wody', 'Brak dziur = za mało światła'],
+                propagation: 'Sadzonki pędowe z minimum 1 węzłem i korzeniem powietrznym. Ukorzeniaj w wodzie lub perlicie. Korzenie po 2-4 tyg.'
+            },
+            { 
+                id: 'pothos', name: 'Pothos (Epipremnum)', species: 'Epipremnum aureum', emoji: '💚', 
+                image: 'https://images.unsplash.com/photo-1600411833196-7c1f6b1a8b90?w=400&h=300&fit=crop',
+                image: 'https://images.unsplash.com/photo-1622398925373-3f91b1e275f5?w=400&h=300&fit=crop', 
+                category: ['popular', 'easy'], difficulty: 'easy', origin: 'Polinezja Francuska', toxic: 'Tak - drażniący', maxHeight: '10m jako pnącze',
+                care: { water: 'Co 7-14 dni, toleruje przesuszenie', light: 'Od cienia do jasnego - bardzo tolerancyjna', humidity: '40-60%', temperature: '15-30°C' }, 
+                description: 'Praktycznie niezniszczalna! Idealna dla początkujących. Rośnie nawet w słabo oświetlonych biurach. Oczyszcza powietrze z formaldehydu i benzenu.',
+                funFacts: ['NASA umieściła ją w TOP 10 roślin oczyszczających powietrze', 'W naturze liście dorastają do 1m!', 'Może rosnąć w samej wodzie przez lata', 'Istnieje 15+ odmian o różnych wzorach liści'],
+                diseases: ['Żółte liście = przelanie (najczęstszy błąd)', 'Blade liście = za mało światła', 'Brązowe końcówki = suche powietrze lub sól w wodzie', 'Gnicie łodygi = zimno + wilgoć'],
+                propagation: 'Najłatwiejsza do rozmnażania! Odetnij pęd z 2-3 węzłami, włóż do wody. Korzenie po 1-2 tyg. Można też od razu do ziemi.'
+            },
+            { 
+                id: 'sansevieria', name: 'Sansewieria (Wężownica)', species: 'Dracaena trifasciata', emoji: '🗡️', 
+                image: 'https://images.unsplash.com/photo-1593482892290-f54927ae1bb6?w=400&h=300&fit=crop', 
+                category: ['popular', 'easy', 'succulents'], difficulty: 'easy', origin: 'Afryka Zachodnia', toxic: 'Lekko toksyczna', maxHeight: '1.2m',
+                care: { water: 'Co 2-4 tygodnie, zimą rzadziej', light: 'Od cienia do pełnego słońca', humidity: '30-50%', temperature: '15-27°C' }, 
+                description: 'Niezniszczalna! Jedyna roślina produkująca tlen W NOCY (proces CAM). Idealna do sypialni. Przetrwa miesiące zaniedbania.',
+                funFacts: ['Produkuje tlen nocą - świetna do sypialni', 'Włókna używano do produkcji cięciw łuków i lin', 'Przeżyje 2 miesiące bez wody', 'NASA poleca ją do stacji kosmicznych'],
+                diseases: ['Miękkie/gnijące liście = przelanie (główny zabójca!)', 'Pomarszczone liście = potrzebuje wody', 'Brązowe końcówki = oparzenie lub zimno', 'Blade paski = za mało światła'],
+                propagation: 'Podział kęp (najszybciej) lub sadzonki liściowe. Liść pokrój na 5cm kawałki, zasusz 2 dni, wsadź do piasku. Korzenie po 1-2 mies.'
+            },
+            { 
+                id: 'ficus-lyrata', name: 'Figowiec lirolistny', species: 'Ficus lyrata', emoji: '🎻', 
+                image: 'https://images.unsplash.com/photo-1485955900006-10f4d324d411?w=400&h=300&fit=crop', 
+                category: ['popular', 'tropical'], difficulty: 'medium', origin: 'Afryka Zachodnia', toxic: 'Tak - sok drażniący', maxHeight: '3m w domu',
+                care: { water: 'Co 7-10 dni gdy wierzch przeschnie 2-3cm', light: 'Jasne pośrednie, bez ostrego słońca', humidity: '50-70%', temperature: '18-25°C stała!' }, 
+                description: 'Gwiazda Instagrama i wnętrzarskich magazynów! Wielkie liście w kształcie skrzypiec. Nie lubi zmian - po przestawieniu może zrzucić liście.',
+                funFacts: ['W naturze dorasta do 15m', 'Liście mogą mieć 45cm długości', 'Bardzo wrażliwy na przeciągi', 'Lubi mieć stałe miejsce - nie przestawiaj!'],
+                diseases: ['Brązowe plamy = nieregularne podlewanie lub bakterie', 'Opadające liście = stres (zmiana miejsca, temp., przeciąg)', 'Żółte dolne liście = naturalne lub przelanie', 'Czerwone plamy = obrzęk (edema) od przelania'],
+                propagation: 'Sadzonki wierzchołkowe lub rozmnażanie w powietrzu (air layering). Trudniejszy niż inne fikusy. Hormon ukorzeniający pomaga.'
+            },
+            { 
+                id: 'spathiphyllum', name: 'Skrzydłokwiat', species: 'Spathiphyllum wallisii', emoji: '🤍', 
+                image: 'https://images.unsplash.com/photo-1545241047-6083a3684587?w=400&h=300&fit=crop', 
+                category: ['popular', 'flowering', 'easy'], difficulty: 'easy', origin: 'Ameryka Środkowa', toxic: 'Tak - kryształy szczawianu', maxHeight: '1m',
+                care: { water: 'Co 5-7 dni, lubi wilgoć', light: 'Cień do jasnego pośredniego', humidity: '50-70%', temperature: '18-27°C' }, 
+                description: 'Lilia pokoju - elegancka i łatwa! DRAMATYCZNIE więdnie gdy chce pić, ale szybko wraca do formy po podlaniu. Świetnie oczyszcza powietrze.',
+                funFacts: ['NASA TOP 10 do oczyszczania powietrza', 'Biały "kwiat" to zmodyfikowany liść (pochwa)', 'Może kwitnąć cały rok przy dobrych warunkach', 'Jeden z najlepszych filtrów amoniaku'],
+                diseases: ['Zwiędnięcie = potrzebuje wody (podlej!)', 'Żółte liście = przelanie lub stary liść', 'Brązowe końcówki = suche powietrze lub chlor w wodzie', 'Brak kwitnienia = za mało światła'],
+                propagation: 'Podział kęp przy przesadzaniu. Każda część musi mieć korzenie i min. 2-3 liście. Najlepiej wiosną.'
+            },
+            { 
+                id: 'philodendron', name: 'Filodendron sercowaty', species: 'Philodendron hederaceum', emoji: '💚', 
+                image: 'https://images.unsplash.com/photo-1602923668104-8f9e03e77e62?w=400&h=300&fit=crop', 
+                category: ['popular', 'easy', 'tropical'], difficulty: 'easy', origin: 'Ameryka Środkowa i Płd.', toxic: 'Tak - kryształy szczawianu', maxHeight: '6m jako pnącze',
+                care: { water: 'Co 7-10 dni', light: 'Średnie do jasnego pośredniego', humidity: '50-70%', temperature: '18-27°C' }, 
+                description: 'Klasyczne pnącze o uroczych sercowatych liściach. Bardzo wdzięczna roślina - szybko rośnie i łatwo się rozmnaża. Podobna do Pothos ale z matowymi liśćmi.',
+                funFacts: ['Istnieje ponad 450 gatunków Philodendron!', 'Nazwa znaczy "miłośnik drzew" - w naturze wspina się', 'Korzenie powietrzne pomagają wspinać się', 'Odmiana Brasil ma żółte smugi'],
+                diseases: ['Żółte liście = przelanie', 'Małe liście = za mało światła lub nawozów', 'Brązowe końcówki = suche powietrze', 'Długie odstępy między liśćmi = za mało światła'],
+                propagation: 'Bardzo łatwe! Sadzonki z węzłem w wodzie lub ziemi. Korzenie po 2-3 tyg. Można też przygiąć pęd do ziemi (marcotting).'
+            },
+            { 
+                id: 'pilea', name: 'Pilea (Pieniążek)', species: 'Pilea peperomioides', emoji: '💰', 
+                image: 'https://images.unsplash.com/photo-1520412099551-62b6bafeb5bb?w=400&h=300&fit=crop', 
+                category: ['popular', 'easy'], difficulty: 'easy', origin: 'Południowe Chiny', toxic: 'Nie - bezpieczna!', maxHeight: '40cm',
+                care: { water: 'Co 7-10 dni gdy wierzch przeschnie', light: 'Jasne rozproszone, obracaj co tydzień', humidity: '50-60%', temperature: '15-24°C' }, 
+                description: 'Roślina przyjaźni! Produkuje mnóstwo "dzieci" które możesz rozdawać znajomym. Okrągłe liście na długich ogonkach wyglądają jak monety.',
+                funFacts: ['Przez dekady była niemożliwa do kupienia - przekazywano sadzonki', 'Oficjalnie opisana naukowo dopiero w 1984!', 'Nazywana też "UFO plant" od kształtu liści', 'Obracaj ją co tydzień bo rośnie w stronę światła'],
+                diseases: ['Zwijanie liści = za dużo słońca lub potrzeba wody', 'Żółte dolne liście = naturalne lub przelanie', 'Opadające liście = przeciąg lub zimno', 'Blade liście = za mało światła'],
+                propagation: 'Sama produkuje dzieci! Odetnij potomstwo gdy ma 5-7cm i własne korzenie. Można też ukorzeniać w wodzie łodyżki z dziećmi.'
+            },
+            { 
+                id: 'ficus-elastica', name: 'Fikus sprężysty', species: 'Ficus elastica', emoji: '🌳', 
+                image: 'https://images.unsplash.com/photo-1525498128493-380d1990a112?w=400&h=300&fit=crop', 
+                category: ['popular', 'tropical'], difficulty: 'easy', origin: 'Indie, Indonezja', toxic: 'Tak - mleczny sok drażniący', maxHeight: '3m w domu',
+                care: { water: 'Co 7-10 dni', light: 'Jasne pośrednie do średniego', humidity: '40-60%', temperature: '16-27°C' }, 
+                description: 'Drzewko o spektakularnych błyszczących liściach! Dawniej główne źródło kauczuku naturalnego. Odmiana Burgundy ma prawie czarne liście.',
+                funFacts: ['W XIX wieku był głównym źródłem gumy', 'W naturze dorasta do 30m!', 'Liście mogą mieć 30cm długości', 'Odmiana Tineke ma różowo-kremowe przebarwienia'],
+                diseases: ['Opadające liście = stres (zimno, przeciąg, zmiana miejsca)', 'Żółte liście = przelanie', 'Brązowe plamy = oparzenie słoneczne', 'Pyłki na liściach = czyścić wilgotną ściereczką'],
+                propagation: 'Sadzonki wierzchołkowe lub rozmnażanie w powietrzu (air layering). Sok mleczny - używaj rękawiczek! Hormon ukorzeniający przyspiesza.'
+            },
+            { 
+                id: 'dracaena', name: 'Dracena obrzeżona', species: 'Dracaena marginata', emoji: '🌴', 
+                image: 'https://images.unsplash.com/photo-1567331711402-509c12c41959?w=400&h=300&fit=crop', 
+                category: ['popular', 'tropical'], difficulty: 'easy', origin: 'Madagaskar', toxic: 'Dla psów i kotów!', maxHeight: '3m w domu',
+                care: { water: 'Co 10-14 dni, lubi przesychać', light: 'Średnie do jasnego', humidity: '40-60%', temperature: '18-27°C' }, 
+                description: 'Eleganckie smukłe drzewko z czerwono obrzeżonymi liśćmi. Bardzo tolerancyjna na zaniedbanie. Oczyszcza powietrze z toksyn.',
+                funFacts: ['Nazwa "dracaena" znaczy "smoczyca" - ma czerwoną żywicę', 'NASA poleca do usuwania formaldehydu', 'Może żyć ponad 100 lat', 'Odmiana Tricolor ma różowo-kremowe paski'],
+                diseases: ['Brązowe końcówki = chlor/fluor w wodzie lub suche powietrze', 'Żółte dolne liście = naturalne starzenie', 'Miękka łodyga = przelanie i gnicie', 'Blade liście = za mało światła'],
+                propagation: 'Sadzonki wierzchołkowe lub kawałki łodygi (5-10cm). Ukorzenia się w wodzie lub perlicie. Można odciąć wierzchołek - pień puści nowe pędy.'
+            },
+            { 
+                id: 'zamioculcas', name: 'Zamiokulkas', species: 'Zamioculcas zamiifolia', emoji: '✨', 
+                image: 'https://images.unsplash.com/photo-1632207691143-643e2a9a9361?w=400&h=300&fit=crop', 
+                category: ['popular', 'easy'], difficulty: 'easy', origin: 'Afryka Wschodnia', toxic: 'Tak - kryształy szczawianu', maxHeight: '1m',
+                care: { water: 'Co 2-4 tygodnie lub rzadziej!', light: 'Od cienia do jasnego', humidity: '40-60%', temperature: '15-27°C' }, 
+                description: 'ZZ Plant - król zaniedbania! Przetrwa miesiące bez wody dzięki grubym kłączom magazynującym wodę. Błyszczące liście odbijają światło.',
+                funFacts: ['Odkryty dla hodowli dopiero w 1996!', 'Przeżyje 4 miesiące bez wody', 'Rośnie nawet w biurze bez okien (ale wolniej)', 'Odmiana Raven ma prawie czarne liście'],
+                diseases: ['Żółte liście = PRZELANIE (główny zabójca!)', 'Pomarszczone łodygi = potrzeba wody (rzadkie)', 'Brązowe plamy = oparzenie słoneczne', 'Brak wzrostu = za mało światła'],
+                propagation: 'Podział kłączy lub sadzonki liściowe (BARDZO WOLNO - 6-12 mies.). Najlepiej dzielić przy przesadzaniu. Pojedynczy listek może dać nową roślinę.'
+            },
+            { 
+                id: 'monstera-adansonii', name: 'Monstera dziurawa', species: 'Monstera adansonii', emoji: '🕳️', 
+                image: 'https://images.unsplash.com/photo-1614594975525-e45190c55d0b?w=400&h=300&fit=crop', 
+                category: ['popular', 'tropical'], difficulty: 'easy', origin: 'Ameryka Środkowa i Płd.', toxic: 'Tak', maxHeight: '4m jako pnącze',
+                care: { water: 'Co 7-10 dni', light: 'Jasne rozproszone', humidity: '60-80% - lubi wilgoć!', temperature: '18-27°C' }, 
+                description: 'Mniejsza kuzynka Monstery deliciosa z mniejszymi liśćmi pełnymi owalnych dziur. Szybko rośnie i pięknie zwisa lub wspina się.',
+                funFacts: ['Nazywana Swiss Cheese Vine', 'Dziury pojawiają się od młodości (w przeciwieństwie do M. deliciosa)', 'Może rosnąć 30cm miesięcznie!', 'W naturze wspina się na drzewa'],
+                diseases: ['Żółte liście = przelanie', 'Brak dziur = za mało światła', 'Brązowe krawędzie = suche powietrze', 'Małe liście = potrzebuje podpory do wspinania'],
+                propagation: 'Bardzo łatwe! Sadzonki z węzłem w wodzie lub sphagnum. Korzenie po 2-3 tyg. Można ukorzeniać nawet w słoiku na parapecie.'
+            },
+            { 
+                id: 'palm-areca', name: 'Areka (Palma złota)', species: 'Dypsis lutescens', emoji: '🌴', 
+                image: 'https://images.unsplash.com/photo-1567331711402-509c12c41959?w=400&h=300&fit=crop', 
+                category: ['popular', 'tropical'], difficulty: 'medium', origin: 'Madagaskar', toxic: 'Nie - bezpieczna!', maxHeight: '2.5m w domu',
+                care: { water: 'Co 5-7 dni, lubi wilgotną glebę', light: 'Jasne pośrednie', humidity: '50-60%', temperature: '18-24°C' }, 
+                description: 'Najpopularniejsza palma domowa! Eleganckie pierzaste liście wnoszą tropikalny klimat. Naturalny nawilżacz - oddaje dużo wody.',
+                funFacts: ['Transpiruje nawet 1 litr wody dziennie!', 'NASA TOP 10 do oczyszczania powietrza', 'Na Madagaskarze jest zagrożona wyginięciem', 'Żółtawe łodygi to cecha gatunkowa, nie choroba'],
+                diseases: ['Brązowe końcówki = suche powietrze lub sól w ziemi', 'Żółte liście = przelanie lub za mało składników', 'Przędziorek = suche powietrze (zraszaj!)', 'Brązowe plamy = oparzenie słoneczne'],
+                propagation: 'Tylko z nasion lub podział kępy (jeśli ma wiele pędów). Nasiona kiełkują 2-3 miesiące. Podział trudny - palmy nie lubią ruszania korzeni.'
+            },
+            // === KWITNĄCE ===
+            { 
+                id: 'orchid', name: 'Storczyk Falenopsis', species: 'Phalaenopsis', emoji: '🦋', 
+                image: 'https://images.unsplash.com/photo-1518882605630-8996a190b30c?w=400&h=300&fit=crop', 
+                category: ['flowering', 'popular'], difficulty: 'medium', origin: 'Azja Płd-Wsch.', toxic: 'Nie - bezpieczny!', maxHeight: '60cm',
+                care: { water: 'Co 7-10 dni zanurzenie na 15 min', light: 'Jasne rozproszone, bez bezpośredniego słońca', humidity: '50-70%', temperature: '18-25°C, spadek nocą pomaga kwitnieniu' }, 
+                description: 'Najpopularniejszy storczyk! Kwitnie nawet 3-4 miesiące. Wbrew mitom - wcale nie jest trudny. Kluczem jest odpowiednie podlewanie i światło.',
+                funFacts: ['Kwitnienie można przedłużyć chłodem (18°C) i cieniem', 'Po przekwitnięciu przytnij łodygę nad 3. węzłem - może zakwitnąć ponownie!', 'Korzenie fotosyntezują - lubią przezroczyste doniczki', 'Rodzina storczyków ma 28 000 gatunków!'],
+                diseases: ['Żółte/miękkie liście = przelanie i gnicie korzeni', 'Pomarszczone liście = za mało wody', 'Pąki opadają = stres (przeciąg, zmiana miejsca, etyleny z owoców)', 'Czarne plamy = infekcja bakteryjna (odetnij!)'],
+                propagation: 'Trudne w domu. Czasem roślina wypuszcza keiki (dzieci) na łodydze kwiatowej. Odetnij gdy ma 2-3 liście i korzenie 5cm+.'
+            },
+            { 
+                id: 'anthurium', name: 'Anturium', species: 'Anthurium andraeanum', emoji: '❤️', 
+                image: 'https://images.unsplash.com/photo-1596438459194-f275f413d6ff?w=400&h=300&fit=crop', 
+                category: ['flowering', 'tropical'], difficulty: 'medium', origin: 'Kolumbia, Ekwador', toxic: 'Tak - kryształy szczawianu', maxHeight: '60cm',
+                care: { water: 'Co 5-7 dni', light: 'Jasne rozproszone', humidity: '60-80%', temperature: '20-28°C' }, 
+                description: 'Spektakularne lakierowane "kwiaty" to tak naprawdę zmodyfikowane liście (pochwy). Prawdziwe kwiaty są na żółtej kolbie. Kwitnie przez cały rok!',
+                funFacts: ['Jeden "kwiat" utrzymuje się 2-3 miesiące!', 'Kolumbia eksportuje miliony anturiów rocznie', 'Istnieje ponad 1000 gatunków', 'Nazwa znaczy "kwiat-ogon" po grecku'],
+                diseases: ['Brązowe liście = suche powietrze lub oparzenie', 'Żółte liście = przelanie', 'Brak kwitnienia = za mało światła', 'Czarne plamy = zimna woda lub bakterie'],
+                propagation: 'Podział kęp lub sadzonki pędowe z korzeniami powietrznymi. Najlepiej podczas przesadzania wiosną. W wodzie ukorzenia się wolniej.'
+            },
+            { 
+                id: 'kalanchoe', name: 'Kalanchoe', species: 'Kalanchoe blossfeldiana', emoji: '🌺', 
+                image: 'https://images.unsplash.com/photo-1509587584298-0f3b3a3a1797?w=400&h=300&fit=crop', 
+                category: ['flowering', 'succulents', 'easy'], difficulty: 'easy', origin: 'Madagaskar', toxic: 'Tak dla zwierząt!', maxHeight: '40cm',
+                care: { water: 'Co 10-14 dni gdy gleba wyschnie', light: 'Jasne do słonecznego', humidity: '30-50%', temperature: '15-25°C' }, 
+                description: 'Sukulent z masą kolorowych kwiatków! Po przekwitnięciu można wymusić ponowne kwitnienie. Bardzo łatwy w uprawie.',
+                funFacts: ['Kwitnie przez 8 tygodni!', 'Potrzebuje "krótkiego dnia" (14h ciemności) przez 6 tyg. by zakwitnąć ponownie', 'Istnieje 125 gatunków', 'Liście magazynują wodę jak sukulent'],
+                diseases: ['Wydłużanie się = za mało światła', 'Gnicie łodygi = przelanie', 'Mączlik/mszyce = sprawdzaj regularnie', 'Brak kwitnienia = potrzebuje okresu ciemności'],
+                propagation: 'Bardzo łatwe! Sadzonki łodygowe lub liściowe. Liść połóż na ziemi - z brzegu wyrosną dzieci. Sadzonki ukorzeniają się w 2-3 tyg.'
+            },
+            { 
+                id: 'begonia', name: 'Begonia królewska', species: 'Begonia rex', emoji: '👑', 
+                image: 'https://images.unsplash.com/photo-1510505751526-76f2f0d2e276?w=400&h=300&fit=crop', 
+                category: ['flowering', 'tropical'], difficulty: 'medium', origin: 'Indie (Assam)', toxic: 'Tak - szczególnie kłącze', maxHeight: '50cm',
+                care: { water: 'Co 5-7 dni, unikaj liści', light: 'Jasne rozproszone', humidity: '50-70%', temperature: '18-24°C' }, 
+                description: 'Uprawiana dla SPEKTAKULARNYCH wzorzystych liści, nie kwiatów! Spiralne, srebrne, różowe, bordowe wzory. Królowa begonii.',
+                funFacts: ['Istnieje ponad 2000 gatunków begonii!', 'Wzory na liściach są unikalne jak odciski palców', 'Kwiaty są niepozorne - usuwa się je by wzmocnić liście', 'Nazwa od Michela Bégona - gubernatora Haiti'],
+                diseases: ['Mączniak prawdziwy = za wilgotno, za gęsto', 'Gnicie łodygi = woda na liściach lub przelanie', 'Brązowe krawędzie = suche powietrze', 'Blade liście = za mało światła'],
+                propagation: 'Sadzonki liściowe! Natnij żyłki na spodzie liścia, połóż na wilgotnej ziemi. Z nacięć wyrosną nowe rośliny. Magia!'
+            },
+            { 
+                id: 'african-violet', name: 'Fiołek afrykański', species: 'Saintpaulia ionantha', emoji: '💜', 
+                image: 'https://images.unsplash.com/photo-1490750967868-88aa4486c946?w=400&h=300&fit=crop', 
+                category: ['flowering', 'easy'], difficulty: 'easy', origin: 'Tanzania', toxic: 'Nie - bezpieczny!', maxHeight: '20cm',
+                care: { water: 'Co 5-7 dni OD SPODU (wick watering)', light: 'Jasne rozproszone, świetnie pod lampą', humidity: '50-60%', temperature: '18-24°C stała' }, 
+                description: 'Kompaktowy kwiatek kwitnący przez cały rok! NIGDY nie moczyć liści - zostawiają plamy. Idealny na parapet, świetnie rośnie pod lampami.',
+                funFacts: ['Istnieje 16 000+ odmian!', 'Pierwszy fiołek odkryto w 1892 w Tanzanii', 'Kwitnie 10-12 miesięcy w roku', 'Każdy kolor oprócz żółtego - nigdy nie udało się go wyhodować'],
+                diseases: ['Plamy na liściach = zimna woda lub słońce przez mokre liście', 'Brak kwitnienia = za mało światła', 'Gnicie korony = woda w środku rozety', 'Mączlik = biały nalot na liściach'],
+                propagation: 'Sadzonki liściowe w wodzie lub ziemi. Odetnij liść z 2cm ogonkiem, włóż do wody. Dzieci po 2-3 mies. Cierpliwość!'
+            },
+            { 
+                id: 'hibiscus', name: 'Hibiskus chiński', species: 'Hibiscus rosa-sinensis', emoji: '🌺', 
+                image: 'https://images.unsplash.com/photo-1558882268-19fcd3103449?w=400&h=300&fit=crop', 
+                category: ['flowering', 'tropical'], difficulty: 'medium', origin: 'Azja Tropikalna', toxic: 'Nie - kwiaty jadalne!', maxHeight: '2m w domu',
+                care: { water: 'Co 3-5 dni, nie lubi przesychać', light: 'Pełne słońce - minimum 6h', humidity: '50-70%', temperature: '18-30°C, zimą min. 10°C' }, 
+                description: 'Spektakularne kwiaty do 15cm! Każdy kwiat żyje tylko 1-2 dni, ale roślina produkuje nowe przez cały sezon. Zimą odpoczynek.',
+                funFacts: ['Kwiaty są jadalne - używane w herbatach', 'Herbata z hibiskusa obniża ciśnienie krwi', 'Kwiat narodowy Malezji i Korei Płd.', 'Jeden krzew może dać 100+ kwiatów w sezonie'],
+                diseases: ['Opadające pąki = stres (przeciąg, zimno, zmiana miejsca)', 'Żółte liście = przelanie lub chloroza (brak żelaza)', 'Mszyce = częsty problem, sprawdzaj pąki', 'Brak kwitnienia = za mało słońca'],
+                propagation: 'Sadzonki półzdrewniałe latem. Odetnij 10-15cm pęd, usuń dolne liście, zanurz w hormonie, wsadź w piasek. Ciepło i wilgoć. Korzenie po 4-8 tyg.'
+            },
+            { 
+                id: 'cyclamen', name: 'Cyklamen perski', species: 'Cyclamen persicum', emoji: '🌸', 
+                image: 'https://images.unsplash.com/photo-1455659817273-f96807779a8a?w=400&h=300&fit=crop', 
+                category: ['flowering'], difficulty: 'medium', origin: 'Bliski Wschód', toxic: 'Tak - szczególnie bulwa!', maxHeight: '30cm',
+                care: { water: 'Co 3-5 dni od spodu gdy przeschnie', light: 'Jasne chłodne', humidity: '50-60%', temperature: '10-18°C - LUBI CHŁÓD!' }, 
+                description: 'Zimowy kwiat który UWIELBIA chłód! Kwitnie od jesieni do wiosny gdy inne śpią. Latem przechodzi w spoczynek - to normalne.',
+                funFacts: ['Kwitnie gdy jest ZIMNO (10-15°C idealne)', 'Latem traci liście i śpi - nie wyrzucaj!', 'Bulwa może żyć 100 lat', 'Motyle zapylające go mają taką samą długość języczka jak rurka kwiatu'],
+                diseases: ['Więdnięcie = za ciepło lub potrzeba wody', 'Żółte liście = za ciepło lub przelanie', 'Szara pleśń = za wilgotno, słaba wentylacja', 'Gnicie bulwy = woda w środku rośliny'],
+                propagation: 'Z nasion (trudne, 9-12 mies. do kwitnienia) lub podział bulwy (ryzykowne). Większość ludzi kupuje nowe rośliny.'
+            },
+            { 
+                id: 'hoya', name: 'Hoja (Woskownica)', species: 'Hoya carnosa', emoji: '⭐', 
+                image: 'https://images.unsplash.com/photo-1509423350716-97f9360b4e09?w=400&h=300&fit=crop', 
+                category: ['flowering', 'tropical'], difficulty: 'easy', origin: 'Azja, Australia', toxic: 'Nie - bezpieczna!', maxHeight: '4m jako pnącze',
+                care: { water: 'Co 10-14 dni gdy dobrze przeschnie', light: 'Jasne pośrednie', humidity: '40-60%', temperature: '15-27°C' }, 
+                description: 'Woskowe liście i NIESAMOWICIE pachnące kuliste kwiatostany! Kwiaty wydzielają słodki nektar. NIE usuwaj szypułek - kwitną wielokrotnie!',
+                funFacts: ['Kwiaty wydzielają krople nektaru - można zlizać!', 'Istnieje ponad 500 gatunków Hoya', 'Szypułka kwitnie wielokrotnie - nigdy nie usuwaj', 'Najstarsza Hoya miała ponad 50 lat'],
+                diseases: ['Brak kwitnienia = cierpliwość (3-5 lat) lub za mało światła', 'Żółte liście = przelanie', 'Mączlik = biały puszek przy liściach', 'Opadające pąki = zmiana warunków'],
+                propagation: 'Sadzonki łodygowe w wodzie lub sphagnum. Minimum 2 węzły. Korzenie po 4-8 tyg. Marcottage też działa świetnie.'
+            },
+            { 
+                id: 'schlumbergera', name: 'Grudnik (Kaktus bożonarodzeniowy)', species: 'Schlumbergera truncata', emoji: '🎄', 
+                image: 'https://images.unsplash.com/photo-1545165375-8be2e38b6ff8?w=400&h=300&fit=crop', 
+                category: ['flowering', 'succulents'], difficulty: 'easy', origin: 'Brazylia (góry)', toxic: 'Nie - bezpieczny!', maxHeight: '30cm',
+                care: { water: 'Co 7-10 dni gdy wierzch przeschnie', light: 'Jasne rozproszone', humidity: '50-60%', temperature: '15-21°C, spadek jesienią indukuje kwitnienie' }, 
+                description: 'Kwitnie na święta! Potrzebuje "krótkiego dnia" (ciemność 12-14h) przez 6 tyg. jesienią i spadku temperatury. Potem obsypuje się kwiatami.',
+                funFacts: ['Może żyć ponad 100 lat!', 'W naturze rośnie na drzewach jako epifit', 'Kwitnie też na Wielkanoc jeśli zaindukujesz jesienią', 'Przekazywany z pokolenia na pokolenie'],
+                diseases: ['Opadanie pąków = stres (ruszanie, temp., przeciąg)', 'Pomarszczone segmenty = za mało wody', 'Czerwone segmenty = za dużo słońca (ale może też kwitnąć!)', 'Gnicie = przelanie'],
+                propagation: 'Bardzo łatwe! Odłam segment (2-3 człony), zasusz 1-2 dni, wsadź do ziemi. Korzenie po 3-6 tyg. Rób wiosną/latem.'
+            },
+            { 
+                id: 'gardenia', name: 'Gardenia', species: 'Gardenia jasminoides', emoji: '🤍', 
+                image: 'https://images.unsplash.com/photo-1559563362-c667ba5f5480?w=400&h=300&fit=crop', 
+                category: ['flowering'], difficulty: 'hard', origin: 'Chiny, Japonia', toxic: 'Lekko dla zwierząt', maxHeight: '1.5m',
+                care: { water: 'Co 3-5 dni wodą miękką/deszczową', light: 'Jasne pośrednie', humidity: '60-80% - wymaga!', temperature: '18-24°C, nocą chłodniej' }, 
+                description: 'NAJPIĘKNIEJSZY zapach! Kremowobiałe kwiaty o odurzającym aromacie. DIVA wśród roślin - wymaga idealnych warunków. Dla doświadczonych.',
+                funFacts: ['Zapach używany w perfumach od wieków', 'Kwiaty żółkną z wiekiem - to normalne', 'W Azji symbol czystości i miłości', 'Jeden z najtrudniejszych kwiatów domowych'],
+                diseases: ['Żółte liście z zielonymi żyłkami = chloroza (potrzebuje kwaśnej gleby, żelaza)', 'Opadające pąki = stres, zmiany warunków, suche powietrze', 'Czarny nalot = chermes (mszyca)', 'Brązowe krawędzie = suche powietrze lub twarda woda'],
+                propagation: 'Sadzonki półzdrewniałe latem z hormonem ukorzeniającym. Ciepło dna (20-24°C), wysoka wilgotność. Trudne - lepiej kupić.'
+            },
+            // === SUKULENTY ===
+            { 
+                id: 'echeveria', name: 'Echeweria', species: 'Echeveria elegans', emoji: '🪷', 
+                image: 'https://images.unsplash.com/photo-1509937528035-ad76254b0356?w=400&h=300&fit=crop', 
+                category: ['succulents', 'easy'], difficulty: 'easy', origin: 'Meksyk', toxic: 'Nie - bezpieczna!', maxHeight: '15cm',
+                care: { water: 'Co 2-3 tygodnie gdy gleba sucha', light: 'Pełne słońce - minimum 4-6h', humidity: '30-40%', temperature: '10-27°C' }, 
+                description: 'Idealna różyczka! Woskowy nalot chroni przed słońcem. Stresowana silnym światłem zyskuje piękne czerwone/różowe brzegi liści.',
+                funFacts: ['Woskowy nalot (farina) chroni przed słońcem - nie dotykaj!', 'Stres = piękne kolory (czerwone brzegi)', 'Istnieje 150+ gatunków', 'Nazwa od meksykańskiego botanika Echeverría'],
+                diseases: ['Wydłużanie (etiolacja) = za mało światła', 'Gnicie od dołu = przelanie', 'Mączlik = biały puszek między liśćmi', 'Brązowe dolne liście = naturalne zrzucanie'],
+                propagation: 'Łatwe! Liść połóż na suchej ziemi, z końca wyrośnie dziecko. Lub odetnij dzieci od matki. Nie podlewaj aż ma korzenie!'
+            },
+            { 
+                id: 'aloe', name: 'Aloes zwyczajny', species: 'Aloe vera', emoji: '🌱', 
+                image: 'https://images.unsplash.com/photo-1509423350716-97f9360b4e09?w=400&h=300&fit=crop', 
+                category: ['succulents', 'easy', 'popular'], difficulty: 'easy', origin: 'Półwysep Arabski', toxic: 'Skórka tak, żel nie', maxHeight: '100cm',
+                care: { water: 'Co 2-3 tygodnie', light: 'Jasne do pełnego słońca', humidity: '30-50%', temperature: '13-27°C' }, 
+                description: 'Żel łagodzi oparzenia, nawilża skórę, pomaga na trądzik! Apteczka w doniczce. Bardzo łatwy w uprawie.',
+                funFacts: ['Używany medycznie od 6000 lat!', 'Kleopatra stosowała go do pielęgnacji', 'NASA bada go do produkcji tlenu w kosmosie', 'Jeden z najstarszych znanych suplementów'],
+                diseases: ['Brązowe liście = oparzenie słoneczne', 'Miękkie liście = przelanie i gnicie', 'Pomarszczone liście = potrzebuje wody (rzadkie)', 'Brązowe końcówki = naturalne lub za sucho'],
+                propagation: 'Oddziel dzieci od matki gdy mają 5-10cm. Zostaw do przeschnięcia 1-2 dni, posadź w suchą ziemię. Podlej po tygodniu.'
+            },
+            { 
+                id: 'crassula', name: 'Grubosz (Drzewko szczęścia)', species: 'Crassula ovata', emoji: '🌳', 
+                image: 'https://images.unsplash.com/photo-1485955900006-10f4d324d411?w=400&h=300&fit=crop', 
+                category: ['succulents', 'easy'], difficulty: 'easy', origin: 'RPA', toxic: 'Tak dla zwierząt!', maxHeight: '2m (ale latami)',
+                care: { water: 'Co 2-3 tygodnie', light: 'Jasne do pełnego słońca', humidity: '30-50%', temperature: '12-27°C, zimą chłodniej' }, 
+                description: 'Symbol bogactwa i szczęścia w feng shui! Grube liście magazynują wodę. Może stać się okazałym mini-drzewkiem żyjącym 100+ lat.',
+                funFacts: ['Najstarszy znany okaz miał 4m i 100+ lat!', 'Według feng shui przyciąga pieniądze', 'Stres (słońce, sucho) = czerwone brzegi liści', 'Może kwitnąć drobnym różowymi kwiatkami zimą'],
+                diseases: ['Opadanie liści = przelanie lub szok termiczny', 'Miękka łodyga = gnicie od nadmiaru wody', 'Wydłużanie = za mało światła', 'Brązowe plamy = oparzenie (stopniowo aklimatyzuj do słońca)'],
+                propagation: 'Najłatwiejszy sukulent! Liść lub sadzonka łodygowa. Zasusz 2-3 dni, połóż/wsadź do ziemi. Korzenie po 2-4 tyg.'
+            },
+            { 
+                id: 'haworthia', name: 'Haworcja', species: 'Haworthiopsis attenuata', emoji: '🦓', 
+                image: 'https://images.unsplash.com/photo-1446071103084-c257b5f70672?w=400&h=300&fit=crop', 
+                category: ['succulents', 'easy'], difficulty: 'easy', origin: 'RPA', toxic: 'Nie - bezpieczna!', maxHeight: '15cm',
+                care: { water: 'Co 2-3 tygodnie', light: 'Jasne pośrednie - toleruje słabsze!', humidity: '30-50%', temperature: '15-27°C' }, 
+                description: 'Sukulent dla początkujących który toleruje SŁABSZE światło niż inne! Białe paski to brodawki magazynujące wodę. Zwarta rozeta.',
+                funFacts: ['Paski to skupiska komórek magazynujących wodę', 'Toleruje słabsze światło niż inne sukulenty', 'Często mylona z mini-Aloe', 'Łatwo produkuje potomstwo'],
+                diseases: ['Gnicie = przelanie (główny problem)', 'Brązowe końcówki = oparzenie słoneczne', 'Blade paski = za mało światła', 'Zamknięta rozeta = za dużo słońca (ochrona)'],
+                propagation: 'Oddziel dzieci od matki lub sadzonki liściowe. Zasusz 2-3 dni przed posadzeniem. Korzenie po 2-4 tyg.'
+            },
+            { 
+                id: 'sedum', name: 'Rozchodnik (Ogon osła)', species: 'Sedum morganianum', emoji: '🫒', 
+                image: 'https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=400&h=300&fit=crop', 
+                category: ['succulents', 'easy'], difficulty: 'easy', origin: 'Meksyk', toxic: 'Nie - bezpieczny!', maxHeight: '100cm (zwisa)',
+                care: { water: 'Co 2-3 tygodnie', light: 'Jasne do słonecznego', humidity: '30-50%', temperature: '10-27°C' }, 
+                description: 'Spektakularne zwisające pędy z tysiącami pulchnych listków! Liście BARDZO łatwo odpadają przy dotyku - ale to mechanizm rozmnażania.',
+                funFacts: ['Opadające liście to naturalny sposób rozmnażania!', 'Odkryty dopiero w 1935 w Meksyku', 'Pędy mogą zwisać na 1m', 'Każdy opadły listek może dać nową roślinę'],
+                diseases: ['Opadanie liści = dotyk, przelanie lub stres', 'Pomarszczone liście = potrzebuje wody', 'Żółte liście = przelanie', 'Wydłużanie = za mało światła'],
+                propagation: 'Najłatwiejsze! Każdy opadły listek połóż na ziemi - wyrośnie nowa roślina. Można też ciąć pędy i ukorzeniać.'
+            },
+            { 
+                id: 'lithops', name: 'Żywe kamienie', species: 'Lithops', emoji: '🪨', 
+                image: 'https://images.unsplash.com/photo-1485955900006-10f4d324d411?w=400&h=300&fit=crop', 
+                category: ['succulents'], difficulty: 'hard', origin: 'Namibia, RPA', toxic: 'Nie - bezpieczne!', maxHeight: '5cm',
+                care: { water: 'BARDZO RZADKO - tylko latem co 2-3 tyg.', light: 'Pełne słońce - minimum 5h', humidity: '20-40%', temperature: '15-30°C' }, 
+                description: 'Udają kamyki żeby unikać zjedzenia! Prawie całkowicie zakopane w podłożu. Zimą i wiosną NIE podlewać - wtedy zmieniają skórę.',
+                funFacts: ['Udają kamienie jako ochrona przed zjedzeniem', 'Okno na górze to soczewka fokusująca światło', 'Rosną prawie całkowicie zakopane', 'Zimą zrzucają starą skórę - NIE podlewaj!'],
+                diseases: ['Pękanie = przelanie (główny zabójca!)', 'Scukrzenie = przelanie podczas zmiany skóry', 'Rozciąganie = za mało światła', 'Pomarszczenie = potrzebuje wody (tylko latem!)'],
+                propagation: 'Z nasion (3-5 lat do dorosłości) lub podział gdy roślina się podwaja. Bardzo powolny proces. Kupowanie jest praktyczniejsze.'
+            },
+            { 
+                id: 'string-of-pearls', name: 'Sznur pereł', species: 'Senecio rowleyanus', emoji: '📿', 
+                image: 'https://images.unsplash.com/photo-1521503862198-295ebe2ca9c1?w=400&h=300&fit=crop', 
+                category: ['succulents'], difficulty: 'medium', origin: 'RPA', toxic: 'Tak - mildly toxic', maxHeight: '90cm (zwisa)',
+                care: { water: 'Co 10-14 dni gdy kulki lekko zmarszczone', light: 'Jasne pośrednie', humidity: '40-50%', temperature: '15-27°C' }, 
+                description: 'Unikalne zwisające sznury z kulkowatymi liśćmi jak perły! Liście są okrągłe by zminimalizować parowanie. Delikatna ale wdzięczna.',
+                funFacts: ['Kwiaty pachną cynamonem!', 'Kulki to zmodyfikowane liście z magazynem wody', 'W naturze czołga się po ziemi tworząc dywan', 'Ciemna kreska to "okno" do fotosyntezy'],
+                diseases: ['Marszczenie = potrzebuje wody', 'Pękanie kulek = przelanie', 'Gnicie od podstawy = za mokro', 'Żółknięcie = przelanie'],
+                propagation: 'Przygięcie pędu do ziemi (ukorzeni w węzłach) lub sadzonki 5-10cm wsadzone do ziemi. Korzenie po 2-3 tyg.'
+            },
+            { 
+                id: 'string-of-hearts', name: 'Sznur serc', species: 'Ceropegia woodii', emoji: '💕', 
+                image: 'https://images.unsplash.com/photo-1521503862198-295ebe2ca9c1?w=400&h=300&fit=crop', 
+                category: ['succulents'], difficulty: 'easy', origin: 'RPA', toxic: 'Nie - bezpieczny!', maxHeight: '4m (zwisa)',
+                care: { water: 'Co 10-14 dni', light: 'Jasne pośrednie', humidity: '40-50%', temperature: '15-27°C' }, 
+                description: 'Romantyczne sercowate listki na nitkowatych pędach! Tworzy też bulwki na pędach które można odcinać do rozmnażania. Niesamowite kwiaty jak latarnie.',
+                funFacts: ['Kwiaty wyglądają jak małe latarnie/pułapki', 'Na pędach tworzą się bulwki - można je sadzić', 'Pędy mogą osiągnąć 4m!', 'Nazwa Ceropegia znaczy "fontanna wosku"'],
+                diseases: ['Żółte liście = przelanie', 'Blade liście = za mało światła', 'Kurczenie bulwki = przesuszenie', 'Gnicie = zimno + mokro'],
+                propagation: 'Bardzo łatwe! Bulwki z pędu połóż na ziemi. Sadzonki w wodzie lub ziemi. Marcottage (przygięcie do ziemi). Wszystko działa!'
+            },
+            { 
+                id: 'sempervivum', name: 'Rojnik', species: 'Sempervivum tectorum', emoji: '🌸', 
+                image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=300&fit=crop', 
+                category: ['succulents', 'easy'], difficulty: 'easy', origin: 'Europa górska', toxic: 'Nie - bezpieczny!', maxHeight: '15cm',
+                care: { water: 'Co 2-3 tyg. latem, zimą prawie wcale', light: 'Pełne słońce', humidity: '30-40%', temperature: '-30 do +30°C (!)', }, 
+                description: 'MROZOODPORNY sukulent! Przeżywa do -30°C. Rośnie na dachach i skałach. Po kwitnieniu rozeta matka umiera ale zostawia dzieci.',
+                funFacts: ['Nazwa łacińska znaczy "zawsze żywy"', 'W średniowieczu sadzono na dachach jako ochronę przed piorunami', 'Przeżywa od -30°C do +30°C', 'Po kwitnieniu rozeta umiera - zastępują ją dzieci'],
+                diseases: ['Gnicie = przelanie (jedyny problem!)', 'Rozciąganie = za mało słońca', 'Brązowe dolne liście = naturalne zrzucanie'],
+                propagation: 'Sama produkuje dzieci! Odetnij młode rozety gdy mają 2-3cm, posadź. Można też z liści (wolno) lub nasion.'
+            },
+            { 
+                id: 'aeonium', name: 'Eonium czarne', species: 'Aeonium arboreum', emoji: '🖤', 
+                image: 'https://images.unsplash.com/photo-1509587584298-0f3b3a3a1797?w=400&h=300&fit=crop', 
+                category: ['succulents'], difficulty: 'easy', origin: 'Wyspy Kanaryjskie', toxic: 'Nie - bezpieczne!', maxHeight: '1m',
+                care: { water: 'Co 10-14 dni w sezonie wzrostu', light: 'Jasne do pełnego słońca', humidity: '40-50%', temperature: '10-25°C' }, 
+                description: 'ODWROTNY cykl! Rośnie zimą, śpi latem. Spektakularne ciemne (prawie czarne) rozety na łodygach. Odmiana Zwartkop jest popularna.',
+                funFacts: ['Rośnie ZIMĄ, śpi LATEM (odwrotnie niż inne!)', 'Im więcej słońca tym ciemniejsze liście', 'Łodygi mogą się rozgałęziać', 'Pochodzi z Wysp Kanaryjskich'],
+                diseases: ['Zielone liście = za mało słońca', 'Zrzucanie liści latem = normalne (sen)', 'Gnicie = przelanie zimą', 'Rozciąganie = za mało światła'],
+                propagation: 'Sadzonki łodygowe lub wierzchołkowe. Zasusz kilka dni, posadź. Można też rozmnażać z liści (wolniej).'
+            },
+            // === TROPIKALNE ===
+            { 
+                id: 'calathea', name: 'Kalatea', species: 'Goeppertia ornata', emoji: '🎨', 
+                image: 'https://images.unsplash.com/photo-1626259066529-4f40a3013e94?w=400&h=300&fit=crop', 
+                category: ['tropical'], difficulty: 'hard', origin: 'Kolumbia, Brazylia', toxic: 'Nie - bezpieczna!', maxHeight: '90cm',
+                care: { water: 'Co 5-7 dni wodą destylowaną/przegotowaną', light: 'Cień do jasnego pośredniego', humidity: '60-80% - WYMAGA!', temperature: '18-24°C stała' }, 
+                description: 'DIVA! Spektakularne wzory ale wymaga miękkiej wody i wysokiej wilgotności. Składa liście wieczorem (roślina modląca). Dla doświadczonych.',
+                funFacts: ['Składa liście wieczorem - słychać trzask!', 'Wzory są unikalne dla każdego gatunku', 'Wymaga wody BEZ chloru i wapnia', 'W Brazylii liście używa się do pakowania ryb'],
+                diseases: ['Brązowe krawędzie = twarda woda lub suche powietrze', 'Zwijanie liści = za sucho lub zimno', 'Blade wzory = za mało lub za dużo światła', 'Gnicie = przelanie'],
+                propagation: 'Podział kęp przy przesadzaniu. Każda część musi mieć korzenie i kilka liści. Wiosna najlepsza.'
+            },
+            { 
+                id: 'maranta', name: 'Maranta', species: 'Maranta leuconeura', emoji: '🙏', 
+                image: 'https://images.unsplash.com/photo-1584589167171-541ce45f1eea?w=400&h=300&fit=crop', 
+                category: ['tropical'], difficulty: 'medium', origin: 'Brazylia', toxic: 'Nie - bezpieczna!', maxHeight: '45cm',
+                care: { water: 'Co 5-7 dni', light: 'Średnie rozproszone', humidity: '50-70%', temperature: '18-27°C' }, 
+                description: 'Roślina modląca - składa liście wieczorem jak dłonie do modlitwy! Łatwiejsza kuzynka Kalatei. Piękne wzory na liściach.',
+                funFacts: ['Składa liście pionowo wieczorem', 'Z kłączy produkuje się skrobię arrowroot', 'Mechanizm ruchów to zmiany ciśnienia wody', 'Istnieje wiele odmian z różnymi wzorami'],
+                diseases: ['Brązowe końcówki = suche powietrze lub sól w wodzie', 'Blade wzory = za dużo światła', 'Zwijanie liści = przesuszenie', 'Żółte liście = przelanie'],
+                propagation: 'Podział kęp lub sadzonki pędowe z węzłem w wodzie. Korzenie po 2-4 tyg.'
+            },
+            { 
+                id: 'alocasia', name: 'Alokacja', species: 'Alocasia amazonica', emoji: '🖤', 
+                image: 'https://images.unsplash.com/photo-1598880940489-81dbbf4628dc?w=400&h=300&fit=crop', 
+                category: ['tropical'], difficulty: 'hard', origin: 'Hybryda (nie z Amazonii!)', toxic: 'BARDZO - kryształy szczawianu', maxHeight: '60cm',
+                care: { water: 'Co 5-7 dni, stale lekko wilgotna', light: 'Jasne rozproszone', humidity: '60-80%', temperature: '18-27°C' }, 
+                description: 'Dramatyczne strzałkowate liście z białymi żyłkami na ciemnym tle! BARDZO toksyczna. Może wchodzić w spoczynek zimą tracąc liście.',
+                funFacts: ['Mimo nazwy "amazonica" to hybryda ogrodnicza!', 'Spoczynek zimowy z utratą liści to normalne', 'Bulwa przetrwa i wypuści nowe liście', 'Istnieje 70+ gatunków Alocasia'],
+                diseases: ['Żółte liście = przelanie', 'Opadanie zimą = spoczynek (normalne)', 'Brązowe plamy = oparzenie lub przeziębienie', 'Przędziorek = suche powietrze'],
+                propagation: 'Podział bulw lub odcinanie "pupsów" (młodych bulwek). Najlepiej wiosną gdy roślina budzi się z spoczynku.'
+            },
+            { 
+                id: 'croton', name: 'Kroton', species: 'Codiaeum variegatum', emoji: '🍂', 
+                image: 'https://images.unsplash.com/photo-1594009516455-3f9f9e4d3be6?w=400&h=300&fit=crop', 
+                category: ['tropical'], difficulty: 'medium', origin: 'Malezja, Indonezja', toxic: 'Tak - sok mleczny drażniący', maxHeight: '2m',
+                care: { water: 'Co 5-7 dni', light: 'Jasne do słonecznego - dużo światła!', humidity: '50-70%', temperature: '18-27°C stała' }, 
+                description: 'EKSPLOZJA KOLORÓW! Żółte, pomarańczowe, czerwone, różowe liście. Im więcej światła tym intensywniejsze kolory. Nie lubi zmian!',
+                funFacts: ['Istnieje ponad 100 różnych odmian!', 'Kolory intensywniejsze przy silnym świetle', 'Bardzo wrażliwy na przeciągi i zmiany', 'Sok może podrażnić skórę'],
+                diseases: ['Opadające liście = zimno, przeciąg lub zmiana miejsca', 'Blade kolory = za mało światła', 'Przędziorek = suche powietrze (zraszaj!)', 'Mszyce = sprawdzaj młode liście'],
+                propagation: 'Sadzonki wierzchołkowe z hormonem ukorzeniającym. Ciepło (24°C) i wilgotność. Sok drażniący - rękawiczki!'
+            },
+            { 
+                id: 'dieffenbachia', name: 'Difenbachia', species: 'Dieffenbachia seguine', emoji: '🌿', 
+                image: 'https://images.unsplash.com/photo-1608241175281-722a1c6111be?w=400&h=300&fit=crop', 
+                category: ['tropical'], difficulty: 'easy', origin: 'Ameryka Śr. i Płd.', toxic: 'BARDZO! Sok powoduje czasową niemotę', maxHeight: '2m',
+                care: { water: 'Co 7-10 dni', light: 'Średnie do jasnego pośredniego', humidity: '50-70%', temperature: '18-27°C' }, 
+                description: 'Wzorzyste liście ale BARDZO TOKSYCZNA! Sok zawiera kryształy które wywołują opuchliznę języka i gardła (niemota). Trzymaj z dala od dzieci i zwierząt!',
+                funFacts: ['Nazywana "dumb cane" bo sok powoduje czasową niemotę', 'Kiedyś używana jako środek tortur!', 'Mimo toksyczności bardzo popularna', 'Oczyszcza powietrze z toksyn'],
+                diseases: ['Żółte dolne liście = naturalne starzenie', 'Brązowe krawędzie = suche powietrze lub nieregularne podlewanie', 'Gnicie łodygi = przelanie', 'Blade liście = za mało światła'],
+                propagation: 'Sadzonki wierzchołkowe lub kawałki łodygi (air layering). OSTROŻNIE - sok toksyczny! Używaj rękawiczek.'
+            },
+            { 
+                id: 'boston-fern', name: 'Paproć bostońska', species: 'Nephrolepis exaltata', emoji: '🌿', 
+                image: 'https://images.unsplash.com/photo-1521334884684-d80222895322?w=400&h=300&fit=crop', 
+                category: ['tropical'], difficulty: 'medium', origin: 'Ameryka Tropikalna', toxic: 'Nie - bezpieczna!', maxHeight: '90cm',
+                care: { water: 'Co 3-5 dni, stale wilgotna', light: 'Średnie rozproszone', humidity: '60-80% - kocha wilgoć!', temperature: '16-24°C' }, 
+                description: 'Elegancka paproć o pierzastych liściach! Świetnie nawilża powietrze. Wymaga wysokiej wilgotności - idealna do łazienki.',
+                funFacts: ['Popularna od ery wiktoriańskiej!', 'Naturalny nawilżacz powietrza', 'Nie ma kwiatów ani nasion - rozmnaża się zarodnikami', 'NASA TOP 10 do oczyszczania powietrza'],
+                diseases: ['Brązowienie liści = za sucho', 'Opadanie listków = za sucho lub za ciemno', 'Żółte liście = przelanie lub za mało składników', 'Szare plamy = grzyb od nadmiaru wilgoci'],
+                propagation: 'Podział kęp lub młode rozety z rozłogów. Zarodniki (trudne). Najłatwiej dzielić wiosną.'
+            },
+            { 
+                id: 'caladium', name: 'Kaladium', species: 'Caladium bicolor', emoji: '🩷', 
+                image: 'https://images.unsplash.com/photo-1459411552884-841db9b3cc2a?w=400&h=300&fit=crop', 
+                category: ['tropical'], difficulty: 'medium', origin: 'Ameryka Południowa', toxic: 'Tak - kryształy szczawianu', maxHeight: '60cm',
+                care: { water: 'Co 3-5 dni w sezonie', light: 'Jasne rozproszone', humidity: '60-80%', temperature: '18-27°C' }, 
+                description: 'SPEKTAKULARNE różowe, czerwone, białe liście! Sezonowa - zimą zapada w spoczynek tracąc liście. Bulwa przetrwa do wiosny.',
+                funFacts: ['Zimowy spoczynek to normalne - bulwa żyje!', 'Liście mogą być prawie całkowicie różowe', 'Istnieje 1000+ odmian', 'W tropikach rośnie cały rok'],
+                diseases: ['Żółte/gnijące liście = przelanie', 'Małe liście = za mało światła lub składników', 'Spoczynek zimą = NORMALNE, nie wyrzucaj!', 'Brązowe krawędzie = suche powietrze'],
+                propagation: 'Podział bulw wiosną (każda część musi mieć "oko"). Susz rany 1-2 dni przed sadzeniem.'
+            },
+            { 
+                id: 'strelitzia', name: 'Strelicja (Rajski ptak)', species: 'Strelitzia reginae', emoji: '🦜', 
+                image: 'https://images.unsplash.com/photo-1604762524889-3e2fcc145683?w=400&h=300&fit=crop', 
+                category: ['tropical', 'flowering'], difficulty: 'medium', origin: 'RPA', toxic: 'Tak dla zwierząt', maxHeight: '2m',
+                care: { water: 'Co 7-10 dni', light: 'Pełne słońce - minimum 4-6h!', humidity: '40-60%', temperature: '10-30°C' }, 
+                description: 'Spektakularne kwiaty jak głowa rajskiego ptaka! Ale cierpliwość - kwitnie dopiero po 5+ latach. Długowieczna i odporna roślina.',
+                funFacts: ['Potrzebuje 5-7 lat by zakwitnąć z nasion!', 'Kwiaty utrzymują się przez tygodnie', 'Może żyć 50+ lat', 'Nazwa od królowej Charlotte (księżniczki Meklemburgii-Strelitz)'],
+                diseases: ['Zwijanie liści = za sucho lub za zimno', 'Brązowe krawędzie = suche powietrze lub sól', 'Rozdzieranie liści = naturalne (adaptacja do wiatru)', 'Brak kwitnienia = za mało słońca lub za młoda'],
+                propagation: 'Podział kęp (3-4 lata do kwitnienia) lub nasiona (5-7 lat!). Dziel wiosną, każda część musi mieć korzenie i rozety.'
+            },
+            // === ŁATWE ===
+            { 
+                id: 'spider-plant', name: 'Zielistka (Roślina-pająk)', species: 'Chlorophytum comosum', emoji: '🕷️', 
+                image: 'https://images.unsplash.com/photo-1572688484438-313a6e50c333?w=400&h=300&fit=crop', 
+                category: ['easy', 'popular'], difficulty: 'easy', origin: 'Afryka Tropikalna', toxic: 'Nie, ALE koty ją uwielbiają!', maxHeight: '45cm + zwisające dzieci',
+                care: { water: 'Co 5-7 dni', light: 'Średnie do jasnego', humidity: '40-60%', temperature: '13-27°C' }, 
+                description: 'Kultowa! Produkuje "dzieci" na długich pędach które można odcinać i rozdawać. Świetna do oczyszczania powietrza. Bardzo tolerancyjna.',
+                funFacts: ['NASA TOP 10 do oczyszczania powietrza', 'Koty ją UWIELBIAJĄ - lekko halucynogenna dla nich', 'Może mieć 100+ dzieci!', 'Jedna z najłatwiejszych do rozmnażania'],
+                diseases: ['Brązowe końcówki = chlor/fluor w wodzie lub suche powietrze', 'Blade liście = za mało światła', 'Brak dzieci = za mało światła lub za młoda', 'Gnicie = przelanie'],
+                propagation: 'NAJŁATWIEJSZA roślina! Dzieci można odcinać i sadzić lub ukorzeniać w wodzie. Można też przypiąć dziecko do ziemi bez odcinania.'
+            },
+            { 
+                id: 'tradescantia', name: 'Trzykrotka', species: 'Tradescantia zebrina', emoji: '💜', 
+                image: 'https://images.unsplash.com/photo-1597826368522-9f4cb5a6f7a5?w=400&h=300&fit=crop', 
+                category: ['easy'], difficulty: 'easy', origin: 'Meksyk', toxic: 'Lekko drażniąca', maxHeight: '60cm',
+                care: { water: 'Co 5-7 dni', light: 'Jasne pośrednie', humidity: '50-60%', temperature: '15-27°C' }, 
+                description: 'BARDZO szybko rośnie! Błyszczące fioletowo-srebrne liście. Im więcej światła tym intensywniejsze kolory. Świetna do makramowych wieszaków.',
+                funFacts: ['Może rosnąć 2-3cm dziennie!', 'Liście zmieniają kolor zależnie od światła', 'Może być inwazyjna w ciepłym klimacie', 'Sok może podrażnić skórę wrażliwą'],
+                diseases: ['Blade/zielone kolory = za mało światła', 'Łysienie u podstawy = normalne, przycinaj i sadź wierzchołki', 'Żółte liście = przelanie', 'Wydłużanie = za mało światła'],
+                propagation: 'EKSTREMALNIE łatwe! Odetnij kawałek, włóż do wody lub ziemi. Korzenie dosłownie w kilka dni. Jedna z najłatwiejszych!'
+            },
+            { 
+                id: 'ivy', name: 'Bluszcz', species: 'Hedera helix', emoji: '🍀', 
+                image: 'https://images.unsplash.com/photo-1620127682229-33388276e540?w=400&h=300&fit=crop', 
+                category: ['easy'], difficulty: 'easy', origin: 'Europa', toxic: 'Tak - jagody bardzo!', maxHeight: '20m (!)',
+                care: { water: 'Co 5-7 dni', light: 'Średnie do jasnego', humidity: '40-60%', temperature: '10-21°C - lubi CHŁÓD!' }, 
+                description: 'Klasyka która UWIELBIA chłód! Nie lubi centralnego ogrzewania - idealna do chłodniejszych pomieszczeń. Świetnie oczyszcza powietrze.',
+                funFacts: ['Może żyć 400+ lat w naturze!', 'W średniowieczu wierzono że chroni przed czarami', 'Może wspinać się na wszystko', 'Alergicy - sok może podrażnić!'],
+                diseases: ['Brązowe liście = za ciepło lub suche powietrze', 'Przędziorek = częsty problem (zraszaj!)', 'Żółte liście = przelanie', 'Opadanie liści = za ciepło'],
+                propagation: 'Sadzonki wierzchołkowe w wodzie lub ziemi. Korzenie po 2-4 tyg. Można też przygiąć pęd do ziemi.'
+            },
+            { 
+                id: 'peperomia', name: 'Peperomia', species: 'Peperomia obtusifolia', emoji: '🌿', 
+                image: 'https://images.unsplash.com/photo-1597055181300-e3633a917e84?w=400&h=300&fit=crop', 
+                category: ['easy'], difficulty: 'easy', origin: 'Ameryka Tropikalna', toxic: 'Nie - bezpieczna!', maxHeight: '30cm',
+                care: { water: 'Co 7-14 dni', light: 'Średnie do jasnego', humidity: '40-60%', temperature: '15-27°C' }, 
+                description: 'Kompaktowa z grubymi, błyszczącymi liśćmi. Setki różnych odmian! Spokrewniona z pieprzem. Idealna na biurko. Bardzo tolerancyjna.',
+                funFacts: ['Istnieje 1000+ gatunków!', 'Spokrewniona z pieprzem czarnym', 'Kwiaty wyglądają jak szczurze ogonki', 'Liście magazynują wodę jak sukulent'],
+                diseases: ['Opadanie liści = przelanie (główny problem)', 'Pomarszczone liście = przesuszenie', 'Żółte liście = przelanie', 'Brązowe plamy = oparzenie słoneczne'],
+                propagation: 'Sadzonki łodygowe lub liściowe. Liść włóż do wody lub ziemi - wyrośnie nowa roślina. Korzenie po 2-4 tyg.'
+            },
+            { 
+                id: 'aglaonema', name: 'Aglaonema', species: 'Aglaonema commutatum', emoji: '🌿', 
+                image: 'https://images.unsplash.com/photo-1598880940489-81dbbf4628dc?w=400&h=300&fit=crop', 
+                category: ['easy', 'tropical'], difficulty: 'easy', origin: 'Azja Płd-Wsch.', toxic: 'Tak - kryształy szczawianu', maxHeight: '90cm',
+                care: { water: 'Co 7-10 dni', light: 'Cień do jasnego pośredniego', humidity: '50-70%', temperature: '18-27°C' }, 
+                description: 'NAJLEPSZA roślina do ciemnych pomieszczeń! Toleruje słabe światło lepiej niż większość. Srebrno-zielone wzory na liściach.',
+                funFacts: ['W Azji uważana za roślinę przynoszącą szczęście', 'Toleruje ciemność jak żadna inna', 'Oczyszcza powietrze z benzenu i formaldehydu', 'Nowe odmiany mają różowe liście!'],
+                diseases: ['Żółte liście = przelanie lub za zimno', 'Brązowe końcówki = suche powietrze lub sól', 'Blade wzory = ironicznie - za mało światła', 'Gnicie = zimno + mokro'],
+                propagation: 'Podział kęp lub sadzonki łodygowe. Korzenie w wodzie lub ziemi po 3-4 tyg.'
+            },
+            { 
+                id: 'schefflera', name: 'Szeflera (Parasol karła)', species: 'Schefflera arboricola', emoji: '☂️', 
+                image: 'https://images.unsplash.com/photo-1567331711402-509c12c41959?w=400&h=300&fit=crop', 
+                category: ['easy', 'tropical'], difficulty: 'easy', origin: 'Tajwan, Chiny', toxic: 'Tak - kryształy szczawianu', maxHeight: '2.5m w domu',
+                care: { water: 'Co 7-10 dni', light: 'Jasne pośrednie', humidity: '50-70%', temperature: '15-27°C' }, 
+                description: 'Eleganckie liście jak parasolki złożone z 7-9 listków! Może urosnąć na piękne mini-drzewko. Łatwa i odporna.',
+                funFacts: ['W naturze dorasta do 8m!', 'Liście złożone z 7-9 listków jak palce', 'Toleruje przycinanie i kształtowanie', 'Odmiana "Amate" jest bardziej odporna'],
+                diseases: ['Opadające liście = przeciąg, zimno lub przelanie', 'Lepkie liście = chermes (mszyca)', 'Żółte liście = przelanie', 'Brązowe plamy = oparzenie słoneczne'],
+                propagation: 'Sadzonki wierzchołkowe lub rozmnażanie w powietrzu (air layering). Hormon ukorzeniający pomaga. Korzenie po 4-8 tyg.'
+            },
+            { 
+                id: 'asparagus-fern', name: 'Asparagus ozdobny', species: 'Asparagus setaceus', emoji: '🌫️', 
+                image: 'https://images.unsplash.com/photo-1521334884684-d80222895322?w=400&h=300&fit=crop', 
+                category: ['easy'], difficulty: 'easy', origin: 'Afryka Południowa', toxic: 'Jagody tak!', maxHeight: '3m jako pnącze',
+                care: { water: 'Co 5-7 dni', light: 'Jasne rozproszone', humidity: '50-70%', temperature: '15-27°C' }, 
+                description: 'Pierzaste, delikatne "liście" (to tak naprawdę zmodyfikowane łodygi!). Wbrew nazwie to NIE paproć - spokrewniony ze szparagami jadalnymi.',
+                funFacts: ['To NIE paproć! Spokrewniony ze szparagami jadalnymi', '"Liście" to zmodyfikowane łodygi (cladody)', 'Może mieć kolce - ostrożnie!', 'Czerwone jagody są toksyczne'],
+                diseases: ['Żółknięcie = przelanie lub za mało składników', 'Opadanie "igieł" = za sucho lub za ciemno', 'Brązowienie = za suche powietrze', 'Przędziorek = sprawdzaj regularnie'],
+                propagation: 'Podział kęp lub nasiona (z jagód). Podział najłatwiejszy - dziel wiosną.'
+            },
+            { 
+                id: 'ctenanthe', name: 'Ktenante', species: 'Ctenanthe burle-marxii', emoji: '🐟', 
+                image: 'https://images.unsplash.com/photo-1584589167171-541ce45f1eea?w=400&h=300&fit=crop', 
+                category: ['easy', 'tropical'], difficulty: 'easy', origin: 'Brazylia', toxic: 'Nie - bezpieczna!', maxHeight: '50cm',
+                care: { water: 'Co 5-7 dni', light: 'Średnie rozproszone', humidity: '50-70%', temperature: '18-27°C' }, 
+                description: 'ŁATWIEJSZA kuzynka Kalatei! Piękne wzory jak rybna ość. Składa liście wieczorem. Bardziej tolerancyjna niż Calathea.',
+                funFacts: ['Nazwa od Burle Marxa - słynnego brazylijskiego architekta krajobrazu', 'Wzór jak szkielet rybiej ości', 'Fioletowy spód liści', 'Składa liście wieczorem jak Kalatea'],
+                diseases: ['Brązowe końcówki = suche powietrze lub twarda woda', 'Zwijanie liści = za sucho', 'Blade wzory = za dużo/mało światła', 'Żółte liście = przelanie'],
+                propagation: 'Podział kęp przy przesadzaniu. Łatwiejsze niż Calathea. Wiosna najlepsza.'
+            },
+            // === SPECJALNE ===
+            { 
+                id: 'venus', name: 'Muchołówka amerykańska', species: 'Dionaea muscipula', emoji: '🪤', 
+                image: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=300&fit=crop', 
+                category: ['special'], difficulty: 'hard', origin: 'Karolina Płn. i Płd. (USA)', toxic: 'Nie - bezpieczna!', maxHeight: '15cm',
+                care: { water: 'Stale wilgotna, TYLKO woda destylowana!', light: 'Pełne słońce - minimum 4-6h!', humidity: '50-80%', temperature: '20-30°C latem, WYMAGA zimy 2-10°C!' }, 
+                description: 'Roślina mięsożerna! Pułapki zamykają się w 0.1 sekundy gdy owad dotknie włosków spustowych 2x w 20 sekund. WYMAGA zimowego spoczynku!',
+                funFacts: ['Darwin nazwał ją "najwspanialszą rośliną świata"', 'Pułapka zamyka się w 0.1 sekundy!', 'Trawi owada 5-12 dni', 'BEZ zimowego spoczynku umrze w 2-3 lata'],
+                diseases: ['Czarne pułapki = normalne po strawieniu (max 3-4 ofiary)', 'Brak zamykania = wyczerpanie lub zły warunki', 'Gnicie = twarda woda lub przelanie', 'Słaby wzrost = brak zimy lub słońca'],
+                propagation: 'Podział kęp, sadzonki liściowe lub nasiona. Nasiona wymagają stratyfikacji (zimno). Trudne dla początkujących.'
+            },
+            { 
+                id: 'bonsai', name: 'Bonsai Fikus', species: 'Ficus microcarpa (retusa)', emoji: '🎋', 
+                image: 'https://images.unsplash.com/photo-1595351475754-8a520e0d0eb5?w=400&h=300&fit=crop', 
+                category: ['special'], difficulty: 'medium', origin: 'Azja Tropikalna', toxic: 'Lekko - sok mleczny', maxHeight: '60cm (kontrolowane)',
+                care: { water: 'Co 3-5 dni gdy wierzch przeschnie', light: 'Jasne pośrednie', humidity: '50-70%', temperature: '15-27°C' }, 
+                description: 'Miniaturowe drzewko wymagające regularnego cięcia i formowania. Fikus to najłatwiejszy gatunek do bonsai dla początkujących. Korzenie powietrzne dodają charakteru.',
+                funFacts: ['Sztuka bonsai ma ponad 1000 lat!', 'Niektóre bonsai mają 800+ lat', 'Fikus to najłatwiejsze bonsai dla początkujących', 'Drzewka mogą być dziedziczone przez pokolenia'],
+                diseases: ['Opadanie liści = stres (zmiana miejsca, podlewanie)', 'Żółte liście = przelanie', 'Mszyce = sprawdzaj młode liście', 'Słaby wzrost = potrzebuje przesadzenia lub nawożenia'],
+                propagation: 'Sadzonki lub rozmnażanie w powietrzu (air layering). Kształtowanie trwa lata. Można kupić gotowe i uczyć się pielęgnacji.'
+            },
+            { 
+                id: 'coffee', name: 'Kawowiec arabski', species: 'Coffea arabica', emoji: '☕', 
+                image: 'https://images.unsplash.com/photo-1585487000195-e293bfc86002?w=400&h=300&fit=crop', 
+                category: ['special', 'tropical'], difficulty: 'medium', origin: 'Etiopia', toxic: 'Nie (ale kofeina w nasionach)', maxHeight: '2m w domu',
+                care: { water: 'Co 5-7 dni, lubi wilgoć', light: 'Jasne rozproszone', humidity: '50-70%', temperature: '18-24°C stała' }, 
+                description: 'Możesz uprawiać kawę w domu! Po 3-5 latach roślina może zakwitnąć i dać owoce (wiśnie kawowe). Błyszczące liście same w sobie są dekoracyjne.',
+                funFacts: ['Jeden krzew może dać 0.5 kg ziaren kawy rocznie!', 'Kwiaty pachną jaśminem', 'Owoce dojrzewają 9 miesięcy', 'Kofeina to obrona rośliny przed owadami'],
+                diseases: ['Żółte liście z zielonymi żyłkami = chloroza (potrzebuje kwaśnej gleby)', 'Brązowe końcówki = suche powietrze', 'Opadanie liści = stres lub zimno', 'Przędziorek = suche powietrze'],
+                propagation: 'Nasiona (świeże wiśnie kawowe) lub sadzonki. Nasiona kiełkują 2-3 miesiące. Sadzonki trudniejsze.'
+            },
+            { 
+                id: 'citrus', name: 'Cytryna Meyera', species: 'Citrus × meyeri', emoji: '🍋', 
+                image: 'https://images.unsplash.com/photo-1590004987778-bece5c9adab6?w=400&h=300&fit=crop', 
+                category: ['special', 'flowering'], difficulty: 'medium', origin: 'Chiny', toxic: 'Nie - jadalna!', maxHeight: '2m w domu',
+                care: { water: 'Co 5-7 dni, nie lubi przesychać', light: 'Pełne słońce - minimum 6h!', humidity: '50-60%', temperature: '15-30°C, zimą min. 5°C' }, 
+                description: 'Prawdziwe cytryny w domu! Meyer to krzyżówka cytryny z mandarynką - słodsza i mniej kwaśna. Pachnące kwiaty pojawiają się przez cały rok.',
+                funFacts: ['To krzyżówka cytryny z mandarynką!', 'Słodsza niż zwykła cytryna', 'Może kwitnąć i owocować cały rok', 'Jeden owoc dojrzewa 6-9 miesięcy'],
+                diseases: ['Żółte liście z zielonymi żyłkami = chloroza (brak żelaza, za alkaliczna gleba)', 'Opadanie kwiatów = stres, przeciąg', 'Mszyce = częste na młodych pędach', 'Tarcznik = brązowe "tarczki" na liściach'],
+                propagation: 'Sadzonki z hormonem ukorzeniającym lub szczepienie. Nasiona dadzą dziką cytrynę. Kupowanie gotowej rośliny najłatwiejsze.'
+            },
+            { 
+                id: 'mimosa', name: 'Mimoza wstydliwa', species: 'Mimosa pudica', emoji: '😳', 
+                image: 'https://images.unsplash.com/photo-1622398925373-3f91b1e275f5?w=400&h=300&fit=crop', 
+                category: ['special'], difficulty: 'medium', origin: 'Ameryka Południowa', toxic: 'Lekko (nasiona bardziej)', maxHeight: '50cm',
+                care: { water: 'Co 3-5 dni, lubi wilgoć', light: 'Jasne do słonecznego', humidity: '50-70%', temperature: '18-27°C' }, 
+                description: 'Liście ZAMYKAJĄ SIĘ błyskawicznie po dotknięciu! Niesamowita roślina reagująca na bodźce. Traktowana często jako roczna ale może żyć dłużej.',
+                funFacts: ['Naukowcy badają jej "pamięć" - uczy się ignorować powtarzające się bodźce!', 'Zamykanie to obrona przed zwierzętami', 'Liście zamykają się też na noc', 'Ruch trwa 0.1 sekundy'],
+                diseases: ['Brak reakcji = wyczerpanie energią (nie dotykaj cały czas!)', 'Żółte liście = przelanie', 'Przędziorek = suche powietrze', 'Słaby wzrost = za mało słońca'],
+                propagation: 'Z nasion (łatwe!). Nasiona namocz 24h w ciepłej wodzie, zasiej. Kiełkują w 1-2 tygodnie. Traktuj jak roczną.'
+            },
+            { 
+                id: 'oxalis', name: 'Szczawik trójkątny', species: 'Oxalis triangularis', emoji: '🦋', 
+                image: 'https://images.unsplash.com/photo-1510505751526-76f2f0d2e276?w=400&h=300&fit=crop', 
+                category: ['special', 'easy'], difficulty: 'easy', origin: 'Brazylia', toxic: 'Lekko (kwas szczawiowy)', maxHeight: '25cm',
+                care: { water: 'Co 5-7 dni', light: 'Jasne pośrednie', humidity: '50-60%', temperature: '15-25°C' }, 
+                description: 'Fioletowe trójkątne liście! Otwiera się rano, zamyka wieczorem - hipnotyzujące. Może zapaść w spoczynek na kilka miesięcy - to normalne!',
+                funFacts: ['Liście otwierają się i zamykają w ciągu dnia', 'Spoczynek na kilka miesięcy to normalne - bulwy żyją!', 'Nazywana "fałszywą koniczyną"', 'Kwiaty są drobne ale śliczne - różowe lub białe'],
+                diseases: ['Opadanie liści = spoczynek (NORMALNE!)', 'Blade liście = za dużo słońca', 'Żółte liście = przelanie', 'Wydłużanie = za mało światła'],
+                propagation: 'Podział bulw - każda mała cebulka da nową roślinę! Bardzo łatwe. Roślina sama też się rozmnaża.'
+            },
+            { 
+                id: 'tillandsia', name: 'Tillandsia (Roślina powietrzna)', species: 'Tillandsia ionantha', emoji: '🌬️', 
+                image: 'https://images.unsplash.com/photo-1521503862198-295ebe2ca9c1?w=400&h=300&fit=crop', 
+                category: ['special'], difficulty: 'easy', origin: 'Ameryka Środkowa', toxic: 'Nie - bezpieczna!', maxHeight: '15cm',
+                care: { water: 'Zanurzenie na 30 min 2x/tydzień', light: 'Jasne pośrednie', humidity: '50-70%', temperature: '15-27°C' }, 
+                description: 'Roślina powietrzna - NIE potrzebuje ziemi! Pobiera wodę i składniki przez liście z powietrza. Można ją przykleić do kamienia, drewna, zawiesić...',
+                funFacts: ['Hiszpański mech to też Tillandsia!', 'Istnieje 650+ gatunków', 'Przed kwitnieniem często czerwienieje', 'Po kwitnieniu umiera ale zostawia dzieci'],
+                diseases: ['Brązowienie od podstawy = gnicie od nadmiaru wody', 'Zwijanie liści = za sucho', 'Blade kolory = za mało światła', 'Brak wzrostu = za mało wody lub światła'],
+                propagation: 'Po kwitnieniu roślina produkuje "pupy" (dzieci). Odetnij gdy są 1/3 wielkości matki. Można też z nasion (trudne).'
+            },
+            // === NOWE ROŚLINY ===
+            { 
+                id: 'palm-kentia', name: 'Palma Kentia', species: 'Howea forsteriana', emoji: '🌴', 
+                image: 'https://images.unsplash.com/photo-1545241047-6083a3684587?w=400&h=300&fit=crop', 
+                category: ['popular', 'tropical'], difficulty: 'easy', origin: 'Wyspa Lord Howe (Australia)', toxic: 'Nie - bezpieczna', maxHeight: '3m w domu',
+                care: { water: 'Co 7-10 dni', light: 'Toleruje cień, lubi jasne rozproszone', humidity: '50-70%', temperature: '16-27°C' }, 
+                description: 'Królowa palm doniczkowych! Elegancka, tolerancyjna i oczyszczająca powietrze. Wolno rośnie ale żyje dziesiątki lat.',
+                funFacts: ['Ulubiona palma epoki wiktoriańskiej', 'Rośnie tylko na jednej wyspie na świecie naturalnie', 'Może żyć ponad 50 lat w domu', 'W naturze dorasta do 15m'],
+                diseases: ['Brązowe końcówki = suche powietrze', 'Żółte liście = przelanie', 'Brązowe plamy = oparzenie słoneczne', 'Pajączki = za sucho'],
+                propagation: 'Tylko z nasion - kiełkowanie trwa 3-6 miesięcy! Nie da się rozmnożyć przez podział.'
+            },
+            { 
+                id: 'rubber-burgundy', name: 'Fikus Burgundy', species: 'Ficus elastica Burgundy', emoji: '🍷', 
+                image: 'https://images.unsplash.com/photo-1635322966219-b75ed372eb01?w=400&h=300&fit=crop', 
+                category: ['popular', 'tropical'], difficulty: 'easy', origin: 'Indie, Indonezja', toxic: 'Tak - sok drażniący', maxHeight: '2-3m w domu',
+                care: { water: 'Co 7-10 dni', light: 'Jasne do średniego', humidity: '40-60%', temperature: '16-27°C' }, 
+                description: 'Ciemnobordowe, prawie czarne liście! Jedna z najpiękniejszych odmian fikusa. Młode liście są jaskrawo czerwone.',
+                funFacts: ['Młode liście wyglądają jak czerwone ołówki', 'Im więcej światła tym ciemniejsze liście', 'Z soku wytwarzano kauczu naturalny', 'Może wypuszczać korzenie powietrzne'],
+                diseases: ['Opadanie liści = szok stresowy (przeprowadzka, przeciąg)', 'Blade liście = za mało światła', 'Lepkie liście = mszyce', 'Żółknięcie = przelanie'],
+                propagation: 'Sadzonki wierzchołkowe lub z jednym liściem i węzłem. Sok drażni skórę - używaj rękawiczek!'
+            },
+            { 
+                id: 'nerve-plant', name: 'Fitonia (Nerve Plant)', species: 'Fittonia albivenis', emoji: '🧠', 
+                image: 'https://images.unsplash.com/photo-1620127682229-33388276e540?w=400&h=300&fit=crop', 
+                category: ['tropical', 'easy'], difficulty: 'medium', origin: 'Peru, Kolumbia', toxic: 'Nie - bezpieczna', maxHeight: '15cm',
+                care: { water: 'Co 3-5 dni, stale wilgotna', light: 'Cień do jasnego rozproszonego', humidity: '70-90%', temperature: '18-26°C' }, 
+                description: 'Zjawiskowe żyłki na liściach - białe, różowe lub czerwone! Dramatycznie mdleje gdy ma suchą ziemię, ale szybko wraca do życia.',
+                funFacts: ['Nazywana "drama queen" bo mdleje gdy sucho', 'Idealna do terrariów', 'Istnieją odmiany mini, które nie rosną ponad 5cm', 'W naturze rośnie na dnie lasu deszczowego'],
+                diseases: ['Opadanie = za sucho (podlej i wróci!)', 'Brązowe brzegi = suche powietrze', 'Blade żyłki = za mało światła', 'Gnicie = przelanie lub zła cyrkulacja'],
+                propagation: 'Bardzo łatwe sadzonki pędowe - węzły szybko puszczają korzenie w wodzie lub ziemi.'
+            },
+            { 
+                id: 'polka-dot', name: 'Roślina w kropki', species: 'Hypoestes phyllostachya', emoji: '🔴', 
+                image: 'https://images.unsplash.com/photo-1510505751526-76f2f0d2e276?w=400&h=300&fit=crop', 
+                category: ['flowering', 'easy'], difficulty: 'easy', origin: 'Madagaskar', toxic: 'Nie - bezpieczna', maxHeight: '30-50cm',
+                care: { water: 'Co 5-7 dni', light: 'Jasne rozproszone do średniego', humidity: '50-70%', temperature: '18-27°C' }, 
+                description: 'Liście pokryte plamkami! Różowe, czerwone, białe lub mieszane. Szybko rośnie, łatwa w uprawie, kolorowa cały rok.',
+                funFacts: ['Im więcej światła tym więcej plam', 'Przycinanie powoduje krzewienie', 'Kwiaty są niepozorne - przycinaj je', 'Często uprawiana jako roślina jednoroczna ale może żyć latami'],
+                diseases: ['Wydłużanie się = za mało światła', 'Opadanie liści = za sucho', 'Blade kolory = za ciemno', 'Brązowe brzegi = suche powietrze'],
+                propagation: 'Łatwe sadzonki pędowe w wodzie lub ziemi. Można też z nasion.'
+            },
+            { 
+                id: 'zz-raven', name: 'ZZ Raven (Czarny ZZ)', species: 'Zamioculcas zamiifolia Raven', emoji: '🖤', 
+                image: 'https://images.unsplash.com/photo-1632207691143-643e2a9a9361?w=400&h=300&fit=crop', 
+                category: ['popular', 'easy'], difficulty: 'easy', origin: 'Kultywar (oryginał z Afryki)', toxic: 'Tak - kryształy szczawianu', maxHeight: '1m',
+                care: { water: 'Co 2-3 tygodnie', light: 'Cień do jasnego', humidity: '40-60%', temperature: '15-28°C' }, 
+                description: 'Czarna wersja niezniszczalnego ZZ! Młode liście są zielone i ciemnieją z czasem. Równie łatwy jak zwykły ZZ.',
+                funFacts: ['Patent na tę odmianę wygasł w 2023', 'Nowe liście są jasnozielone - to normalne!', 'Ciemnieje z czasem', 'Może przeżyć miesiące bez podlewania'],
+                diseases: ['Żółte liście = przelanie (najczęstszy błąd!)', 'Opadanie = gnicie kłącza od nadmiaru wody', 'Brak nowych liści = za mało światła', 'Wyciąganie się = potrzeba więcej światła'],
+                propagation: 'Podział kłącza lub sadzonki z liścia (trwa 6-12 miesięcy!).'
+            },
+            { 
+                id: 'syngonium', name: 'Syngonium', species: 'Syngonium podophyllum', emoji: '🏹', 
+                image: 'https://images.unsplash.com/photo-1602923668104-8f9e03e77e62?w=400&h=300&fit=crop', 
+                category: ['popular', 'tropical'], difficulty: 'easy', origin: 'Meksyk, Ameryka Środkowa', toxic: 'Tak - kryształy szczawianu', maxHeight: '2m jako pnącze',
+                care: { water: 'Co 7-10 dni', light: 'Jasne rozproszone do średniego', humidity: '50-70%', temperature: '16-27°C' }, 
+                description: 'Liście w kształcie strzałek! Młode liście są kompaktowe, starsze dzielą się na "palce". Dziesiątki kolorowych odmian.',
+                funFacts: ['Istnieje 30+ odmian kolorystycznych', 'Młode liście mają inny kształt niż stare', 'Może rosnąć jako zwisająca lub wspinająca', 'Kuzyn filodendronów'],
+                diseases: ['Żółte liście dolne = naturalne starzenie', 'Brązowe plamy = oparzenie słoneczne', 'Blade kolory = za mało światła', 'Gnicie = przelanie'],
+                propagation: 'Bardzo łatwe sadzonki pędowe z węzłem - korzenie w wodzie po 1-2 tygodniach.'
+            },
+            { 
+                id: 'prayer-plant', name: 'Stromanthe', species: 'Stromanthe sanguinea', emoji: '🙏', 
+                image: 'https://images.unsplash.com/photo-1584589167171-541ce45f1eea?w=400&h=300&fit=crop', 
+                category: ['tropical'], difficulty: 'hard', origin: 'Brazylia', toxic: 'Nie - bezpieczna', maxHeight: '1m',
+                care: { water: 'Co 5-7 dni, stale wilgotna', light: 'Jasne rozproszone, bez słońca', humidity: '60-80%', temperature: '18-27°C' }, 
+                description: 'Spektakularne liście - zielone z różowymi i białymi smugami, spód czerwony! Składa liście na noc jak do modlitwy.',
+                funFacts: ['Nazywana Triostar lub Magic Star', 'Spokrewniona z Marantą i Kalateą', 'Spód liści jest jaskrawo różowy', 'Liście ruszają się w ciągu dnia'],
+                diseases: ['Brązowe brzegi = suche powietrze (najczęściej!)', 'Zwijanie liści = za sucho', 'Blade kolory = za mało światła', 'Brązowe plamy = woda na liściach + słońce'],
+                propagation: 'Podział przy przesadzaniu - każda część musi mieć korzenie i punkty wzrostu.'
+            },
+            { 
+                id: 'rubber-tineke', name: 'Fikus Tineke', species: 'Ficus elastica Tineke', emoji: '🎨', 
+                image: 'https://images.unsplash.com/photo-1635322966219-b75ed372eb01?w=400&h=300&fit=crop', 
+                category: ['popular', 'tropical'], difficulty: 'easy', origin: 'Kultywar (oryginał z Azji)', toxic: 'Tak - sok drażniący', maxHeight: '2m w domu',
+                care: { water: 'Co 7-10 dni', light: 'Jasne rozproszone - WAŻNE dla kolorów!', humidity: '40-60%', temperature: '16-27°C' }, 
+                description: 'Trójkolorowy fikus - zielony, kremowy i różowy! Młode liście mają intensywnie różowe osłonki. Piękniejszy niż zwykły fikus.',
+                funFacts: ['Im więcej światła tym więcej różu', 'Nowe liście wychodzą z różowej osłonki', 'Wymaga więcej światła niż zielone odmiany', 'Wolniej rośnie od zwykłego fikusa'],
+                diseases: ['Utrata kolorów = za mało światła', 'Brązowe plamy = oparzenie (zbyt ostre słońce)', 'Opadanie liści = przeciąg lub szok', 'Lepkie liście = szkodniki'],
+                propagation: 'Sadzonki wierzchołkowe w wodzie lub perlicie. Sok drażni - używaj rękawiczek.'
+            },
+            { 
+                id: 'bromeliad', name: 'Bromelia', species: 'Guzmania lingulata', emoji: '🔥', 
+                image: 'https://images.unsplash.com/photo-1596438459194-f275f413d6ff?w=400&h=300&fit=crop', 
+                category: ['flowering', 'tropical'], difficulty: 'medium', origin: 'Ameryka Środkowa i Płd.', toxic: 'Nie - bezpieczna', maxHeight: '50cm',
+                care: { water: 'Woda w rozetę 1x/tydzień', light: 'Jasne rozproszone', humidity: '50-70%', temperature: '18-27°C' }, 
+                description: 'Spektakularny kwiatostan w czerwieni, pomarańczu lub różu! Kwiat trwa miesiącami. Po kwitnieniu roślina matka umiera ale zostawia dzieci.',
+                funFacts: ['Ananas to też bromelia!', 'Kwiat to tak naprawdę kolorowe liście', 'Wodę wlewamy do "kielicha" w środku', 'Roślina matka umiera po kwitnieniu - to normalne'],
+                diseases: ['Gnicie podstawy = za mokro', 'Brązowienie kwiatostanu = naturalny koniec kwitnienia', 'Blade kolory = za mało światła', 'Suche końcówki = za suche powietrze'],
+                propagation: 'Oddziel "pupy" (dzieci) gdy osiągną 1/3 wielkości matki. Nowa roślina zakwitnie za 2-3 lata.'
+            },
+            { 
+                id: 'bird-nest-fern', name: 'Paproć Gniazdowa', species: 'Asplenium nidus', emoji: '🪺', 
+                image: 'https://images.unsplash.com/photo-1521334884684-d80222895322?w=400&h=300&fit=crop', 
+                category: ['tropical'], difficulty: 'medium', origin: 'Azja, Australia, Hawaje', toxic: 'Nie - bezpieczna', maxHeight: '1m',
+                care: { water: 'Co 5-7 dni, stale lekko wilgotna', light: 'Cień do jasnego rozproszonego', humidity: '60-80%', temperature: '18-27°C' }, 
+                description: 'Błyszczące, falowane liście wyrastające z centralnej rozety - jak ptasie gniazdo! Jedna z najładniejszych paproci do domu.',
+                funFacts: ['W naturze rośnie na drzewach jako epifit', 'Młode liście są zwinięte jak "główki skrzypiec"', 'Nigdy nie lej wody do środka rozety - zgnije!', 'Istnieją odmiany z bardzo falowanymi liśćmi'],
+                diseases: ['Brązowe brzegi = za suche powietrze', 'Żółte liście = przelanie lub za dużo słońca', 'Czarne plamy = woda w rozecie + gnicie', 'Blade liście = za mało światła'],
+                propagation: 'Tylko z zarodników (trudne!). Nie da się dzielić ani robić sadzonek.'
+            }
+        ];
+
+        // ===== STATE =====
+        let appData = { plants: [], settings: { apiKey: '' } };
+        let currentFilter = 'all';
+        
+        // ===== INIT =====
+        function init() {
+            loadData();
+            renderAll();
+            checkApiKey();
+        }
+        
+        function loadData() {
+            const saved = localStorage.getItem('plantcare');
+            if (saved) appData = JSON.parse(saved);
+        }
+        
+        function saveData() {
+            localStorage.setItem('plantcare', JSON.stringify(appData));
+        }
+        
+        // ===== NAVIGATION =====
+        function showPage(id) {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.getElementById('page-' + id).classList.add('active');
+            
+            document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+            const btn = document.querySelector('.nav-btn[data-page="' + id + '"]');
+            if (btn) btn.classList.add('active');
+            
+            if (id === 'scanner') checkApiKey();
+        }
+        
+        // ===== RENDER =====
+        function renderAll() {
+            updateStats();
+            renderHomePlants();
+            renderPlantsGrid();
+            renderEncyclopedia();
+        }
+        
+        function updateStats() {
+            document.getElementById('stat-total').textContent = appData.plants.length;
+            document.getElementById('stat-water').textContent = appData.plants.filter(p => needsWater(p)).length;
+            document.getElementById('stat-issues').textContent = appData.plants.filter(p => p.status === 'problem').length;
+        }
+        
+        function needsWater(plant) {
+            if (!plant.lastWatered) return true;
+            const days = (Date.now() - new Date(plant.lastWatered).getTime()) / (1000*60*60*24);
+            return days >= (plant.interval || 7);
+        }
+        
+        function renderHomePlants() {
+            const el = document.getElementById('home-plants');
+            if (appData.plants.length === 0) {
+                el.innerHTML = '<div class="empty"><div class="empty-icon">🌱</div><div class="empty-title">Brak roślin</div><div class="empty-text">Dodaj swoją pierwszą roślinę</div><button class="btn btn-primary" onclick="openAddPlant()">➕ Dodaj roślinę</button></div>';
+                return;
+            }
+            el.innerHTML = appData.plants.slice(0, 4).map(p => {
+                const visual = p.photo 
+                    ? '<img src="' + p.photo + '" style="width:100%;height:140px;object-fit:cover;">'
+                    : '<div class="plant-card-emoji">' + (p.emoji || '🌿') + '</div>';
+                return '<div class="plant-card" onclick="showMyPlant(' + p.id + ')">' + visual + '<div class="plant-card-body"><div class="plant-card-name">' + p.name + '</div><div class="plant-card-species">' + (needsWater(p) ? '💧 Podlej' : '✓ OK') + '</div></div></div>';
+            }).join('');
+        }
+        
+        function renderPlantsGrid() {
+            const el = document.getElementById('plants-grid');
+            if (appData.plants.length === 0) {
+                el.innerHTML = '<div class="empty" style="grid-column:span 2;"><div class="empty-icon">🌱</div><div class="empty-text">Brak roślin</div></div>';
+                return;
+            }
+            el.innerHTML = appData.plants.map(p => {
+                const visual = p.photo 
+                    ? '<img src="' + p.photo + '" style="width:100%;height:140px;object-fit:cover;">'
+                    : '<div class="plant-card-emoji">' + (p.emoji || '🌿') + '</div>';
+                return '<div class="plant-card" onclick="showMyPlant(' + p.id + ')">' + visual + '<div class="plant-card-body"><div class="plant-card-name">' + p.name + '</div></div></div>';
+            }).join('');
+        }
+        
+        function renderEncyclopedia() {
+            const search = document.getElementById('encyc-search').value.toLowerCase();
+            let plants = encyclopediaDB;
+            
+            if (currentFilter !== 'all') {
+                plants = plants.filter(p => p.category.includes(currentFilter));
+            }
+            if (search) {
+                plants = plants.filter(p => p.name.toLowerCase().includes(search) || p.species.toLowerCase().includes(search));
+            }
+            
+            document.getElementById('encyc-grid').innerHTML = plants.map(p => {
+                const badge = p.difficulty === 'easy' ? 'badge-easy' : p.difficulty === 'hard' ? 'badge-hard' : 'badge-medium';
+                const badgeText = p.difficulty === 'easy' ? '👶 Łatwa' : p.difficulty === 'hard' ? '🎯 Trudna' : '📊 Średnia';
+                return '<div class="plant-card" onclick="showEncycPlant(\'' + p.id + '\')">' +
+                    '<div class="plant-card-visual">' +
+                        '<img src="' + p.image + '" class="plant-card-img" loading="lazy" onerror="this.parentElement.innerHTML=\'<div class=plant-card-emoji>' + p.emoji + '</div>\'">' +
+                    '</div>' +
+                    '<div class="plant-card-body">' +
+                        '<div class="plant-card-name">' + p.name + '</div>' +
+                        '<div class="plant-card-species">' + p.species + '</div>' +
+                        '<span class="badge ' + badge + '">' + badgeText + '</span>' +
+                    '</div>' +
+                '</div>';
+            }).join('');
+        }
+        
+        function setFilter(filter, btn) {
+            currentFilter = filter;
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            renderEncyclopedia();
+        }
+        
+        function filterPlants() { renderEncyclopedia(); }
+        
+        // ===== MY PLANT DETAILS =====
+        function showMyPlant(id) {
+            const p = appData.plants.find(x => x.id === id);
+            if (!p) return;
+            
+            document.getElementById('modal-title').textContent = p.name;
+            document.getElementById('modal-body').innerHTML = '<div class="detail-header"><div style="font-size:64px;margin-bottom:12px;">' + (p.emoji || '🌿') + '</div><div class="detail-name">' + p.name + '</div><div class="detail-species">' + (p.species || '') + '</div></div><div class="info-grid"><div class="info-item"><div class="info-label">Ostatnie podlanie</div><div class="info-value">' + (p.lastWatered ? new Date(p.lastWatered).toLocaleDateString('pl') : 'Nigdy') + '</div></div><div class="info-item"><div class="info-label">Cykl podlewania</div><div class="info-value">Co ' + (p.interval || 7) + ' dni</div></div></div><div class="photo-upload-area' + (p.photo ? ' has-photo' : '') + '" onclick="uploadPlantPhoto(' + id + ')">' + (p.photo ? '<img src="' + p.photo + '" class="plant-user-photo">' : '<div style="font-size:48px;margin-bottom:8px;">📷</div><div style="color:var(--text-secondary);text-align:center;">Kliknij aby dodać zdjęcie</div>') + '</div>' + (p.photo ? '<div class="photo-actions"><button class="btn btn-secondary btn-block" onclick="event.stopPropagation(); uploadPlantPhoto(' + id + ')">📸 Zmień</button><button class="btn btn-secondary" onclick="event.stopPropagation(); deletePlantPhoto(' + id + ')">🗑️</button></div>' : '') + '<div class="btn-group"><button class="btn btn-primary" onclick="waterPlant(' + id + ')">💧 Podlej</button><button class="btn btn-secondary" onclick="deletePlant(' + id + ')">🗑️ Usuń</button></div>';
+            document.getElementById('modal').classList.add('active');
+        }
+        
+        function waterPlant(id) {
+            const p = appData.plants.find(x => x.id === id);
+            if (p) {
+                p.lastWatered = new Date().toISOString();
+                saveData();
+                renderAll();
+                closeModal();
+                toast('💧 Podlano!');
+            }
+        }
+        
+        function deletePlant(id) {
+            if (confirm('Usunąć tę roślinę?')) {
+                appData.plants = appData.plants.filter(x => x.id !== id);
+                saveData();
+                renderAll();
+                closeModal();
+                toast('🗑️ Usunięto');
+            }
+        }
+        
+        // ===== ENCYCLOPEDIA DETAILS =====
+        function showEncycPlant(id) {
+            const p = encyclopediaDB.find(x => x.id === id);
+            if (!p) return;
+            
+            const badge = p.difficulty === 'easy' ? 'badge-easy' : p.difficulty === 'hard' ? 'badge-hard' : 'badge-medium';
+            const badgeText = p.difficulty === 'easy' ? '👶 Łatwa' : p.difficulty === 'hard' ? '🎯 Trudna' : '📊 Średnia';
+            
+            let html = '<img src="' + p.image + '" class="detail-img" onerror="this.style.display=\'none\'">';
+            html += '<div class="detail-header"><div class="detail-name">' + p.name + '</div><div class="detail-species">' + p.species + '</div><span class="badge ' + badge + '">' + badgeText + '</span></div>';
+            html += '<div class="detail-desc">' + p.description + '</div>';
+            
+            // Ciekawostki (lista)
+            if (p.funFacts && p.funFacts.length > 0) {
+                html += '<div class="detail-fact"><div class="detail-fact-title">💡 Ciekawostki</div><ul style="margin:0;padding-left:18px;">';
+                p.funFacts.forEach(fact => { html += '<li style="margin-bottom:6px;">' + fact + '</li>'; });
+                html += '</ul></div>';
+            } else if (p.funFact) {
+                html += '<div class="detail-fact"><div class="detail-fact-title">💡 Ciekawostka</div>' + p.funFact + '</div>';
+            }
+            
+            // Info grid
+            html += '<div class="info-grid">';
+            if (p.origin) html += '<div class="info-item"><div class="info-label">🌍 Pochodzenie</div><div class="info-value">' + p.origin + '</div></div>';
+            if (p.maxHeight) html += '<div class="info-item"><div class="info-label">📏 Max wysokość</div><div class="info-value">' + p.maxHeight + '</div></div>';
+            if (p.toxic) html += '<div class="info-item"><div class="info-label">⚠️ Toksyczność</div><div class="info-value">' + p.toxic + '</div></div>';
+            html += '</div>';
+            
+            // Pielęgnacja
+            html += '<h4 style="margin:16px 0 12px;font-size:14px;">🌱 Pielęgnacja</h4>';
+            html += '<div class="care-list">';
+            html += '<div class="care-item"><div class="care-icon">💧</div><div><div class="care-label">Podlewanie</div><div class="care-value">' + p.care.water + '</div></div></div>';
+            html += '<div class="care-item"><div class="care-icon">☀️</div><div><div class="care-label">Światło</div><div class="care-value">' + p.care.light + '</div></div></div>';
+            html += '<div class="care-item"><div class="care-icon">💨</div><div><div class="care-label">Wilgotność</div><div class="care-value">' + p.care.humidity + '</div></div></div>';
+            html += '<div class="care-item"><div class="care-icon">🌡️</div><div><div class="care-label">Temperatura</div><div class="care-value">' + p.care.temperature + '</div></div></div>';
+            html += '</div>';
+            
+            // Najczęstsze problemy
+            if (p.diseases && p.diseases.length > 0) {
+                html += '<h4 style="margin:16px 0 12px;font-size:14px;">🩺 Najczęstsze problemy</h4>';
+                html += '<div style="background:var(--bg-elevated);border-radius:12px;padding:12px;">';
+                p.diseases.forEach(d => { 
+                    html += '<div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:13px;">' + d + '</div>'; 
+                });
+                html += '</div>';
+            }
+            
+            // Rozmnażanie
+            if (p.propagation) {
+                html += '<h4 style="margin:16px 0 12px;font-size:14px;">🌱 Rozmnażanie</h4>';
+                html += '<div style="background:linear-gradient(135deg,rgba(63,185,80,0.1),rgba(35,134,54,0.05));border:1px solid rgba(63,185,80,0.2);border-radius:12px;padding:14px;font-size:13px;line-height:1.5;">' + p.propagation + '</div>';
+            }
+            
+            html += '<button class="btn btn-primary btn-block" style="margin-top:20px;" onclick="addFromEncyc(\'' + p.id + '\')">➕ Dodaj do moich roślin</button>';
+            
+            document.getElementById('modal-title').textContent = p.name;
+            document.getElementById('modal-body').innerHTML = html;
+            document.getElementById('modal').classList.add('active');
+        }
+        
+        function addFromEncyc(id) {
+            const p = encyclopediaDB.find(x => x.id === id);
+            if (!p) return;
+            
+            const match = p.care.water.match(/\d+/);
+            const interval = match ? parseInt(match[0]) : 7;
+            
+            appData.plants.push({
+                id: Date.now(),
+                name: p.name,
+                species: p.species,
+                emoji: p.emoji,
+                interval: interval,
+                lastWatered: new Date().toISOString(),
+                status: 'healthy'
+            });
+            
+            saveData();
+            renderAll();
+            closeModal();
+            toast('🌱 Dodano!');
+        }
+        
+        // ===== ADD PLANT =====
+        function openAddPlant() {
+            document.getElementById('modal-title').textContent = 'Dodaj roślinę';
+            document.getElementById('modal-body').innerHTML = '<div class="form-group"><label class="form-label">Nazwa</label><input type="text" class="form-input" id="add-name" placeholder="np. Moja Monstera"></div><div class="form-group"><label class="form-label">Gatunek (opcjonalnie)</label><input type="text" class="form-input" id="add-species" placeholder="np. Monstera deliciosa"></div><div class="form-group"><label class="form-label">Emoji</label><input type="text" class="form-input" id="add-emoji" value="🌿"></div><div class="form-group"><label class="form-label">Cykl podlewania (dni)</label><input type="number" class="form-input" id="add-interval" value="7" min="1"></div><button class="btn btn-primary btn-block" onclick="addPlant()">➕ Dodaj</button><p style="text-align:center;margin-top:16px;color:var(--text-secondary);">lub</p><button class="btn btn-secondary btn-block" onclick="closeModal();showPage(\'encyclopedia\')">📚 Wybierz z encyklopedii</button>';
+            document.getElementById('modal').classList.add('active');
+        }
+        
+        function addPlant() {
+            const name = document.getElementById('add-name').value.trim();
+            if (!name) { toast('❌ Podaj nazwę'); return; }
+            
+            appData.plants.push({
+                id: Date.now(),
+                name: name,
+                species: document.getElementById('add-species').value.trim(),
+                emoji: document.getElementById('add-emoji').value || '🌿',
+                interval: parseInt(document.getElementById('add-interval').value) || 7,
+                lastWatered: new Date().toISOString(),
+                status: 'healthy'
+            });
+            
+            saveData();
+            renderAll();
+            closeModal();
+            toast('🌱 Dodano!');
+        }
+        
+        // ===== SCANNER =====
+        function checkApiKey() {
+            const warning = document.getElementById('api-warning');
+            if (warning) {
+                warning.style.display = appData.settings.apiKey ? 'none' : 'block';
+            }
+        }
+        
+        function pickImage() {
+            document.getElementById('fileInput').click();
+        }
+        
+        function handleFile(e) {
+            const file = e.target.files[0];
+            if (!file) return;
+            
+            const reader = new FileReader();
+            reader.onload = function(ev) {
+                document.getElementById('scanner-preview').innerHTML = '<img src="' + ev.target.result + '">';
+                analyzeImage(ev.target.result);
+            };
+            reader.readAsDataURL(file);
+            e.target.value = '';
+        }
+        
+        async function analyzeImage(data) {
+            if (!appData.settings.apiKey) {
+                document.getElementById('scanner-result').innerHTML = '<div class="alert alert-error"><div class="alert-title">❌ Brak klucza API</div><div class="alert-text">Dodaj klucz w ustawieniach.</div></div>';
+                return;
+            }
+            
+            document.getElementById('scanner-result').innerHTML = '<div class="card" style="text-align:center;padding:32px;"><div style="font-size:32px;margin-bottom:12px;">🔄</div><div>Analizuję...</div></div>';
+            
+            try {
+                const base64 = data.split(',')[1];
+                const res = await fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent?key=' + appData.settings.apiKey, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        contents: [{ parts: [
+                            { text: 'Rozpoznaj roślinę. Odpowiedz JSON: {"name":"nazwa PL","species":"łacińska","description":"opis","water":"podlewanie","light":"światło"}. Jeśli nie roślina: {"error":"opis"}' },
+                            { inline_data: { mime_type: 'image/jpeg', data: base64 }}
+                        ]}]
+                    })
+                });
+                
+                if (!res.ok) throw new Error('API error: ' + res.status);
+                
+                const json = await res.json();
+                let text = json.candidates?.[0]?.content?.parts?.[0]?.text || '';
+                text = text.replace(/```json\n?/g, '').replace(/```\n?/g, '').trim();
+                
+                const match = text.match(/\{[\s\S]*\}/);
+                if (match) {
+                    const r = JSON.parse(match[0]);
+                    if (r.error) {
+                        document.getElementById('scanner-result').innerHTML = '<div class="alert alert-warning"><div class="alert-title">⚠️ ' + r.error + '</div></div>';
+                    } else {
+                        const safeName = (r.name || '').replace(/'/g, "\\'");
+                        const safeSpecies = (r.species || '').replace(/'/g, "\\'");
+                        document.getElementById('scanner-result').innerHTML = '<div class="card"><div class="card-title">🌿 ' + (r.name || 'Roślina') + '</div><p style="font-style:italic;color:var(--text-secondary);margin-bottom:12px;">' + (r.species || '') + '</p><p style="margin-bottom:16px;">' + (r.description || '') + '</p><div class="care-list"><div class="care-item"><div class="care-icon">💧</div><div><div class="care-label">Podlewanie</div><div class="care-value">' + (r.water || '-') + '</div></div></div><div class="care-item"><div class="care-icon">☀️</div><div><div class="care-label">Światło</div><div class="care-value">' + (r.light || '-') + '</div></div></div></div><button class="btn btn-primary btn-block" onclick="addScanned(\'' + safeName + '\',\'' + safeSpecies + '\')">➕ Dodaj do moich roślin</button></div>';
+                    }
+                } else {
+                    document.getElementById('scanner-result').innerHTML = '<div class="card">' + text + '</div>';
+                }
+            } catch (err) {
+                document.getElementById('scanner-result').innerHTML = '<div class="alert alert-error"><div class="alert-title">❌ Błąd</div><div class="alert-text">' + err.message + '</div></div>';
+            }
+        }
+        
+        function addScanned(name, species) {
+            appData.plants.push({
+                id: Date.now(),
+                name: name,
+                species: species,
+                emoji: '🌿',
+                interval: 7,
+                lastWatered: new Date().toISOString(),
+                status: 'healthy'
+            });
+            saveData();
+            renderAll();
+            toast('🌱 Dodano!');
+            showPage('home');
+        }
+        
+        // ===== SETTINGS =====
+        function saveApiKey() {
+            appData.settings.apiKey = document.getElementById('api-key').value.trim();
+            saveData();
+            checkApiKey();
+            toast('✅ Zapisano!');
+        }
+        
+        function exportData() {
+            const blob = new Blob([JSON.stringify(appData, null, 2)], { type: 'application/json' });
+            const a = document.createElement('a');
+            a.href = URL.createObjectURL(blob);
+            a.download = 'plantcare-backup.json';
+            a.click();
+            toast('📤 Wyeksportowano');
+        }
+        
+        function importData() {
+            const input = document.createElement('input');
+            input.type = 'file';
+            input.accept = '.json';
+            input.onchange = function(e) {
+                const reader = new FileReader();
+                reader.onload = function(ev) {
+                    try {
+                        appData = JSON.parse(ev.target.result);
+                        saveData();
+                        renderAll();
+                        toast('📥 Zaimportowano');
+                    } catch (err) {
+                        toast('❌ Błąd importu');
+                    }
+                };
+                reader.readAsText(e.target.files[0]);
+            };
+            input.click();
+        }
+        
+        // ===== MODAL =====
+        function closeModal(e) {
+            if (e && e.target !== e.currentTarget) return;
+            document.getElementById('modal').classList.remove('active');
+        }
+        
+        // ===== TOAST =====
+        function toast(msg) {
+            const el = document.getElementById('toast');
+            el.textContent = msg;
+            el.classList.add('show');
+            setTimeout(() => el.classList.remove('show'), 2500);
+        }
+        
+        
+        // ===== PHOTO UPLOAD FUNCTIONS =====
+        function uploadPlantPhoto(plantId) {
+            const input = document.createElement('input');
+            input.type = 'file';
+            input.accept = 'image/*';
+            input.onchange = function(e) {
+                const file = e.target.files[0];
+                if (!file) return;
+                
+                // Check file size (max 5MB)
+                if (file.size > 5 * 1024 * 1024) {
+                    toast('❌ Zdjęcie za duże! Max 5MB');
+                    return;
+                }
+                
+                const reader = new FileReader();
+                reader.onload = function(ev) {
+                    const plant = appData.plants.find(p => p.id === plantId);
+                    if (plant) {
+                        plant.photo = ev.target.result;
+                        saveData();
+                        renderAll();
+                        toast('📸 Zdjęcie dodane!');
+                        showMyPlant(plantId);
+                    }
+                };
+                reader.readAsDataURL(file);
+            };
+            input.click();
+        }
+        
+        function deletePlantPhoto(plantId) {
+            const plant = appData.plants.find(p => p.id === plantId);
+            if (plant && plant.photo) {
+                if (confirm('Usunąć zdjęcie?')) {
+                    delete plant.photo;
+                    saveData();
+                    renderAll();
+                    toast('🗑️ Zdjęcie usunięte');
+                    showMyPlant(plantId);
+                }
+            }
+        }
+        
+        // ===== START =====
+        document.addEventListener('DOMContentLoaded', init);
+    </script>
+</body>
+</html>

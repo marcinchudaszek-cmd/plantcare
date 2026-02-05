@@ -1,0 +1,33 @@
+{
+  "name": "plantcare",
+  "version": "1.0.0",
+  "description": "🌿 PlantCare - Inteligentny asystent pielęgnacji roślin doniczkowych",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx serve",
+    "test": "echo \"No tests yet\" && exit 0",
+    "deploy": "gh-pages -d ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/marcinchudaszek-cmd/plantcare.git"
+  },
+  "keywords": [
+    "pwa",
+    "progressive-web-app",
+    "plants",
+    "gardening",
+    "plantcare",
+    "rośliny",
+    "ogrodnictwo"
+  ],
+  "author": "Marcin",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/marcinchudaszek-cmd/plantcare/issues"
+  },
+  "homepage": "https://github.com/marcinchudaszek-cmd/plantcare#readme",
+  "devDependencies": {
+    "serve": "^14.2.1"
+  }
+}
