@@ -1614,12 +1614,15 @@
                 plants = plants.filter(p => p.name.toLowerCase().includes(search) || p.species.toLowerCase().includes(search));
             }
             
+            const customImages = JSON.parse(localStorage.getItem('customPlantImages') || '{}');
+            
             document.getElementById('encyc-grid').innerHTML = plants.map(p => {
+                const imageUrl = customImages[p.id] || p.image;
                 const badge = p.difficulty === 'easy' ? 'badge-easy' : p.difficulty === 'hard' ? 'badge-hard' : 'badge-medium';
                 const badgeText = p.difficulty === 'easy' ? '👶 Łatwa' : p.difficulty === 'hard' ? '🎯 Trudna' : '📊 Średnia';
                 return '<div class="plant-card" onclick="showEncycPlant(\'' + p.id + '\')">' +
                     '<div class="plant-card-visual">' +
-                        '<img src="' + p.image + '" class="plant-card-img" loading="lazy" onerror="this.parentElement.innerHTML=\'<div class=plant-card-emoji>' + p.emoji + '</div>\'">' +
+                        '<img src="' + imageUrl + '" class="plant-card-img" loading="lazy" onerror="this.parentElement.innerHTML=\'<div class=plant-card-emoji>' + p.emoji + '</div>\'">' +
                     '</div>' +
                     '<div class="plant-card-body">' +
                         '<div class="plant-card-name">' + p.name + '</div>' +
@@ -1675,10 +1678,13 @@
             const p = encyclopediaDB.find(x => x.id === id);
             if (!p) return;
             
+            const customImages = JSON.parse(localStorage.getItem('customPlantImages') || '{}');
+            const imageUrl = customImages[p.id] || p.image;
+            
             const badge = p.difficulty === 'easy' ? 'badge-easy' : p.difficulty === 'hard' ? 'badge-hard' : 'badge-medium';
             const badgeText = p.difficulty === 'easy' ? '👶 Łatwa' : p.difficulty === 'hard' ? '🎯 Trudna' : '📊 Średnia';
             
-            let html = '<img src="' + p.image + '" class="detail-img" onerror="this.style.display=\'none\'">';
+            let html = '<img src="' + imageUrl + '" class="detail-img" onerror="this.style.display=\'none\'">';
             html += '<div class="detail-header"><div class="detail-name">' + p.name + '</div><div class="detail-species">' + p.species + '</div><span class="badge ' + badge + '">' + badgeText + '</span></div>';
             html += '<div class="detail-desc">' + p.description + '</div>';
             
@@ -1723,7 +1729,7 @@
                 html += '<div style="background:linear-gradient(135deg,rgba(63,185,80,0.1),rgba(35,134,54,0.05));border:1px solid rgba(63,185,80,0.2);border-radius:12px;padding:14px;font-size:13px;line-height:1.5;">' + p.propagation + '</div>';
             }
             
-            html += '<button class="btn btn-primary btn-block" style="margin-top:20px;" onclick="addFromEncyc(\'' + p.id + '\')">➕ Dodaj do moich roślin</button>';
+            html += '<div class="btn-group" style="margin-top:20px;"><button class="btn btn-secondary" onclick="openPhotoModal(\'' + p.id + '\')">📸 Edytuj zdjęcie</button><button class="btn btn-primary" onclick="addFromEncyc(\'' + p.id + '\')">➕ Dodaj do moich roślin</button></div>';
             
             document.getElementById('modal-title').textContent = p.name;
             document.getElementById('modal-body').innerHTML = html;
@@ -1963,21 +1969,151 @@
             }
         }
         
+        // ===== CUSTOM PHOTOS FOR ENCYCLOPEDIA =====
+        function openPhotoModal(plantId) {
+            const plant = encyclopediaDB.find(p => p.id === plantId);
+            if (!plant) return;
+            
+            const customImages = JSON.parse(localStorage.getItem('customPlantImages') || '{}');
+            const hasCustom = customImages[plantId];
+            
+            const modalTitle = document.getElementById('modal-title');
+            const modalBody = document.getElementById('modal-body');
+            const modal = document.getElementById('modal');
+            
+            modalTitle.textContent = '📷 Zdjęcie: ' + plant.name;
+            modalBody.innerHTML = `
+                <div style="padding: 20px;">
+                    ${hasCustom ? `
+                        <div style="margin-bottom: 20px;">
+                            <img src="${customImages[plantId]}" style="width: 100%; border-radius: 12px; margin-bottom: 12px; max-height: 300px; object-fit: cover;">
+                            <button class="btn btn-secondary btn-block" onclick="deleteCustomImage('${plantId}')">
+                                🗑️ Usuń własne zdjęcie
+                            </button>
+                        </div>
+                        <hr style="margin: 20px 0; border: 0; border-top: 1px solid var(--border);">
+                    ` : ''}
+                    
+                    <div style="margin-bottom: 16px;">
+                        <label style="display: block; font-weight: 500; margin-bottom: 8px;">📤 Upload własnego zdjęcia:</label>
+                        <input type="file" id="customPhotoFile" accept="image/*" style="display: block; margin-bottom: 12px; padding: 8px; background: var(--bg-elevated); border: 1px solid var(--border); border-radius: 8px; color: var(--text); width: 100%;">
+                        <button class="btn btn-primary btn-block" onclick="uploadCustomPhoto('${plantId}')">
+                            📸 Dodaj zdjęcie
+                        </button>
+                    </div>
+                    
+                    <div style="margin: 20px 0; text-align: center; color: var(--text-secondary);">
+                        — lub —
+                    </div>
+                    
+                    <div>
+                        <label style="display: block; font-weight: 500; margin-bottom: 8px;">🔗 Wklej URL zdjęcia:</label>
+                        <input type="text" id="customPhotoURL" class="form-input" placeholder="https://example.com/image.jpg" style="margin-bottom: 12px;">
+                        <button class="btn btn-primary btn-block" onclick="setCustomPhotoURL('${plantId}')">
+                            🔗 Ustaw z URL
+                        </button>
+                    </div>
+                    
+                    <div style="margin-top: 20px; padding: 12px; background: var(--accent-soft); border-radius: 8px; font-size: 13px;">
+                        <strong>💡 Wskazówki:</strong><br>
+                        • Zdjęcia zapisywane lokalnie w przeglądarce<br>
+                        • URL może być z dowolnej strony (Unsplash, itp.)<br>
+                        • Preferowany rozmiar: min. 400x300px<br>
+                        • Max rozmiar pliku: 5MB
+                    </div>
+                    
+                    <button class="btn btn-secondary btn-block" style="margin-top: 16px;" onclick="showEncycPlant('${plantId}')">
+                        ← Powrót do rośliny
+                    </button>
+                </div>
+            `;
+            
+            modal.classList.add('active');
+        }
+        
+        function uploadCustomPhoto(plantId) {
+            const fileInput = document.getElementById('customPhotoFile');
+            const file = fileInput.files[0];
+            
+            if (!file) {
+                toast('⚠️ Wybierz plik!');
+                return;
+            }
+            
+            if (file.size > 5 * 1024 * 1024) {
+                toast('⚠️ Plik za duży! Max 5MB');
+                return;
+            }
+            
+            if (!file.type.startsWith('image/')) {
+                toast('⚠️ To nie jest plik obrazu!');
+                return;
+            }
+            
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const customImages = JSON.parse(localStorage.getItem('customPlantImages') || '{}');
+                customImages[plantId] = e.target.result;
+                localStorage.setItem('customPlantImages', JSON.stringify(customImages));
+                toast('✅ Zdjęcie dodane!');
+                renderEncyclopedia();
+                showEncycPlant(plantId);
+            };
+            reader.onerror = function() {
+                toast('❌ Błąd odczytu pliku!');
+            };
+            reader.readAsDataURL(file);
+        }
+        
+        function setCustomPhotoURL(plantId) {
+            const urlInput = document.getElementById('customPhotoURL');
+            const url = urlInput.value.trim();
+            
+            if (!url) {
+                toast('⚠️ Wklej URL!');
+                return;
+            }
+            
+            if (!url.startsWith('http://') && !url.startsWith('https://')) {
+                toast('⚠️ URL musi zaczynać się od http:// lub https://');
+                return;
+            }
+            
+            // Test if URL is accessible (optional - try to load)
+            const testImg = new Image();
+            testImg.onload = function() {
+                const customImages = JSON.parse(localStorage.getItem('customPlantImages') || '{}');
+                customImages[plantId] = url;
+                localStorage.setItem('customPlantImages', JSON.stringify(customImages));
+                toast('✅ Zdjęcie ustawione!');
+                renderEncyclopedia();
+                showEncycPlant(plantId);
+            };
+            testImg.onerror = function() {
+                // Still save but warn
+                const customImages = JSON.parse(localStorage.getItem('customPlantImages') || '{}');
+                customImages[plantId] = url;
+                localStorage.setItem('customPlantImages', JSON.stringify(customImages));
+                toast('⚠️ Zapisano, ale URL może nie działać');
+                renderEncyclopedia();
+                showEncycPlant(plantId);
+            };
+            testImg.src = url;
+        }
+        
+        function deleteCustomImage(plantId) {
+            if (confirm('Usunąć własne zdjęcie i wrócić do oryginalnego?')) {
+                const customImages = JSON.parse(localStorage.getItem('customPlantImages') || '{}');
+                delete customImages[plantId];
+                localStorage.setItem('customPlantImages', JSON.stringify(customImages));
+                toast('🗑️ Zdjęcie usunięte - przywrócono oryginalne');
+                renderEncyclopedia();
+                showEncycPlant(plantId);
+            }
+        }
+        
         // ===== START =====
         document.addEventListener('DOMContentLoaded', init);
-        
-        // ===== SERVICE WORKER REGISTRATION =====
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                navigator.serviceWorker.register('sw.js')
-                    .then(registration => {
-                        console.log('✅ Service Worker registered:', registration);
-                    })
-                    .catch(error => {
-                        console.log('❌ Service Worker registration failed:', error);
-                    });
-            });
-        }
     </script>
 </body>
 </html>
