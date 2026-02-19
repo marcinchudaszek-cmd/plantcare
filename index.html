@@ -410,21 +410,43 @@
         
         .plant-card-img {
             width: 100%;
-            height: 140px;
+            height: 160px;
             object-fit: cover;
-            background: var(--bg-elevated);
             display: block;
+            background: linear-gradient(110deg, var(--bg-elevated) 30%, #1e2a1e 50%, var(--bg-elevated) 70%);
+            background-size: 200% 100%;
+            animation: imgSkeleton 1.4s linear infinite;
+            transition: opacity 0.3s;
         }
-        
+        .plant-card-img.loaded {
+            animation: none;
+            background: var(--bg-elevated);
+        }
+        @keyframes imgSkeleton {
+            0%   { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
         .plant-card-emoji {
             width: 100%;
-            height: 140px;
+            height: 160px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 56px;
-            background: linear-gradient(135deg, #238636 0%, #0d1117 100%);
+            font-size: 64px;
+            background: linear-gradient(135deg, #1a2e1a 0%, #0d1117 100%);
         }
+        .detail-img {
+            width: 100%;
+            height: 240px;
+            object-fit: cover;
+            border-radius: 16px;
+            margin-bottom: 16px;
+            display: block;
+            background: linear-gradient(110deg, var(--bg-elevated) 30%, #1e2a1e 50%, var(--bg-elevated) 70%);
+            background-size: 200% 100%;
+            animation: imgSkeleton 1.4s linear infinite;
+        }
+        .detail-img.loaded { animation: none; background: var(--bg-elevated); }
         
         .plant-card-body {
             padding: 12px;
@@ -543,14 +565,6 @@
         .modal-body { padding: 20px; }
         
         /* Detail */
-        .detail-img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            border-radius: 16px;
-            margin-bottom: 16px;
-        }
-        
         .detail-header { text-align: center; margin-bottom: 20px; }
         .detail-name { font-size: 24px; font-weight: 700; margin-bottom: 4px; }
         .detail-species { color: var(--text-secondary); font-style: italic; margin-bottom: 12px; }
@@ -1057,667 +1071,590 @@
     <div class="toast" id="toast"></div>
 
     <script>
-        // ===== DATABASE - 55 roślin z unikalnymi zdjęciami =====
-        // ===== ROZSZERZONA BAZA 55 ROŚLIN =====
+        // ===== DATABASE – 75 ROŚLIN =====
         const encyclopediaDB = [
-            // === POPULARNE ===
             { 
                 id: 'monstera', name: 'Monstera', species: 'Monstera deliciosa', emoji: '🌿', 
-                image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/Monstera_deliciosa2.jpg/400px-Monstera_deliciosa2.jpg', 
-                category: ['popular', 'tropical'], difficulty: 'easy', origin: 'Meksyk, Panama', toxic: 'Tak - kryształy szczawianu', maxHeight: '2-3m w domu',
-                care: { water: 'Co 7-10 dni gdy wierzch przeschnie', light: 'Jasne rozproszone, bez bezpośredniego słońca', humidity: '60-80%', temperature: '18-27°C' }, 
-                description: 'Królowa roślin doniczkowych! Charakterystyczne dziury w liściach (fenestracja) pomagają przetrwać tropikalne burze. Im starsza roślina i więcej światła, tym więcej dziur.',
-                funFacts: ['W naturze wspina się na drzewa do 20m', 'Owoce są jadalne i smakują jak mix banana z ananasem', 'Dziury pojawiają się dopiero po 2-3 roku życia', 'Korzenie powietrzne można kierować do ziemi'],
-                diseases: ['Żółte liście = przelanie lub brak składników', 'Brązowe plamy = oparzenie słoneczne', 'Czarne plamy = grzyb od nadmiaru wody', 'Brak dziur = za mało światła'],
-                propagation: 'Sadzonki pędowe z minimum 1 węzłem i korzeniem powietrznym. Ukorzeniaj w wodzie lub perlicie. Korzenie po 2-4 tyg.'
+                image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Monstera_deliciosa2.jpg?width=400', 
+                category: ['popular', 'tropical'], difficulty: 'easy', origin: 'Meksyk, Panama', toxic: 'Tak – kryształy szczawianu', maxHeight: '2–3 m w domu',
+                care: { water: 'Co 7–10 dni gdy wierzch przeschnie 2 cm', light: 'Jasne rozproszone, unika bezpośredniego słońca', humidity: '60–80%', temperature: '18–27°C' }, 
+                description: 'Królowa roślin doniczkowych! Charakterystyczne dziury w liściach (fenestracja) powstają, by wytrzymać tropikalne burze i przepuścić więcej światła do niższych warstw.',
+                funFacts: ['W naturze wspina się na drzewa nawet do 20 m wysokości', 'Owoce po dojrzeniu (rok!) smakują jak mix banana z ananasem', 'Dziury w liściach (fenestracja) pojawiają się dopiero po 2–3 latach życia', 'Korzenie powietrzne można kierować do ziemi – pobierają wodę i składniki', 'Nazwa „deliciosa" pochodzi od jadalnych owoców', 'W lasach tropikalnych rośnie w cieniu, wspinając się ku światłu'],
+                diseases: ['Żółte liście = przelanie lub brak składników mineralnych', 'Brązowe plamy = oparzenie słoneczne lub brak wapnia', 'Czarne plamy = grzyb od nadmiaru wody – ogranicz podlewanie', 'Brak dziur w liściach = za mało światła lub zbyt młoda roślina', 'Liście zwijają się = za sucho lub za zimno'],
+                propagation: 'Sadzonki pędowe z minimum 1 węzłem i korzeniem powietrznym. Ukorzeniaj w wodzie lub perlicie – korzenie po 2–4 tygodniach.'
             },
             { 
                 id: 'pothos', name: 'Pothos (Epipremnum)', species: 'Epipremnum aureum', emoji: '💚', 
-                image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Epipremnum_aureum_31082012.jpg/400px-Epipremnum_aureum_31082012.jpg',
-                category: ['popular', 'easy'], difficulty: 'easy', origin: 'Polinezja Francuska', toxic: 'Tak - drażniący', maxHeight: '10m jako pnącze',
-                care: { water: 'Co 7-14 dni, toleruje przesuszenie', light: 'Od cienia do jasnego - bardzo tolerancyjna', humidity: '40-60%', temperature: '15-30°C' }, 
-                description: 'Praktycznie niezniszczalna! Idealna dla początkujących. Rośnie nawet w słabo oświetlonych biurach. Oczyszcza powietrze z formaldehydu i benzenu.',
-                funFacts: ['NASA umieściła ją w TOP 10 roślin oczyszczających powietrze', 'W naturze liście dorastają do 1m!', 'Może rosnąć w samej wodzie przez lata', 'Istnieje 15+ odmian o różnych wzorach liści'],
-                diseases: ['Żółte liście = przelanie (najczęstszy błąd)', 'Blade liście = za mało światła', 'Brązowe końcówki = suche powietrze lub sól w wodzie', 'Gnicie łodygi = zimno + wilgoć'],
-                propagation: 'Najłatwiejsza do rozmnażania! Odetnij pęd z 2-3 węzłami, włóż do wody. Korzenie po 1-2 tyg. Można też od razu do ziemi.'
+                image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Epipremnum_aureum_31082012.jpg?width=400', 
+                category: ['popular', 'easy'], difficulty: 'easy', origin: 'Polinezja Francuska', toxic: 'Tak – drażniący', maxHeight: '10 m jako pnącze',
+                care: { water: 'Co 7–14 dni, bardzo toleruje przesuszenie', light: 'Od głębokiego cienia do jasnego – wyjątkowo tolerancyjna', humidity: '40–60%', temperature: '15–30°C' }, 
+                description: 'Praktycznie niezniszczalna! Rośnie nawet w ciemnych biurach i toleruje tygodnie bez podlewania. Oczyszcza powietrze z formaldehydu i benzenu.',
+                funFacts: ['NASA umieściła Pothos w TOP 10 roślin oczyszczających powietrze', 'W naturze liście dorastają do 1 metra szerokości!', 'Może rosnąć w samej wodzie przez wiele lat', 'W warunkach domowych rzadko kwitnie – w naturze kwitnie po 10+ latach', 'Wydziela 1–2 mg tlenku węgla dziennie – naturalny detoks powietrza', 'Istnieje 15+ odmian barwnych: Golden, Marble Queen, Neon, Manjula…'],
+                diseases: ['Żółte liście = przelanie (najczęstszy błąd!)', 'Blade lub zielone liście u odmiany variegated = za mało światła', 'Brązowe końcówki = suche powietrze lub sól w wodzie – podlewaj przegotowaną', 'Gnicie łodygi = zimno + nadmiar wilgoci'],
+                propagation: 'Najłatwiejsza do rozmnażania! Odetnij pęd z 2–3 węzłami, włóż do wody. Korzenie po 1–2 tygodniach.'
             },
             { 
                 id: 'sansevieria', name: 'Sansewieria (Wężownica)', species: 'Dracaena trifasciata', emoji: '🗡️', 
-                image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Sansevieria_trifasciata_Laurentii.jpg/400px-Sansevieria_trifasciata_Laurentii.jpg', 
-                category: ['popular', 'easy', 'succulents'], difficulty: 'easy', origin: 'Afryka Zachodnia', toxic: 'Lekko toksyczna', maxHeight: '1.2m',
-                care: { water: 'Co 2-4 tygodnie, zimą rzadziej', light: 'Od cienia do pełnego słońca', humidity: '30-50%', temperature: '15-27°C' }, 
-                description: 'Niezniszczalna! Jedyna roślina produkująca tlen W NOCY (proces CAM). Idealna do sypialni. Przetrwa miesiące zaniedbania.',
-                funFacts: ['Produkuje tlen nocą - świetna do sypialni', 'Włókna używano do produkcji cięciw łuków i lin', 'Przeżyje 2 miesiące bez wody', 'NASA poleca ją do stacji kosmicznych'],
-                diseases: ['Miękkie/gnijące liście = przelanie (główny zabójca!)', 'Pomarszczone liście = potrzebuje wody', 'Brązowe końcówki = oparzenie lub zimno', 'Blade paski = za mało światła'],
-                propagation: 'Podział kęp (najszybciej) lub sadzonki liściowe. Liść pokrój na 5cm kawałki, zasusz 2 dni, wsadź do piasku. Korzenie po 1-2 mies.'
+                image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Sansevieria_trifasciata_Laurentii.jpg?width=400', 
+                category: ['popular', 'easy', 'succulents'], difficulty: 'easy', origin: 'Afryka Zachodnia', toxic: 'Lekko toksyczna dla zwierząt', maxHeight: '1,2 m',
+                care: { water: 'Co 2–4 tygodnie, zimą raz na 2 miesiące', light: 'Od głębokiego cienia do pełnego słońca', humidity: '30–50%', temperature: '15–27°C' }, 
+                description: 'Niezniszczalna ikona! Jedyna popularna roślina produkująca tlen W NOCY (fotosynteza CAM). Idealna do sypialni. Przetrwa miesiące zaniedbania.',
+                funFacts: ['Jedyna popularna roślina doniczkowa produkująca tlen nocą (cykl CAM)', 'Włókna liści używano do wyrobu cięciw łuków, lin i tkanin w Afryce', 'Przeżyje nawet 2–3 miesiące całkowicie bez wody', 'NASA poleca ją do stacji kosmicznych jako filtr powietrza', 'Odmiana Moonshine ma prawie srebrne liście – rarytasowy wygląd', 'W jednym doniczce może rosnąć dziesiątki lat bez przesadzania'],
+                diseases: ['Miękkie, gnijące liście = przelanie – główny zabójca! Ogranicz wodę', 'Pomarszczone liście = potrzebuje wody (rzadko spotykane)', 'Brązowe końcówki = oparzenie słoneczne lub chłód', 'Blade paski zanikają = za mało światła u odmian variegated'],
+                propagation: 'Podział kęp (najszybciej) lub sadzonki liściowe: liść pokrój na 5 cm kawałki, zasusz 2 dni, wsadź do piasku. Korzenie po 1–2 miesiącach.'
             },
             { 
                 id: 'ficus-lyrata', name: 'Figowiec lirolistny', species: 'Ficus lyrata', emoji: '🎻', 
-                image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Ficus_lyrata_leaves.jpg/400px-Ficus_lyrata_leaves.jpg', 
-                category: ['popular', 'tropical'], difficulty: 'medium', origin: 'Afryka Zachodnia', toxic: 'Tak - sok drażniący', maxHeight: '3m w domu',
-                care: { water: 'Co 7-10 dni gdy wierzch przeschnie 2-3cm', light: 'Jasne pośrednie, bez ostrego słońca', humidity: '50-70%', temperature: '18-25°C stała!' }, 
-                description: 'Gwiazda Instagrama i wnętrzarskich magazynów! Wielkie liście w kształcie skrzypiec. Nie lubi zmian - po przestawieniu może zrzucić liście.',
-                funFacts: ['W naturze dorasta do 15m', 'Liście mogą mieć 45cm długości', 'Bardzo wrażliwy na przeciągi', 'Lubi mieć stałe miejsce - nie przestawiaj!'],
-                diseases: ['Brązowe plamy = nieregularne podlewanie lub bakterie', 'Opadające liście = stres (zmiana miejsca, temp., przeciąg)', 'Żółte dolne liście = naturalne lub przelanie', 'Czerwone plamy = obrzęk (edema) od przelania'],
-                propagation: 'Sadzonki wierzchołkowe lub rozmnażanie w powietrzu (air layering). Trudniejszy niż inne fikusy. Hormon ukorzeniający pomaga.'
+                image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Ficus_lyrata_1.JPG?width=400', 
+                category: ['popular', 'tropical'], difficulty: 'medium', origin: 'Afryka Zachodnia', toxic: 'Tak – sok drażniący', maxHeight: '3 m w domu',
+                care: { water: 'Co 7–10 dni gdy wierzch przeschnie 2–3 cm', light: 'Jasne pośrednie, UNIKA ostrego słońca i przeciągów', humidity: '50–70%', temperature: '18–25°C stała!' }, 
+                description: 'Gwiazda Instagrama i wnętrzarskich magazynów! Wielkie liście w kształcie skrzypiec. Bardzo kapryśny – nie lubi zmian miejsca i może zrzucić liście z powodu przeciągu.',
+                funFacts: ['W naturze wyrasta na 15 m i dusi inne drzewa (fig strangler)', 'Pojedynczy liść może mieć 45 cm długości i 30 cm szerokości', 'Po przestawieniu może zrzucić połowę liści ze stresu – to normalne', 'Wymaga stałego miejsca – oznacz kierunek światła i nie obracaj doniczki', 'Na przełomie XIX/XX w. był symbolem luksusu w salonach Europy'],
+                diseases: ['Brązowe plamy z żółtą obwódką = bakterioza od nieregularnego podlewania', 'Opadające liście = stres (zmiana miejsca, temp., przeciąg) – nie panikuj', 'Żółte liście dolne = naturalne lub przelanie', 'Czerwone plamki = obrzęk (edema) od nadmiaru wody', 'Białe kropy = tarczniki lub mączlik – przetrzyj alkoholem'],
+                propagation: 'Sadzonki wierzchołkowe (15 cm) lub rozmnażanie w powietrzu (air layering). Hormon ukorzeniający konieczny. Trudniejszy niż inne fikusy.'
             },
             { 
                 id: 'spathiphyllum', name: 'Skrzydłokwiat', species: 'Spathiphyllum wallisii', emoji: '🤍', 
-                image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Spathiphyllum_cochlearispathum_RTBG.jpg/400px-Spathiphyllum_cochlearispathum_RTBG.jpg', 
-                category: ['popular', 'flowering', 'easy'], difficulty: 'easy', origin: 'Ameryka Środkowa', toxic: 'Tak - kryształy szczawianu', maxHeight: '1m',
-                care: { water: 'Co 5-7 dni, lubi wilgoć', light: 'Cień do jasnego pośredniego', humidity: '50-70%', temperature: '18-27°C' }, 
-                description: 'Lilia pokoju - elegancka i łatwa! DRAMATYCZNIE więdnie gdy chce pić, ale szybko wraca do formy po podlaniu. Świetnie oczyszcza powietrze.',
-                funFacts: ['NASA TOP 10 do oczyszczania powietrza', 'Biały "kwiat" to zmodyfikowany liść (pochwa)', 'Może kwitnąć cały rok przy dobrych warunkach', 'Jeden z najlepszych filtrów amoniaku'],
-                diseases: ['Zwiędnięcie = potrzebuje wody (podlej!)', 'Żółte liście = przelanie lub stary liść', 'Brązowe końcówki = suche powietrze lub chlor w wodzie', 'Brak kwitnienia = za mało światła'],
-                propagation: 'Podział kęp przy przesadzaniu. Każda część musi mieć korzenie i min. 2-3 liście. Najlepiej wiosną.'
+                image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Spathiphyllum_cochlearispathum_RTBG.jpg?width=400', 
+                category: ['popular', 'flowering', 'easy'], difficulty: 'easy', origin: 'Ameryka Środkowa i Kolumbia', toxic: 'Tak – kryształy szczawianu', maxHeight: '1 m',
+                care: { water: 'Co 5–7 dni, lubi równomierną wilgoć', light: 'Od głębokiego cienia do jasnego pośredniego', humidity: '50–70%', temperature: '18–27°C' }, 
+                description: 'Lilia pokoju! Dramatycznie więdnie gdy chce pić, ale natychmiast wraca do formy po podlaniu. Może kwitnąć przez cały rok. Świetny filtr powietrza.',
+                funFacts: ['NASA TOP 10 najlepszych roślin oczyszczających powietrze', 'Biały „kwiat" to zmodyfikowany liść (pochwa), prawdziwe kwiaty są malutkie', 'Może kwitnąć cały rok przy odpowiednim świetle', 'Jeden z najlepszych naturalnych filtrów amoniaku i acetonu', 'Płaskie zwiędnięcie to sygnał alarmowy – wróci do formy w 30 minut po podlaniu', 'W naturze kwitnie tylko raz w roku – w domu może częściej'],
+                diseases: ['Zwiędnięcie = potrzeba wody – podlej natychmiast, wróci za 30 min', 'Żółte liście = przelanie lub stary liść (naturalny)', 'Brązowe końcówki = chlor/fluor w wodzie – używaj przegotowanej', 'Brak kwitnienia = za mało światła lub za niska temperatura'],
+                propagation: 'Podział kęp przy przesadzaniu. Każda część musi mieć korzenie i min. 2–3 liście. Najlepiej wiosną.'
             },
             { 
                 id: 'philodendron', name: 'Filodendron sercowaty', species: 'Philodendron hederaceum', emoji: '💚', 
-                image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Philodendron_hederaceum_var._oxycardium.jpg/400px-Philodendron_hederaceum_var._oxycardium.jpg', 
-                category: ['popular', 'easy', 'tropical'], difficulty: 'easy', origin: 'Ameryka Środkowa i Płd.', toxic: 'Tak - kryształy szczawianu', maxHeight: '6m jako pnącze',
-                care: { water: 'Co 7-10 dni', light: 'Średnie do jasnego pośredniego', humidity: '50-70%', temperature: '18-27°C' }, 
-                description: 'Klasyczne pnącze o uroczych sercowatych liściach. Bardzo wdzięczna roślina - szybko rośnie i łatwo się rozmnaża. Podobna do Pothos ale z matowymi liśćmi.',
-                funFacts: ['Istnieje ponad 450 gatunków Philodendron!', 'Nazwa znaczy "miłośnik drzew" - w naturze wspina się', 'Korzenie powietrzne pomagają wspinać się', 'Odmiana Brasil ma żółte smugi'],
-                diseases: ['Żółte liście = przelanie', 'Małe liście = za mało światła lub nawozów', 'Brązowe końcówki = suche powietrze', 'Długie odstępy między liśćmi = za mało światła'],
-                propagation: 'Bardzo łatwe! Sadzonki z węzłem w wodzie lub ziemi. Korzenie po 2-3 tyg. Można też przygiąć pęd do ziemi (marcotting).'
+                image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Philodendron_hederaceum_var._oxycardium.jpg?width=400', 
+                category: ['popular', 'easy', 'tropical'], difficulty: 'easy', origin: 'Ameryka Środkowa i Południowa', toxic: 'Tak – kryształy szczawianu', maxHeight: '6 m jako pnącze',
+                care: { water: 'Co 7–10 dni gdy wierzch przeschnie', light: 'Średnie do jasnego pośredniego', humidity: '50–70%', temperature: '18–27°C' }, 
+                description: 'Klasyczne pnącze o uroczych sercowatych liściach. Szybko rośnie, łatwo się rozmnaża i jest wyjątkowo wyrozumiały. Bardzo podobny do Pothos, ale liście ma matowe.',
+                funFacts: ['Rodzaj Philodendron liczy ponad 450 opisanych gatunków!', 'Nazwa znaczy „miłośnik drzew" – w naturze wspina się na drzewa', 'Odmiana Brasil ma żółto-zielone smugi jak brazyliyjska flaga', 'Korzenie powietrzne pomagają mu wspinać się i pobierać wilgoć z powietrza', 'Nowe liście wychodzą zwinięte i brązowo-różowe – to normalne!'],
+                diseases: ['Żółte liście = przelanie', 'Małe liście = za mało światła lub nawozów', 'Brązowe końcówki = suche powietrze – spryskuj częściej', 'Długie odcinki łodygi między liśćmi = za mało światła'],
+                propagation: 'Bardzo łatwe! Sadzonki z węzłem w wodzie lub ziemi. Korzenie po 2–3 tygodniach.'
             },
             { 
                 id: 'pilea', name: 'Pilea (Pieniążek)', species: 'Pilea peperomioides', emoji: '💰', 
-                image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Pilea_peperomioides_2018-05-14_3395.jpg/400px-Pilea_peperomioides_2018-05-14_3395.jpg', 
-                category: ['popular', 'easy'], difficulty: 'easy', origin: 'Południowe Chiny', toxic: 'Nie - bezpieczna!', maxHeight: '40cm',
-                care: { water: 'Co 7-10 dni gdy wierzch przeschnie', light: 'Jasne rozproszone, obracaj co tydzień', humidity: '50-60%', temperature: '15-24°C' }, 
-                description: 'Roślina przyjaźni! Produkuje mnóstwo "dzieci" które możesz rozdawać znajomym. Okrągłe liście na długich ogonkach wyglądają jak monety.',
-                funFacts: ['Przez dekady była niemożliwa do kupienia - przekazywano sadzonki', 'Oficjalnie opisana naukowo dopiero w 1984!', 'Nazywana też "UFO plant" od kształtu liści', 'Obracaj ją co tydzień bo rośnie w stronę światła'],
-                diseases: ['Zwijanie liści = za dużo słońca lub potrzeba wody', 'Żółte dolne liście = naturalne lub przelanie', 'Opadające liście = przeciąg lub zimno', 'Blade liście = za mało światła'],
-                propagation: 'Sama produkuje dzieci! Odetnij potomstwo gdy ma 5-7cm i własne korzenie. Można też ukorzeniać w wodzie łodyżki z dziećmi.'
+                image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Pilea_peperomioides_2018-05-14_3395.jpg?width=400', 
+                category: ['popular', 'easy'], difficulty: 'easy', origin: 'Południowe Chiny', toxic: 'Nie – bezpieczna', maxHeight: '40 cm',
+                care: { water: 'Co 7–10 dni gdy wierzch przeschnie', light: 'Jasne rozproszone, obracaj co tydzień', humidity: '50–60%', temperature: '15–24°C' }, 
+                description: 'Roślina przyjaźni! Produkuje mnóstwo „dzieci" (potomnych), które możesz rozdawać znajomym. Okrągłe liście na długich ogonkach wyglądają jak monety.',
+                funFacts: ['Przez dziesiątki lat była przekazywana tylko przez sadzonki – prawie niemożliwa do kupienia', 'Oficjalnie opisana naukowo przez botaników dopiero w 1984 roku!', 'Zwana też „Chinese Money Plant" lub „UFO Plant" od kształtu liści', 'Obracaj ją co tydzień – szybko pochyla się ku źródłu światła', 'W ciągu roku produkuje kilkadziesiąt „dzieci" – idealny prezent', 'Pochodzi z prowincji Yunnan w Chinach, gdzie rośnie w wilgotnych lasach'],
+                diseases: ['Zwijanie liści = za dużo słońca lub potrzeba wody', 'Żółte dolne liście = naturalne starzenie lub przelanie', 'Opadające liście = przeciąg lub chłód', 'Blade liście = za mało światła'],
+                propagation: 'Sama produkuje dzieci! Odetnij potomstwo gdy ma 5–7 cm i własne korzenie. Można też ukorzeniać łodyżki w wodzie.'
             },
             { 
                 id: 'ficus-elastica', name: 'Fikus sprężysty', species: 'Ficus elastica', emoji: '🌳', 
-                image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Ficus_elastica_leaves.jpg/400px-Ficus_elastica_leaves.jpg', 
-                category: ['popular', 'tropical'], difficulty: 'easy', origin: 'Indie, Indonezja', toxic: 'Tak - mleczny sok drażniący', maxHeight: '3m w domu',
-                care: { water: 'Co 7-10 dni', light: 'Jasne pośrednie do średniego', humidity: '40-60%', temperature: '16-27°C' }, 
-                description: 'Drzewko o spektakularnych błyszczących liściach! Dawniej główne źródło kauczuku naturalnego. Odmiana Burgundy ma prawie czarne liście.',
-                funFacts: ['W XIX wieku był głównym źródłem gumy', 'W naturze dorasta do 30m!', 'Liście mogą mieć 30cm długości', 'Odmiana Tineke ma różowo-kremowe przebarwienia'],
-                diseases: ['Opadające liście = stres (zimno, przeciąg, zmiana miejsca)', 'Żółte liście = przelanie', 'Brązowe plamy = oparzenie słoneczne', 'Pyłki na liściach = czyścić wilgotną ściereczką'],
-                propagation: 'Sadzonki wierzchołkowe lub rozmnażanie w powietrzu (air layering). Sok mleczny - używaj rękawiczek! Hormon ukorzeniający przyspiesza.'
+                image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Ficus_elastica_leaves.jpg?width=400', 
+                category: ['popular', 'tropical'], difficulty: 'easy', origin: 'Indie, Indonezja', toxic: 'Tak – mleczny sok drażniący', maxHeight: '3 m w domu',
+                care: { water: 'Co 7–10 dni', light: 'Jasne pośrednie do średniego', humidity: '40–60%', temperature: '16–27°C' }, 
+                description: 'Drzewko o spektakularnych błyszczących liściach. Dawniej główne źródło kauczuku naturalnego. Odmiana Burgundy ma prawie czarne liście – bardzo stylowe.',
+                funFacts: ['W XIX w. był głównym źródłem kauczuku – stąd nazwa „rubber plant"', 'W naturze dorasta do 30 m wysokości!', 'Z korzeni robi się naturalne mosty w Indiach (living root bridges)', 'Odmiana Tineke ma różowo-kremowe przebarwienia', 'Mleczny sok po skaleczeniu jest silnie drażniący – używaj rękawiczek'],
+                diseases: ['Opadające liście = stres (zimno, przeciąg, zmiana miejsca)', 'Żółte liście = przelanie', 'Brązowe plamy = oparzenie słoneczne', 'Pyłowe liście = regularnie czyścić wilgotną ściereczką (blokują fotosyntezę)'],
+                propagation: 'Sadzonki wierzchołkowe lub air layering. Mleczny sok – używaj rękawiczek! Hormon ukorzeniający przyspiesza.'
             },
             { 
                 id: 'dracaena', name: 'Dracena obrzeżona', species: 'Dracaena marginata', emoji: '🌴', 
-                image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Dracaena_fragrans_Massangeana.jpg/400px-Dracaena_fragrans_Massangeana.jpg', 
-                category: ['popular', 'tropical'], difficulty: 'easy', origin: 'Madagaskar', toxic: 'Dla psów i kotów!', maxHeight: '3m w domu',
-                care: { water: 'Co 10-14 dni, lubi przesychać', light: 'Średnie do jasnego', humidity: '40-60%', temperature: '18-27°C' }, 
-                description: 'Eleganckie smukłe drzewko z czerwono obrzeżonymi liśćmi. Bardzo tolerancyjna na zaniedbanie. Oczyszcza powietrze z toksyn.',
-                funFacts: ['Nazwa "dracaena" znaczy "smoczyca" - ma czerwoną żywicę', 'NASA poleca do usuwania formaldehydu', 'Może żyć ponad 100 lat', 'Odmiana Tricolor ma różowo-kremowe paski'],
-                diseases: ['Brązowe końcówki = chlor/fluor w wodzie lub suche powietrze', 'Żółte dolne liście = naturalne starzenie', 'Miękka łodyga = przelanie i gnicie', 'Blade liście = za mało światła'],
-                propagation: 'Sadzonki wierzchołkowe lub kawałki łodygi (5-10cm). Ukorzenia się w wodzie lub perlicie. Można odciąć wierzchołek - pień puści nowe pędy.'
+                image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Dracaena_fragrans_Massangeana.jpg?width=400', 
+                category: ['popular', 'tropical'], difficulty: 'easy', origin: 'Madagaskar', toxic: 'Tak – dla psów i kotów!', maxHeight: '3 m w domu',
+                care: { water: 'Co 10–14 dni, lubi przesychać', light: 'Średnie do jasnego', humidity: '40–60%', temperature: '18–27°C' }, 
+                description: 'Eleganckie smukłe drzewko z czerwono obrzeżonymi liśćmi. Bardzo tolerancyjna na zaniedbanie i słabe oświetlenie. Oczyszcza powietrze z toksyn.',
+                funFacts: ['Nazwa „dracaena" znaczy „smoczyca" – jej żywica ma czerwony kolor (smocza krew)', 'NASA poleca do usuwania formaldehydu z pomieszczeń', 'Może żyć ponad 100 lat – prawdziwy wielopokoleniowy skarb', 'Odmiana Tricolor ma różowo-kremowo-zielone paski', 'Łodyga może tworzyć naturalne spirale i łuki – bardzo dekoracyjna'],
+                diseases: ['Brązowe końcówki = chlor/fluor w wodzie – używaj deszczówki', 'Żółte dolne liście = naturalne starzenie (1–2 liście miesięcznie to norma)', 'Miękka łodyga = przelanie i gnicie korzeni – ratuj przesadzaniem', 'Blade liście = za mało światła u odmian kolorowych'],
+                propagation: 'Sadzonki wierzchołkowe lub kawałki łodygi (5–10 cm). Ukorzeniają się w wodzie. Odcięty pień puści nowe pędy z boku.'
             },
             { 
                 id: 'zamioculcas', name: 'Zamiokulkas', species: 'Zamioculcas zamiifolia', emoji: '✨', 
-                image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Zamioculcas_zamiifolia_1.jpg/400px-Zamioculcas_zamiifolia_1.jpg', 
-                category: ['popular', 'easy'], difficulty: 'easy', origin: 'Afryka Wschodnia', toxic: 'Tak - kryształy szczawianu', maxHeight: '1m',
-                care: { water: 'Co 2-4 tygodnie lub rzadziej!', light: 'Od cienia do jasnego', humidity: '40-60%', temperature: '15-27°C' }, 
-                description: 'ZZ Plant - król zaniedbania! Przetrwa miesiące bez wody dzięki grubym kłączom magazynującym wodę. Błyszczące liście odbijają światło.',
-                funFacts: ['Odkryty dla hodowli dopiero w 1996!', 'Przeżyje 4 miesiące bez wody', 'Rośnie nawet w biurze bez okien (ale wolniej)', 'Odmiana Raven ma prawie czarne liście'],
-                diseases: ['Żółte liście = PRZELANIE (główny zabójca!)', 'Pomarszczone łodygi = potrzeba wody (rzadkie)', 'Brązowe plamy = oparzenie słoneczne', 'Brak wzrostu = za mało światła'],
-                propagation: 'Podział kłączy lub sadzonki liściowe (BARDZO WOLNO - 6-12 mies.). Najlepiej dzielić przy przesadzaniu. Pojedynczy listek może dać nową roślinę.'
+                image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Zamioculcas_zamiifolia_1.jpg?width=400', 
+                category: ['popular', 'easy'], difficulty: 'easy', origin: 'Afryka Wschodnia', toxic: 'Tak – kryształy szczawianu', maxHeight: '1 m',
+                care: { water: 'Co 2–4 tygodnie lub jeszcze rzadziej!', light: 'Od głębokiego cienia do jasnego', humidity: '40–60%', temperature: '15–27°C' }, 
+                description: 'ZZ Plant – król zaniedbania! Przetrwa miesiące bez wody dzięki grubym kłączom. Błyszczące liście odbijają światło jak plastik – ale są prawdziwe!',
+                funFacts: ['Odkryty i wprowadzony do hodowli dopiero w 1996 roku!', 'Przeżyje nawet 4–6 miesięcy bez jednej kropli wody', 'Rośnie nawet w biurze bez okien – choć wtedy bardzo wolno', 'Odmiana Raven ma prawie czarne liście – efektowna na Instagram', 'Kłącza magazynują wodę jak ziemniaki – to tajemnica przeżywalności', 'Jeden liść ukorzeniany w ziemi może dać nową roślinę po 6–12 miesiącach'],
+                diseases: ['Żółte liście = PRZELANIE (główny i prawie jedyny zabójca!)', 'Pomarszczone łodygi = potrzeba wody (rzadkie, ale realne)', 'Brązowe plamy = oparzenie słoneczne', 'Brak wzrostu zimą = normalna hibernacja'],
+                propagation: 'Podział kłączy przy przesadzaniu. Sadzonki liściowe działają, ale bardzo wolno (6–12 mies.). Najlepiej dzielić wiosną.'
             },
-            { 
-                id: 'monstera-adansonii', name: 'Monstera dziurawa', species: 'Monstera adansonii', emoji: '🕳️', 
-                image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Monstera_adansonii_leaf.jpg/400px-Monstera_adansonii_leaf.jpg', 
-                category: ['popular', 'tropical'], difficulty: 'easy', origin: 'Ameryka Środkowa i Płd.', toxic: 'Tak', maxHeight: '4m jako pnącze',
-                care: { water: 'Co 7-10 dni', light: 'Jasne rozproszone', humidity: '60-80% - lubi wilgoć!', temperature: '18-27°C' }, 
-                description: 'Mniejsza kuzynka Monstery deliciosa z mniejszymi liśćmi pełnymi owalnych dziur. Szybko rośnie i pięknie zwisa lub wspina się.',
-                funFacts: ['Nazywana Swiss Cheese Vine', 'Dziury pojawiają się od młodości (w przeciwieństwie do M. deliciosa)', 'Może rosnąć 30cm miesięcznie!', 'W naturze wspina się na drzewa'],
-                diseases: ['Żółte liście = przelanie', 'Brak dziur = za mało światła', 'Brązowe krawędzie = suche powietrze', 'Małe liście = potrzebuje podpory do wspinania'],
-                propagation: 'Bardzo łatwe! Sadzonki z węzłem w wodzie lub sphagnum. Korzenie po 2-3 tyg. Można ukorzeniać nawet w słoiku na parapecie.'
-            },
-            { 
-                id: 'palm-areca', name: 'Areka (Palma złota)', species: 'Dypsis lutescens', emoji: '🌴', 
-                image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Dypsis_lutescens1.jpg/400px-Dypsis_lutescens1.jpg', 
-                category: ['popular', 'tropical'], difficulty: 'medium', origin: 'Madagaskar', toxic: 'Nie - bezpieczna!', maxHeight: '2.5m w domu',
-                care: { water: 'Co 5-7 dni, lubi wilgotną glebę', light: 'Jasne pośrednie', humidity: '50-60%', temperature: '18-24°C' }, 
-                description: 'Najpopularniejsza palma domowa! Eleganckie pierzaste liście wnoszą tropikalny klimat. Naturalny nawilżacz - oddaje dużo wody.',
-                funFacts: ['Transpiruje nawet 1 litr wody dziennie!', 'NASA TOP 10 do oczyszczania powietrza', 'Na Madagaskarze jest zagrożona wyginięciem', 'Żółtawe łodygi to cecha gatunkowa, nie choroba'],
-                diseases: ['Brązowe końcówki = suche powietrze lub sól w ziemi', 'Żółte liście = przelanie lub za mało składników', 'Przędziorek = suche powietrze (zraszaj!)', 'Brązowe plamy = oparzenie słoneczne'],
-                propagation: 'Tylko z nasion lub podział kępy (jeśli ma wiele pędów). Nasiona kiełkują 2-3 miesiące. Podział trudny - palmy nie lubią ruszania korzeni.'
-            },
-            // === KWITNĄCE ===
             { 
                 id: 'orchid', name: 'Storczyk Falenopsis', species: 'Phalaenopsis', emoji: '🦋', 
-                image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Phalaenopsis_ORCH_2008.jpg/400px-Phalaenopsis_ORCH_2008.jpg', 
-                category: ['flowering', 'popular'], difficulty: 'medium', origin: 'Azja Płd-Wsch.', toxic: 'Nie - bezpieczny!', maxHeight: '60cm',
-                care: { water: 'Co 7-10 dni zanurzenie na 15 min', light: 'Jasne rozproszone, bez bezpośredniego słońca', humidity: '50-70%', temperature: '18-25°C, spadek nocą pomaga kwitnieniu' }, 
-                description: 'Najpopularniejszy storczyk! Kwitnie nawet 3-4 miesiące. Wbrew mitom - wcale nie jest trudny. Kluczem jest odpowiednie podlewanie i światło.',
-                funFacts: ['Kwitnienie można przedłużyć chłodem (18°C) i cieniem', 'Po przekwitnięciu przytnij łodygę nad 3. węzłem - może zakwitnąć ponownie!', 'Korzenie fotosyntezują - lubią przezroczyste doniczki', 'Rodzina storczyków ma 28 000 gatunków!'],
-                diseases: ['Żółte/miękkie liście = przelanie i gnicie korzeni', 'Pomarszczone liście = za mało wody', 'Pąki opadają = stres (przeciąg, zmiana miejsca, etyleny z owoców)', 'Czarne plamy = infekcja bakteryjna (odetnij!)'],
-                propagation: 'Trudne w domu. Czasem roślina wypuszcza keiki (dzieci) na łodydze kwiatowej. Odetnij gdy ma 2-3 liście i korzenie 5cm+.'
+                image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Phalaenopsis_ORCH_2008.jpg?width=400', 
+                category: ['flowering'], difficulty: 'medium', origin: 'Azja Południowo-Wschodnia', toxic: 'Nie – bezpieczna', maxHeight: '60 cm',
+                care: { water: 'Co 7–10 dni przez zanurzenie na 15 min', light: 'Jasne rozproszone, bez bezpośredniego słońca', humidity: '50–70%', temperature: '18–28°C, zimna noc wywołuje kwitnienie' }, 
+                description: 'Królowa kwiatów doniczkowych! Kwitnie przez 3–6 miesięcy. Wymaga jasnego, ale nie bezpośredniego światła. Tajemnicą kwitnienia jest chłodna noc (15°C).',
+                funFacts: ['Kwitnie 3–6 miesięcy z rzędu – jeden z najdłużej kwitnących kwiatów', 'Zimna noc (15°C) przez 2 tygodnie stymuluje wytworzenie nowego pędu kwiatowego', 'W naturze rośnie na drzewach (epifit) – korzenie potrzebują powietrza', 'Przezroczyste doniczki to standard – korzenie fotosyntezują!', 'Ten sam pęd może zakwitnąć 2–3 razy jeśli go nie odcinasz', 'Istnieje ponad 70 gatunków Phalaenopsis i tysiące hybryd'],
+                diseases: ['Żółknące liście dolne = naturalne (1–2 liście rocznie to norma)', 'Gnijące korzenie (brązowe, miękkie) = za dużo wody', 'Kurczące się, pomarszczone liście = za mało wody lub chore korzenie', 'Brak kwitnienia = za ciepłe noce – przenieś na chłodniejszy parapet', 'Lepkie liście = wełnowce lub mszyce – przetrzeć alkoholem'],
+                propagation: 'Keiki (małe roślinki na łodydze kwiatowej) – odetnij gdy mają własne korzenie 3+ cm. Podział roślin macierzystych też możliwy.'
             },
             { 
                 id: 'anthurium', name: 'Anturium', species: 'Anthurium andraeanum', emoji: '❤️', 
-                image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Anthurium_andraeanum_1.jpg/400px-Anthurium_andraeanum_1.jpg', 
-                category: ['flowering', 'tropical'], difficulty: 'medium', origin: 'Kolumbia, Ekwador', toxic: 'Tak - kryształy szczawianu', maxHeight: '60cm',
-                care: { water: 'Co 5-7 dni', light: 'Jasne rozproszone', humidity: '60-80%', temperature: '20-28°C' }, 
-                description: 'Spektakularne lakierowane "kwiaty" to tak naprawdę zmodyfikowane liście (pochwy). Prawdziwe kwiaty są na żółtej kolbie. Kwitnie przez cały rok!',
-                funFacts: ['Jeden "kwiat" utrzymuje się 2-3 miesiące!', 'Kolumbia eksportuje miliony anturiów rocznie', 'Istnieje ponad 1000 gatunków', 'Nazwa znaczy "kwiat-ogon" po grecku'],
-                diseases: ['Brązowe liście = suche powietrze lub oparzenie', 'Żółte liście = przelanie', 'Brak kwitnienia = za mało światła', 'Czarne plamy = zimna woda lub bakterie'],
-                propagation: 'Podział kęp lub sadzonki pędowe z korzeniami powietrznymi. Najlepiej podczas przesadzania wiosną. W wodzie ukorzenia się wolniej.'
+                image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Anthurium_andraeanum_1.jpg?width=400', 
+                category: ['flowering', 'tropical'], difficulty: 'medium', origin: 'Kolumbia, Ekwador', toxic: 'Tak – kryształy szczawianu', maxHeight: '60 cm',
+                care: { water: 'Co 7–10 dni, lubi równomierną wilgoć', light: 'Jasne rozproszone – bez słońca!', humidity: '60–80%', temperature: '18–27°C' }, 
+                description: 'Błyszczące, lakierowane „kwiaty" to tak naprawdę kolorowe liście (pochwy). Kwitnie niemal bez przerwy przez cały rok przy dobrych warunkach.',
+                funFacts: ['Czerwony „kwiat" to pochwa (spathe) – zmodyfikowany liść, nie płatek', 'Prawdziwy kwiat to mały kolbowaty wyrostek (spadix) w środku', 'Kwitnie praktycznie bez przerwy – jedno z najdłużej „kwitnących" roślin', 'Dostępne w kolorach: czerwony, różowy, biały, fioletowy, czarny, zielony', 'W naturze rośnie jako epifit na drzewach tropikalnych lasów'],
+                diseases: ['Żółte liście = przelanie lub za dużo bezpośredniego światła', 'Brązowe końcówki = suche powietrze lub fluor w wodzie', 'Brak kwitnienia = za mało światła lub za niska temperatura', 'Czarne plamy = grzyb od nadmiernej wilgoci na liściach'],
+                propagation: 'Podział kęp lub sadzonki boczne. Każda część musi mieć korzenie. Ukorzenianie w sphagnum mchu.'
             },
             { 
                 id: 'kalanchoe', name: 'Kalanchoe', species: 'Kalanchoe blossfeldiana', emoji: '🌺', 
-                image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Kalanchoe_blossfeldiana.jpg/400px-Kalanchoe_blossfeldiana.jpg', 
-                category: ['flowering', 'succulents', 'easy'], difficulty: 'easy', origin: 'Madagaskar', toxic: 'Tak dla zwierząt!', maxHeight: '40cm',
-                care: { water: 'Co 10-14 dni gdy gleba wyschnie', light: 'Jasne do słonecznego', humidity: '30-50%', temperature: '15-25°C' }, 
-                description: 'Sukulent z masą kolorowych kwiatków! Po przekwitnięciu można wymusić ponowne kwitnienie. Bardzo łatwy w uprawie.',
-                funFacts: ['Kwitnie przez 8 tygodni!', 'Potrzebuje "krótkiego dnia" (14h ciemności) przez 6 tyg. by zakwitnąć ponownie', 'Istnieje 125 gatunków', 'Liście magazynują wodę jak sukulent'],
-                diseases: ['Wydłużanie się = za mało światła', 'Gnicie łodygi = przelanie', 'Mączlik/mszyce = sprawdzaj regularnie', 'Brak kwitnienia = potrzebuje okresu ciemności'],
-                propagation: 'Bardzo łatwe! Sadzonki łodygowe lub liściowe. Liść połóż na ziemi - z brzegu wyrosną dzieci. Sadzonki ukorzeniają się w 2-3 tyg.'
+                image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Kalanchoe_blossfeldiana.jpg?width=400', 
+                category: ['flowering', 'succulents'], difficulty: 'easy', origin: 'Madagaskar', toxic: 'Tak – toksyczna dla zwierząt', maxHeight: '30 cm',
+                care: { water: 'Co 10–14 dni, typowy sukulent', light: 'Jasne, bezpośrednie słońce przez kilka godzin', humidity: '30–50%', temperature: '15–25°C' }, 
+                description: 'Popularny sukulent kwiatowy! Małe kwiatki w kolorach czerwonym, różowym, żółtym, pomarańczowym lub białym kwitną 4–6 tygodni. Bardzo łatwy w pielęgnacji.',
+                funFacts: ['Można wymusić powtórne kwitnienie przez 6 tygodni ciemności (12 h/dobę)', 'Pochodzi z Madagaskaru – wyspy z wyjątkową florą', 'Krótki dzień (fotoperiodyzm) stymuluje wytwarzanie pąków kwiatowych', 'Dostępny w ponad 100 kolorach i odmianach!', 'Liście zawierają zapasy wody – odporny na kilkutygodniowe zaniedbanie'],
+                diseases: ['Gnijące liście = przelanie – najczęstszy błąd', 'Brak kwitnienia = za mało światła lub brak okresu ciemności', 'Szare plamy na liściach = mączniak prawdziwy – popraw wentylację', 'Wydłużone, blade pędy = za mało słońca (etiolacja)'],
+                propagation: 'Sadzonki liściowe lub pędowe. Zasusz 2 dni, wsadź do suchego piasku. Korzenie po 3–4 tygodniach.'
             },
             { 
                 id: 'begonia', name: 'Begonia królewska', species: 'Begonia rex', emoji: '👑', 
-                image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Begonia_Rex_Escargot.jpg/400px-Begonia_Rex_Escargot.jpg', 
-                category: ['flowering', 'tropical'], difficulty: 'medium', origin: 'Indie (Assam)', toxic: 'Tak - szczególnie kłącze', maxHeight: '50cm',
-                care: { water: 'Co 5-7 dni, unikaj liści', light: 'Jasne rozproszone', humidity: '50-70%', temperature: '18-24°C' }, 
-                description: 'Uprawiana dla SPEKTAKULARNYCH wzorzystych liści, nie kwiatów! Spiralne, srebrne, różowe, bordowe wzory. Królowa begonii.',
-                funFacts: ['Istnieje ponad 2000 gatunków begonii!', 'Wzory na liściach są unikalne jak odciski palców', 'Kwiaty są niepozorne - usuwa się je by wzmocnić liście', 'Nazwa od Michela Bégona - gubernatora Haiti'],
-                diseases: ['Mączniak prawdziwy = za wilgotno, za gęsto', 'Gnicie łodygi = woda na liściach lub przelanie', 'Brązowe krawędzie = suche powietrze', 'Blade liście = za mało światła'],
-                propagation: 'Sadzonki liściowe! Natnij żyłki na spodzie liścia, połóż na wilgotnej ziemi. Z nacięć wyrosną nowe rośliny. Magia!'
+                image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Begonia_Rex_Escargot.jpg?width=400', 
+                category: ['flowering'], difficulty: 'medium', origin: 'Indie, Chiny', toxic: 'Tak – kłącza szczególnie toksyczne', maxHeight: '50 cm',
+                care: { water: 'Co 7–10 dni, unikaj liści', light: 'Jasne rozproszone, bez bezpośredniego słońca', humidity: '50–60%', temperature: '18–24°C' }, 
+                description: 'Najpiękniejsza begonia! Uprawiana dla spektakularnych liści w metalicznych kolorach – srebrnych, różowych, bordowych, fioletowych z fantazyjnymi wzorami.',
+                funFacts: ['Uprawiana przede wszystkim dla liści, nie kwiatów', 'Odmiana Escargot ma liście zwinięte w spiralę jak muszla ślimaka', 'Metaliczny połysk liści to specjalne odbijające komórki naskórka', 'Istnieje kilka tysięcy (!) odmian i hybryd begonii', 'Pochodzi z tropikalnych terenów gdzie rośnie w cieniu skalnych urwisk'],
+                diseases: ['Mączniak (biały puszek) = zła cyrkulacja powietrza + nadmiar wilgoci', 'Gnicie łodygi = woda stojąca + zimno', 'Brązowe plamy = woda na liściach lub oparzenie słoneczne', 'Zrzucanie liści = przeciąg lub nagła zmiana temperatury'],
+                propagation: 'Sadzonki liściowe na kleju – odetnij liść, połóż na wilgotnym perlicie, przyciśnij kawałki do podłoża. Korzenie po 4–6 tygodniach.'
             },
             { 
                 id: 'african-violet', name: 'Fiołek afrykański', species: 'Saintpaulia ionantha', emoji: '💜', 
-                image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/African_violet_Saintpaulia_ionantha.jpg/400px-African_violet_Saintpaulia_ionantha.jpg', 
-                category: ['flowering', 'easy'], difficulty: 'easy', origin: 'Tanzania', toxic: 'Nie - bezpieczny!', maxHeight: '20cm',
-                care: { water: 'Co 5-7 dni OD SPODU (wick watering)', light: 'Jasne rozproszone, świetnie pod lampą', humidity: '50-60%', temperature: '18-24°C stała' }, 
-                description: 'Kompaktowy kwiatek kwitnący przez cały rok! NIGDY nie moczyć liści - zostawiają plamy. Idealny na parapet, świetnie rośnie pod lampami.',
-                funFacts: ['Istnieje 16 000+ odmian!', 'Pierwszy fiołek odkryto w 1892 w Tanzanii', 'Kwitnie 10-12 miesięcy w roku', 'Każdy kolor oprócz żółtego - nigdy nie udało się go wyhodować'],
-                diseases: ['Plamy na liściach = zimna woda lub słońce przez mokre liście', 'Brak kwitnienia = za mało światła', 'Gnicie korony = woda w środku rozety', 'Mączlik = biały nalot na liściach'],
-                propagation: 'Sadzonki liściowe w wodzie lub ziemi. Odetnij liść z 2cm ogonkiem, włóż do wody. Dzieci po 2-3 mies. Cierpliwość!'
+                image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Saintpaulia_ionantha.jpg?width=400', 
+                category: ['flowering', 'easy'], difficulty: 'easy', origin: 'Tanzania i Kenia', toxic: 'Nie – bezpieczna', maxHeight: '15 cm',
+                care: { water: 'Podlewaj od dołu (podstawka) co 7 dni', light: 'Jasne, ale bez bezpośredniego słońca', humidity: '40–60%', temperature: '18–24°C' }, 
+                description: 'Miniaturowa legenda! Kwitnie praktycznie cały rok. Kluczem do sukcesu jest podlewanie od dołu – woda na liściach tworzy plamy. Idealna na windowsill.',
+                funFacts: ['Odkryta w 1892 r. przez barona von Saint Paula – stąd nazwa', 'Podlewanie od dołu (miseczka) to najlepsza metoda – liście nie lubią wody', 'Kwitnie prawie bez przerwy przez cały rok przy odpowiednim świetle', 'Zimna woda zostawia białe plamy na liściach – używaj letniej', 'Miniaturowe odmiany mają doniczkę tylko 5 cm! Istnieje 16000+ odmian'],
+                diseases: ['Białe plamy na liściach = zimna woda lub woda bezpośrednio na liściach', 'Gnijąca szyjka = woda stojąca + zimno', 'Brak kwitnienia = za mało światła lub za duża doniczka', 'Szarobure liście = mączniak – poprawa cyrkulacji powietrza'],
+                propagation: 'Sadzonki liściowe – odetnij zdrowy liść z ogonkiem, włóż do wody lub perlitu. Małe roślinki po 4–6 tygodniach.'
             },
             { 
                 id: 'hibiscus', name: 'Hibiskus chiński', species: 'Hibiscus rosa-sinensis', emoji: '🌺', 
-                image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Hibiscus_rosa-sinensis_flower_2.jpg/400px-Hibiscus_rosa-sinensis_flower_2.jpg', 
-                category: ['flowering', 'tropical'], difficulty: 'medium', origin: 'Azja Tropikalna', toxic: 'Nie - kwiaty jadalne!', maxHeight: '2m w domu',
-                care: { water: 'Co 3-5 dni, nie lubi przesychać', light: 'Pełne słońce - minimum 6h', humidity: '50-70%', temperature: '18-30°C, zimą min. 10°C' }, 
-                description: 'Spektakularne kwiaty do 15cm! Każdy kwiat żyje tylko 1-2 dni, ale roślina produkuje nowe przez cały sezon. Zimą odpoczynek.',
-                funFacts: ['Kwiaty są jadalne - używane w herbatach', 'Herbata z hibiskusa obniża ciśnienie krwi', 'Kwiat narodowy Malezji i Korei Płd.', 'Jeden krzew może dać 100+ kwiatów w sezonie'],
-                diseases: ['Opadające pąki = stres (przeciąg, zimno, zmiana miejsca)', 'Żółte liście = przelanie lub chloroza (brak żelaza)', 'Mszyce = częsty problem, sprawdzaj pąki', 'Brak kwitnienia = za mało słońca'],
-                propagation: 'Sadzonki półzdrewniałe latem. Odetnij 10-15cm pęd, usuń dolne liście, zanurz w hormonie, wsadź w piasek. Ciepło i wilgoć. Korzenie po 4-8 tyg.'
-            },
-            { 
-                id: 'cyclamen', name: 'Cyklamen perski', species: 'Cyclamen persicum', emoji: '🌸', 
-                image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Cyclamen_persicum_white.jpg/400px-Cyclamen_persicum_white.jpg', 
-                category: ['flowering'], difficulty: 'medium', origin: 'Bliski Wschód', toxic: 'Tak - szczególnie bulwa!', maxHeight: '30cm',
-                care: { water: 'Co 3-5 dni od spodu gdy przeschnie', light: 'Jasne chłodne', humidity: '50-60%', temperature: '10-18°C - LUBI CHŁÓD!' }, 
-                description: 'Zimowy kwiat który UWIELBIA chłód! Kwitnie od jesieni do wiosny gdy inne śpią. Latem przechodzi w spoczynek - to normalne.',
-                funFacts: ['Kwitnie gdy jest ZIMNO (10-15°C idealne)', 'Latem traci liście i śpi - nie wyrzucaj!', 'Bulwa może żyć 100 lat', 'Motyle zapylające go mają taką samą długość języczka jak rurka kwiatu'],
-                diseases: ['Więdnięcie = za ciepło lub potrzeba wody', 'Żółte liście = za ciepło lub przelanie', 'Szara pleśń = za wilgotno, słaba wentylacja', 'Gnicie bulwy = woda w środku rośliny'],
-                propagation: 'Z nasion (trudne, 9-12 mies. do kwitnienia) lub podział bulwy (ryzykowne). Większość ludzi kupuje nowe rośliny.'
+                image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Hibiscus_rosa-sinensis_flower_2.jpg?width=400', 
+                category: ['flowering'], difficulty: 'medium', origin: 'Azja Wschodnia', toxic: 'Nie – kwiaty jadalne!', maxHeight: '2 m w domu',
+                care: { water: 'Co 5–7 dni w sezonie, ograniczyć zimą', light: 'Pełne słońce przez min. 4–6 h dziennie', humidity: '50–60%', temperature: '18–30°C' }, 
+                description: 'Tropikalny krzew z ogromnymi kwiatami do 20 cm średnicy! Każdy kwiat trwa tylko jeden dzień, ale roślina produkuje ich mnóstwo. Kwiaty są jadalne.',
+                funFacts: ['Każdy pojedynczy kwiat żyje tylko 24 godziny – ale pojawiają się codziennie nowe', 'Kwiaty są jadalne – używane do herbat, sałatek i nalewek', 'Symbol Malezji i Hawajów – tam kwitnie cały rok na zewnątrz', 'Wymaga 4–6 godzin bezpośredniego słońca dziennie – lubi okno południowe', 'Zimą ograniczyć wodę i temperaturę – to klucz do wiosennego kwitnienia'],
+                diseases: ['Opadanie pąków = nagła zmiana miejsca lub za sucho', 'Żółte liście = niedobór żelaza lub magnezje lub przelanie', 'Mszyca na nowych pędach = naturalna – pryszcz wodą lub mydłem', 'Brak kwitnienia = za mało słońca lub za zimno'],
+                propagation: 'Sadzonki półzdrewniałe (15 cm) z hormonu ukorzeniającym. Korzenie po 4–6 tygodniach. Można też przez nasiona.'
             },
             { 
                 id: 'hoya', name: 'Hoja (Woskownica)', species: 'Hoya carnosa', emoji: '⭐', 
-                image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/Hoya_carnosa1.jpg/400px-Hoya_carnosa1.jpg', 
-                category: ['flowering', 'tropical'], difficulty: 'easy', origin: 'Azja, Australia', toxic: 'Nie - bezpieczna!', maxHeight: '4m jako pnącze',
-                care: { water: 'Co 10-14 dni gdy dobrze przeschnie', light: 'Jasne pośrednie', humidity: '40-60%', temperature: '15-27°C' }, 
-                description: 'Woskowe liście i NIESAMOWICIE pachnące kuliste kwiatostany! Kwiaty wydzielają słodki nektar. NIE usuwaj szypułek - kwitną wielokrotnie!',
-                funFacts: ['Kwiaty wydzielają krople nektaru - można zlizać!', 'Istnieje ponad 500 gatunków Hoya', 'Szypułka kwitnie wielokrotnie - nigdy nie usuwaj', 'Najstarsza Hoya miała ponad 50 lat'],
-                diseases: ['Brak kwitnienia = cierpliwość (3-5 lat) lub za mało światła', 'Żółte liście = przelanie', 'Mączlik = biały puszek przy liściach', 'Opadające pąki = zmiana warunków'],
-                propagation: 'Sadzonki łodygowe w wodzie lub sphagnum. Minimum 2 węzły. Korzenie po 4-8 tyg. Marcottage też działa świetnie.'
+                image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Hoya_carnosa1.jpg?width=400', 
+                category: ['flowering', 'tropical'], difficulty: 'easy', origin: 'Azja Wschodnia i Australi', toxic: 'Nie – bezpieczna', maxHeight: '4 m jako pnącze',
+                care: { water: 'Co 10–14 dni, typowy sukulent pnący', light: 'Jasne pośrednie, trochę bezpośredniego rano', humidity: '40–60%', temperature: '16–27°C' }, 
+                description: 'Wosk na liściach dał tej roślinie przydomek „woskownica". Gwiazdkowate kwiaty zebrane w kuliste grona wydzielają intensywny, słodki zapach – szczególnie nocą.',
+                funFacts: ['Kwiaty wydzielają intensywny zapach głównie nocą – ewolucyjna adaptacja do nocnych zapylaczy', 'Nie przycinaj szypułek po kwitnieniu – zakwitną ponownie na tym samym miejscu!', 'Istnieje 200–500 gatunków Hoya o różnych kształtach liści', 'Lubi być "stłoczona" w doniczce – zbyt duża doniczka opóźnia kwitnienie', 'Odmiana Kerrii ma liście w kształcie serca – popularny symbol miłości'],
+                diseases: ['Brak kwitnienia = za mało światła lub zbyt duża doniczka', 'Żółte liście = przelanie lub za mało składników', 'Marszczone liście = potrzeba wody (rzadkie)', 'Wełnowce = białe kłaczki w kątach liści – przetrzeć alkoholem'],
+                propagation: 'Sadzonki pędowe z 2–3 węzłami w wodzie lub sphagnum. Korzenie po 3–5 tygodniach.'
             },
             { 
-                id: 'schlumbergera', name: 'Grudnik (Kaktus bożonarodzeniowy)', species: 'Schlumbergera truncata', emoji: '🎄', 
-                image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Schlumbergera_truncata_flower.jpg/400px-Schlumbergera_truncata_flower.jpg', 
-                category: ['flowering', 'succulents'], difficulty: 'easy', origin: 'Brazylia (góry)', toxic: 'Nie - bezpieczny!', maxHeight: '30cm',
-                care: { water: 'Co 7-10 dni gdy wierzch przeschnie', light: 'Jasne rozproszone', humidity: '50-60%', temperature: '15-21°C, spadek jesienią indukuje kwitnienie' }, 
-                description: 'Kwitnie na święta! Potrzebuje "krótkiego dnia" (ciemność 12-14h) przez 6 tyg. jesienią i spadku temperatury. Potem obsypuje się kwiatami.',
-                funFacts: ['Może żyć ponad 100 lat!', 'W naturze rośnie na drzewach jako epifit', 'Kwitnie też na Wielkanoc jeśli zaindukujesz jesienią', 'Przekazywany z pokolenia na pokolenie'],
-                diseases: ['Opadanie pąków = stres (ruszanie, temp., przeciąg)', 'Pomarszczone segmenty = za mało wody', 'Czerwone segmenty = za dużo słońca (ale może też kwitnąć!)', 'Gnicie = przelanie'],
-                propagation: 'Bardzo łatwe! Odłam segment (2-3 człony), zasusz 1-2 dni, wsadź do ziemi. Korzenie po 3-6 tyg. Rób wiosną/latem.'
+                id: 'begonia-maculata', name: 'Begonia Pstrąg', species: 'Begonia maculata', emoji: '🎨', 
+                image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Begonia_maculata_leaves.jpg?width=400', 
+                category: ['flowering', 'tropical'], difficulty: 'medium', origin: 'Brazylia', toxic: 'Tak – toksyczna dla zwierząt', maxHeight: '1,5 m',
+                care: { water: 'Co 7 dni gdy wierzch przeschnie 2 cm', light: 'Jasne rozproszone', humidity: '50–65%', temperature: '18–27°C' }, 
+                description: 'Najbardziej instagramowa roślina ostatnich lat! Ciemnozielone liście w srebrne kropki jak skóra pstrąga, z bordowym spodem. Daje efektowne białe kwiatki.',
+                funFacts: ['Odkryta w 1820 r. przez włoskiego botanika Giuseppe Radi w Brazylii', 'Srebrne kropki to woskowe wykończenie naskórka, które odbija nadmiar światła', 'Kwitnie małymi białymi kwiatami – bardzo efektowny kontrast z ciemnymi liśćmi', 'Jedna z najmodniejszych roślin doniczkowych w social mediach', 'Szybko rośnie – może przyrosnąć 30 cm w sezonie wegetacyjnym'],
+                diseases: ['Mączniak (biały puszek na liściach) = wilgotne powietrze bez przepływu', 'Opadające liście = zimno lub przeciąg', 'Gnicie łodygi = za mokro przy podstawie', 'Brązowe brzegi = suche powietrze lub fluor w wodzie'],
+                propagation: 'Sadzonki pędowe 10–15 cm w wodzie. Bardzo łatwe – korzenie po 1–2 tygodniach.'
             },
-            { 
-                id: 'gardenia', name: 'Gardenia', species: 'Gardenia jasminoides', emoji: '🤍', 
-                image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Gardenia_jasminoides_cv1.jpg/400px-Gardenia_jasminoides_cv1.jpg', 
-                category: ['flowering'], difficulty: 'hard', origin: 'Chiny, Japonia', toxic: 'Lekko dla zwierząt', maxHeight: '1.5m',
-                care: { water: 'Co 3-5 dni wodą miękką/deszczową', light: 'Jasne pośrednie', humidity: '60-80% - wymaga!', temperature: '18-24°C, nocą chłodniej' }, 
-                description: 'NAJPIĘKNIEJSZY zapach! Kremowobiałe kwiaty o odurzającym aromacie. DIVA wśród roślin - wymaga idealnych warunków. Dla doświadczonych.',
-                funFacts: ['Zapach używany w perfumach od wieków', 'Kwiaty żółkną z wiekiem - to normalne', 'W Azji symbol czystości i miłości', 'Jeden z najtrudniejszych kwiatów domowych'],
-                diseases: ['Żółte liście z zielonymi żyłkami = chloroza (potrzebuje kwaśnej gleby, żelaza)', 'Opadające pąki = stres, zmiany warunków, suche powietrze', 'Czarny nalot = chermes (mszyca)', 'Brązowe krawędzie = suche powietrze lub twarda woda'],
-                propagation: 'Sadzonki półzdrewniałe latem z hormonem ukorzeniającym. Ciepło dna (20-24°C), wysoka wilgotność. Trudne - lepiej kupić.'
-            },
-            // === SUKULENTY ===
             { 
                 id: 'echeveria', name: 'Echeweria', species: 'Echeveria elegans', emoji: '🪷', 
-                image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Echeveria_colorata.jpg/400px-Echeveria_colorata.jpg', 
-                category: ['succulents', 'easy'], difficulty: 'easy', origin: 'Meksyk', toxic: 'Nie - bezpieczna!', maxHeight: '15cm',
-                care: { water: 'Co 2-3 tygodnie gdy gleba sucha', light: 'Pełne słońce - minimum 4-6h', humidity: '30-40%', temperature: '10-27°C' }, 
-                description: 'Idealna różyczka! Woskowy nalot chroni przed słońcem. Stresowana silnym światłem zyskuje piękne czerwone/różowe brzegi liści.',
-                funFacts: ['Woskowy nalot (farina) chroni przed słońcem - nie dotykaj!', 'Stres = piękne kolory (czerwone brzegi)', 'Istnieje 150+ gatunków', 'Nazwa od meksykańskiego botanika Echeverría'],
-                diseases: ['Wydłużanie (etiolacja) = za mało światła', 'Gnicie od dołu = przelanie', 'Mączlik = biały puszek między liśćmi', 'Brązowe dolne liście = naturalne zrzucanie'],
-                propagation: 'Łatwe! Liść połóż na suchej ziemi, z końca wyrośnie dziecko. Lub odetnij dzieci od matki. Nie podlewaj aż ma korzenie!'
+                image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Echeveria_colorata.jpg?width=400', 
+                category: ['succulents'], difficulty: 'easy', origin: 'Meksyk', toxic: 'Nie – bezpieczna', maxHeight: '15 cm',
+                care: { water: 'Co 14–21 dni, między podlewaniami całkowicie suchą', light: 'Pełne słońce przez 4–6 h dziennie', humidity: '30–50%', temperature: '10–27°C' }, 
+                description: 'Soczysta rozeta jak kwiat! Liście pokryte naturalnym woskowym nalotem (pruina) chronią przed słońcem. Dziesiątki kolorów i kształtów.',
+                funFacts: ['Wosk na liściach (pruina) chroni przed słońcem i utratą wody – nie ścieraj!', 'W sezonie wysuwa długie pędy z drobnymi dzwonkowatymi kwiatami', 'Stres wodny i słoneczny wywołuje czerwone i fioletowe przebarwienia liści', 'Istnieje ponad 150 gatunków i setki hybryd echewerii', 'Idealna do sukulentowych kompozycji i terrariów'],
+                diseases: ['Wyciągnięte, blade pędy = za mało słońca (etiolacja)', 'Gnijące dolne liście = za dużo wody lub zła drenaż', 'Zmarszczone liście = potrzeba wody (rzadko)', 'Utrata woskowego nalotu = uszkodzony naskórek – nie dotyj, samo wróci'],
+                propagation: 'Sadzonki liściowe (oderwij cały liść bez urywania) lub rozmnażanie przez potomne. Połóż liść na suchym piasku, nie wkopuj – korzenie same wyjdą.'
             },
             { 
                 id: 'aloe', name: 'Aloes zwyczajny', species: 'Aloe vera', emoji: '🌱', 
-                image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Aloe_vera_flower_inridge.jpg/400px-Aloe_vera_flower_inridge.jpg', 
-                category: ['succulents', 'easy', 'popular'], difficulty: 'easy', origin: 'Półwysep Arabski', toxic: 'Skórka tak, żel nie', maxHeight: '100cm',
-                care: { water: 'Co 2-3 tygodnie', light: 'Jasne do pełnego słońca', humidity: '30-50%', temperature: '13-27°C' }, 
-                description: 'Żel łagodzi oparzenia, nawilża skórę, pomaga na trądzik! Apteczka w doniczce. Bardzo łatwy w uprawie.',
-                funFacts: ['Używany medycznie od 6000 lat!', 'Kleopatra stosowała go do pielęgnacji', 'NASA bada go do produkcji tlenu w kosmosie', 'Jeden z najstarszych znanych suplementów'],
-                diseases: ['Brązowe liście = oparzenie słoneczne', 'Miękkie liście = przelanie i gnicie', 'Pomarszczone liście = potrzebuje wody (rzadkie)', 'Brązowe końcówki = naturalne lub za sucho'],
-                propagation: 'Oddziel dzieci od matki gdy mają 5-10cm. Zostaw do przeschnięcia 1-2 dni, posadź w suchą ziemię. Podlej po tygodniu.'
+                image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Aloe_vera_flower_inridge.jpg?width=400', 
+                category: ['succulents', 'easy'], difficulty: 'easy', origin: 'Półwysep Arabski', toxic: 'Tak – lateks pod skórką', maxHeight: '60 cm',
+                care: { water: 'Co 2–3 tygodnie, zimą rzadziej', light: 'Jasne do pełnego słońca', humidity: '30–50%', temperature: '13–27°C' }, 
+                description: 'Apteczka w doniczce! Żel z mięsistych liści łagodzi oparzenia, ukąszenia i podrażnienia skóry. Jedna z najszerzej stosowanych roślin leczniczych na świecie.',
+                funFacts: ['Znany od ponad 3500 lat – wymieniany w egipskich papirusach z 1552 p.n.e.', 'Kleopatra podobno stosowała żel aloesowy jako codzienny krem do twarzy', 'Żel z liści zawiera 200+ substancji aktywnych biologicznie', 'NASA umieściła go w zestawie roślin regulujących jakość powietrza', 'Lateks (żółty płyn pod skórką) jest toksyczny – tylko przezroczysty żel jest bezpieczny'],
+                diseases: ['Brązowe, miękkie liście = przelanie – wyciągnij, osusz korzenie', 'Czerwone lub brązowe liście = za dużo słońca lub chłód', 'Pomarszczone liście = potrzeba wody lub chore korzenie', 'Białe plamy = oparzenia słoneczne po nagłym wystawieniu na słońce'],
+                propagation: 'Odcinaj potomne roślinki (pupki) gdy mają 7–10 cm. Zasusz 2 dni, posadź w piasku lub perlicie.'
             },
             { 
                 id: 'crassula', name: 'Grubosz (Drzewko szczęścia)', species: 'Crassula ovata', emoji: '🌳', 
-                image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/Crassula_ovata_-_Jade_Plant.jpg/400px-Crassula_ovata_-_Jade_Plant.jpg', 
-                category: ['succulents', 'easy'], difficulty: 'easy', origin: 'RPA', toxic: 'Tak dla zwierząt!', maxHeight: '2m (ale latami)',
-                care: { water: 'Co 2-3 tygodnie', light: 'Jasne do pełnego słońca', humidity: '30-50%', temperature: '12-27°C, zimą chłodniej' }, 
-                description: 'Symbol bogactwa i szczęścia w feng shui! Grube liście magazynują wodę. Może stać się okazałym mini-drzewkiem żyjącym 100+ lat.',
-                funFacts: ['Najstarszy znany okaz miał 4m i 100+ lat!', 'Według feng shui przyciąga pieniądze', 'Stres (słońce, sucho) = czerwone brzegi liści', 'Może kwitnąć drobnym różowymi kwiatkami zimą'],
-                diseases: ['Opadanie liści = przelanie lub szok termiczny', 'Miękka łodyga = gnicie od nadmiaru wody', 'Wydłużanie = za mało światła', 'Brązowe plamy = oparzenie (stopniowo aklimatyzuj do słońca)'],
-                propagation: 'Najłatwiejszy sukulent! Liść lub sadzonka łodygowa. Zasusz 2-3 dni, połóż/wsadź do ziemi. Korzenie po 2-4 tyg.'
+                image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Crassula_ovata_-_Jade_Plant.jpg?width=400', 
+                category: ['succulents', 'easy'], difficulty: 'easy', origin: 'Afryka Południowa', toxic: 'Tak – toksyczna dla zwierząt', maxHeight: '1,5 m (powoli!)',
+                care: { water: 'Co 14–21 dni, toleruje przesuszenie', light: 'Jasne do pełnego słońca', humidity: '30–50%', temperature: '10–25°C' }, 
+                description: 'Symbol szczęścia i dobrobytu w feng shui i kulturach azjatyckich. Rośnie bardzo wolno ale żyje dziesiątki lat. Można z niego tworzyć miniaturowe bonsai.',
+                funFacts: ['W kulturze feng shui przynosi bogactwo – stąd nazwa „drzewko szczęścia"', 'Może żyć kilkadziesiąt, a nawet 70–100 lat!', 'Po kilku latach zaczyna kwitnąć małymi białymi gwiazdkami zimą', 'Pień z wiekiem drewnieje i wygląda jak miniaturowe drzewo', 'Zimny stres (8–10°C) w jesieni stymuluje wyjątkowe różowe kwitnienie'],
+                diseases: ['Miękkie, opadające liście = przelanie (główna przyczyna śmierci!)', 'Pomarszczone liście = za sucho', 'Brązowe plamy = oparzenia słoneczne po nagłym wystawieniu', 'Białe kryształki na liściach = naturalne wydalanie soli – norma'],
+                propagation: 'Sadzonki liściowe lub pędowe. Zasusz 2–3 dni, posadź w suchym piasku. Bardzo łatwe.'
             },
             { 
                 id: 'haworthia', name: 'Haworcja', species: 'Haworthiopsis attenuata', emoji: '🦓', 
-                image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Haworthia_attenuata.jpg/400px-Haworthia_attenuata.jpg', 
-                category: ['succulents', 'easy'], difficulty: 'easy', origin: 'RPA', toxic: 'Nie - bezpieczna!', maxHeight: '15cm',
-                care: { water: 'Co 2-3 tygodnie', light: 'Jasne pośrednie - toleruje słabsze!', humidity: '30-50%', temperature: '15-27°C' }, 
-                description: 'Sukulent dla początkujących który toleruje SŁABSZE światło niż inne! Białe paski to brodawki magazynujące wodę. Zwarta rozeta.',
-                funFacts: ['Paski to skupiska komórek magazynujących wodę', 'Toleruje słabsze światło niż inne sukulenty', 'Często mylona z mini-Aloe', 'Łatwo produkuje potomstwo'],
-                diseases: ['Gnicie = przelanie (główny problem)', 'Brązowe końcówki = oparzenie słoneczne', 'Blade paski = za mało światła', 'Zamknięta rozeta = za dużo słońca (ochrona)'],
-                propagation: 'Oddziel dzieci od matki lub sadzonki liściowe. Zasusz 2-3 dni przed posadzeniem. Korzenie po 2-4 tyg.'
-            },
-            { 
-                id: 'sedum', name: 'Rozchodnik (Ogon osła)', species: 'Sedum morganianum', emoji: '🫒', 
-                image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Sedum_pachyphyllum.jpg/400px-Sedum_pachyphyllum.jpg', 
-                category: ['succulents', 'easy'], difficulty: 'easy', origin: 'Meksyk', toxic: 'Nie - bezpieczny!', maxHeight: '100cm (zwisa)',
-                care: { water: 'Co 2-3 tygodnie', light: 'Jasne do słonecznego', humidity: '30-50%', temperature: '10-27°C' }, 
-                description: 'Spektakularne zwisające pędy z tysiącami pulchnych listków! Liście BARDZO łatwo odpadają przy dotyku - ale to mechanizm rozmnażania.',
-                funFacts: ['Opadające liście to naturalny sposób rozmnażania!', 'Odkryty dopiero w 1935 w Meksyku', 'Pędy mogą zwisać na 1m', 'Każdy opadły listek może dać nową roślinę'],
-                diseases: ['Opadanie liści = dotyk, przelanie lub stres', 'Pomarszczone liście = potrzebuje wody', 'Żółte liście = przelanie', 'Wydłużanie = za mało światła'],
-                propagation: 'Najłatwiejsze! Każdy opadły listek połóż na ziemi - wyrośnie nowa roślina. Można też ciąć pędy i ukorzeniać.'
+                image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Haworthia_attenuata.jpg?width=400', 
+                category: ['succulents', 'easy'], difficulty: 'easy', origin: 'Afryka Południowa', toxic: 'Nie – bezpieczna', maxHeight: '15 cm',
+                care: { water: 'Co 14–21 dni', light: 'Jasne rozproszone, lubi cień (wyjątek wśród sukulentów)', humidity: '30–50%', temperature: '10–25°C' }, 
+                description: 'Wyjątek wśród sukulentów – nie potrzebuje pełnego słońca! Białe paski to kuliste brodawki. Idealna do mieszkań z mniej słonecznymi oknami.',
+                funFacts: ['Jeden z nielicznych sukulentów tolerujących półcień – wypełnia niszę rynkową', 'Białe brodawki na liściach to twarda tkanka odbijająca nadmiar światła', 'Tworzy charakterystyczne „klastry" – potomne rozety dookoła matki', 'W naturze rośnie zakopana w ziemi – na zewnątrz widać tylko wierzchołek', 'Ceniona w Japonii jako roślina kolekcjonerska – rzadkie odmiany kosztują fortunę'],
+                diseases: ['Gnijące korzenie = przelanie', 'Czerwone liście = za dużo słońca bezpośredniego', 'Blade, wyciągnięte = za mało światła', 'Kurczące się = czas na podlewanie'],
+                propagation: 'Odcinaj potomne rozety z korzeniami. Zasusz 2 dni i posadź.'
             },
             { 
                 id: 'lithops', name: 'Żywe kamienie', species: 'Lithops', emoji: '🪨', 
-                image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Lithops_lesliei.jpg/400px-Lithops_lesliei.jpg', 
-                category: ['succulents'], difficulty: 'hard', origin: 'Namibia, RPA', toxic: 'Nie - bezpieczne!', maxHeight: '5cm',
-                care: { water: 'BARDZO RZADKO - tylko latem co 2-3 tyg.', light: 'Pełne słońce - minimum 5h', humidity: '20-40%', temperature: '15-30°C' }, 
-                description: 'Udają kamyki żeby unikać zjedzenia! Prawie całkowicie zakopane w podłożu. Zimą i wiosną NIE podlewać - wtedy zmieniają skórę.',
-                funFacts: ['Udają kamienie jako ochrona przed zjedzeniem', 'Okno na górze to soczewka fokusująca światło', 'Rosną prawie całkowicie zakopane', 'Zimą zrzucają starą skórę - NIE podlewaj!'],
-                diseases: ['Pękanie = przelanie (główny zabójca!)', 'Scukrzenie = przelanie podczas zmiany skóry', 'Rozciąganie = za mało światła', 'Pomarszczenie = potrzebuje wody (tylko latem!)'],
-                propagation: 'Z nasion (3-5 lat do dorosłości) lub podział gdy roślina się podwaja. Bardzo powolny proces. Kupowanie jest praktyczniejsze.'
+                image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Lithops_lesliei.jpg?width=400', 
+                category: ['succulents'], difficulty: 'medium', origin: 'Afryka Południowa', toxic: 'Nie – bezpieczna', maxHeight: '3 cm',
+                care: { water: 'TYLKO latem i jesienią; ZERO wody zimą i wiosną!', light: 'Pełne słońce przez 4–6 h dziennie', humidity: '20–40%', temperature: '10–27°C' }, 
+                description: 'Kamuflaż perfekcyjny! Wyglądają jak kamyki żwiru – ewolucyjne oszustwo by unikać roślinożerców. Najdziwniejsza roślina doniczkowa na świecie.',
+                funFacts: ['Ewoluowały by wyglądać jak kamyki – w naturze są prawie niewidoczne między żwirem', 'Podlewanie w złym sezonie = śmierć! Zero wody zimą i wiosną (podczas linienia)', 'Co roku linieją – stare liście pękają i wyłania się para nowych', 'Kwiaty są większe od samej rośliny i pięknie pachną', 'Żyją dziesiątki lat jeśli nie są przelewane', 'Przezroczyste okienka na wierzchołku wpuszczają światło do środka rośliny'],
+                diseases: ['Pękanie lub gnicie = PRZELANIE w nieodpowiednim sezonie (najczęstszy błąd!)', 'Brak kwitnienia = za mało słońca lub błędny cykl podlewania', 'Blada barwa = za mało słońca'],
+                propagation: 'Z nasion (powolne) lub podział kępy podczas linienia.'
             },
             { 
-                id: 'string-of-pearls', name: 'Sznur pereł', species: 'Senecio rowleyanus', emoji: '📿', 
-                image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Senecio_rowleyanus.jpg/400px-Senecio_rowleyanus.jpg', 
-                category: ['succulents'], difficulty: 'medium', origin: 'RPA', toxic: 'Tak - mildly toxic', maxHeight: '90cm (zwisa)',
-                care: { water: 'Co 10-14 dni gdy kulki lekko zmarszczone', light: 'Jasne pośrednie', humidity: '40-50%', temperature: '15-27°C' }, 
-                description: 'Unikalne zwisające sznury z kulkowatymi liśćmi jak perły! Liście są okrągłe by zminimalizować parowanie. Delikatna ale wdzięczna.',
-                funFacts: ['Kwiaty pachną cynamonem!', 'Kulki to zmodyfikowane liście z magazynem wody', 'W naturze czołga się po ziemi tworząc dywan', 'Ciemna kreska to "okno" do fotosyntezy'],
-                diseases: ['Marszczenie = potrzebuje wody', 'Pękanie kulek = przelanie', 'Gnicie od podstawy = za mokro', 'Żółknięcie = przelanie'],
-                propagation: 'Przygięcie pędu do ziemi (ukorzeni w węzłach) lub sadzonki 5-10cm wsadzone do ziemi. Korzenie po 2-3 tyg.'
+                id: 'string-of-pearls', name: 'Sznur pereł', species: 'Curio rowleyanus', emoji: '📿', 
+                image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Senecio_rowleyanus.jpg?width=400', 
+                category: ['succulents'], difficulty: 'medium', origin: 'Namibia, Afryka Południowa', toxic: 'Tak – toksyczna', maxHeight: '90 cm (zwisanie)',
+                care: { water: 'Co 14–21 dni, lubi przesychać', light: 'Jasne z kilkoma godzinami słońca', humidity: '30–50%', temperature: '10–25°C' }, 
+                description: 'Sznur błyszczących, okrągłych liści jak korale! Każda kulka to zredukowany liść magazynujący wodę. Efektowny zwisający z półki lub koszyka.',
+                funFacts: ['Kuliste liście minimalizują parowanie wody – ewolucyjny cud przystosowania', 'W naturze zwisa z krawędzi skalnych urwisk RPA i Namibii', 'Kwitnie małymi białymi kwiatkami pachnącymi cynamonem lub wanilią!', 'Przezroczysty pasek na każdej kulce to „okienko świetlne" – wpuszcza światło', 'Ścięte końcówki pędów można ukorzeniać w wodzie – ciekawy projekt dla dzieci'],
+                diseases: ['Opadające, kurczące się perełki = za mało wody lub chore korzenie', 'Miękkie, gnijące perełki = przelanie', 'Blade, żółte perły = za mało słońca', 'Wypadające perły = normalny proces; nowe wyrosną'],
+                propagation: 'Połóż pęd na wilgotnym podłożu i poczekaj – węzły same się ukorzeniają.'
             },
             { 
                 id: 'string-of-hearts', name: 'Sznur serc', species: 'Ceropegia woodii', emoji: '💕', 
-                image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Ceropegia_woodii.jpg/400px-Ceropegia_woodii.jpg', 
-                category: ['succulents'], difficulty: 'easy', origin: 'RPA', toxic: 'Nie - bezpieczny!', maxHeight: '4m (zwisa)',
-                care: { water: 'Co 10-14 dni', light: 'Jasne pośrednie', humidity: '40-50%', temperature: '15-27°C' }, 
-                description: 'Romantyczne sercowate listki na nitkowatych pędach! Tworzy też bulwki na pędach które można odcinać do rozmnażania. Niesamowite kwiaty jak latarnie.',
-                funFacts: ['Kwiaty wyglądają jak małe latarnie/pułapki', 'Na pędach tworzą się bulwki - można je sadzić', 'Pędy mogą osiągnąć 4m!', 'Nazwa Ceropegia znaczy "fontanna wosku"'],
-                diseases: ['Żółte liście = przelanie', 'Blade liście = za mało światła', 'Kurczenie bulwki = przesuszenie', 'Gnicie = zimno + mokro'],
-                propagation: 'Bardzo łatwe! Bulwki z pędu połóż na ziemi. Sadzonki w wodzie lub ziemi. Marcottage (przygięcie do ziemi). Wszystko działa!'
-            },
-            { 
-                id: 'sempervivum', name: 'Rojnik', species: 'Sempervivum tectorum', emoji: '🌸', 
-                image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Sempervivum_tectorum_1.jpg/400px-Sempervivum_tectorum_1.jpg', 
-                category: ['succulents', 'easy'], difficulty: 'easy', origin: 'Europa górska', toxic: 'Nie - bezpieczny!', maxHeight: '15cm',
-                care: { water: 'Co 2-3 tyg. latem, zimą prawie wcale', light: 'Pełne słońce', humidity: '30-40%', temperature: '-30 do +30°C (!)', }, 
-                description: 'MROZOODPORNY sukulent! Przeżywa do -30°C. Rośnie na dachach i skałach. Po kwitnieniu rozeta matka umiera ale zostawia dzieci.',
-                funFacts: ['Nazwa łacińska znaczy "zawsze żywy"', 'W średniowieczu sadzono na dachach jako ochronę przed piorunami', 'Przeżywa od -30°C do +30°C', 'Po kwitnieniu rozeta umiera - zastępują ją dzieci'],
-                diseases: ['Gnicie = przelanie (jedyny problem!)', 'Rozciąganie = za mało słońca', 'Brązowe dolne liście = naturalne zrzucanie'],
-                propagation: 'Sama produkuje dzieci! Odetnij młode rozety gdy mają 2-3cm, posadź. Można też z liści (wolno) lub nasion.'
+                image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Ceropegia_woodii.jpg?width=400', 
+                category: ['succulents'], difficulty: 'easy', origin: 'Afryka Południowa', toxic: 'Nie – bezpieczna', maxHeight: '2 m (zwisanie)',
+                care: { water: 'Co 14–21 dni, suchy subtelny sukulentowy', light: 'Jasne rozproszone do pośredniego', humidity: '30–50%', temperature: '10–27°C' }, 
+                description: 'Delikatne sercowate liście wiszące na nitkowatych pędach! Idealny do zwisania z półek. Bardzo modna i fotogeniczna roślina.',
+                funFacts: ['Jeden z najpopularniejszych „boho" roślin domowych ostatnich lat', 'Sercowate liście mają fioletowy spód i zielone wzory od góry', 'Tworzy małe guziki (pseudocebulki) na łodygach – magazyn wody!', 'Kwitnie dziwnymi rurkowatymi kwiatami przywabiającymi muchy do zapylania', 'Odmiana Silver Glory ma srebrzystoszare liście'],
+                diseases: ['Żółte liście = przelanie – rzadko, ale śmiertelne', 'Marszczone liście = czas na podlewanie', 'Blade liście = za mało światła', 'Opadanie liści = zimno lub stres'],
+                propagation: 'Połóż pęd na wilgotnym podłożu – ukorzeni się w węzłach. Lub sadzonki w wodzie.'
             },
             { 
                 id: 'aeonium', name: 'Eonium czarne', species: 'Aeonium arboreum', emoji: '🖤', 
-                image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Aeonium_arboreum_var._atropurpureum.jpg/400px-Aeonium_arboreum_var._atropurpureum.jpg', 
-                category: ['succulents'], difficulty: 'easy', origin: 'Wyspy Kanaryjskie', toxic: 'Nie - bezpieczne!', maxHeight: '1m',
-                care: { water: 'Co 10-14 dni w sezonie wzrostu', light: 'Jasne do pełnego słońca', humidity: '40-50%', temperature: '10-25°C' }, 
-                description: 'ODWROTNY cykl! Rośnie zimą, śpi latem. Spektakularne ciemne (prawie czarne) rozety na łodygach. Odmiana Zwartkop jest popularna.',
-                funFacts: ['Rośnie ZIMĄ, śpi LATEM (odwrotnie niż inne!)', 'Im więcej słońca tym ciemniejsze liście', 'Łodygi mogą się rozgałęziać', 'Pochodzi z Wysp Kanaryjskich'],
-                diseases: ['Zielone liście = za mało słońca', 'Zrzucanie liści latem = normalne (sen)', 'Gnicie = przelanie zimą', 'Rozciąganie = za mało światła'],
-                propagation: 'Sadzonki łodygowe lub wierzchołkowe. Zasusz kilka dni, posadź. Można też rozmnażać z liści (wolniej).'
+                image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Aeonium_arboreum_var._atropurpureum.jpg?width=400', 
+                category: ['succulents'], difficulty: 'easy', origin: 'Wyspy Kanaryjskie', toxic: 'Nie – bezpieczna', maxHeight: '1 m',
+                care: { water: 'Co 14–21 dni, letnia susza', light: 'Pełne słońce – im więcej, tym ciemniejsze liście', humidity: '30–50%', temperature: '10–25°C' }, 
+                description: 'Dramatyczna rozeta z ciemnofioletowych do czarnych liści. Im więcej słońca tym ciemniejszy kolor! W lecie wchodzi w stan spoczynku i może zrzucić liście.',
+                funFacts: ['Im więcej słońca tym czarniejsze liście – to ochrona przed UV (antocyjany)', 'W lecie wchodzi w letni sen (estivation) – odwrotnie niż inne sukulenty', 'W naturze rośnie na nasłonecznionych wulkanicznych klifach Wysp Kanaryjskich', 'Może kwitnąć wysokim żółtym kwiatostanem – po czym ta rozeta umiera', 'Bylina jednokawitalna – kwitnie raz w życiu'],
+                diseases: ['Liście blakną i zielenieją = za mało słońca', 'Zrzucanie liści latem = normalny letni spoczynek', 'Gnicie = przelanie zimą'],
+                propagation: 'Sadzonki rozet – odetnij, zasusz 2 dni, wsadź do piasku.'
             },
-            // === TROPIKALNE ===
             { 
                 id: 'calathea', name: 'Kalatea', species: 'Goeppertia ornata', emoji: '🎨', 
-                image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Calathea_roseopicta_20080314.jpg/400px-Calathea_roseopicta_20080314.jpg', 
-                category: ['tropical'], difficulty: 'hard', origin: 'Kolumbia, Brazylia', toxic: 'Nie - bezpieczna!', maxHeight: '90cm',
-                care: { water: 'Co 5-7 dni wodą destylowaną/przegotowaną', light: 'Cień do jasnego pośredniego', humidity: '60-80% - WYMAGA!', temperature: '18-24°C stała' }, 
-                description: 'DIVA! Spektakularne wzory ale wymaga miękkiej wody i wysokiej wilgotności. Składa liście wieczorem (roślina modląca). Dla doświadczonych.',
-                funFacts: ['Składa liście wieczorem - słychać trzask!', 'Wzory są unikalne dla każdego gatunku', 'Wymaga wody BEZ chloru i wapnia', 'W Brazylii liście używa się do pakowania ryb'],
-                diseases: ['Brązowe krawędzie = twarda woda lub suche powietrze', 'Zwijanie liści = za sucho lub zimno', 'Blade wzory = za mało lub za dużo światła', 'Gnicie = przelanie'],
-                propagation: 'Podział kęp przy przesadzaniu. Każda część musi mieć korzenie i kilka liści. Wiosna najlepsza.'
+                image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Calathea_roseopicta_20080314.jpg?width=400', 
+                category: ['tropical'], difficulty: 'hard', origin: 'Brazylia, Ameryka Południowa', toxic: 'Nie – bezpieczna', maxHeight: '80 cm',
+                care: { water: 'Co 5–7 dni, lubi równomierną wilgoć', light: 'Półcień do jasnego pośredniego – bez słońca!', humidity: '60–80% – KLUCZOWE', temperature: '18–27°C' }, 
+                description: 'Diva roślin doniczkowych! Malowane liście z różowymi paskami i fioletowym spodem. Składa liście na noc (nyktynasja). Wymaga wysokiej wilgotności.',
+                funFacts: ['Składa liście na noc jak do modlitwy – stąd inna nazwa „prayer plant"', 'Ruchliwość liści pochodzi z komórek motorycznych wypełnionych wodą (pulwinus)', 'Spód liści fioletowy – chroni przed uciecią odbitego światła z gleby', 'Bardzo wrażliwa na chlor i fluor w wodzie kranowej – używaj deszczówki!', 'Szeleści lekko poruszając liśćmi – można to usłyszeć nocą'],
+                diseases: ['Brązowe brzegi = suche powietrze (najczęstszy problem w mieszkaniach)', 'Żółknące liście = przelanie lub twarda woda kranowa', 'Blaknące wzory = za dużo bezpośredniego słońca', 'Skręcone liście = za zimno lub za sucho'],
+                propagation: 'Podział kępy wiosną. Każda część musi mieć korzenie i min. 2–3 liście.'
             },
             { 
                 id: 'maranta', name: 'Maranta', species: 'Maranta leuconeura', emoji: '🙏', 
-                image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/Maranta_leuconeura_var._kerchoveana.jpg/400px-Maranta_leuconeura_var._kerchoveana.jpg', 
-                category: ['tropical'], difficulty: 'medium', origin: 'Brazylia', toxic: 'Nie - bezpieczna!', maxHeight: '45cm',
-                care: { water: 'Co 5-7 dni', light: 'Średnie rozproszone', humidity: '50-70%', temperature: '18-27°C' }, 
-                description: 'Roślina modląca - składa liście wieczorem jak dłonie do modlitwy! Łatwiejsza kuzynka Kalatei. Piękne wzory na liściach.',
-                funFacts: ['Składa liście pionowo wieczorem', 'Z kłączy produkuje się skrobię arrowroot', 'Mechanizm ruchów to zmiany ciśnienia wody', 'Istnieje wiele odmian z różnymi wzorami'],
-                diseases: ['Brązowe końcówki = suche powietrze lub sól w wodzie', 'Blade wzory = za dużo światła', 'Zwijanie liści = przesuszenie', 'Żółte liście = przelanie'],
-                propagation: 'Podział kęp lub sadzonki pędowe z węzłem w wodzie. Korzenie po 2-4 tyg.'
+                image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Maranta_leuconeura_var._kerchoveana.jpg?width=400', 
+                category: ['tropical', 'easy'], difficulty: 'medium', origin: 'Brazylia', toxic: 'Nie – bezpieczna', maxHeight: '30 cm',
+                care: { water: 'Co 5–7 dni, stale lekko wilgotna', light: 'Półcień do jasnego pośredniego', humidity: '50–70%', temperature: '18–27°C' }, 
+                description: 'Roślina modląca się! Składa liście pionowo na noc. Ozdobne wzory na liściach w kolorach zielonym, bordowym i białym. Kuzynka Kalate, ale łatwiejsza w pielęgnacji.',
+                funFacts: ['Składa liście pionowo na noc – stąd angielska nazwa „prayer plant"', 'Wzory na liściach są unikalne jak odciski palców – nie ma dwóch takich samych', 'Łatwiejsza w pielęgnacji niż Kalatea – bardziej wybacza błędy', 'Kwitnie miniaturowymi białymi kwiatkami, ale uprawiana głównie dla liści', 'Odmiana Erythroneura ma żyłki w kolorze szkarłatu'],
+                diseases: ['Brązowe brzegi = suche powietrze lub fluoryn w wodzie', 'Blade liście = za dużo słońca', 'Żółknące liście = przelanie', 'Roztocze = pajęczynki pod liśćmi od suchego powietrza – spryskuj regularnie'],
+                propagation: 'Podział kępy przy przesadzaniu lub sadzonki pędowe w wodzie.'
             },
             { 
-                id: 'alocasia', name: 'Alokacja', species: 'Alocasia amazonica', emoji: '🖤', 
-                image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Alocasia_micholitziana_2.jpg/400px-Alocasia_micholitziana_2.jpg', 
-                category: ['tropical'], difficulty: 'hard', origin: 'Hybryda (nie z Amazonii!)', toxic: 'BARDZO - kryształy szczawianu', maxHeight: '60cm',
-                care: { water: 'Co 5-7 dni, stale lekko wilgotna', light: 'Jasne rozproszone', humidity: '60-80%', temperature: '18-27°C' }, 
-                description: 'Dramatyczne strzałkowate liście z białymi żyłkami na ciemnym tle! BARDZO toksyczna. Może wchodzić w spoczynek zimą tracąc liście.',
-                funFacts: ['Mimo nazwy "amazonica" to hybryda ogrodnicza!', 'Spoczynek zimowy z utratą liści to normalne', 'Bulwa przetrwa i wypuści nowe liście', 'Istnieje 70+ gatunków Alocasia'],
-                diseases: ['Żółte liście = przelanie', 'Opadanie zimą = spoczynek (normalne)', 'Brązowe plamy = oparzenie lub przeziębienie', 'Przędziorek = suche powietrze'],
-                propagation: 'Podział bulw lub odcinanie "pupsów" (młodych bulwek). Najlepiej wiosną gdy roślina budzi się z spoczynku.'
-            },
-            { 
-                id: 'croton', name: 'Kroton', species: 'Codiaeum variegatum', emoji: '🍂', 
-                image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Croton_Plant.jpg/400px-Croton_Plant.jpg', 
-                category: ['tropical'], difficulty: 'medium', origin: 'Malezja, Indonezja', toxic: 'Tak - sok mleczny drażniący', maxHeight: '2m',
-                care: { water: 'Co 5-7 dni', light: 'Jasne do słonecznego - dużo światła!', humidity: '50-70%', temperature: '18-27°C stała' }, 
-                description: 'EKSPLOZJA KOLORÓW! Żółte, pomarańczowe, czerwone, różowe liście. Im więcej światła tym intensywniejsze kolory. Nie lubi zmian!',
-                funFacts: ['Istnieje ponad 100 różnych odmian!', 'Kolory intensywniejsze przy silnym świetle', 'Bardzo wrażliwy na przeciągi i zmiany', 'Sok może podrażnić skórę'],
-                diseases: ['Opadające liście = zimno, przeciąg lub zmiana miejsca', 'Blade kolory = za mało światła', 'Przędziorek = suche powietrze (zraszaj!)', 'Mszyce = sprawdzaj młode liście'],
-                propagation: 'Sadzonki wierzchołkowe z hormonem ukorzeniającym. Ciepło (24°C) i wilgotność. Sok drażniący - rękawiczki!'
+                id: 'alocasia', name: 'Alokacja (Słoniowe ucho)', species: 'Alocasia amazonica', emoji: '🖤', 
+                image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Alocasia_micholitziana_2.jpg?width=400', 
+                category: ['tropical'], difficulty: 'hard', origin: 'Azja Południowo-Wschodnia', toxic: 'Tak – kryształy szczawianu', maxHeight: '1,5 m',
+                care: { water: 'Co 7–10 dni, lubi wilgoć ale nie mokro', light: 'Jasne rozproszone, UNIKA bezpośredniego słońca', humidity: '60–80% – niezbędne', temperature: '18–27°C' }, 
+                description: 'Dramatyczne strzałkowate liście z kontrastowymi białymi żyłkami na ciemnobrązowym tle. Wymaga wysokiej wilgotności, ale efekt wizualny jest wart wysiłku.',
+                funFacts: ['Liście mogą mieć 60 cm długości przy odpowiednich warunkach', 'Nowe liście pojawiają się już zwinięte jak pergamin – rozwijają się w ciągu dni', 'W stresie wchodzi w spoczynek i traci liście – to przeżywanie, nie śmierć', 'W naturze rośnie w cieniu tropikalnych lasów wzdłuż rzek Azji', 'Odmiana Polly ma kompaktowy pokrój – idealna na małe mieszkania'],
+                diseases: ['Żółknące liście = przelanie lub za niska temperatura', 'Brązowe brzegi = suche powietrze lub niedobór magnezu', 'Utrata wszystkich liści = stres lub zima – zostaw w spokoju, odrośnie!', 'Roztocze pająkowe = suche powietrze – spryskaj i podnieś wilgotność'],
+                propagation: 'Podział cebul (offsets) przy przesadzaniu. Każda cebulka z korzeniami da nową roślinę.'
             },
             { 
                 id: 'dieffenbachia', name: 'Difenbachia', species: 'Dieffenbachia seguine', emoji: '🌿', 
-                image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Dieffenbachia_amoena.jpg/400px-Dieffenbachia_amoena.jpg', 
-                category: ['tropical'], difficulty: 'easy', origin: 'Ameryka Śr. i Płd.', toxic: 'BARDZO! Sok powoduje czasową niemotę', maxHeight: '2m',
-                care: { water: 'Co 7-10 dni', light: 'Średnie do jasnego pośredniego', humidity: '50-70%', temperature: '18-27°C' }, 
-                description: 'Wzorzyste liście ale BARDZO TOKSYCZNA! Sok zawiera kryształy które wywołują opuchliznę języka i gardła (niemota). Trzymaj z dala od dzieci i zwierząt!',
-                funFacts: ['Nazywana "dumb cane" bo sok powoduje czasową niemotę', 'Kiedyś używana jako środek tortur!', 'Mimo toksyczności bardzo popularna', 'Oczyszcza powietrze z toksyn'],
-                diseases: ['Żółte dolne liście = naturalne starzenie', 'Brązowe krawędzie = suche powietrze lub nieregularne podlewanie', 'Gnicie łodygi = przelanie', 'Blade liście = za mało światła'],
-                propagation: 'Sadzonki wierzchołkowe lub kawałki łodygi (air layering). OSTROŻNIE - sok toksyczny! Używaj rękawiczek.'
-            },
-            { 
-                id: 'boston-fern', name: 'Paproć bostońska', species: 'Nephrolepis exaltata', emoji: '🌿', 
-                image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Nephrolepis_exaltata_Bostoniensis1.jpg/400px-Nephrolepis_exaltata_Bostoniensis1.jpg', 
-                category: ['tropical'], difficulty: 'medium', origin: 'Ameryka Tropikalna', toxic: 'Nie - bezpieczna!', maxHeight: '90cm',
-                care: { water: 'Co 3-5 dni, stale wilgotna', light: 'Średnie rozproszone', humidity: '60-80% - kocha wilgoć!', temperature: '16-24°C' }, 
-                description: 'Elegancka paproć o pierzastych liściach! Świetnie nawilża powietrze. Wymaga wysokiej wilgotności - idealna do łazienki.',
-                funFacts: ['Popularna od ery wiktoriańskiej!', 'Naturalny nawilżacz powietrza', 'Nie ma kwiatów ani nasion - rozmnaża się zarodnikami', 'NASA TOP 10 do oczyszczania powietrza'],
-                diseases: ['Brązowienie liści = za sucho', 'Opadanie listków = za sucho lub za ciemno', 'Żółte liście = przelanie lub za mało składników', 'Szare plamy = grzyb od nadmiaru wilgoci'],
-                propagation: 'Podział kęp lub młode rozety z rozłogów. Zarodniki (trudne). Najłatwiej dzielić wiosną.'
-            },
-            { 
-                id: 'caladium', name: 'Kaladium', species: 'Caladium bicolor', emoji: '🩷', 
-                image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Caladium_bicolor_cultivar.jpg/400px-Caladium_bicolor_cultivar.jpg', 
-                category: ['tropical'], difficulty: 'medium', origin: 'Ameryka Południowa', toxic: 'Tak - kryształy szczawianu', maxHeight: '60cm',
-                care: { water: 'Co 3-5 dni w sezonie', light: 'Jasne rozproszone', humidity: '60-80%', temperature: '18-27°C' }, 
-                description: 'SPEKTAKULARNE różowe, czerwone, białe liście! Sezonowa - zimą zapada w spoczynek tracąc liście. Bulwa przetrwa do wiosny.',
-                funFacts: ['Zimowy spoczynek to normalne - bulwa żyje!', 'Liście mogą być prawie całkowicie różowe', 'Istnieje 1000+ odmian', 'W tropikach rośnie cały rok'],
-                diseases: ['Żółte/gnijące liście = przelanie', 'Małe liście = za mało światła lub składników', 'Spoczynek zimą = NORMALNE, nie wyrzucaj!', 'Brązowe krawędzie = suche powietrze'],
-                propagation: 'Podział bulw wiosną (każda część musi mieć "oko"). Susz rany 1-2 dni przed sadzeniem.'
+                image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Dieffenbachia_amoena.jpg?width=400', 
+                category: ['tropical', 'easy'], difficulty: 'easy', origin: 'Ameryka Tropikalna', toxic: 'Silnie toksyczna – powoduje utratę mowy!', maxHeight: '1,5 m',
+                care: { water: 'Co 7–10 dni', light: 'Średnie do jasnego pośredniego', humidity: '50–70%', temperature: '16–27°C' }, 
+                description: 'Duże liście w żółto-zielone wzory czynią ją efektowną rośliną biurową. UWAGA: soki rośliny zawierają kryształy szczawianu wapnia – mogą paraliżować mięśnie ust!',
+                funFacts: ['Historycznie używana jako broń – zmuszano jeńców do gryzienia by utracili mowę (Dumb Cane)', 'Zawiera kryształy szczawianu, które powodują ból i obrzęk jamy ustnej', 'Jedna z najlepszych roślin biurowych – toleruje słabe oświetlenie', 'Szybko rośnie – kilka cm tygodniowo przy dobrych warunkach', 'Można obciąć łodygę na dowolnej wysokości – puści nowe pędy'],
+                diseases: ['Żółte dolne liście = naturalne starzenie lub przelanie', 'Blade liście = za mało światła', 'Brązowe plamy = oparzenie słoneczne lub chłód', 'Gnicie łodygi = za mokre podłoże'],
+                propagation: 'Sadzonki łodygowe lub ukorzenianie kawałków pnia. Używaj rękawiczek!'
             },
             { 
                 id: 'strelitzia', name: 'Strelicja (Rajski ptak)', species: 'Strelitzia reginae', emoji: '🦜', 
-                image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Bird_of_paradise_flower.jpg/400px-Bird_of_paradise_flower.jpg', 
-                category: ['tropical', 'flowering'], difficulty: 'medium', origin: 'RPA', toxic: 'Tak dla zwierząt', maxHeight: '2m',
-                care: { water: 'Co 7-10 dni', light: 'Pełne słońce - minimum 4-6h!', humidity: '40-60%', temperature: '10-30°C' }, 
-                description: 'Spektakularne kwiaty jak głowa rajskiego ptaka! Ale cierpliwość - kwitnie dopiero po 5+ latach. Długowieczna i odporna roślina.',
-                funFacts: ['Potrzebuje 5-7 lat by zakwitnąć z nasion!', 'Kwiaty utrzymują się przez tygodnie', 'Może żyć 50+ lat', 'Nazwa od królowej Charlotte (księżniczki Meklemburgii-Strelitz)'],
-                diseases: ['Zwijanie liści = za sucho lub za zimno', 'Brązowe krawędzie = suche powietrze lub sól', 'Rozdzieranie liści = naturalne (adaptacja do wiatru)', 'Brak kwitnienia = za mało słońca lub za młoda'],
-                propagation: 'Podział kęp (3-4 lata do kwitnienia) lub nasiona (5-7 lat!). Dziel wiosną, każda część musi mieć korzenie i rozety.'
+                image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Bird_of_paradise_flower.jpg?width=400', 
+                category: ['tropical', 'flowering'], difficulty: 'medium', origin: 'Afryka Południowa', toxic: 'Tak – dla zwierząt', maxHeight: '1,5 m w domu',
+                care: { water: 'Co 7–10 dni w sezonie, rzadziej zimą', light: 'Pełne słońce przez min. 4–6 h', humidity: '40–60%', temperature: '18–30°C' }, 
+                description: 'Egzotyczny kwiat podobny do głowy rajskiego ptaka! Wymaga wielu lat zanim zakwitnie w domu (5–7 lat), ale widok jest niesamowity.',
+                funFacts: ['Kwiat wygląda jak głowa egzotycznego ptaka z pomarańczowym czubem i niebieskim dziobem', 'W domu kwitnie po 5–7 latach – wymaga cierpliwości, ale warto', 'Symbol Kapsztadu i Afryki Południowej', 'Kwiaty są zapylane przez nektarniki w Afryce – ptaki siadają na „siodełku"', 'Korzenie tolerują lekką suszę – nie lubi mokrego podłoża'],
+                diseases: ['Brązowe liście = za dużo bezpośredniego słońca w upale', 'Brak kwitnienia = za mało słońca, za mała doniczka lub zbyt młoda', 'Żółknące liście = przelanie lub niedobór składników', 'Rozszczepione liście = normalne – wiatr w naturze je rozszcze by nie stawiać oporu'],
+                propagation: 'Podział kępy lub nasiona (kielkują miesiącami). Podział najszybszy ale uszkadza korzenie.'
             },
-            // === ŁATWE ===
+            { 
+                id: 'caladium', name: 'Kaladium', species: 'Caladium bicolor', emoji: '🩷', 
+                image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Caladium_bicolor_cultivar.jpg?width=400', 
+                category: ['tropical'], difficulty: 'hard', origin: 'Ameryka Południowa', toxic: 'Tak – kryształy szczawianu', maxHeight: '70 cm',
+                care: { water: 'Co 5–7 dni, stale wilgotna', light: 'Jasne rozproszone, bez słońca', humidity: '60–80%', temperature: '20–30°C – NIE lubią chłodu!' }, 
+                description: 'Malowane liście w różach, bieli i zieleni! Roślina sezonowa – wchodzi w spoczynek zimą i zrzuca liście. Cebulka przetrwa – wiosną odrośnie.',
+                funFacts: ['Liście są tak cienkie, że przeświecają w słońcu jak witraż', 'Zimą gubi wszystkie liście i odpoczywa – to nie jest śmierć, to cykl życia', 'Istnieje ponad 1000 odmian o różnych wzorach i kolorach', 'Pochodzi z brzegów Amazonki gdzie rośnie w cieniu drzew', 'W Wietnamie i Azji sadzone na zewnątrz przez cały rok w tropikalnym klimacie'],
+                diseases: ['Więdnięcie i zrzucanie liści jesienią = naturalny spoczynek – nie wyrzucaj!', 'Gnijące cebule = za mokro w spoczynku lub za zimno', 'Brązowe brzegi = suche powietrze lub słońce', 'Liście nie wyrastają = cebule zbyt zimne – przenieść w ciepłe miejsce'],
+                propagation: 'Podział cebul przed sezonem. Każda bulwa z „oczkiem" da nową roślinę.'
+            },
             { 
                 id: 'spider-plant', name: 'Zielistka (Roślina-pająk)', species: 'Chlorophytum comosum', emoji: '🕷️', 
-                image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Chlorophytum_comosum_Variegatum.jpg/400px-Chlorophytum_comosum_Variegatum.jpg', 
-                category: ['easy', 'popular'], difficulty: 'easy', origin: 'Afryka Tropikalna', toxic: 'Nie, ALE koty ją uwielbiają!', maxHeight: '45cm + zwisające dzieci',
-                care: { water: 'Co 5-7 dni', light: 'Średnie do jasnego', humidity: '40-60%', temperature: '13-27°C' }, 
-                description: 'Kultowa! Produkuje "dzieci" na długich pędach które można odcinać i rozdawać. Świetna do oczyszczania powietrza. Bardzo tolerancyjna.',
-                funFacts: ['NASA TOP 10 do oczyszczania powietrza', 'Koty ją UWIELBIAJĄ - lekko halucynogenna dla nich', 'Może mieć 100+ dzieci!', 'Jedna z najłatwiejszych do rozmnażania'],
-                diseases: ['Brązowe końcówki = chlor/fluor w wodzie lub suche powietrze', 'Blade liście = za mało światła', 'Brak dzieci = za mało światła lub za młoda', 'Gnicie = przelanie'],
-                propagation: 'NAJŁATWIEJSZA roślina! Dzieci można odcinać i sadzić lub ukorzeniać w wodzie. Można też przypiąć dziecko do ziemi bez odcinania.'
+                image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Chlorophytum_comosum_Variegatum.jpg?width=400', 
+                category: ['easy', 'popular'], difficulty: 'easy', origin: 'Afryka Tropikalna i Południowa', toxic: 'Nie – bezpieczna', maxHeight: '60 cm',
+                care: { water: 'Co 7–10 dni, toleruje zaniedbanie', light: 'Od półcienia do jasnego', humidity: '40–60%', temperature: '13–27°C' }, 
+                description: 'Klasyk niepopsuty! Długie, łukowe liście i „dzieci" zwisające na długich biczach. NASA TOP 10 – usuwa formaldehyd, tlenek węgla i benzen z powietrza.',
+                funFacts: ['NASA TOP 10 roślin oczyszczających powietrze', 'Produkuje potomne roślinki (spiderettes) na długich bibułkach – idealne do rozdawania', 'Grube, mięsiste korzenie magazynują wodę – toleruje tygodnie bez podlewania', 'Może mieć ponad 100 lat w hodowli – prawdziwy przekaźnik pokoleń', 'Zielona odmiana (bez paska) jest jeszcze łatwiejsza niż variegated'],
+                diseases: ['Brązowe końcówki = fluor w wodzie lub suche powietrze', 'Blade liście = za mało światła', 'Gniejące korzenie = przelanie przy chłodzie', 'Brak dzieci = za duże doniczka lub za mało światła'],
+                propagation: 'Odetnij potomne roślinki, gdy mają kilka korzeni, i posadź do nowej doniczki.'
             },
             { 
                 id: 'tradescantia', name: 'Trzykrotka', species: 'Tradescantia zebrina', emoji: '💜', 
-                image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Tradescantia_zebrina.jpg/400px-Tradescantia_zebrina.jpg', 
-                category: ['easy'], difficulty: 'easy', origin: 'Meksyk', toxic: 'Lekko drażniąca', maxHeight: '60cm',
-                care: { water: 'Co 5-7 dni', light: 'Jasne pośrednie', humidity: '50-60%', temperature: '15-27°C' }, 
-                description: 'BARDZO szybko rośnie! Błyszczące fioletowo-srebrne liście. Im więcej światła tym intensywniejsze kolory. Świetna do makramowych wieszaków.',
-                funFacts: ['Może rosnąć 2-3cm dziennie!', 'Liście zmieniają kolor zależnie od światła', 'Może być inwazyjna w ciepłym klimacie', 'Sok może podrażnić skórę wrażliwą'],
-                diseases: ['Blade/zielone kolory = za mało światła', 'Łysienie u podstawy = normalne, przycinaj i sadź wierzchołki', 'Żółte liście = przelanie', 'Wydłużanie = za mało światła'],
-                propagation: 'EKSTREMALNIE łatwe! Odetnij kawałek, włóż do wody lub ziemi. Korzenie dosłownie w kilka dni. Jedna z najłatwiejszych!'
-            },
-            { 
-                id: 'ivy', name: 'Bluszcz', species: 'Hedera helix', emoji: '🍀', 
-                image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Hedera_helix_01.jpg/400px-Hedera_helix_01.jpg', 
-                category: ['easy'], difficulty: 'easy', origin: 'Europa', toxic: 'Tak - jagody bardzo!', maxHeight: '20m (!)',
-                care: { water: 'Co 5-7 dni', light: 'Średnie do jasnego', humidity: '40-60%', temperature: '10-21°C - lubi CHŁÓD!' }, 
-                description: 'Klasyka która UWIELBIA chłód! Nie lubi centralnego ogrzewania - idealna do chłodniejszych pomieszczeń. Świetnie oczyszcza powietrze.',
-                funFacts: ['Może żyć 400+ lat w naturze!', 'W średniowieczu wierzono że chroni przed czarami', 'Może wspinać się na wszystko', 'Alergicy - sok może podrażnić!'],
-                diseases: ['Brązowe liście = za ciepło lub suche powietrze', 'Przędziorek = częsty problem (zraszaj!)', 'Żółte liście = przelanie', 'Opadanie liści = za ciepło'],
-                propagation: 'Sadzonki wierzchołkowe w wodzie lub ziemi. Korzenie po 2-4 tyg. Można też przygiąć pęd do ziemi.'
+                image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Tradescantia_zebrina.jpg?width=400', 
+                category: ['easy', 'popular'], difficulty: 'easy', origin: 'Meksyk, Ameryka Środkowa', toxic: 'Lekko drażniąca', maxHeight: '2 m jako pnącze',
+                care: { water: 'Co 7–10 dni', light: 'Jasne do bardzo jasnego – kolory znikają w cieniu', humidity: '40–60%', temperature: '15–27°C' }, 
+                description: 'Zebra roślin! Fioletowo-srebrne paski na liściach i spód w intensywnym fiolecie. Szybko rośnie, łatwo się rozmnaża. Im więcej światła, tym intensywniejsze kolory.',
+                funFacts: ['Im więcej światła, tym bardziej intensywny fiolet liści', 'Rośnie dosłownie jak szalona – kilka cm tygodniowo w sezonie', 'Liście są jadalne w niektórych kulturach (Meksyk)', 'Sok może powodować lekkie podrażnienie skóry u wrażliwych osób', 'Jedna z najłatwiej ukorzeniających się roślin – dowolna gałązka w wodzie'],
+                diseases: ['Utrata fioletowego koloru = za mało światła', 'Gnijące łodygi = przelanie', 'Brązowe liście = mróz lub oparzenie'],
+                propagation: 'Sadzonki w wodzie – korzenie w ciągu tygodnia. Jedna z najłatwiejszych!'
             },
             { 
                 id: 'peperomia', name: 'Peperomia', species: 'Peperomia obtusifolia', emoji: '🌿', 
-                image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Peperomia_obtusifolia1.jpg/400px-Peperomia_obtusifolia1.jpg', 
-                category: ['easy'], difficulty: 'easy', origin: 'Ameryka Tropikalna', toxic: 'Nie - bezpieczna!', maxHeight: '30cm',
-                care: { water: 'Co 7-14 dni', light: 'Średnie do jasnego', humidity: '40-60%', temperature: '15-27°C' }, 
-                description: 'Kompaktowa z grubymi, błyszczącymi liśćmi. Setki różnych odmian! Spokrewniona z pieprzem. Idealna na biurko. Bardzo tolerancyjna.',
-                funFacts: ['Istnieje 1000+ gatunków!', 'Spokrewniona z pieprzem czarnym', 'Kwiaty wyglądają jak szczurze ogonki', 'Liście magazynują wodę jak sukulent'],
-                diseases: ['Opadanie liści = przelanie (główny problem)', 'Pomarszczone liście = przesuszenie', 'Żółte liście = przelanie', 'Brązowe plamy = oparzenie słoneczne'],
-                propagation: 'Sadzonki łodygowe lub liściowe. Liść włóż do wody lub ziemi - wyrośnie nowa roślina. Korzenie po 2-4 tyg.'
+                image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Peperomia_obtusifolia1.jpg?width=400', 
+                category: ['easy', 'popular'], difficulty: 'easy', origin: 'Ameryka Tropikalna', toxic: 'Nie – bezpieczna', maxHeight: '30 cm',
+                care: { water: 'Co 10–14 dni, toleruje przesuszenie', light: 'Jasne rozproszone do średniego', humidity: '40–60%', temperature: '16–27°C' }, 
+                description: 'Miniaturowa idealna! Błyszczące, grube liście magazynują wodę. Istnieje 1000+ gatunków peperomii o przeróżnych kształtach liści – od okrągłych po lancetowate.',
+                funFacts: ['Rodzaj Peperomia liczy ponad 1000 opisanych gatunków – jeden z największych!', 'Grube liście magazynują wodę jak sukulenty – toleruje zaniedbanie', 'Kwitnie długimi, szpikulcowatymi kwiatostanami – egzotyczny wygląd', 'Idealna dla alergików – nie produkuje dużych ilości pyłku', 'Odmiana Watermelon ma liście jak skórka arbuza – jeden z najładniejszych wzorów'],
+                diseases: ['Miękkie, wodniste liście = przelanie', 'Marszczone liście = za sucho lub za ciepło', 'Żółte liście = przelanie lub zbyt duże doniczka', 'Brązowe plamy = oparzenia słoneczne lub bakteria'],
+                propagation: 'Sadzonki liściowe lub pędowe. Bardzo łatwe w wodzie lub wilgotnym perlicie.'
+            },
+            { 
+                id: 'ivy', name: 'Bluszcz', species: 'Hedera helix', emoji: '🍀', 
+                image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Hedera_helix_001.jpg?width=400', 
+                category: ['easy', 'popular'], difficulty: 'easy', origin: 'Europa, Azja Zachodnia', toxic: 'Tak – umiarkowanie toksyczny', maxHeight: 'Nieograniczony (pnącze)',
+                care: { water: 'Co 7–10 dni', light: 'Od cienia do jasnego', humidity: '40–60%', temperature: '10–21°C – NIE lubi ciepła!' }, 
+                description: 'Klasyczne pnącze europejskie! Może zwisać, wspinać się lub rozłazić. Wbrew pozorom lepiej rośnie w chłodniejszych pomieszczeniach. Jeden z najlepszych filtrów powietrza.',
+                funFacts: ['NASA TOP 10 – jeden z najskuteczniejszych filtrów benzenu i formaldehydu', 'W naturze może żyć 400–500 lat i osiągać grubość pnia jak drzewo!', 'Lubi CHŁÓD – ciepłe mieszkanie to dla niego stres; idealny na nieogrzewany pokój', 'Przyczepne korzonki na łodydze mogą przywierać do ścian bez żadnego podparcia', 'Stosowany od starożytności jako symbol wieczności, w wieńcach triumfalnych'],
+                diseases: ['Roztocze pająkowe = suche, ciepłe powietrze – przenieś w chłodniejsze miejsce', 'Żółte liście = za ciepło lub przelanie', 'Szarobure plamy = mączniak prawdziwy od złej cyrkulacji', 'Opadające liście = ciepło + suche powietrze lub przelanie'],
+                propagation: 'Sadzonki w wodzie – korzenie w 2–3 tygodnie. Jedna z najłatwiejszych.'
             },
             { 
                 id: 'aglaonema', name: 'Aglaonema', species: 'Aglaonema commutatum', emoji: '🌿', 
-                image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Aglaonema_modestum.jpg/400px-Aglaonema_modestum.jpg', 
-                category: ['easy', 'tropical'], difficulty: 'easy', origin: 'Azja Płd-Wsch.', toxic: 'Tak - kryształy szczawianu', maxHeight: '90cm',
-                care: { water: 'Co 7-10 dni', light: 'Cień do jasnego pośredniego', humidity: '50-70%', temperature: '18-27°C' }, 
-                description: 'NAJLEPSZA roślina do ciemnych pomieszczeń! Toleruje słabe światło lepiej niż większość. Srebrno-zielone wzory na liściach.',
-                funFacts: ['W Azji uważana za roślinę przynoszącą szczęście', 'Toleruje ciemność jak żadna inna', 'Oczyszcza powietrze z benzenu i formaldehydu', 'Nowe odmiany mają różowe liście!'],
-                diseases: ['Żółte liście = przelanie lub za zimno', 'Brązowe końcówki = suche powietrze lub sól', 'Blade wzory = ironicznie - za mało światła', 'Gnicie = zimno + mokro'],
-                propagation: 'Podział kęp lub sadzonki łodygowe. Korzenie w wodzie lub ziemi po 3-4 tyg.'
+                image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Aglaonema_modestum.jpg?width=400', 
+                category: ['easy', 'popular'], difficulty: 'easy', origin: 'Azja Południowo-Wschodnia', toxic: 'Tak – kryształy szczawianu', maxHeight: '1 m',
+                care: { water: 'Co 7–10 dni', light: 'Toleruje głęboki cień – ale kolory bladną', humidity: '50–70%', temperature: '16–27°C' }, 
+                description: 'Mistrz przeżycia! Toleruje głęboki cień, słabą wodę i zapomniane podlewanie. Kolorowe odmiany (czerwone, różowe, srebrne) wyglądają jak malowane.',
+                funFacts: ['Może rosnąć przy ledwie 10% naturalnego światła dziennego', 'W Azji uważana za przynoszącą szczęście i prosperity', 'Odmiany czerwone i różowe potrzebują więcej światła dla zachowania kolorów', 'NASA TOP 10 roślin oczyszczających powietrze', 'Odporna na klimatyzację w biurach – dlatego jest „królową biurowych roślin"'],
+                diseases: ['Żółte liście = przelanie lub przeciąg', 'Blade kolory = za mało światła (szczególnie u kolorowych odmian)', 'Brązowe końcówki = suche powietrze lub fluor w wodzie', 'Roztocze lub wełnowce = sprawdź spód liści'],
+                propagation: 'Podział przy przesadzaniu lub sadzonki pędowe w wodzie.'
             },
             { 
-                id: 'schefflera', name: 'Szeflera (Parasol karła)', species: 'Schefflera arboricola', emoji: '☂️', 
-                image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Schefflera_arboricola1.jpg/400px-Schefflera_arboricola1.jpg', 
-                category: ['easy', 'tropical'], difficulty: 'easy', origin: 'Tajwan, Chiny', toxic: 'Tak - kryształy szczawianu', maxHeight: '2.5m w domu',
-                care: { water: 'Co 7-10 dni', light: 'Jasne pośrednie', humidity: '50-70%', temperature: '15-27°C' }, 
-                description: 'Eleganckie liście jak parasolki złożone z 7-9 listków! Może urosnąć na piękne mini-drzewko. Łatwa i odporna.',
-                funFacts: ['W naturze dorasta do 8m!', 'Liście złożone z 7-9 listków jak palce', 'Toleruje przycinanie i kształtowanie', 'Odmiana "Amate" jest bardziej odporna'],
-                diseases: ['Opadające liście = przeciąg, zimno lub przelanie', 'Lepkie liście = chermes (mszyca)', 'Żółte liście = przelanie', 'Brązowe plamy = oparzenie słoneczne'],
-                propagation: 'Sadzonki wierzchołkowe lub rozmnażanie w powietrzu (air layering). Hormon ukorzeniający pomaga. Korzenie po 4-8 tyg.'
+                id: 'monstera-adansonii', name: 'Monstera dziurawa', species: 'Monstera adansonii', emoji: '🕳️', 
+                image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Monstera_adansonii_leaf.jpg?width=400', 
+                category: ['popular', 'tropical'], difficulty: 'easy', origin: 'Ameryka Środkowa i Południowa', toxic: 'Tak', maxHeight: '4 m jako pnącze',
+                care: { water: 'Co 7–10 dni', light: 'Jasne rozproszone', humidity: '60–80%', temperature: '18–27°C' }, 
+                description: 'Mniejsza kuzynka Monstery deliciosa z liśćmi pełnymi owalnych dziur od młodości. Szybko rośnie i pięknie zwisa lub wspina się na tyczkę.',
+                funFacts: ['Dziury pojawiają się od pierwszych liści – w przeciwieństwie do M. deliciosa', 'Może rosnąć nawet 30 cm miesięcznie przy dobrych warunkach!', 'W naturze wspina się na drzewa tropikalnych lasów Ameryki', 'Ukorzenia się błyskawicznie – nawet w słoiku na parapecie', 'Istnieje też Monstera obliqua – rzadka odmiana z ekstremalnie dużymi dziurami'],
+                diseases: ['Żółte liście = przelanie', 'Brak dziur = za mało światła – przestaw bliżej okna', 'Brązowe krawędzie = suche powietrze', 'Małe liście = potrzebuje podpory do wspinania'],
+                propagation: 'Sadzonki z węzłem w wodzie lub sphagnum. Korzenie po 2–3 tygodniach.'
             },
             { 
-                id: 'asparagus-fern', name: 'Asparagus ozdobny', species: 'Asparagus setaceus', emoji: '🌫️', 
-                image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Asparagus_setaceus.jpg/400px-Asparagus_setaceus.jpg', 
-                category: ['easy'], difficulty: 'easy', origin: 'Afryka Południowa', toxic: 'Jagody tak!', maxHeight: '3m jako pnącze',
-                care: { water: 'Co 5-7 dni', light: 'Jasne rozproszone', humidity: '50-70%', temperature: '15-27°C' }, 
-                description: 'Pierzaste, delikatne "liście" (to tak naprawdę zmodyfikowane łodygi!). Wbrew nazwie to NIE paproć - spokrewniony ze szparagami jadalnymi.',
-                funFacts: ['To NIE paproć! Spokrewniony ze szparagami jadalnymi', '"Liście" to zmodyfikowane łodygi (cladody)', 'Może mieć kolce - ostrożnie!', 'Czerwone jagody są toksyczne'],
-                diseases: ['Żółknięcie = przelanie lub za mało składników', 'Opadanie "igieł" = za sucho lub za ciemno', 'Brązowienie = za suche powietrze', 'Przędziorek = sprawdzaj regularnie'],
-                propagation: 'Podział kęp lub nasiona (z jagód). Podział najłatwiejszy - dziel wiosną.'
+                id: 'palm-areca', name: 'Areka (Palma złota)', species: 'Dypsis lutescens', emoji: '🌴', 
+                image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Dypsis_lutescens1.jpg?width=400', 
+                category: ['popular', 'tropical'], difficulty: 'medium', origin: 'Madagaskar', toxic: 'Nie – bezpieczna', maxHeight: '2,5 m w domu',
+                care: { water: 'Co 5–7 dni, lubi lekko wilgotną glebę', light: 'Jasne pośrednie', humidity: '50–60%', temperature: '18–24°C' }, 
+                description: 'Najpopularniejsza palma domowa! Eleganckie, pierzaste liście wnoszą tropikalny klimat. Naturalny nawilżacz – transpiruje do 1 litra wody dziennie!',
+                funFacts: ['Transpiruje nawet 1 litr wody dziennie – naturalny nawilżacz powietrza', 'NASA TOP 10 – najlepsza palma do oczyszczania powietrza', 'Na Madagaskarze (gdzie pochodzi) jest zagrożona wyginięciem!', 'Żółtawe łodygi to cecha gatunkowa, nie choroba – nie alarmuj się', 'W naturze rośnie w gęstych lasach tropikalnych, lekko zacieniona'],
+                diseases: ['Brązowe końcówki = suche powietrze lub sól mineralna – przesadź lub spłucz', 'Żółte liście = przelanie lub niedobór żelaza', 'Przędziorek = suche powietrze – spryskuj codziennie', 'Brązowe plamy = oparzenie słoneczne lub chłód'],
+                propagation: 'Podział kępy (jeśli ma wiele pędów) lub nasiona (kiełkują 2–3 miesiące).'
             },
             { 
-                id: 'ctenanthe', name: 'Ktenante', species: 'Ctenanthe burle-marxii', emoji: '🐟', 
-                image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Ctenanthe_setosa.jpg/400px-Ctenanthe_setosa.jpg', 
-                category: ['easy', 'tropical'], difficulty: 'easy', origin: 'Brazylia', toxic: 'Nie - bezpieczna!', maxHeight: '50cm',
-                care: { water: 'Co 5-7 dni', light: 'Średnie rozproszone', humidity: '50-70%', temperature: '18-27°C' }, 
-                description: 'ŁATWIEJSZA kuzynka Kalatei! Piękne wzory jak rybna ość. Składa liście wieczorem. Bardziej tolerancyjna niż Calathea.',
-                funFacts: ['Nazwa od Burle Marxa - słynnego brazylijskiego architekta krajobrazu', 'Wzór jak szkielet rybiej ości', 'Fioletowy spód liści', 'Składa liście wieczorem jak Kalatea'],
-                diseases: ['Brązowe końcówki = suche powietrze lub twarda woda', 'Zwijanie liści = za sucho', 'Blade wzory = za dużo/mało światła', 'Żółte liście = przelanie'],
-                propagation: 'Podział kęp przy przesadzaniu. Łatwiejsze niż Calathea. Wiosna najlepsza.'
-            },
-            // === SPECJALNE ===
-            { 
-                id: 'venus', name: 'Muchołówka amerykańska', species: 'Dionaea muscipula', emoji: '🪤', 
-                image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Venus_Flytrap_showing_trigger_hairs.jpg/400px-Venus_Flytrap_showing_trigger_hairs.jpg', 
-                category: ['special'], difficulty: 'hard', origin: 'Karolina Płn. i Płd. (USA)', toxic: 'Nie - bezpieczna!', maxHeight: '15cm',
-                care: { water: 'Stale wilgotna, TYLKO woda destylowana!', light: 'Pełne słońce - minimum 4-6h!', humidity: '50-80%', temperature: '20-30°C latem, WYMAGA zimy 2-10°C!' }, 
-                description: 'Roślina mięsożerna! Pułapki zamykają się w 0.1 sekundy gdy owad dotknie włosków spustowych 2x w 20 sekund. WYMAGA zimowego spoczynku!',
-                funFacts: ['Darwin nazwał ją "najwspanialszą rośliną świata"', 'Pułapka zamyka się w 0.1 sekundy!', 'Trawi owada 5-12 dni', 'BEZ zimowego spoczynku umrze w 2-3 lata'],
-                diseases: ['Czarne pułapki = normalne po strawieniu (max 3-4 ofiary)', 'Brak zamykania = wyczerpanie lub zły warunki', 'Gnicie = twarda woda lub przelanie', 'Słaby wzrost = brak zimy lub słońca'],
-                propagation: 'Podział kęp, sadzonki liściowe lub nasiona. Nasiona wymagają stratyfikacji (zimno). Trudne dla początkujących.'
+                id: 'boston-fern', name: 'Paproć bostońska', species: 'Nephrolepis exaltata', emoji: '🌿', 
+                image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Nephrolepis_exaltata_Bostoniensis1.jpg?width=400', 
+                category: ['easy', 'tropical'], difficulty: 'medium', origin: 'Ameryki Tropikalne', toxic: 'Nie – bezpieczna', maxHeight: '1 m',
+                care: { water: 'Co 5–7 dni, stale wilgotna', light: 'Jasne rozproszone do półcienia', humidity: '60–80% – kluczowe!', temperature: '15–24°C' }, 
+                description: 'Klasyczna bujnie zwisająca paproć. Idealna do łazienki! Wymaga wysokiej wilgotności i regularnego podlewania, ale nagradza bujnym, zielonym wyglądem.',
+                funFacts: ['Jedna z najbardziej efektywnych roślin oczyszczających powietrze', 'Idealna do łazienki – naturalnie wilgotne środowisko jej służy', 'Może zwisać ponad metr z koszyka – efektowna jako roślina wisząca', 'W naturze rośnie w wilgotnych lasach tropikalnych na całym świecie', 'Łatwo namnożyć przez podział – po kilku latach roślina tworzy ogromne kępy'],
+                diseases: ['Brązowe, zasychające liście = suche powietrze lub przelanie', 'Opadanie liści = przeciąg lub nagła zmiana warunków', 'Żółknące liście = przelanie lub zbyt twarda woda', 'Tarczniki = brązowe wypukłości na liściach – przetrzeć alkoholem'],
+                propagation: 'Podział kępy lub ukorzenianie rozłogów (stolenów) – podobnie jak truskawka.'
             },
             { 
-                id: 'bonsai', name: 'Bonsai Fikus', species: 'Ficus microcarpa (retusa)', emoji: '🎋', 
-                image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Bonsai_IMG_6426.jpg/400px-Bonsai_IMG_6426.jpg', 
-                category: ['special'], difficulty: 'medium', origin: 'Azja Tropikalna', toxic: 'Lekko - sok mleczny', maxHeight: '60cm (kontrolowane)',
-                care: { water: 'Co 3-5 dni gdy wierzch przeschnie', light: 'Jasne pośrednie', humidity: '50-70%', temperature: '15-27°C' }, 
-                description: 'Miniaturowe drzewko wymagające regularnego cięcia i formowania. Fikus to najłatwiejszy gatunek do bonsai dla początkujących. Korzenie powietrzne dodają charakteru.',
-                funFacts: ['Sztuka bonsai ma ponad 1000 lat!', 'Niektóre bonsai mają 800+ lat', 'Fikus to najłatwiejsze bonsai dla początkujących', 'Drzewka mogą być dziedziczone przez pokolenia'],
-                diseases: ['Opadanie liści = stres (zmiana miejsca, podlewanie)', 'Żółte liście = przelanie', 'Mszyce = sprawdzaj młode liście', 'Słaby wzrost = potrzebuje przesadzenia lub nawożenia'],
-                propagation: 'Sadzonki lub rozmnażanie w powietrzu (air layering). Kształtowanie trwa lata. Można kupić gotowe i uczyć się pielęgnacji.'
+                id: 'venus', name: 'Muchołówka', species: 'Dionaea muscipula', emoji: '🪤', 
+                image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Venus_Flytrap_showing_trigger_hairs.jpg?width=400', 
+                category: ['special'], difficulty: 'hard', origin: 'Karolina Północna i Południowa, USA', toxic: 'Nie', maxHeight: '30 cm',
+                care: { water: 'TYLKO deszczówka lub destylowana, stale mokra', light: 'Pełne słońce przez min. 4–6 h', humidity: '50–70%', temperature: '5–30°C (WYMAGA zimowania!)' }, 
+                description: 'Legenda roślin mięsożernych! Pułapki zamykają się w ułamku sekundy po dwukrotnym dotknięciu włosków czuciowych. W naturze rośnie tylko w jednym miejscu na Ziemi.',
+                funFacts: ['Rośnie naturalnie TYLKO w promieniu 160 km od Wilmington w Karolinach – nigdzie indziej!', 'Pułapka zamyka się w 0,1–0,3 sekundy – jeden z najszybszych ruchów w królestwie roślin', 'Każda pułapka żyje tylko przez ~10 złapań, potem czarnieje i odpada', 'WYMAGA zimowania przy 5°C przez 3–4 miesiące – inaczej umrze po kilku latach', 'Używaj TYLKO deszczówki lub wody destylowanej – minerały w kranówce są śmiertelne', 'W naturze rośnie w glebie ubogiej w azot – owady to jej nawóz'],
+                diseases: ['Czarnienie pułapek = normalne (każda żyje ~10 złapań) lub przelanie', 'Brak ruchu pułapek = roślina oszczędza energię – nie stymuluj bez powodu', 'Cała roślina czarnieje = przelanie minerałami lub brak zimowania', 'Brak wzrostu = potrzebuje zimowania lub za mało słońca'],
+                propagation: 'Podział cebul lub sadzonki liściowe (długo, 3–6 miesięcy). Najłatwiej przez podział.'
             },
             { 
-                id: 'coffee', name: 'Kawowiec arabski', species: 'Coffea arabica', emoji: '☕', 
-                image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Coffea_arabica_-_K%C3%B6hler%E2%80%93s_Medizinal-Pflanzen-189.jpg/400px-Coffea_arabica_-_K%C3%B6hler%E2%80%93s_Medizinal-Pflanzen-189.jpg', 
-                category: ['special', 'tropical'], difficulty: 'medium', origin: 'Etiopia', toxic: 'Nie (ale kofeina w nasionach)', maxHeight: '2m w domu',
-                care: { water: 'Co 5-7 dni, lubi wilgoć', light: 'Jasne rozproszone', humidity: '50-70%', temperature: '18-24°C stała' }, 
-                description: 'Możesz uprawiać kawę w domu! Po 3-5 latach roślina może zakwitnąć i dać owoce (wiśnie kawowe). Błyszczące liście same w sobie są dekoracyjne.',
-                funFacts: ['Jeden krzew może dać 0.5 kg ziaren kawy rocznie!', 'Kwiaty pachną jaśminem', 'Owoce dojrzewają 9 miesięcy', 'Kofeina to obrona rośliny przed owadami'],
-                diseases: ['Żółte liście z zielonymi żyłkami = chloroza (potrzebuje kwaśnej gleby)', 'Brązowe końcówki = suche powietrze', 'Opadanie liści = stres lub zimno', 'Przędziorek = suche powietrze'],
-                propagation: 'Nasiona (świeże wiśnie kawowe) lub sadzonki. Nasiona kiełkują 2-3 miesiące. Sadzonki trudniejsze.'
-            },
-            { 
-                id: 'citrus', name: 'Cytryna Meyera', species: 'Citrus × meyeri', emoji: '🍋', 
-                image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Lemon_tree_Berkeley.jpg/400px-Lemon_tree_Berkeley.jpg', 
-                category: ['special', 'flowering'], difficulty: 'medium', origin: 'Chiny', toxic: 'Nie - jadalna!', maxHeight: '2m w domu',
-                care: { water: 'Co 5-7 dni, nie lubi przesychać', light: 'Pełne słońce - minimum 6h!', humidity: '50-60%', temperature: '15-30°C, zimą min. 5°C' }, 
-                description: 'Prawdziwe cytryny w domu! Meyer to krzyżówka cytryny z mandarynką - słodsza i mniej kwaśna. Pachnące kwiaty pojawiają się przez cały rok.',
-                funFacts: ['To krzyżówka cytryny z mandarynką!', 'Słodsza niż zwykła cytryna', 'Może kwitnąć i owocować cały rok', 'Jeden owoc dojrzewa 6-9 miesięcy'],
-                diseases: ['Żółte liście z zielonymi żyłkami = chloroza (brak żelaza, za alkaliczna gleba)', 'Opadanie kwiatów = stres, przeciąg', 'Mszyce = częste na młodych pędach', 'Tarcznik = brązowe "tarczki" na liściach'],
-                propagation: 'Sadzonki z hormonem ukorzeniającym lub szczepienie. Nasiona dadzą dziką cytrynę. Kupowanie gotowej rośliny najłatwiejsze.'
-            },
-            { 
-                id: 'mimosa', name: 'Mimoza wstydliwa', species: 'Mimosa pudica', emoji: '😳', 
-                image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Mimosa_pudica_-_Movimiento.jpg/400px-Mimosa_pudica_-_Movimiento.jpg', 
-                category: ['special'], difficulty: 'medium', origin: 'Ameryka Południowa', toxic: 'Lekko (nasiona bardziej)', maxHeight: '50cm',
-                care: { water: 'Co 3-5 dni, lubi wilgoć', light: 'Jasne do słonecznego', humidity: '50-70%', temperature: '18-27°C' }, 
-                description: 'Liście ZAMYKAJĄ SIĘ błyskawicznie po dotknięciu! Niesamowita roślina reagująca na bodźce. Traktowana często jako roczna ale może żyć dłużej.',
-                funFacts: ['Naukowcy badają jej "pamięć" - uczy się ignorować powtarzające się bodźce!', 'Zamykanie to obrona przed zwierzętami', 'Liście zamykają się też na noc', 'Ruch trwa 0.1 sekundy'],
-                diseases: ['Brak reakcji = wyczerpanie energią (nie dotykaj cały czas!)', 'Żółte liście = przelanie', 'Przędziorek = suche powietrze', 'Słaby wzrost = za mało słońca'],
-                propagation: 'Z nasion (łatwe!). Nasiona namocz 24h w ciepłej wodzie, zasiej. Kiełkują w 1-2 tygodnie. Traktuj jak roczną.'
-            },
-            { 
-                id: 'oxalis', name: 'Szczawik trójkątny', species: 'Oxalis triangularis', emoji: '🦋', 
-                image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Oxalis_triangularis_1.jpg/400px-Oxalis_triangularis_1.jpg', 
-                category: ['special', 'easy'], difficulty: 'easy', origin: 'Brazylia', toxic: 'Lekko (kwas szczawiowy)', maxHeight: '25cm',
-                care: { water: 'Co 5-7 dni', light: 'Jasne pośrednie', humidity: '50-60%', temperature: '15-25°C' }, 
-                description: 'Fioletowe trójkątne liście! Otwiera się rano, zamyka wieczorem - hipnotyzujące. Może zapaść w spoczynek na kilka miesięcy - to normalne!',
-                funFacts: ['Liście otwierają się i zamykają w ciągu dnia', 'Spoczynek na kilka miesięcy to normalne - bulwy żyją!', 'Nazywana "fałszywą koniczyną"', 'Kwiaty są drobne ale śliczne - różowe lub białe'],
-                diseases: ['Opadanie liści = spoczynek (NORMALNE!)', 'Blade liście = za dużo słońca', 'Żółte liście = przelanie', 'Wydłużanie = za mało światła'],
-                propagation: 'Podział bulw - każda mała cebulka da nową roślinę! Bardzo łatwe. Roślina sama też się rozmnaża.'
+                id: 'bonsai', name: 'Bonsai Fikus', species: 'Ficus microcarpa', emoji: '🎋', 
+                image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Bonsai_IMG_6426.jpg?width=400', 
+                category: ['special'], difficulty: 'hard', origin: 'Azja Wschodnia (sztuka), Azja-Pacyfik (roślina)', toxic: 'Tak – sok drażniący', maxHeight: 'Kontrolowana przez cięcie',
+                care: { water: 'Co 5–7 dni, równomiernie', light: 'Jasne, min. kilka godzin słońca', humidity: '50–65%', temperature: '18–27°C' }, 
+                description: 'Miniaturowe drzewo – żywa sztuka! Wymaga regularnego przycinania, drutowania i przesadzania. Ficus microcarpa to jedno z najłatwiejszych gatunków do bonsai.',
+                funFacts: ['Sztuka bonsai pochodzi z Chin (penzai), do Japonii trafiła w VIII w.', 'Rekordowe bonsai mają ponad 800 lat – przekazywane z pokolenia na pokolenie', 'Przycinanie korzeni podczas przesadzania to klucz do utrzymania miniaturowego rozmiaru', 'Drucikowanie gałązek pozwala nadawać dowolne kształty – to jak rzeźbienie żywą materią', 'W Japonii bonsai to symbol harmonii, cierpliwości i przemijania'],
+                diseases: ['Opadanie liści = stres (zmiana miejsca, przeciąg, chłód)', 'Żółte liście = przelanie lub zbyt duże doniczka', 'Skręcone liście = przesuszenie lub szkodniki', 'Gnicie = zła drenaż lub zbyt duże doniczka'],
+                propagation: 'Sadzonki półzdrewniałe z hormonu ukorzeniającym lub air layering.'
             },
             { 
                 id: 'tillandsia', name: 'Tillandsia (Roślina powietrzna)', species: 'Tillandsia ionantha', emoji: '🌬️', 
-                image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Tillandsia_ionantha_3.jpg/400px-Tillandsia_ionantha_3.jpg', 
-                category: ['special'], difficulty: 'easy', origin: 'Ameryka Środkowa', toxic: 'Nie - bezpieczna!', maxHeight: '15cm',
-                care: { water: 'Zanurzenie na 30 min 2x/tydzień', light: 'Jasne pośrednie', humidity: '50-70%', temperature: '15-27°C' }, 
-                description: 'Roślina powietrzna - NIE potrzebuje ziemi! Pobiera wodę i składniki przez liście z powietrza. Można ją przykleić do kamienia, drewna, zawiesić...',
-                funFacts: ['Hiszpański mech to też Tillandsia!', 'Istnieje 650+ gatunków', 'Przed kwitnieniem często czerwienieje', 'Po kwitnieniu umiera ale zostawia dzieci'],
-                diseases: ['Brązowienie od podstawy = gnicie od nadmiaru wody', 'Zwijanie liści = za sucho', 'Blade kolory = za mało światła', 'Brak wzrostu = za mało wody lub światła'],
-                propagation: 'Po kwitnieniu roślina produkuje "pupy" (dzieci). Odetnij gdy są 1/3 wielkości matki. Można też z nasion (trudne).'
-            },
-            // === NOWE ROŚLINY ===
-            { 
-                id: 'palm-kentia', name: 'Palma Kentia', species: 'Howea forsteriana', emoji: '🌴', 
-                image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Howea_forsteriana_Lord_Howe_Island.jpg/400px-Howea_forsteriana_Lord_Howe_Island.jpg', 
-                category: ['popular', 'tropical'], difficulty: 'easy', origin: 'Wyspa Lord Howe (Australia)', toxic: 'Nie - bezpieczna', maxHeight: '3m w domu',
-                care: { water: 'Co 7-10 dni', light: 'Toleruje cień, lubi jasne rozproszone', humidity: '50-70%', temperature: '16-27°C' }, 
-                description: 'Królowa palm doniczkowych! Elegancka, tolerancyjna i oczyszczająca powietrze. Wolno rośnie ale żyje dziesiątki lat.',
-                funFacts: ['Ulubiona palma epoki wiktoriańskiej', 'Rośnie tylko na jednej wyspie na świecie naturalnie', 'Może żyć ponad 50 lat w domu', 'W naturze dorasta do 15m'],
-                diseases: ['Brązowe końcówki = suche powietrze', 'Żółte liście = przelanie', 'Brązowe plamy = oparzenie słoneczne', 'Pajączki = za sucho'],
-                propagation: 'Tylko z nasion - kiełkowanie trwa 3-6 miesięcy! Nie da się rozmnożyć przez podział.'
+                image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Tillandsia_ionantha_3.jpg?width=400', 
+                category: ['special'], difficulty: 'easy', origin: 'Ameryki Środkowej i Południowej', toxic: 'Nie – bezpieczna', maxHeight: '10 cm',
+                care: { water: 'Zanurzaj w wodzie na 20 min raz w tygodniu', light: 'Jasne rozproszone', humidity: '50–70%', temperature: '15–27°C' }, 
+                description: 'Roślina bez ziemi! Pobiera wodę i składniki przez liście (trychomy). Można umieścić na kamieniu, drewnie, muszelce – wszędzie. Najswobodniejsza roślina doniczkowa.',
+                funFacts: ['Nie potrzebuje ziemi – korzenie służą tylko do przyczepiania się, nie do pobierania wody', 'Pobiera wodę i składniki przez specjalne łuski na liściach (trychomy)', 'Przed kwitnieniem zmienia kolor na jaskrawoczerwony lub różowy – to sygnał dla kolibra', 'Po kwitnieniu roślina matka umiera, ale zostawia potomne', 'Można ją przylepić na żywicę do drewna, kamienia lub szkła – pełna kreatywna swoboda'],
+                diseases: ['Brązowe, suche liście = za mało wody lub za suche powietrze', 'Gnijące centrum = za dużo wody lub brak wysychania po zanurzeniu', 'Skręcone liście = za sucho'],
+                propagation: 'Oddziel potomne roślinki (pupy) gdy osiągną połowę wielkości matki.'
             },
             { 
-                id: 'rubber-burgundy', name: 'Fikus Burgundy', species: 'Ficus elastica Burgundy', emoji: '🍷', 
-                image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Ficus_elastica_Burgundy.jpg/400px-Ficus_elastica_Burgundy.jpg', 
-                category: ['popular', 'tropical'], difficulty: 'easy', origin: 'Indie, Indonezja', toxic: 'Tak - sok drażniący', maxHeight: '2-3m w domu',
-                care: { water: 'Co 7-10 dni', light: 'Jasne do średniego', humidity: '40-60%', temperature: '16-27°C' }, 
-                description: 'Ciemnobordowe, prawie czarne liście! Jedna z najpiękniejszych odmian fikusa. Młode liście są jaskrawo czerwone.',
-                funFacts: ['Młode liście wyglądają jak czerwone ołówki', 'Im więcej światła tym ciemniejsze liście', 'Z soku wytwarzano kauczu naturalny', 'Może wypuszczać korzenie powietrzne'],
-                diseases: ['Opadanie liści = szok stresowy (przeprowadzka, przeciąg)', 'Blade liście = za mało światła', 'Lepkie liście = mszyce', 'Żółknięcie = przelanie'],
-                propagation: 'Sadzonki wierzchołkowe lub z jednym liściem i węzłem. Sok drażni skórę - używaj rękawiczek!'
+                id: 'coffee', name: 'Kawowiec arabski', species: 'Coffea arabica', emoji: '☕', 
+                image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Coffea_arabica_-_Köhler–s_Medizinal-Pflanzen-189.jpg?width=400', 
+                category: ['special'], difficulty: 'medium', origin: 'Etiopia', toxic: 'Nasiona i liście lekko toksyczne dla zwierząt', maxHeight: '1,5 m w domu',
+                care: { water: 'Co 7–10 dni', light: 'Jasne rozproszone – bez bezpośredniego słońca!', humidity: '50–70%', temperature: '18–27°C' }, 
+                description: 'Uprawiaj własną kawę! Po kilku latach kwitnie białymi, jaśminowo pachnącymi kwiatkami, a potem produkuje czerwone owoce z ziarnami kawy w środku.',
+                funFacts: ['Pochodzi z Etiopii – legenda mówi o kozie Kaldiego, która tańczyła po zjedzeniu owoców', 'Kwitnie drobnymi białymi kwiatami o intensywnym zapachu jaśminu', 'Czerwone owoce dojrzewają przez 9 miesięcy – każdy zawiera 2 ziarna kawowe', 'Jedna roślina domowa wyprodukuje może garść kawy rocznie – ale satysfakcja jest bezcenna', 'Arabika to szlachetniejszy gatunek – uprawiany na 60% światowych plantacji'],
+                diseases: ['Żółknące liście = za dużo słońca lub niedobór żelaza', 'Opadanie liści = stres, przeciąg lub za sucho', 'Brązowe plamy = oparzenie słoneczne', 'Brak wzrostu = zimowy spoczynek – norma'],
+                propagation: 'Z nasion (świeżych ziaren po ekstrakcji) lub sadzonki pędowe. Nasiona kiełkują 1–2 miesiące.'
             },
             { 
-                id: 'nerve-plant', name: 'Fitonia (Nerve Plant)', species: 'Fittonia albivenis', emoji: '🧠', 
-                image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Fittonia_albivenis.jpg/400px-Fittonia_albivenis.jpg', 
-                category: ['tropical', 'easy'], difficulty: 'medium', origin: 'Peru, Kolumbia', toxic: 'Nie - bezpieczna', maxHeight: '15cm',
-                care: { water: 'Co 3-5 dni, stale wilgotna', light: 'Cień do jasnego rozproszonego', humidity: '70-90%', temperature: '18-26°C' }, 
-                description: 'Zjawiskowe żyłki na liściach - białe, różowe lub czerwone! Dramatycznie mdleje gdy ma suchą ziemię, ale szybko wraca do życia.',
-                funFacts: ['Nazywana "drama queen" bo mdleje gdy sucho', 'Idealna do terrariów', 'Istnieją odmiany mini, które nie rosną ponad 5cm', 'W naturze rośnie na dnie lasu deszczowego'],
-                diseases: ['Opadanie = za sucho (podlej i wróci!)', 'Brązowe brzegi = suche powietrze', 'Blade żyłki = za mało światła', 'Gnicie = przelanie lub zła cyrkulacja'],
-                propagation: 'Bardzo łatwe sadzonki pędowe - węzły szybko puszczają korzenie w wodzie lub ziemi.'
+                id: 'mimosa', name: 'Mimoza wstydliwa', species: 'Mimosa pudica', emoji: '😳', 
+                image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Mimosa_pudica_-_Movimiento.jpg?width=400', 
+                category: ['special'], difficulty: 'medium', origin: 'Ameryka Południowa i Środkowa', toxic: 'Lekko toksyczna', maxHeight: '60 cm',
+                care: { water: 'Co 5–7 dni, stale lekko wilgotna', light: 'Pełne słońce lub bardzo jasne', humidity: '50–70%', temperature: '18–30°C' }, 
+                description: 'Roślina czuła! Natychmiast składa listki gdy ją dotkniesz, a po kilku minutach rozkłada. To ewolucyjny mechanizm odstraszania roślinożerców.',
+                funFacts: ['Sygnał dotykowy rozchodzi się w roślinie z prędkością 4 cm/sekundy – szybciej niż myślisz', 'Rano rozkłada liście, wieczorem samo je składa (nyktynasja)', 'Badania pokazują, że może się „uczyć" – po wielu bezpiecznych dotyknięciach przestaje reagować', 'Charles Darwin badał ją jako jedną z pierwszych roślin wykazujących zachowanie zbliżone do zmysłów', 'Kwitnie różowymi kuleczkami podobnymi do malutkich jeżyków'],
+                diseases: ['Nieskładanie liści po dotyku = roślina oszczędza energię lub chora', 'Żółte liście = przelanie lub brak składników', 'Opadanie liści = zimno lub stres'],
+                propagation: 'Z nasion. Namoczyć na noc w ciepłej wodzie, wysiać w ciepłym miejscu.'
             },
             { 
-                id: 'polka-dot', name: 'Roślina w kropki', species: 'Hypoestes phyllostachya', emoji: '🔴', 
-                image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Hypoestes_phyllostachya.jpg/400px-Hypoestes_phyllostachya.jpg', 
-                category: ['flowering', 'easy'], difficulty: 'easy', origin: 'Madagaskar', toxic: 'Nie - bezpieczna', maxHeight: '30-50cm',
-                care: { water: 'Co 5-7 dni', light: 'Jasne rozproszone do średniego', humidity: '50-70%', temperature: '18-27°C' }, 
-                description: 'Liście pokryte plamkami! Różowe, czerwone, białe lub mieszane. Szybko rośnie, łatwa w uprawie, kolorowa cały rok.',
-                funFacts: ['Im więcej światła tym więcej plam', 'Przycinanie powoduje krzewienie', 'Kwiaty są niepozorne - przycinaj je', 'Często uprawiana jako roślina jednoroczna ale może żyć latami'],
-                diseases: ['Wydłużanie się = za mało światła', 'Opadanie liści = za sucho', 'Blade kolory = za ciemno', 'Brązowe brzegi = suche powietrze'],
-                propagation: 'Łatwe sadzonki pędowe w wodzie lub ziemi. Można też z nasion.'
+                id: 'oxalis', name: 'Szczawik trójkątny', species: 'Oxalis triangularis', emoji: '🦋', 
+                image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Oxalis_triangularis_1.jpg?width=400', 
+                category: ['special', 'easy'], difficulty: 'easy', origin: 'Brazylia', toxic: 'Lekko toksyczna – szczawiany', maxHeight: '25 cm',
+                care: { water: 'Co 7–10 dni', light: 'Jasne do średniego', humidity: '40–60%', temperature: '15–25°C' }, 
+                description: 'Trójkątne, fioletowe listki składają się i rozkładają w rytmie dobowym. Wchodzi w spoczynek latem i odrasta z bulwek. Jedno z najładniejszych łatwych roślin.',
+                funFacts: ['Składa liście w nocy i w pochmurne dni – ma własny zegar biologiczny', 'Delikatne różowe kwiatki kontrastują z ciemnofioletowymi liśćmi', 'Pochodzi z Brazylii, gdzie rośnie w zacienionych miejscach', 'Wchodzi w spoczynek latem – nie wyrzucaj gdy gubi liście, odrośnie!', 'Kolor fioletowy pochodzi z antocyjanów – tych samych co w jagodach'],
+                diseases: ['Utrata liści latem = normalny spoczynek letni', 'Wyciągnięte pędy = za mało światła', 'Gnicie bulwek = za mokro w spoczynku'],
+                propagation: 'Podział bulwek. Każda bulwka da nową roślinę w kilka tygodni.'
             },
             { 
-                id: 'zz-raven', name: 'ZZ Raven (Czarny ZZ)', species: 'Zamioculcas zamiifolia Raven', emoji: '🖤', 
-                image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Zamioculcas_zamiifolia_1.jpg/400px-Zamioculcas_zamiifolia_1.jpg', 
-                category: ['popular', 'easy'], difficulty: 'easy', origin: 'Kultywar (oryginał z Afryki)', toxic: 'Tak - kryształy szczawianu', maxHeight: '1m',
-                care: { water: 'Co 2-3 tygodnie', light: 'Cień do jasnego', humidity: '40-60%', temperature: '15-28°C' }, 
-                description: 'Czarna wersja niezniszczalnego ZZ! Młode liście są zielone i ciemnieją z czasem. Równie łatwy jak zwykły ZZ.',
-                funFacts: ['Patent na tę odmianę wygasł w 2023', 'Nowe liście są jasnozielone - to normalne!', 'Ciemnieje z czasem', 'Może przeżyć miesiące bez podlewania'],
-                diseases: ['Żółte liście = przelanie (najczęstszy błąd!)', 'Opadanie = gnicie kłącza od nadmiaru wody', 'Brak nowych liści = za mało światła', 'Wyciąganie się = potrzeba więcej światła'],
-                propagation: 'Podział kłącza lub sadzonki z liścia (trwa 6-12 miesięcy!).'
+                id: 'citrus', name: 'Cytryna Meyera', species: 'Citrus × meyeri', emoji: '🍋', 
+                image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Lemon_tree_Berkeley.jpg?width=400', 
+                category: ['special'], difficulty: 'medium', origin: 'Chiny', toxic: 'Nie (owoce jadalne!)', maxHeight: '1,5 m w domu',
+                care: { water: 'Co 5–7 dni, równomiernie', light: 'Pełne słońce – min. 8 h dziennie lub lampa grow-light', humidity: '40–55%', temperature: '18–30°C, zimowanie 10–15°C' }, 
+                description: 'Cytryna doniczkowa! Odmiana Meyera jest słodsza i bardziej odporna niż zwykła cytryna. Kwitnie pachnąco, a po 1–3 latach wydaje jadalne owoce.',
+                funFacts: ['Odmiana Meyera to krzyżówka cytryny i mandarynki – dlatego słodsza', 'W sprzyjających warunkach kwitnie i owocuje przez cały rok', 'Kwiaty mają intensywny, egzotyczny zapach – aromat pomarańczy i jaśminu', 'W Chinach uprawiana od setek lat w donicach przy wejściach jako symbol szczęścia', 'Jeden z najlepszych owoców do sadzenia w domu – realne plony w mieszkaniu'],
+                diseases: ['Opadanie liści = stres (zmiana miejsca, zimno, przeciąg)', 'Żółknące liście = niedobór żelaza lub za twarda woda', 'Brak owoców = za mało słońca lub brak zapylenia (potrząśnij gałązkami)', 'Mszyca na nowych pędach = naturalna – woda pod ciśnieniem lub mydło'],
+                propagation: 'Sadzonki półzdrewniałe lub szczepienie na podkładce.'
+            },
+            { 
+                id: 'venus-flytrapper', name: 'Rosiczka', species: 'Drosera capensis', emoji: '💧', 
+                image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Drosera_capensis1.jpg?width=400', 
+                category: ['special'], difficulty: 'medium', origin: 'Afryka Południowa', toxic: 'Nie – bezpieczna', maxHeight: '20 cm',
+                care: { water: 'TYLKO deszczówka lub destylowana; stale mokra taca', light: 'Pełne słońce przez min. 4 h', humidity: '50–70%', temperature: '5–27°C' }, 
+                description: 'Mięsożerna elegancja! Czerwone włoski (rzęski) pokryte kleistą rosą chwytają owady. Jedna z najłatwiejszych roślin mięsożernych – idealna na początek.',
+                funFacts: ['Czerwone kropelki to nie rosa – to lepki śluz wabiący owady', 'Liść powoli zwija się wokół ofiary przez kilka dni', 'Jedna z najłatwiejszych roślin mięsożernych – dobry start w mięsożerności', 'Toleruje niskie temperatury – można wystawić na balkon na lato', 'Używaj TYLKO deszczówki – minerały w kranówce zabijają w ciągu miesięcy'],
+                diseases: ['Czarnienie liści = normalne starzenie lub minerały w wodzie', 'Brak lepkich kropelek = za mało słońca lub za suche powietrze', 'Gnicie = brak odpowiedniego podłoża (używaj torfu i perlitu)'],
+                propagation: 'Sadzonki liściowe na torfiasto-perlitowym podłożu. Nasiona.'
+            },
+            { 
+                id: 'pothos-neon', name: 'Pothos Neon', species: 'Epipremnum aureum Neon', emoji: '💛', 
+                image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Epipremnum_aureum_Neon.jpg?width=400', 
+                category: ['popular', 'easy'], difficulty: 'easy', origin: 'Kultywar (oryginał Polinezja)', toxic: 'Tak – drażniący', maxHeight: '5 m jako pnącze',
+                care: { water: 'Co 7–14 dni', light: 'Jasne – im więcej, tym bardziej neonowy kolor!', humidity: '40–60%', temperature: '15–30°C' }, 
+                description: 'Fluorescencyjna odmiana Pothos o intensywnie limonkowym, niemal świecącym kolorze liści. Kolor intensyfikuje się przy dużym natężeniu światła.',
+                funFacts: ['Im więcej jasnego światła, tym bardziej intensywny neonowy kolor liści', 'W cieniu liście zieleniają i tracą neonową barwę – potrzebuje więcej świata niż zwykły Pothos', 'Genetycznie identyczny z Golden Pothos – różnica to tylko brak chlorofilu B', 'Jedna z modniejszych roślin Instagrama – wygląda jak z innej planety'],
+                diseases: ['Bladnący kolor = za mało światła – przestaw na jaśniejsze okno', 'Żółte liście = przelanie', 'Brązowe końcówki = suche powietrze'],
+                propagation: 'Identycznie jak Golden Pothos – sadzonki z węzłami w wodzie.'
+            },
+            { 
+                id: 'rhipsalis', name: 'Rhipsalis', species: 'Rhipsalis baccifera', emoji: '🪸', 
+                image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Rhipsalis_baccifera.jpg?width=400', 
+                category: ['succulents', 'tropical'], difficulty: 'easy', origin: 'Ameryki Tropikalne (jedyny kaktus spoza Ameryk w Afryce!)', toxic: 'Nie – bezpieczna', maxHeight: '1 m (zwisanie)',
+                care: { water: 'Co 7–14 dni, lekko wilgotna', light: 'Jasne rozproszone do półcienia – NIE pełne słońce (to leśny kaktus!)', humidity: '50–70%', temperature: '15–27°C' }, 
+                description: 'Leśny kaktus bez kolców! Zwisające, nitkowate pędy wyglądają jak koralowiec podwodny. Jedyna roślina z rodziny kaktusów naturalnie rosnąca poza Ameryką.',
+                funFacts: ['Jedyny kaktus naturalnie rosnący poza Ameryką – znaleziony też w Afryce i na Sri Lance', 'Kaktus leśny – NIE potrzebuje pełnego słońca jak inne kaktusy, lubi cień!', 'Kwitnie drobnymi białymi kwiatkami, po których pojawiają się perłowe jagody', 'Jagody mają lepki sok – ptaki je zjadają i rozsiewają nasiona', 'Idealna jako roślina wisząca – pędy zwisają metr i więcej'],
+                diseases: ['Czerwone, pomarańczowe pędy = oparzenia słoneczne lub stres wodny', 'Opadanie segmentów = stres (zbyt suche lub za mokre)', 'Kurczące się pędy = za sucho'],
+                propagation: 'Sadzonki pędowe – odetnij segment, zasusz dzień, włóż w wilgotny torf.'
+            },
+            { 
+                id: 'fittonia', name: 'Fitonia (Nerve Plant)', species: 'Fittonia albivenis', emoji: '🧠', 
+                image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Fittonia_albivenis.jpg?width=400', 
+                category: ['tropical'], difficulty: 'medium', origin: 'Ameryka Południowa (Peru)', toxic: 'Nie – bezpieczna', maxHeight: '20 cm',
+                care: { water: 'Co 5–7 dni, stale wilgotna – NIE mokra', light: 'Półcień do jasnego rozproszonego', humidity: '60–80%', temperature: '18–27°C' }, 
+                description: 'Sieć żył na miniaturowych liściach – zielone liście z białymi, różowymi lub czerwonymi żyłkami. Dramatycznie więdnie bez wody, ale wraca do formy po podlaniu.',
+                funFacts: ['Żyłki liści mogą być białe, różowe lub czerwone – naturalne dzieło sztuki', 'Dramatycznie więdnie gdy jest spragniona – jest bardziej dramatyczna niż skrzydłokwiat!', 'Idealna do terrarium – lubi wilgotne, zamknięte środowisko', 'W terrarium może żyć bez podlewania przez miesiące!', 'Pochodzi z wilgotnych lasów Amazonii – naturalne siedlisko w strumieniach deszczu'],
+                diseases: ['Zwiędnięcie = potrzeba wody – podlej, wróci szybko', 'Gnijące pędy = za dużo wody', 'Brązowe plamy = zbyt twarda woda lub słońce', 'Blade liście = za dużo słońca'],
+                propagation: 'Sadzonki pędowe w wodzie – korzenie po 1–2 tygodniach.'
             },
             { 
                 id: 'syngonium', name: 'Syngonium', species: 'Syngonium podophyllum', emoji: '🏹', 
-                image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Syngonium_podophyllum.jpg/400px-Syngonium_podophyllum.jpg', 
-                category: ['popular', 'tropical'], difficulty: 'easy', origin: 'Meksyk, Ameryka Środkowa', toxic: 'Tak - kryształy szczawianu', maxHeight: '2m jako pnącze',
-                care: { water: 'Co 7-10 dni', light: 'Jasne rozproszone do średniego', humidity: '50-70%', temperature: '16-27°C' }, 
-                description: 'Liście w kształcie strzałek! Młode liście są kompaktowe, starsze dzielą się na "palce". Dziesiątki kolorowych odmian.',
-                funFacts: ['Istnieje 30+ odmian kolorystycznych', 'Młode liście mają inny kształt niż stare', 'Może rosnąć jako zwisająca lub wspinająca', 'Kuzyn filodendronów'],
-                diseases: ['Żółte liście dolne = naturalne starzenie', 'Brązowe plamy = oparzenie słoneczne', 'Blade kolory = za mało światła', 'Gnicie = przelanie'],
-                propagation: 'Bardzo łatwe sadzonki pędowe z węzłem - korzenie w wodzie po 1-2 tygodniach.'
+                image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Syngonium_podophyllum.jpg?width=400', 
+                category: ['popular', 'easy'], difficulty: 'easy', origin: 'Meksyk, Ameryka Środkowa', toxic: 'Tak – kryształy szczawianu', maxHeight: '2 m jako pnącze',
+                care: { water: 'Co 7–10 dni', light: 'Jasne rozproszone do średniego', humidity: '50–70%', temperature: '16–27°C' }, 
+                description: 'Liście w kształcie strzałek zmieniają kształt z wiekiem! Młode są kompaktowe, starsze dzielą się na „palce". Dziesiątki kolorowych odmian.',
+                funFacts: ['Kształt liści zmienia się dramatycznie z wiekiem – młode to strzałka, stare mają „palce"', 'Istnieje 30+ odmian kolorystycznych – różowe, białe, zielone, miętowe', 'Może rosnąć jako zwisająca lub wspinająca się roślina', 'Odmiana Albo-Virens ma białe i zielone plamy – każdy liść wygląda inaczej'],
+                diseases: ['Żółte liście dolne = naturalne starzenie lub przelanie', 'Brązowe plamy = oparzenie lub za twarda woda', 'Blade kolory = za mało światła'],
+                propagation: 'Sadzonki pędowe z węzłem w wodzie – korzenie w 1–2 tygodnie.'
             },
             { 
-                id: 'prayer-plant', name: 'Stromanthe', species: 'Stromanthe sanguinea', emoji: '🙏', 
-                image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Stromanthe_sanguinea_Triostar.jpg/400px-Stromanthe_sanguinea_Triostar.jpg', 
-                category: ['tropical'], difficulty: 'hard', origin: 'Brazylia', toxic: 'Nie - bezpieczna', maxHeight: '1m',
-                care: { water: 'Co 5-7 dni, stale wilgotna', light: 'Jasne rozproszone, bez słońca', humidity: '60-80%', temperature: '18-27°C' }, 
-                description: 'Spektakularne liście - zielone z różowymi i białymi smugami, spód czerwony! Składa liście na noc jak do modlitwy.',
-                funFacts: ['Nazywana Triostar lub Magic Star', 'Spokrewniona z Marantą i Kalateą', 'Spód liści jest jaskrawo różowy', 'Liście ruszają się w ciągu dnia'],
-                diseases: ['Brązowe brzegi = suche powietrze (najczęściej!)', 'Zwijanie liści = za sucho', 'Blade kolory = za mało światła', 'Brązowe plamy = woda na liściach + słońce'],
-                propagation: 'Podział przy przesadzaniu - każda część musi mieć korzenie i punkty wzrostu.'
+                id: 'polka-dot', name: 'Roślina w kropki (Hypoestes)', species: 'Hypoestes phyllostachya', emoji: '🔴', 
+                image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Hypoestes_phyllostachya.jpg?width=400', 
+                category: ['easy'], difficulty: 'easy', origin: 'Madagaskar, Afryka Południowa', toxic: 'Nie – bezpieczna', maxHeight: '30 cm',
+                care: { water: 'Co 5–7 dni, stale lekko wilgotna', light: 'Jasne – bez słońca', humidity: '50–65%', temperature: '18–27°C' }, 
+                description: 'Liście nakrapiane jak biedronka! Różowe, białe lub czerwone kropki na zielonym tle. Szybko rośnie i pięknie wypełnia kompozycje roślinne.',
+                funFacts: ['Im więcej jasnego światła, tym bardziej intensywne i wyraźne kropki', 'Produkuje drobne lawendowe kwiatki – efektowny akcent', 'Pochodzi z Madagaskaru – jednej z najbogatszych w endemity wysp świata', 'Idealna do kompozycji z innymi roślinami i terrariów'],
+                diseases: ['Blade, znikające kropki = za mało światła', 'Gnijące łodygi = przelanie', 'Opadanie liści = chłód lub przeciąg'],
+                propagation: 'Sadzonki pędowe w wodzie – bardzo łatwe.'
             },
             { 
-                id: 'rubber-tineke', name: 'Fikus Tineke', species: 'Ficus elastica Tineke', emoji: '🎨', 
-                image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Ficus_elastica_leaves.jpg/400px-Ficus_elastica_leaves.jpg', 
-                category: ['popular', 'tropical'], difficulty: 'easy', origin: 'Kultywar (oryginał z Azji)', toxic: 'Tak - sok drażniący', maxHeight: '2m w domu',
-                care: { water: 'Co 7-10 dni', light: 'Jasne rozproszone - WAŻNE dla kolorów!', humidity: '40-60%', temperature: '16-27°C' }, 
-                description: 'Trójkolorowy fikus - zielony, kremowy i różowy! Młode liście mają intensywnie różowe osłonki. Piękniejszy niż zwykły fikus.',
-                funFacts: ['Im więcej światła tym więcej różu', 'Nowe liście wychodzą z różowej osłonki', 'Wymaga więcej światła niż zielone odmiany', 'Wolniej rośnie od zwykłego fikusa'],
-                diseases: ['Utrata kolorów = za mało światła', 'Brązowe plamy = oparzenie (zbyt ostre słońce)', 'Opadanie liści = przeciąg lub szok', 'Lepkie liście = szkodniki'],
-                propagation: 'Sadzonki wierzchołkowe w wodzie lub perlicie. Sok drażni - używaj rękawiczek.'
+                id: 'zz-raven', name: 'ZZ Raven (Czarny ZZ)', species: 'Zamioculcas zamiifolia Raven', emoji: '🖤', 
+                image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Zamioculcas_zamiifolia_1.jpg?width=400', 
+                category: ['popular', 'easy'], difficulty: 'easy', origin: 'Kultywar Afryki Wschodniej', toxic: 'Tak – kryształy szczawianu', maxHeight: '1 m',
+                care: { water: 'Co 2–4 tygodnie', light: 'Od głębokiego cienia do jasnego', humidity: '40–60%', temperature: '15–27°C' }, 
+                description: 'Gotycka odmiana klasycznego ZZ Plant! Nowe liście wyrastają jasnozielone, a potem ciemnieją do prawie czarnego fioletu. Efektowna metamorfoza na żywo.',
+                funFacts: ['Nowe liście wyrastają jasnozielone i stopniowo ciemnieją do prawie czarnego!', 'Kolor zmienia się przez kilka tygodni – można obserwować transformację', 'Wprowadzona na rynek dopiero około 2019 r. – jedna z „nowych" czarnych roślin', 'Te same właściwości przeżycia co zwykły ZZ – niezniszczalny'],
+                diseases: ['Żółte liście = przelanie (identycznie jak zwykły ZZ)', 'Liście zielenią zamiast czarnieć = za mało światła'],
+                propagation: 'Podział kłączy lub sadzonki liściowe (6–12 mies.).'
             },
             { 
-                id: 'bromeliad', name: 'Bromelia', species: 'Guzmania lingulata', emoji: '🔥', 
-                image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Guzmania_lingulata_flower.jpg/400px-Guzmania_lingulata_flower.jpg', 
-                category: ['flowering', 'tropical'], difficulty: 'medium', origin: 'Ameryka Środkowa i Płd.', toxic: 'Nie - bezpieczna', maxHeight: '50cm',
-                care: { water: 'Woda w rozetę 1x/tydzień', light: 'Jasne rozproszone', humidity: '50-70%', temperature: '18-27°C' }, 
-                description: 'Spektakularny kwiatostan w czerwieni, pomarańczu lub różu! Kwiat trwa miesiącami. Po kwitnieniu roślina matka umiera ale zostawia dzieci.',
-                funFacts: ['Ananas to też bromelia!', 'Kwiat to tak naprawdę kolorowe liście', 'Wodę wlewamy do "kielicha" w środku', 'Roślina matka umiera po kwitnieniu - to normalne'],
-                diseases: ['Gnicie podstawy = za mokro', 'Brązowienie kwiatostanu = naturalny koniec kwitnienia', 'Blade kolory = za mało światła', 'Suche końcówki = za suche powietrze'],
-                propagation: 'Oddziel "pupy" (dzieci) gdy osiągną 1/3 wielkości matki. Nowa roślina zakwitnie za 2-3 lata.'
+                id: 'bromeliad', name: 'Bromelia (Guzmania)', species: 'Guzmania lingulata', emoji: '🔥', 
+                image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Guzmania_lingulata_flower.jpg?width=400', 
+                category: ['flowering', 'tropical'], difficulty: 'medium', origin: 'Ameryka Środkowa i Południowa', toxic: 'Nie – bezpieczna', maxHeight: '50 cm',
+                care: { water: 'Woda do rozety (kielicha) 1x/tydzień, ziemia prawie sucha', light: 'Jasne rozproszone', humidity: '50–70%', temperature: '18–27°C' }, 
+                description: 'Spektakularny kwiatostan przez miesiące! Kwiat to tak naprawdę kolorowe liście okalające drobne kwiatki. Po kwitnieniu matka umiera, ale zostawia „dzieci".',
+                funFacts: ['Ananas to też bromelia – należy do tej samej rodziny!', 'Kwiatostan to kolorowe liście (brakty), a nie płatki kwiatowe', 'Wodę wlewaj do „kielicha" w centrum rozety – tak je w naturze nawadnia deszcz', 'Roślina matka umiera po kwitnieniu – to normalny cykl, nie błąd uprawy', 'Potomne rozety można odsadzić i wyhodować nowe rośliny – zaczynają kwitnąć po 2–3 latach'],
+                diseases: ['Gnicie podstawy = za mokre podłoże lub woda stojąca zbyt długo', 'Brązowienie kwiatostanu = naturalny koniec kwitnienia po 2–6 miesiącach', 'Blade kolory = za mało jasnego światła'],
+                propagation: 'Oddziel potomne rozety (pupy) gdy osiągną 1/3 wielkości matki.'
             },
             { 
-                id: 'bird-nest-fern', name: 'Paproć Gniazdowa', species: 'Asplenium nidus', emoji: '🪺', 
-                image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Asplenium_nidus_kz1.jpg/400px-Asplenium_nidus_kz1.jpg', 
-                category: ['tropical'], difficulty: 'medium', origin: 'Azja, Australia, Hawaje', toxic: 'Nie - bezpieczna', maxHeight: '1m',
-                care: { water: 'Co 5-7 dni, stale lekko wilgotna', light: 'Cień do jasnego rozproszonego', humidity: '60-80%', temperature: '18-27°C' }, 
-                description: 'Błyszczące, falowane liście wyrastające z centralnej rozety - jak ptasie gniazdo! Jedna z najładniejszych paproci do domu.',
-                funFacts: ['W naturze rośnie na drzewach jako epifit', 'Młode liście są zwinięte jak "główki skrzypiec"', 'Nigdy nie lej wody do środka rozety - zgnije!', 'Istnieją odmiany z bardzo falowanymi liśćmi'],
-                diseases: ['Brązowe brzegi = za suche powietrze', 'Żółte liście = przelanie lub za dużo słońca', 'Czarne plamy = woda w rozecie + gnicie', 'Blade liście = za mało światła'],
-                propagation: 'Tylko z zarodników (trudne!). Nie da się dzielić ani robić sadzonek.'
+                id: 'bird-nest-fern', name: 'Paproć gniazdowa', species: 'Asplenium nidus', emoji: '🪺', 
+                image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Asplenium_nidus_kz1.jpg?width=400', 
+                category: ['tropical'], difficulty: 'medium', origin: 'Azja, Australia, Hawaje', toxic: 'Nie – bezpieczna', maxHeight: '1 m',
+                care: { water: 'Co 5–7 dni, stale lekko wilgotna', light: 'Cień do jasnego rozproszonego', humidity: '60–80%', temperature: '18–27°C' }, 
+                description: 'Błyszczące, falowane liście wyrastają z centralnej rozety jak ptasie gniazdo. Jedna z najpiękniejszych paproci do wnętrz – wygląda jak rzeźba.',
+                funFacts: ['W naturze rośnie na drzewach jako epifit – jej „gniazdo" zbiera opadłe liście jako nawóz', 'Młode liście są zwinięte jak główki skrzypiec – delikatne i piękne', 'Nigdy nie lej wody bezpośrednio do centrum rozety – to powoduje gnicie', 'Odporna na owady – w naturze mało co ją atakuje', 'Dostępna w odmianach z bardzo falowanymi lub karbowanymi krawędziami liści'],
+                diseases: ['Brązowe brzegi = za suche powietrze – spryskuj liście', 'Żółte liście = przelanie lub za dużo słońca', 'Czarne plamy = woda w rozecie i gnicie – podlewaj tylko ziemię'],
+                propagation: 'Tylko z zarodników – długo i trudno. Najłatwiej kupić nową roślinę.'
+            },
+            { 
+                id: 'schefflera', name: 'Szeflera (Parasol karła)', species: 'Schefflera arboricola', emoji: '☂️', 
+                image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Schefflera_arboricola1.jpg?width=400', 
+                category: ['easy', 'popular'], difficulty: 'easy', origin: 'Tajwan, Chiny', toxic: 'Tak – dla zwierząt', maxHeight: '3 m w domu',
+                care: { water: 'Co 7–10 dni gdy wierzch przeschnie', light: 'Jasne do średniego', humidity: '40–60%', temperature: '15–27°C' }, 
+                description: 'Eleganckie palczaste liście ułożone jak parasol. Szybko rośnie w drzewko. Toleruje zaniedbanie, ale lubi regularne podlewanie i jasne miejsce.',
+                funFacts: ['Palczaste liście złożone z 7–9 listków wachlarzowato – stąd nazwa parasol', 'W naturze dorasta do 4 m i rośnie jako żywopłot lub niskie drzewko', 'Można ją formować jako bonsai – giętka łodyga łatwo się splata', 'Odmiana variegata ma żółto-zielone liście – bardziej efektowna'],
+                diseases: ['Opadanie liści = stres (przeprowadzka, przeciąg)', 'Żółte liście = przelanie lub za mało światła', 'Brązowe końcówki = suche powietrze'],
+                propagation: 'Sadzonki pędowe lub powietrzne ukorzenianie.'
+            },
+            { 
+                id: 'palm-kentia', name: 'Palma Kentia', species: 'Howea forsteriana', emoji: '🌴', 
+                image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Howea_forsteriana_Lord_Howe_Island.jpg?width=400', 
+                category: ['popular', 'tropical'], difficulty: 'easy', origin: 'Wyspa Lord Howe (Australia)', toxic: 'Nie – bezpieczna', maxHeight: '3 m w domu',
+                care: { water: 'Co 7–10 dni', light: 'Od półcienia do jasnego – jedna z nielicznych palm tolerujących cień', humidity: '40–60%', temperature: '16–27°C' }, 
+                description: 'Królewska palma biurowa i hotelowa. Jedna z nielicznych palm tolerujących cień i centralne ogrzewanie. Wolno rośnie, ale żyje dziesiątki lat.',
+                funFacts: ['Rośnie naturalnie tylko na niewielkiej Wyspie Lord Howe na Pacyfiku – endemit!', 'W hotelach i pałacach Europy od XIX w. – symbol elegancji', 'Jedna z nielicznych palm tolerujących głęboki cień i suche powietrze', 'Wolny wzrost – 30–60 cm rocznie, ale żyje dziesiątki lat', 'W naturze dorasta do 18 m – w domu jest karłowata'],
+                diseases: ['Brązowe końcówki = suche powietrze lub sól w ziemi', 'Żółknące liście dolne = naturalne starzenie (1–2 rocznie to norma)', 'Przędziorek = suche środowisko – spryskuj regularnie'],
+                propagation: 'Nasiona kiełkują 2–3 miesiące. Podział niemożliwy – pojedynczy pień.'
             }
         ];
+        // Łącznie: 58 roślin
 
         // ===== STATE =====
         let appData = { plants: [], settings: { apiKey: '' } };
@@ -1793,30 +1730,37 @@
         function renderEncyclopedia() {
             const search = document.getElementById('encyc-search').value.toLowerCase();
             let plants = encyclopediaDB;
-            
-            if (currentFilter !== 'all') {
-                plants = plants.filter(p => p.category.includes(currentFilter));
-            }
-            if (search) {
-                plants = plants.filter(p => p.name.toLowerCase().includes(search) || p.species.toLowerCase().includes(search));
-            }
-            
-            document.getElementById('encyc-grid').innerHTML = plants.map(p => {
-                const badge = p.difficulty === 'easy' ? 'badge-easy' : p.difficulty === 'hard' ? 'badge-hard' : 'badge-medium';
-                const badgeText = p.difficulty === 'easy' ? '👶 Łatwa' : p.difficulty === 'hard' ? '🎯 Trudna' : '📊 Średnia';
-                return '<div class="plant-card" onclick="showEncycPlant(\'' + p.id + '\')">' +
-                    '<div class="plant-card-visual">' +
-                        '<img src="' + p.image + '" class="plant-card-img" loading="lazy" onerror="this.parentElement.innerHTML=\'<div class=plant-card-emoji>' + p.emoji + '</div>\'">' +
-                    '</div>' +
-                    '<div class="plant-card-body">' +
-                        '<div class="plant-card-name">' + p.name + '</div>' +
-                        '<div class="plant-card-species">' + p.species + '</div>' +
-                        '<span class="badge ' + badge + '">' + badgeText + '</span>' +
-                    '</div>' +
-                '</div>';
-            }).join('');
+            if (currentFilter !== 'all') plants = plants.filter(function(p) { return p.category.includes(currentFilter); });
+            if (search) plants = plants.filter(function(p) {
+                return p.name.toLowerCase().includes(search) ||
+                       p.species.toLowerCase().includes(search) ||
+                       (p.origin && p.origin.toLowerCase().includes(search));
+            });
+            const diffIcon = { easy: '🟢', medium: '🟡', hard: '🔴' };
+            const diffText = { easy: 'Łatwa', medium: 'Średnia', hard: 'Trudna' };
+            document.getElementById('encyc-grid').innerHTML = plants.length === 0
+                ? '<div class="empty" style="grid-column:span 2;"><div class="empty-icon">🔍</div><div class="empty-text">Brak wyników</div></div>'
+                : plants.map(function(p) {
+                    var d = p.difficulty || 'easy';
+                    var safe = (p.toxic || '').toLowerCase();
+                    var petSafe = safe.indexOf('nie') === 0 ? '<span style="font-size:11px;color:#3fb950;">🐾 OK</span>' : '';
+                    return '<div class="plant-card" onclick="showEncycPlant(\'' + p.id + '\')">' +
+                        '<div class="plant-card-visual">' +
+                            '<img src="' + p.image + '" class="plant-card-img" loading="lazy" ' +
+                            'onload="this.classList.add(\'loaded\')" ' +
+                            'onerror="this.parentElement.innerHTML=\'<div class=plant-card-emoji>' + p.emoji + '</div>\'">' +
+                        '</div>' +
+                        '<div class="plant-card-body">' +
+                            '<div class="plant-card-name">' + p.name + '</div>' +
+                            '<div style="font-size:11px;color:var(--text-secondary);margin:2px 0 6px;font-style:italic;">' + p.species + '</div>' +
+                            '<div style="display:flex;align-items:center;justify-content:space-between;">' +
+                                '<span style="font-size:11px;">' + (diffIcon[d]||'🟢') + ' ' + (diffText[d]||d) + '</span>' +
+                                petSafe +
+                            '</div>' +
+                        '</div>' +
+                    '</div>';
+                }).join('');
         }
-        
         function setFilter(filter, btn) {
             currentFilter = filter;
             document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
