@@ -6,7 +6,7 @@
     <title>PlantCare 🌿</title>
     <meta name="description" content="Inteligentny asystent pielęgnacji roślin">
     <meta name="theme-color" content="#0a0f0a">
-    <link rel="manifest" href="data:application/manifest+json,{%22name%22:%22PlantCare%20-%20Opieka%20nad%20ro%C5%9Blinami%22,%22short_name%22:%22PlantCare%22,%22description%22:%22Tw%C3%B3j%20osobisty%20asystent%20opieki%20nad%20ro%C5%9Blinami%22,%22start_url%22:%22/index.html%22,%22display%22:%22standalone%22,%22background_color%22:%22%230a0a0a%22,%22theme_color%22:%22%2322c55e%22,%22orientation%22:%22portrait-primary%22}">
+    <link rel="manifest" href="manifest.json">
     <link rel="icon" href="favicon.ico">
     <link rel="apple-touch-icon" href="icons/icon-192x192.png">
     
@@ -2749,5 +2749,16 @@
     <!-- Firebase SDK (compat – działa bez bundlera) -->
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+
+    <!-- Rejestracja Service Workera -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function() {
+                navigator.serviceWorker.register('sw.js')
+                    .then(function(reg) { console.log('SW zarejestrowany:', reg.scope); })
+                    .catch(function(err) { console.warn('SW błąd:', err); });
+            });
+        }
+    </script>
 </body>
 </html>
