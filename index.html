@@ -246,15 +246,17 @@
             border-radius: 16px;
             overflow: hidden;
             margin-bottom: 16px;
+            border: 1px solid var(--border);
         }
         
         .scanner-preview {
             width: 100%;
-            height: 250px;
+            height: 220px;
             display: flex;
             align-items: center;
             justify-content: center;
             background: #000;
+            position: relative;
         }
         
         .scanner-preview img {
@@ -262,24 +264,127 @@
             height: 100%;
             object-fit: cover;
         }
+
+        .scanner-analyzing-overlay {
+            position: absolute; inset: 0;
+            background: rgba(0,0,0,0.65);
+            display: flex; flex-direction: column;
+            align-items: center; justify-content: center;
+            gap: 12px; color: #fff;
+        }
+
+        .scanner-scan-line {
+            position: absolute;
+            left: 0; right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+            animation: scanLine 1.6s ease-in-out infinite;
+            top: 0;
+        }
+
+        @keyframes scanLine {
+            0%   { top: 0%; opacity: 0; }
+            10%  { opacity: 1; }
+            90%  { opacity: 1; }
+            100% { top: 100%; opacity: 0; }
+        }
+
+        .scanner-spinner {
+            width: 44px; height: 44px;
+            border: 3px solid rgba(63,185,80,0.3);
+            border-top-color: var(--accent);
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin { to { transform: rotate(360deg); } }
         
         .scanner-placeholder {
             text-align: center;
             color: var(--text-secondary);
         }
-        
+
         .scanner-placeholder div { font-size: 48px; margin-bottom: 12px; }
         
         .scanner-btns {
-            padding: 16px;
+            padding: 12px 16px 16px;
             display: flex;
             gap: 12px;
         }
         
         .scanner-btns .btn { flex: 1; }
         
-        #scanner-result {
-            margin-top: 16px;
+        #scanner-result { margin-top: 16px; }
+
+        /* Confidence badge */
+        .confidence-bar {
+            height: 6px;
+            background: var(--bg-elevated);
+            border-radius: 3px;
+            overflow: hidden;
+            margin: 6px 0 4px;
+        }
+        .confidence-fill {
+            height: 100%;
+            border-radius: 3px;
+            transition: width 0.8s ease;
+        }
+
+        /* Result tabs */
+        .result-tabs {
+            display: flex;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 16px;
+        }
+        .result-tab {
+            flex: 1;
+            padding: 10px 8px;
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 13px;
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s;
+        }
+        .result-tab.active {
+            color: var(--accent);
+            border-bottom-color: var(--accent);
+        }
+
+        /* Scan history */
+        .scan-history-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--border);
+            cursor: pointer;
+        }
+        .scan-history-item:last-child { border-bottom: none; }
+        .scan-history-thumb {
+            width: 44px; height: 44px;
+            border-radius: 10px;
+            object-fit: cover;
+            background: var(--bg-elevated);
+            flex-shrink: 0;
+        }
+        .scan-history-info { flex: 1; min-width: 0; }
+        .scan-history-name { font-weight: 600; font-size: 14px; }
+        .scan-history-date { font-size: 12px; color: var(--text-secondary); margin-top: 2px; }
+
+        /* Match badge */
+        .match-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 11px;
+            padding: 3px 8px;
+            border-radius: 20px;
+            background: rgba(63,185,80,0.15);
+            color: var(--accent);
+            font-weight: 600;
+            margin-left: 8px;
         }
         
         /* Grid */
@@ -727,14 +832,22 @@
             <input type="file" id="plantGalleryInput" accept="image/*" onchange="handlePlantPhoto(event)" style="display:none;">
             
             <div id="scanner-result"></div>
+
+            <!-- Historia skanów -->
+            <div class="card" style="margin-top:16px;" id="scan-history-card">
+                <div class="card-title">🕐 Ostatnie skany</div>
+                <div id="scan-history-list">
+                    <p style="color:var(--text-secondary);font-size:13px;">Brak historii skanów.</p>
+                </div>
+            </div>
             
-            <div class="card" style="margin-top:16px;">
+            <div class="card" style="margin-top:12px;">
                 <div class="card-title">💡 Wskazówki</div>
-                <ul style="padding-left:20px; color:var(--text-secondary); font-size:13px;">
+                <ul style="padding-left:20px; color:var(--text-secondary); font-size:13px; line-height:1.8;">
                     <li>Zrób wyraźne zdjęcie całej rośliny</li>
-                    <li>Dobre oświetlenie pomoże w rozpoznaniu</li>
-                    <li>Na telefonie wybierz aparat lub galerię</li>
-                    <li>Możesz też sfotografować liść</li>
+                    <li>Dobre oświetlenie pomaga w rozpoznaniu</li>
+                    <li>Możesz sfotografować sam liść lub kwiat</li>
+                    <li>AI sprawdzi też czy roślina jest zdrowa</li>
                 </ul>
             </div>
         </div>
@@ -1782,6 +1895,7 @@
             if (warning) {
                 warning.style.display = appData.settings.apiKey ? 'none' : 'block';
             }
+            renderScanHistory();
         }
         
         function pickImage() {
@@ -1791,10 +1905,16 @@
         function handleFile(e) {
             const file = e.target.files[0];
             if (!file) return;
-            
             const reader = new FileReader();
             reader.onload = function(ev) {
-                document.getElementById('scanner-preview').innerHTML = '<img src="' + ev.target.result + '">';
+                document.getElementById('scanner-preview').innerHTML =
+                    '<img src="' + ev.target.result + '" style="width:100%;height:100%;object-fit:cover;">' +
+                    '<div class="scanner-analyzing-overlay" id="scan-overlay">' +
+                    '<div class="scanner-scan-line"></div>' +
+                    '<div class="scanner-spinner"></div>' +
+                    '<div style="font-size:14px;font-weight:600;">Analizuję roślinę...</div>' +
+                    '<div style="font-size:12px;opacity:0.7;">AI bada zdjęcie</div>' +
+                    '</div>';
                 analyzeImage(ev.target.result);
             };
             reader.readAsDataURL(file);
@@ -1803,49 +1923,293 @@
         
         async function analyzeImage(data) {
             if (!appData.settings.apiKey) {
-                document.getElementById('scanner-result').innerHTML = '<div class="alert alert-error"><div class="alert-title">❌ Brak klucza API</div><div class="alert-text">Dodaj klucz w ustawieniach.</div></div>';
+                document.getElementById('scanner-result').innerHTML =
+                    '<div class="alert alert-error"><div class="alert-title">❌ Brak klucza API</div>' +
+                    '<div class="alert-text">Dodaj klucz Gemini w ustawieniach.</div></div>';
+                const overlay = document.getElementById('scan-overlay');
+                if (overlay) overlay.remove();
                 return;
             }
-            
-            document.getElementById('scanner-result').innerHTML = '<div class="card" style="text-align:center;padding:32px;"><div style="font-size:32px;margin-bottom:12px;">🔄</div><div>Analizuję...</div></div>';
+            document.getElementById('scanner-result').innerHTML = '';
             
             try {
                 const base64 = data.split(',')[1];
-                const res = await fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent?key=' + appData.settings.apiKey, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        contents: [{ parts: [
-                            { text: 'Rozpoznaj roślinę. Odpowiedz JSON: {"name":"nazwa PL","species":"łacińska","description":"opis","water":"podlewanie","light":"światło"}. Jeśli nie roślina: {"error":"opis"}' },
-                            { inline_data: { mime_type: 'image/jpeg', data: base64 }}
-                        ]}]
-                    })
-                });
+                const prompt = 'Jesteś ekspertem botaniki. Przeanalizuj to zdjęcie rośliny i odpowiedz TYLKO czystym JSON bez żadnego tekstu ani markdown.\n\nJeśli to roślina, zwróć:\n{\n  "isPlant": true,\n  "confidence": 85,\n  "name": "Polska nazwa rośliny",\n  "species": "Łacińska nazwa gatunkowa",\n  "description": "Krótki opis 2-3 zdania",\n  "care": {\n    "water": "Jak często podlewać",\n    "light": "Jakie oświetlenie",\n    "humidity": "Wilgotność w %",\n    "temperature": "Zakres °C"\n  },\n  "toxic": "Tak/Nie/krótki opis",\n  "difficulty": "easy/medium/hard",\n  "health": "healthy/warning/sick",\n  "healthNote": "Obserwacja kondycji lub null",\n  "tips": ["Tip 1", "Tip 2", "Tip 3"]\n}\n\nJeśli NIE jest to roślina:\n{"isPlant": false, "reason": "krótkie wyjaśnienie"}\n\nOdpowiedz TYLKO JSON.';
+
+                const res = await fetch(
+                    'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent?key=' + appData.settings.apiKey,
+                    {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            contents: [{ parts: [
+                                { text: prompt },
+                                { inline_data: { mime_type: 'image/jpeg', data: base64 }}
+                            ]}],
+                            generationConfig: { temperature: 0.2 }
+                        })
+                    }
+                );
                 
-                if (!res.ok) throw new Error('API error: ' + res.status);
+                if (!res.ok) {
+                    const errData = await res.json().catch(function() { return {}; });
+                    throw new Error(errData.error && errData.error.message ? errData.error.message : 'Błąd API: ' + res.status);
+                }
                 
                 const json = await res.json();
-                let text = json.candidates?.[0]?.content?.parts?.[0]?.text || '';
+                let text = json.candidates && json.candidates[0] && json.candidates[0].content && json.candidates[0].content.parts && json.candidates[0].content.parts[0] ? json.candidates[0].content.parts[0].text : '';
                 text = text.replace(/```json\n?/g, '').replace(/```\n?/g, '').trim();
                 
                 const match = text.match(/\{[\s\S]*\}/);
-                if (match) {
-                    const r = JSON.parse(match[0]);
-                    if (r.error) {
-                        document.getElementById('scanner-result').innerHTML = '<div class="alert alert-warning"><div class="alert-title">⚠️ ' + r.error + '</div></div>';
-                    } else {
-                        const safeName = (r.name || '').replace(/'/g, "\\'");
-                        const safeSpecies = (r.species || '').replace(/'/g, "\\'");
-                        document.getElementById('scanner-result').innerHTML = '<div class="card"><div class="card-title">🌿 ' + (r.name || 'Roślina') + '</div><p style="font-style:italic;color:var(--text-secondary);margin-bottom:12px;">' + (r.species || '') + '</p><p style="margin-bottom:16px;">' + (r.description || '') + '</p><div class="care-list"><div class="care-item"><div class="care-icon">💧</div><div><div class="care-label">Podlewanie</div><div class="care-value">' + (r.water || '-') + '</div></div></div><div class="care-item"><div class="care-icon">☀️</div><div><div class="care-label">Światło</div><div class="care-value">' + (r.light || '-') + '</div></div></div></div><button class="btn btn-primary btn-block" onclick="addScanned(\'' + safeName + '\',\'' + safeSpecies + '\')">➕ Dodaj do moich roślin</button></div>';
-                    }
-                } else {
-                    document.getElementById('scanner-result').innerHTML = '<div class="card">' + text + '</div>';
+                if (!match) throw new Error('Nie udało się przetworzyć odpowiedzi AI. Spróbuj ponownie.');
+                
+                const r = JSON.parse(match[0]);
+                const overlay = document.getElementById('scan-overlay');
+                if (overlay) overlay.remove();
+
+                if (!r.isPlant) {
+                    document.getElementById('scanner-result').innerHTML =
+                        '<div class="alert alert-warning">' +
+                        '<div class="alert-title">⚠️ Nie rozpoznano rośliny</div>' +
+                        '<div class="alert-text">' + (r.reason || 'Spróbuj wykonać wyraźniejsze zdjęcie.') + '</div>' +
+                        '</div>';
+                    return;
                 }
+
+                saveScanToHistory(r, data);
+                const encyclopediaMatch = findInEncyclopedia(r.name, r.species);
+                showScanResult(r, encyclopediaMatch);
+
             } catch (err) {
-                document.getElementById('scanner-result').innerHTML = '<div class="alert alert-error"><div class="alert-title">❌ Błąd</div><div class="alert-text">' + err.message + '</div></div>';
+                const overlay = document.getElementById('scan-overlay');
+                if (overlay) overlay.remove();
+                document.getElementById('scanner-result').innerHTML =
+                    '<div class="alert alert-error">' +
+                    '<div class="alert-title">❌ Błąd analizy</div>' +
+                    '<div class="alert-text">' + err.message + '</div>' +
+                    '<button class="btn btn-secondary btn-block" style="margin-top:10px;" onclick="document.getElementById(\'fileInput\').click()">Spróbuj ponownie</button>' +
+                    '</div>';
             }
         }
-        
+
+        function findInEncyclopedia(name, species) {
+            if (!name && !species) return null;
+            const n = (name || '').toLowerCase();
+            const s = (species || '').toLowerCase();
+            return encyclopediaDB.find(function(p) {
+                return p.name.toLowerCase().includes(n) ||
+                       n.includes(p.name.toLowerCase()) ||
+                       (p.species && s && p.species.toLowerCase().includes(s.split(' ')[0])) ||
+                       (s && p.species && s.includes(p.species.toLowerCase().split(' ')[0]));
+            }) || null;
+        }
+
+        function getConfidenceColor(c) {
+            if (c >= 85) return '#3fb950';
+            if (c >= 60) return '#d29922';
+            return '#f85149';
+        }
+
+        function getConfidenceLabel(c) {
+            if (c >= 85) return 'Wysoka pewność';
+            if (c >= 60) return 'Średnia pewność';
+            return 'Niska pewność – sprawdź';
+        }
+
+        function getDifficultyLabel(d) {
+            if (d === 'easy')   return '🟢 Łatwa';
+            if (d === 'medium') return '🟡 Średnia';
+            if (d === 'hard')   return '🔴 Wymagająca';
+            return d || '-';
+        }
+
+        function getHealthHTML(health, note) {
+            if (!health) return '';
+            const map = {
+                healthy: { icon: '✅', label: 'Wygląda zdrowo', color: '#3fb950' },
+                warning: { icon: '⚠️', label: 'Wymaga uwagi',   color: '#d29922' },
+                sick:    { icon: '🔴', label: 'Potrzebuje pomocy', color: '#f85149' }
+            };
+            const h = map[health] || map.healthy;
+            return '<div style="display:flex;align-items:flex-start;gap:8px;padding:10px;background:rgba(255,255,255,0.04);border-radius:10px;margin-bottom:12px;">' +
+                '<span style="font-size:18px;">' + h.icon + '</span>' +
+                '<div><div style="font-size:13px;font-weight:600;color:' + h.color + ';">' + h.label + '</div>' +
+                (note ? '<div style="font-size:12px;color:var(--text-secondary);margin-top:2px;">' + note + '</div>' : '') +
+                '</div></div>';
+        }
+
+        function showScanResult(r, encMatch) {
+            const conf = r.confidence || 70;
+            const confColor = getConfidenceColor(conf);
+            const safeNameAttr = (r.name || '').replace(/'/g, "\\'");
+            const safeSpeciesAttr = (r.species || '').replace(/'/g, "\\'");
+            const encId = encMatch ? encMatch.id : null;
+
+            let html = '<div class="card">';
+
+            html += '<div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:12px;">';
+            html += '<div><div style="font-size:20px;font-weight:700;">' + (r.name || 'Nieznana roślina') +
+                    (encMatch ? '<span class="match-badge">📚 W bazie</span>' : '') + '</div>' +
+                    '<div style="font-style:italic;color:var(--text-secondary);font-size:13px;margin-top:2px;">' + (r.species || '') + '</div></div>';
+            html += '</div>';
+
+            html += '<div style="margin-bottom:16px;">';
+            html += '<div style="display:flex;justify-content:space-between;font-size:12px;color:var(--text-secondary);">' +
+                    '<span>' + getConfidenceLabel(conf) + '</span><span style="color:' + confColor + ';font-weight:600;">' + conf + '%</span></div>';
+            html += '<div class="confidence-bar"><div class="confidence-fill" style="width:' + conf + '%;background:' + confColor + ';"></div></div>';
+            html += '</div>';
+
+            html += '<div class="result-tabs">' +
+                    '<button class="result-tab active" onclick="switchScanTab(\'info\',this)">ℹ️ Info</button>' +
+                    '<button class="result-tab" onclick="switchScanTab(\'care\',this)">💧 Pielęgnacja</button>' +
+                    (encMatch ? '<button class="result-tab" onclick="switchScanTab(\'db\',this)">📚 Baza</button>' : '') +
+                    '</div>';
+
+            // TAB INFO
+            html += '<div id="scan-tab-info">';
+            html += '<p style="font-size:14px;line-height:1.6;margin-bottom:12px;">' + (r.description || '') + '</p>';
+            html += getHealthHTML(r.health, r.healthNote);
+            if (r.toxic) {
+                html += '<div style="display:flex;gap:8px;align-items:center;font-size:13px;padding:8px 0;border-top:1px solid var(--border);">' +
+                        '<span>☠️</span><span><b>Toksyczność:</b> ' + r.toxic + '</span></div>';
+            }
+            if (r.difficulty) {
+                html += '<div style="display:flex;gap:8px;align-items:center;font-size:13px;padding:8px 0;border-top:1px solid var(--border);">' +
+                        '<span>📊</span><span><b>Trudność:</b> ' + getDifficultyLabel(r.difficulty) + '</span></div>';
+            }
+            if (r.tips && r.tips.length) {
+                html += '<div style="margin-top:12px;padding-top:12px;border-top:1px solid var(--border);">' +
+                        '<div style="font-size:12px;color:var(--text-secondary);font-weight:600;margin-bottom:8px;">💡 WSKAZÓWKI AI</div>';
+                r.tips.forEach(function(tip) {
+                    html += '<div style="font-size:13px;padding:5px 0;display:flex;gap:8px;"><span style="color:var(--accent);">•</span><span>' + tip + '</span></div>';
+                });
+                html += '</div>';
+            }
+            html += '</div>';
+
+            // TAB PIELEGNACJA
+            html += '<div id="scan-tab-care" style="display:none;">';
+            if (r.care) {
+                var careItems = [
+                    { icon: '💧', label: 'Podlewanie', val: r.care.water },
+                    { icon: '☀️', label: 'Światło',    val: r.care.light },
+                    { icon: '💦', label: 'Wilgotność',  val: r.care.humidity },
+                    { icon: '🌡️', label: 'Temperatura', val: r.care.temperature }
+                ];
+                careItems.forEach(function(item) {
+                    if (!item.val) return;
+                    html += '<div class="care-item" style="padding:12px 0;border-bottom:1px solid var(--border);">' +
+                            '<div class="care-icon">' + item.icon + '</div>' +
+                            '<div><div class="care-label">' + item.label + '</div>' +
+                            '<div class="care-value">' + item.val + '</div></div></div>';
+                });
+            } else {
+                html += '<p style="color:var(--text-secondary);font-size:13px;">Brak danych pielęgnacyjnych.</p>';
+            }
+            html += '</div>';
+
+            // TAB BAZA
+            if (encMatch) {
+                html += '<div id="scan-tab-db" style="display:none;">';
+                html += '<div style="background:rgba(63,185,80,0.08);border-radius:10px;padding:12px;margin-bottom:12px;">' +
+                        '<div style="font-size:12px;color:var(--accent);font-weight:600;">✅ Znaleziono w encyklopedii</div>' +
+                        '<div style="font-size:13px;margin-top:4px;">' + encMatch.name + ' – ' + encMatch.species + '</div></div>';
+                if (encMatch.funFacts && encMatch.funFacts.length) {
+                    html += '<div style="font-size:12px;color:var(--text-secondary);font-weight:600;margin-bottom:8px;">🧠 CIEKAWOSTKI</div>';
+                    encMatch.funFacts.forEach(function(f) {
+                        html += '<div style="font-size:13px;padding:4px 0;display:flex;gap:8px;"><span style="color:var(--accent);">•</span><span>' + f + '</span></div>';
+                    });
+                }
+                if (encMatch.diseases && encMatch.diseases.length) {
+                    html += '<div style="font-size:12px;color:var(--text-secondary);font-weight:600;margin:12px 0 8px;">🔍 DIAGNOSTYKA</div>';
+                    encMatch.diseases.forEach(function(d) {
+                        html += '<div style="font-size:13px;padding:4px 0;display:flex;gap:8px;"><span style="color:var(--warning);">•</span><span>' + d + '</span></div>';
+                    });
+                }
+                html += '<button class="btn btn-secondary btn-block" style="margin-top:14px;" onclick="showEncycPlant(\'' + encId + '\')">📖 Otwórz w encyklopedii</button>';
+                html += '</div>';
+            }
+
+            html += '<div style="display:flex;gap:10px;margin-top:16px;">';
+            if (encMatch) {
+                html += '<button class="btn btn-secondary" style="flex:1;" onclick="addFromEncyc(\'' + encId + '\')">📚 Dodaj z bazy</button>';
+            }
+            html += '<button class="btn btn-primary" style="flex:1;" onclick="addScanned(\'' + safeNameAttr + '\',\'' + safeSpeciesAttr + '\')">➕ Dodaj do roślin</button>';
+            html += '</div>';
+            html += '</div>';
+
+            document.getElementById('scanner-result').innerHTML = html;
+        }
+
+        function switchScanTab(tabName, btn) {
+            ['info','care','db'].forEach(function(t) {
+                var el = document.getElementById('scan-tab-' + t);
+                if (el) el.style.display = 'none';
+            });
+            document.querySelectorAll('.result-tab').forEach(function(b) { b.classList.remove('active'); });
+            var target = document.getElementById('scan-tab-' + tabName);
+            if (target) target.style.display = 'block';
+            if (btn) btn.classList.add('active');
+        }
+
+        function saveScanToHistory(r, imageData) {
+            if (!appData.scanHistory) appData.scanHistory = [];
+            appData.scanHistory.unshift({
+                name: r.name || 'Nieznana',
+                species: r.species || '',
+                confidence: r.confidence || 0,
+                date: new Date().toISOString(),
+                thumb: imageData,
+                description: r.description || '',
+                care: r.care || null,
+                health: r.health || null,
+                healthNote: r.healthNote || null,
+                toxic: r.toxic || null,
+                difficulty: r.difficulty || null,
+                tips: r.tips || []
+            });
+            if (appData.scanHistory.length > 5) appData.scanHistory = appData.scanHistory.slice(0, 5);
+            saveData();
+            renderScanHistory();
+        }
+
+        function renderScanHistory() {
+            var list = document.getElementById('scan-history-list');
+            if (!list) return;
+            var history = appData.scanHistory || [];
+            if (!history.length) {
+                list.innerHTML = '<p style="color:var(--text-secondary);font-size:13px;">Brak historii skanów.</p>';
+                return;
+            }
+            list.innerHTML = history.map(function(item, idx) {
+                var date = new Date(item.date);
+                var dateStr = date.toLocaleDateString('pl-PL') + ' ' + date.toLocaleTimeString('pl-PL', {hour:'2-digit', minute:'2-digit'});
+                var confColor = getConfidenceColor(item.confidence);
+                return '<div class="scan-history-item" onclick="showScanHistoryItem(' + idx + ')">' +
+                    (item.thumb
+                        ? '<img class="scan-history-thumb" src="' + item.thumb + '">'
+                        : '<div class="scan-history-thumb" style="display:flex;align-items:center;justify-content:center;font-size:22px;background:var(--bg-elevated);">🌿</div>') +
+                    '<div class="scan-history-info">' +
+                    '<div class="scan-history-name">' + item.name + '</div>' +
+                    '<div class="scan-history-date">' + (item.species ? item.species + ' · ' : '') + dateStr + '</div>' +
+                    '</div>' +
+                    '<div style="font-size:12px;font-weight:600;color:' + confColor + ';">' + item.confidence + '%</div>' +
+                    '</div>';
+            }).join('');
+        }
+
+        function showScanHistoryItem(idx) {
+            var item = (appData.scanHistory || [])[idx];
+            if (!item) return;
+            if (item.thumb) {
+                document.getElementById('scanner-preview').innerHTML =
+                    '<img src="' + item.thumb + '" style="width:100%;height:100%;object-fit:cover;">';
+            }
+            var encMatch = findInEncyclopedia(item.name, item.species);
+            showScanResult(item, encMatch);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
         function addScanned(name, species) {
             appData.plants.push({
                 id: Date.now(),
@@ -1858,7 +2222,7 @@
             });
             saveData();
             renderAll();
-            toast('🌱 Dodano!');
+            toast('🌱 Dodano: ' + name + '!');
             showPage('home');
         }
         
