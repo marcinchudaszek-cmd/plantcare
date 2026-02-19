@@ -733,9 +733,88 @@
         
         /* Link */
         a { color: var(--accent); }
+        /* ===== SYNC STATUS ===== */
+        .sync-bar {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            z-index: 999;
+            background: transparent;
+            transition: background 0.3s;
+        }
+        .sync-bar.syncing {
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+            background-size: 200% 100%;
+            animation: syncSlide 1.2s linear infinite;
+        }
+        @keyframes syncSlide {
+            0%   { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+
+        .sync-status-dot {
+            width: 8px; height: 8px;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 6px;
+            flex-shrink: 0;
+        }
+        .sync-status-dot.ok      { background: #3fb950; }
+        .sync-status-dot.syncing { background: #d29922; animation: pulse 1s ease-in-out infinite; }
+        .sync-status-dot.error   { background: #f85149; }
+        .sync-status-dot.offline { background: #8b949e; }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50%       { opacity: 0.3; }
+        }
+
+        .sync-banner {
+            display: flex;
+            align-items: center;
+            padding: 10px 14px;
+            border-radius: 10px;
+            font-size: 13px;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+        .sync-banner.connected  { background: rgba(63,185,80,0.1);  border: 1px solid rgba(63,185,80,0.3); }
+        .sync-banner.offline    { background: rgba(139,148,158,0.1); border: 1px solid rgba(139,148,158,0.3); }
+        .sync-banner.error      { background: rgba(248,81,73,0.1);   border: 1px solid rgba(248,81,73,0.3); }
+        .sync-banner.setup      { background: rgba(210,153,34,0.1);  border: 1px solid rgba(210,153,34,0.3); }
+
+        .sync-uid-box {
+            background: var(--bg-elevated);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 10px 12px;
+            font-size: 12px;
+            font-family: monospace;
+            color: var(--text-secondary);
+            word-break: break-all;
+            margin: 8px 0;
+        }
+
+        .config-textarea {
+            width: 100%;
+            background: var(--bg-elevated);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            color: var(--text);
+            font-size: 12px;
+            font-family: monospace;
+            padding: 12px;
+            resize: vertical;
+            min-height: 120px;
+            outline: none;
+        }
+        .config-textarea:focus { border-color: var(--accent); }
     </style>
 </head>
 <body>
+    <!-- Pasek synchronizacji (widoczny podczas sync) -->
+    <div class="sync-bar" id="sync-bar"></div>
+
     <div class="container">
         <!-- Header -->
         <header class="header">
@@ -876,7 +955,50 @@
         <!-- SETTINGS -->
         <div id="page-settings" class="page">
             <h2 style="margin-bottom:16px;">⚙️ Ustawienia</h2>
-            
+
+            <!-- SYNCHRONIZACJA FIREBASE -->
+            <div class="card">
+                <div class="card-title">☁️ Synchronizacja Firebase</div>
+
+                <!-- Status banner -->
+                <div id="sync-banner" class="sync-banner setup">
+                    <span class="sync-status-dot offline"></span>
+                    <span id="sync-status-text">Nie skonfigurowano synchronizacji</span>
+                </div>
+
+                <!-- Konfiguracja -->
+                <div id="sync-config-section">
+                    <p style="font-size:13px;color:var(--text-secondary);margin-bottom:12px;line-height:1.6;">
+                        Aby synchronizować rośliny między urządzeniami, potrzebujesz darmowego projektu Firebase.
+                        <a href="#" onclick="showFirebaseGuide();return false;" style="color:var(--accent);">Jak to zrobić? →</a>
+                    </p>
+                    <div class="form-group">
+                        <label style="font-size:12px;color:var(--text-secondary);margin-bottom:6px;display:block;">Wklej konfigurację Firebase (firebaseConfig):</label>
+                        <textarea class="config-textarea" id="firebase-config-input" placeholder='{"apiKey":"AIza...","authDomain":"...","projectId":"...","storageBucket":"...","messagingSenderId":"...","appId":"..."}'></textarea>
+                    </div>
+                    <button class="btn btn-primary btn-block" onclick="connectFirebase()">🔥 Połącz z Firebase</button>
+                </div>
+
+                <!-- Zalogowany – UID i opcje -->
+                <div id="sync-connected-section" style="display:none;">
+                    <div style="font-size:12px;color:var(--text-secondary);margin-bottom:4px;">Twoje ID urządzenia (wpisz na innym telefonie żeby zsynchronizować):</div>
+                    <div class="sync-uid-box" id="sync-uid-display">–</div>
+                    <div style="display:flex;gap:8px;margin-top:10px;">
+                        <button class="btn btn-secondary" style="flex:1;" onclick="copyUID()">📋 Kopiuj ID</button>
+                        <button class="btn btn-secondary" style="flex:1;" onclick="syncNow()">🔄 Synchronizuj</button>
+                    </div>
+                    <div style="margin-top:10px;">
+                        <label style="font-size:12px;color:var(--text-secondary);margin-bottom:6px;display:block;">Lub wpisz ID innego urządzenia żeby przejąć jego dane:</label>
+                        <div style="display:flex;gap:8px;">
+                            <input type="text" class="form-input" id="import-uid-input" placeholder="Wklej ID..." style="flex:1;font-size:12px;font-family:monospace;">
+                            <button class="btn btn-primary" onclick="importFromUID()">📥 Importuj</button>
+                        </div>
+                    </div>
+                    <button class="btn btn-secondary btn-block" style="margin-top:12px;color:var(--danger);border-color:var(--danger);" onclick="disconnectFirebase()">🔌 Rozłącz</button>
+                </div>
+            </div>
+
+            <!-- KLUCZ API GEMINI -->
             <div class="card">
                 <div class="card-title">🔑 Klucz API Gemini</div>
                 <div class="form-group">
@@ -889,10 +1011,10 @@
             </div>
             
             <div class="card">
-                <div class="card-title">📦 Dane</div>
+                <div class="card-title">📦 Dane lokalne</div>
                 <div class="btn-group">
-                    <button class="btn btn-secondary" onclick="exportData()">📤 Eksport</button>
-                    <button class="btn btn-secondary" onclick="importData()">📥 Import</button>
+                    <button class="btn btn-secondary" onclick="exportData()">📤 Eksport JSON</button>
+                    <button class="btn btn-secondary" onclick="importData()">📥 Import JSON</button>
                 </div>
             </div>
         </div>
@@ -1615,6 +1737,7 @@
         
         function saveData() {
             localStorage.setItem('plantcare', JSON.stringify(appData));
+            scheduleSyncToCloud && scheduleSyncToCloud();
         }
         
         // ===== NAVIGATION =====
@@ -2386,8 +2509,303 @@
             setTimeout(() => el.classList.remove('show'), 2500);
         }
         
+        }
+        
+        // ===== FIREBASE SYNC =====
+        let fbApp = null;
+        let fbDb  = null;
+        let fbUid = null;
+        let fbUnsubscribe = null;  // nasłuchiwanie na zmiany w Firestore
+        let syncPending = false;
+        let syncTimeout = null;
+
+        // Sprawdź przy starcie czy mamy zapisaną konfigurację
+        function initFirebase() {
+            const savedConfig = localStorage.getItem('fb_config');
+            const savedUid    = localStorage.getItem('fb_uid');
+            if (savedConfig) {
+                try {
+                    const config = JSON.parse(savedConfig);
+                    setupFirebase(config, savedUid);
+                } catch(e) {
+                    console.warn('Błędna konfiguracja Firebase:', e);
+                }
+            }
+            updateSyncUI();
+        }
+
+        function setupFirebase(config, existingUid) {
+            try {
+                // Inicjalizuj Firebase (sprawdź czy już nie zainicjalizowany)
+                if (!firebase.apps || !firebase.apps.length) {
+                    fbApp = firebase.initializeApp(config);
+                } else {
+                    fbApp = firebase.apps[0];
+                }
+                fbDb = firebase.firestore();
+
+                // Generuj lub użyj istniejącego UID
+                fbUid = existingUid || generateUID();
+                localStorage.setItem('fb_uid', fbUid);
+
+                // Zacznij nasłuchiwać na zmiany w Firestore (real-time sync)
+                startListening();
+
+                updateSyncUI('connected');
+                return true;
+            } catch(e) {
+                console.error('Błąd Firebase:', e);
+                updateSyncUI('error', e.message);
+                return false;
+            }
+        }
+
+        function generateUID() {
+            // Generuj unikalny 8-znakowy kod (łatwy do przepisania na innym urządzeniu)
+            const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+            let uid = '';
+            for (let i = 0; i < 8; i++) {
+                if (i === 4) uid += '-';
+                uid += chars[Math.floor(Math.random() * chars.length)];
+            }
+            return uid;
+        }
+
+        function startListening() {
+            if (!fbDb || !fbUid) return;
+            // Zatrzymaj poprzednie nasłuchiwanie
+            if (fbUnsubscribe) { fbUnsubscribe(); fbUnsubscribe = null; }
+
+            const docRef = fbDb.collection('plantcare').doc(fbUid);
+            fbUnsubscribe = docRef.onSnapshot(function(doc) {
+                if (doc.exists) {
+                    const cloudData = doc.data();
+                    // Sprawdź czy dane w chmurze są nowsze
+                    const cloudTime = cloudData._updatedAt || 0;
+                    const localTime = appData._updatedAt || 0;
+                    if (cloudTime > localTime) {
+                        // Dane z chmury są nowsze – załaduj je
+                        const { _updatedAt, ...rest } = cloudData;
+                        appData = { ...appData, ...rest, _updatedAt: cloudTime };
+                        localStorage.setItem('plantcare', JSON.stringify(appData));
+                        renderAll();
+                        renderScanHistory && renderScanHistory();
+                        showSyncIndicator('✅ Zsynchronizowano');
+                    }
+                }
+                updateSyncUI('connected');
+            }, function(err) {
+                console.warn('Błąd Firestore listener:', err);
+                updateSyncUI('error', 'Błąd połączenia');
+            });
+        }
+
+        // Wywoływana po każdym saveData() – debounce 2s
+        function scheduleSyncToCloud() {
+            if (!fbDb || !fbUid) return;
+            if (syncTimeout) clearTimeout(syncTimeout);
+            syncTimeout = setTimeout(function() { syncToCloud(); }, 2000);
+        }
+
+        async function syncToCloud() {
+            if (!fbDb || !fbUid) return;
+            try {
+                setSyncBar(true);
+                const dataToSync = Object.assign({}, appData, {
+                    _updatedAt: Date.now()
+                });
+                // Usuń miniaturki skanów ze zdjęciami (za duże dla Firestore – limit 1MB/doc)
+                if (dataToSync.scanHistory) {
+                    dataToSync.scanHistory = dataToSync.scanHistory.map(function(item) {
+                        const copy = Object.assign({}, item);
+                        delete copy.thumb;  // usuń base64
+                        return copy;
+                    });
+                }
+                // Usuń klucz API (bezpieczeństwo – nie wysyłaj do chmury)
+                if (dataToSync.settings) {
+                    dataToSync.settings = Object.assign({}, dataToSync.settings);
+                    delete dataToSync.settings.apiKey;
+                }
+                await fbDb.collection('plantcare').doc(fbUid).set(dataToSync);
+                appData._updatedAt = dataToSync._updatedAt;
+                localStorage.setItem('plantcare', JSON.stringify(appData));
+                setSyncBar(false);
+                updateSyncUI('connected');
+            } catch(e) {
+                setSyncBar(false);
+                updateSyncUI('error', e.message);
+                console.error('Błąd synchronizacji:', e);
+            }
+        }
+
+        function syncNow() {
+            if (!fbDb) { toast('❌ Brak połączenia z Firebase'); return; }
+            syncToCloud().then(function() { toast('✅ Zsynchronizowano!'); });
+        }
+
+        async function importFromUID() {
+            const input = document.getElementById('import-uid-input');
+            const uid = (input.value || '').trim().toUpperCase();
+            if (!uid || uid.length < 4) { toast('❌ Wpisz poprawne ID'); return; }
+            if (!fbDb) { toast('❌ Najpierw połącz z Firebase'); return; }
+            try {
+                setSyncBar(true);
+                const doc = await fbDb.collection('plantcare').doc(uid).get();
+                setSyncBar(false);
+                if (!doc.exists) {
+                    toast('❌ Nie znaleziono danych dla tego ID');
+                    return;
+                }
+                const cloudData = doc.data();
+                const { _updatedAt, ...rest } = cloudData;
+                // Przejmij dane ale zachowaj lokalny apiKey
+                const localApiKey = appData.settings && appData.settings.apiKey;
+                appData = Object.assign({}, appData, rest);
+                if (localApiKey && appData.settings) appData.settings.apiKey = localApiKey;
+                appData._updatedAt = 0;  // wymuś zapis przy następnej sync
+                saveData();
+                renderAll();
+                toast('✅ Zaimportowano ' + (appData.plants ? appData.plants.length : 0) + ' roślin!');
+                input.value = '';
+            } catch(e) {
+                setSyncBar(false);
+                toast('❌ Błąd importu: ' + e.message);
+            }
+        }
+
+        function connectFirebase() {
+            const raw = document.getElementById('firebase-config-input').value.trim();
+            if (!raw) { toast('❌ Wklej konfigurację Firebase'); return; }
+            let config;
+            try {
+                // Obsłuż zarówno czysty JSON jak i const firebaseConfig = {...}
+                const jsonStr = raw.replace(/^.*?=\s*/, '').replace(/;?\s*$/, '');
+                config = JSON.parse(jsonStr);
+            } catch(e) {
+                toast('❌ Błędny format konfiguracji'); return;
+            }
+            if (!config.apiKey || !config.projectId) {
+                toast('❌ Konfiguracja niekompletna'); return;
+            }
+            localStorage.setItem('fb_config', JSON.stringify(config));
+            const ok = setupFirebase(config, null);
+            if (ok) {
+                toast('🔥 Połączono z Firebase!');
+                syncToCloud();
+            }
+        }
+
+        function disconnectFirebase() {
+            if (fbUnsubscribe) { fbUnsubscribe(); fbUnsubscribe = null; }
+            fbApp = null; fbDb = null; fbUid = null;
+            localStorage.removeItem('fb_config');
+            localStorage.removeItem('fb_uid');
+            updateSyncUI('offline');
+            toast('🔌 Rozłączono');
+        }
+
+        function copyUID() {
+            if (!fbUid) return;
+            navigator.clipboard && navigator.clipboard.writeText(fbUid)
+                .then(function() { toast('📋 Skopiowano: ' + fbUid); })
+                .catch(function() {
+                    // fallback
+                    const el = document.getElementById('sync-uid-display');
+                    if (el) { const range = document.createRange(); range.selectNode(el); window.getSelection().removeAllRanges(); window.getSelection().addRange(range); }
+                    toast('Zaznaczono ID – skopiuj ręcznie');
+                });
+        }
+
+        function updateSyncUI(status, detail) {
+            const banner    = document.getElementById('sync-banner');
+            const statusTxt = document.getElementById('sync-status-text');
+            const dot       = banner && banner.querySelector('.sync-status-dot');
+            const configSec = document.getElementById('sync-config-section');
+            const connSec   = document.getElementById('sync-connected-section');
+            const uidDisplay= document.getElementById('sync-uid-display');
+
+            if (!banner) return;
+
+            // Reset klas
+            banner.className = 'sync-banner';
+
+            if (status === 'connected') {
+                banner.classList.add('connected');
+                if (dot) { dot.className = 'sync-status-dot ok'; }
+                if (statusTxt) statusTxt.textContent = 'Synchronizacja aktywna';
+                if (configSec) configSec.style.display = 'none';
+                if (connSec)   connSec.style.display   = 'block';
+                if (uidDisplay && fbUid) uidDisplay.textContent = fbUid;
+
+            } else if (status === 'error') {
+                banner.classList.add('error');
+                if (dot) { dot.className = 'sync-status-dot error'; }
+                if (statusTxt) statusTxt.textContent = '❌ Błąd: ' + (detail || 'sprawdź konfigurację');
+                if (configSec) configSec.style.display = 'block';
+                if (connSec)   connSec.style.display   = 'none';
+
+            } else if (status === 'offline') {
+                banner.classList.add('offline');
+                if (dot) { dot.className = 'sync-status-dot offline'; }
+                if (statusTxt) statusTxt.textContent = 'Synchronizacja wyłączona';
+                if (configSec) configSec.style.display = 'block';
+                if (connSec)   connSec.style.display   = 'none';
+
+            } else {
+                // setup (domyślny)
+                banner.classList.add('setup');
+                if (dot) { dot.className = 'sync-status-dot offline'; }
+                if (statusTxt) statusTxt.textContent = 'Nie skonfigurowano synchronizacji';
+                if (configSec) configSec.style.display = 'block';
+                if (connSec)   connSec.style.display   = 'none';
+            }
+        }
+
+        function setSyncBar(active) {
+            const bar = document.getElementById('sync-bar');
+            if (bar) bar.className = active ? 'sync-bar syncing' : 'sync-bar';
+        }
+
+        function showSyncIndicator(msg) {
+            toast(msg);
+        }
+
+        function showFirebaseGuide() {
+            document.getElementById('modal-title').textContent = '🔥 Jak skonfigurować Firebase';
+            document.getElementById('modal-body').innerHTML = `
+                <div style="font-size:14px;line-height:1.8;">
+                    <p style="margin-bottom:12px;">Firebase to darmowa baza danych Google. Wykonaj poniższe kroki:</p>
+                    <div style="counter-reset:steps;">
+                        ${[
+                            ['Wejdź na', '<a href="https://console.firebase.google.com" target="_blank" style="color:var(--accent);">console.firebase.google.com</a>'],
+                            ['Kliknij', '<b>„Utwórz projekt"</b> → wpisz nazwę → pomiń Google Analytics'],
+                            ['W menu bocznym kliknij', '<b>Firestore Database</b> → <b>„Utwórz bazę danych"</b> → wybierz <b>„Tryb testowy"</b>'],
+                            ['W menu kliknij ikonę', '<b>⚙️ Ustawienia projektu</b> → przewiń na dół → kliknij <b>„&lt;/&gt;"</b> (Web app)'],
+                            ['Wpisz nazwę aplikacji', 'np. „PlantCare" → kliknij Zarejestruj'],
+                            ['Skopiuj obiekt', '<b>firebaseConfig</b> (tylko fragment w nawiasach klamrowych <code>{...}</code>)'],
+                            ['Wróć do aplikacji', 'i wklej go w pole konfiguracji powyżej'],
+                        ].map(([pre, val], i) => `
+                            <div style="display:flex;gap:10px;padding:8px 0;border-bottom:1px solid var(--border);">
+                                <div style="width:22px;height:22px;background:var(--accent);color:#000;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0;">${i+1}</div>
+                                <div><span style="color:var(--text-secondary);">${pre}</span> ${val}</div>
+                            </div>`).join('')}
+                    </div>
+                    <div style="margin-top:14px;padding:10px;background:rgba(63,185,80,0.08);border-radius:8px;font-size:12px;">
+                        ✅ Plan Spark (darmowy) wystarczy – 1GB bazy, 50k odczytów dziennie
+                    </div>
+                </div>`;
+            document.getElementById('modal').style.display = 'flex';
+        }
+
         // ===== START =====
-        document.addEventListener('DOMContentLoaded', init);
+        document.addEventListener('DOMContentLoaded', function() {
+            init();
+            initFirebase();
+        });
     </script>
+    <!-- Firebase SDK (compat – działa bez bundlera) -->
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
 </body>
 </html>
