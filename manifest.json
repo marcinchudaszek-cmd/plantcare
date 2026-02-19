@@ -2,8 +2,8 @@
   "name": "PlantCare - Opieka nad roślinami",
   "short_name": "PlantCare",
   "description": "Twój osobisty asystent opieki nad roślinami. Zarządzaj kolekcją, podlewaj na czas i rozpoznawaj rośliny przez AI.",
-  "start_url": "/index.html",
-  "scope": "/",
+  "start_url": "/plantcare/index.html",
+  "scope": "/plantcare/",
   "display": "standalone",
   "background_color": "#0d1117",
   "theme_color": "#3fb950",
@@ -24,15 +24,13 @@
     {
       "name": "Podlej rośliny",
       "short_name": "Podlej",
-      "description": "Lista roślin do podlania",
-      "url": "/index.html",
+      "url": "/plantcare/index.html",
       "icons": [{ "src": "icons/icon-96x96.png", "sizes": "96x96" }]
     },
     {
       "name": "Skanuj roślinę",
       "short_name": "Skanuj",
-      "description": "Rozpoznaj roślinę przez AI",
-      "url": "/index.html",
+      "url": "/plantcare/index.html",
       "icons": [{ "src": "icons/icon-96x96.png", "sizes": "96x96" }]
     }
   ],
