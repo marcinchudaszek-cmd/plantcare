@@ -1687,6 +1687,16 @@
             if (btn) btn.classList.add('active');
             
             if (id === 'scanner') checkApiKey();
+            if (id === 'settings') {
+                // Wczytaj zapisany klucz do pola
+                const keyInput = document.getElementById('api-key');
+                if (keyInput && appData.settings && appData.settings.apiKey) {
+                    keyInput.value = appData.settings.apiKey;
+                    // Pokaż status że klucz jest zapisany
+                    const btn = document.querySelector('[onclick="saveApiKey()"]');
+                    if (btn) btn.innerHTML = '✅ Klucz jest zapisany';
+                }
+            }
         }
         
         // ===== RENDER =====
@@ -2295,10 +2305,16 @@
         
         // ===== SETTINGS =====
         function saveApiKey() {
-            appData.settings.apiKey = document.getElementById('api-key').value.trim();
+            const val = document.getElementById('api-key').value.trim();
+            if (!val) { toast('❌ Wklej klucz API'); return; }
+            if (!appData.settings) appData.settings = {};
+            appData.settings.apiKey = val;
             saveData();
             checkApiKey();
-            toast('✅ Zapisano!');
+            // Pokaż że klucz jest zapisany
+            const btn = document.querySelector('[onclick="saveApiKey()"]');
+            if (btn) { btn.textContent = '✅ Klucz zapisany!'; setTimeout(() => { btn.innerHTML = '💾 Zapisz klucz'; }, 2000); }
+            toast('✅ Klucz API zapisany!');
         }
         
         function exportData() {
