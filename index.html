@@ -1725,7 +1725,12 @@
                 el.innerHTML = '<div class="empty"><div class="empty-icon">🌱</div><div class="empty-title">Brak roślin</div><div class="empty-text">Dodaj swoją pierwszą roślinę</div><button class="btn btn-primary" onclick="openAddPlant()">➕ Dodaj roślinę</button></div>';
                 return;
             }
-            el.innerHTML = appData.plants.slice(0, 4).map(p => '<div class="plant-card" onclick="showMyPlant(' + p.id + ')"><div class="plant-card-emoji">' + (p.emoji || '🌿') + '</div><div class="plant-card-body"><div class="plant-card-name">' + p.name + '</div><div class="plant-card-species">' + (needsWater(p) ? '💧 Podlej' : '✓ OK') + '</div></div></div>').join('');
+            el.innerHTML = appData.plants.slice(0, 4).map(function(p) {
+                var thumb = p.coverPhoto
+                    ? '<img src="' + p.coverPhoto + '" class="plant-card-img" loading="lazy" onload="this.classList.add(\'loaded\')" onerror="this.parentElement.innerHTML=\'<div class=plant-card-emoji>' + (p.emoji||'🌿') + '</div>\'">'
+                    : '<div class="plant-card-emoji">' + (p.emoji || '🌿') + '</div>';
+                return '<div class="plant-card" onclick="showMyPlant(' + p.id + ')"><div class="plant-card-visual">' + thumb + '</div><div class="plant-card-body"><div class="plant-card-name">' + p.name + '</div><div class="plant-card-species">' + (needsWater(p) ? '💧 Podlej' : '✓ OK') + '</div></div></div>';
+            }).join('');
         }
         
         function renderPlantsGrid() {
@@ -1734,7 +1739,13 @@
                 el.innerHTML = '<div class="empty" style="grid-column:span 2;"><div class="empty-icon">🌱</div><div class="empty-text">Brak roślin</div></div>';
                 return;
             }
-            el.innerHTML = appData.plants.map(p => '<div class="plant-card" onclick="showMyPlant(' + p.id + ')"><div class="plant-card-emoji">' + (p.emoji || '🌿') + '</div><div class="plant-card-body"><div class="plant-card-name">' + p.name + '</div></div></div>').join('');
+            el.innerHTML = appData.plants.map(function(p) {
+                var thumb = p.coverPhoto
+                    ? '<img src="' + p.coverPhoto + '" class="plant-card-img" loading="lazy" onload="this.classList.add(\'loaded\')" onerror="this.parentElement.innerHTML=\'<div class=plant-card-emoji>' + (p.emoji||'🌿') + '</div>\'">'
+                    : '<div class="plant-card-emoji">' + (p.emoji || '🌿') + '</div>';
+                var water = needsWater(p) ? '<div style="position:absolute;top:8px;right:8px;background:#1a6dff;color:#fff;border-radius:50%;width:24px;height:24px;display:flex;align-items:center;justify-content:center;font-size:12px;">💧</div>' : '';
+                return '<div class="plant-card" onclick="showMyPlant(' + p.id + ')" style="position:relative;"><div class="plant-card-visual">' + thumb + water + '</div><div class="plant-card-body"><div class="plant-card-name">' + p.name + '</div></div></div>';
+            }).join('');
         }
         
         function renderEncyclopedia() {
@@ -1789,7 +1800,15 @@
             document.getElementById('modal-title').textContent = p.name;
             
             let html = '<div class="detail-header">';
-            html += '<div style="font-size:64px;margin-bottom:12px;">' + (p.emoji || '🌿') + '</div>';
+            if (p.coverPhoto) {
+                html += '<div style="position:relative;margin-bottom:12px;">';
+                html += '<img src="' + p.coverPhoto + '" class="detail-img loaded" onerror="this.outerHTML=\'<div style=font-size:64px;text-align:center;padding:12px>' + (p.emoji||'🌿') + '</div>\'">';
+                html += '<button onclick="changeCoverPhoto(' + id + ')" style="position:absolute;bottom:8px;right:8px;background:rgba(0,0,0,0.6);border:none;border-radius:8px;color:#fff;padding:6px 10px;font-size:12px;cursor:pointer;">📷 Zmień</button>';
+                html += '</div>';
+            } else {
+                html += '<div style="font-size:64px;margin-bottom:8px;">' + (p.emoji || '🌿') + '</div>';
+                html += '<button onclick="changeCoverPhoto(' + id + ')" style="background:var(--bg-elevated);border:1px solid var(--border);border-radius:8px;color:var(--text-secondary);padding:6px 14px;font-size:12px;cursor:pointer;margin-bottom:12px;">🖼️ Dodaj zdjęcie okładki</button>';
+            }
             html += '<div class="detail-name">' + p.name + '</div>';
             html += '<div class="detail-species">' + (p.species || '') + '</div></div>';
             
@@ -1919,37 +1938,120 @@
         function addFromEncyc(id) {
             const p = encyclopediaDB.find(x => x.id === id);
             if (!p) return;
-            
             const match = p.care.water.match(/\d+/);
             const interval = match ? parseInt(match[0]) : 7;
-            
+            // Pokaż formularz z możliwością ustawienia zdjęcia
+            document.getElementById('modal-title').textContent = '➕ Dodaj: ' + p.name;
+            document.getElementById('modal-body').innerHTML =
+                '<div style="display:flex;gap:12px;align-items:center;margin-bottom:16px;">' +
+                    '<img src="' + p.image + '" style="width:72px;height:72px;object-fit:cover;border-radius:12px;flex-shrink:0;" onerror="this.outerHTML=\'<div style=font-size:40px>' + p.emoji + '</div>\'">' +
+                    '<div><div style="font-weight:700;font-size:16px;">' + p.name + '</div><div style="font-style:italic;color:var(--text-secondary);font-size:13px;">' + p.species + '</div></div>' +
+                '</div>' +
+                '<div class="form-group"><label class="form-label">Nazwa własna (opcjonalnie)</label>' +
+                '<input type="text" class="form-input" id="afe-name" placeholder="' + p.name + '" value="' + p.name + '"></div>' +
+                '<div class="form-group"><label class="form-label">Cykl podlewania (dni)</label>' +
+                '<input type="number" class="form-input" id="afe-interval" value="' + interval + '" min="1"></div>' +
+                '<div class="form-group">' +
+                    '<label class="form-label">Zdjęcie okładki</label>' +
+                    '<div style="display:flex;gap:8px;margin-bottom:8px;">' +
+                        '<button class="btn btn-secondary" style="flex:1;font-size:13px;" onclick="afeUseEncycImage()">🌿 Z encyklopedii</button>' +
+                        '<button class="btn btn-secondary" style="flex:1;font-size:13px;" onclick="document.getElementById(\'afeFileInput\').click()">📷 Z galerii</button>' +
+                    '</div>' +
+                    '<input type="file" id="afeFileInput" accept="image/*" style="display:none" onchange="afeHandleFile(event)">' +
+                    '<input type="text" class="form-input" id="afe-photo" placeholder="Lub wklej URL zdjęcia..." value="' + p.image + '" style="font-size:12px;">' +
+                    '<div id="afe-preview" style="margin-top:8px;text-align:center;">' +
+                        '<img src="' + p.image + '" id="afePreviewImg" style="max-height:120px;border-radius:10px;object-fit:cover;" onerror="this.style.display=\'none\'">' +
+                    '</div>' +
+                '</div>' +
+                '<button class="btn btn-primary btn-block" onclick="confirmAddFromEncyc(\'' + id + '\')">🌱 Dodaj do moich roślin</button>';
+            document.getElementById('modal').classList.add('active');
+            // Podgląd na żywo gdy zmienia URL
+            setTimeout(function() {
+                var inp = document.getElementById('afe-photo');
+                if (inp) inp.addEventListener('input', function() {
+                    var img = document.getElementById('afePreviewImg');
+                    if (img) { img.src = this.value; img.style.display = 'block'; }
+                });
+            }, 100);
+        }
+
+        function afeUseEncycImage() {
+            // Nic nie rób - pole już ma URL z encyklopedii
+            toast('✅ Zdjęcie z encyklopedii');
+        }
+
+        function afeHandleFile(e) {
+            const file = e.target.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = function(ev) {
+                const inp = document.getElementById('afe-photo');
+                const img = document.getElementById('afePreviewImg');
+                if (inp) inp.value = ev.target.result;
+                if (img) { img.src = ev.target.result; img.style.display = 'block'; }
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function confirmAddFromEncyc(id) {
+            const p = encyclopediaDB.find(x => x.id === id);
+            if (!p) return;
+            const nameVal = document.getElementById('afe-name').value.trim() || p.name;
+            const intervalVal = parseInt(document.getElementById('afe-interval').value) || 7;
+            const photoVal = document.getElementById('afe-photo').value.trim();
+            const match = p.care.water.match(/\d+/);
             appData.plants.push({
                 id: Date.now(),
-                name: p.name,
+                name: nameVal,
                 species: p.species,
                 emoji: p.emoji,
-                interval: interval,
+                interval: intervalVal,
                 lastWatered: new Date().toISOString(),
-                status: 'healthy'
+                status: 'healthy',
+                coverPhoto: photoVal || null,
+                encycId: id
             });
-            
             saveData();
             renderAll();
             closeModal();
-            toast('🌱 Dodano!');
+            toast('🌱 Dodano: ' + nameVal + '!');
         }
         
         // ===== ADD PLANT =====
         function openAddPlant() {
             document.getElementById('modal-title').textContent = 'Dodaj roślinę';
-            document.getElementById('modal-body').innerHTML = '<div class="form-group"><label class="form-label">Nazwa</label><input type="text" class="form-input" id="add-name" placeholder="np. Moja Monstera"></div><div class="form-group"><label class="form-label">Gatunek (opcjonalnie)</label><input type="text" class="form-input" id="add-species" placeholder="np. Monstera deliciosa"></div><div class="form-group"><label class="form-label">Emoji</label><input type="text" class="form-input" id="add-emoji" value="🌿"></div><div class="form-group"><label class="form-label">Cykl podlewania (dni)</label><input type="number" class="form-input" id="add-interval" value="7" min="1"></div><button class="btn btn-primary btn-block" onclick="addPlant()">➕ Dodaj</button><p style="text-align:center;margin-top:16px;color:var(--text-secondary);">lub</p><button class="btn btn-secondary btn-block" onclick="closeModal();showPage(\'encyclopedia\')">📚 Wybierz z encyklopedii</button>';
+            document.getElementById('modal-body').innerHTML =
+                '<div class="form-group"><label class="form-label">Nazwa</label><input type="text" class="form-input" id="add-name" placeholder="np. Moja Monstera"></div>' +
+                '<div class="form-group"><label class="form-label">Gatunek (opcjonalnie)</label><input type="text" class="form-input" id="add-species" placeholder="np. Monstera deliciosa"></div>' +
+                '<div class="form-group"><label class="form-label">Emoji (jeśli brak zdjęcia)</label><input type="text" class="form-input" id="add-emoji" value="🌿"></div>' +
+                '<div class="form-group"><label class="form-label">Cykl podlewania (dni)</label><input type="number" class="form-input" id="add-interval" value="7" min="1"></div>' +
+                '<div class="form-group">' +
+                    '<label class="form-label">Zdjęcie okładki</label>' +
+                    '<div style="display:flex;gap:8px;margin-bottom:8px;">' +
+                        '<button class="btn btn-secondary" style="flex:1;font-size:13px;" onclick="document.getElementById(\'addFileInput\').click()">📷 Z galerii</button>' +
+                    '</div>' +
+                    '<input type="file" id="addFileInput" accept="image/*" style="display:none" onchange="addHandleFile(event)">' +
+                    '<input type="text" class="form-input" id="add-photo" placeholder="Lub wklej URL zdjęcia z internetu..." style="font-size:12px;">' +
+                    '<div id="add-preview" style="margin-top:8px;text-align:center;min-height:0;"></div>' +
+                '</div>' +
+                '<button class="btn btn-primary btn-block" onclick="addPlant()">➕ Dodaj</button>' +
+                '<p style="text-align:center;margin-top:12px;color:var(--text-secondary);">lub</p>' +
+                '<button class="btn btn-secondary btn-block" onclick="closeModal();showPage(\'encyclopedia\')">📚 Wybierz z encyklopedii</button>';
+            // Podgląd URL na żywo
+            setTimeout(function() {
+                var inp = document.getElementById('add-photo');
+                if (inp) inp.addEventListener('input', function() {
+                    var prev = document.getElementById('add-preview');
+                    if (prev && this.value) prev.innerHTML = '<img src="' + this.value + '" style="max-height:100px;border-radius:10px;" onerror="this.style.display=\'none\'">';
+                });
+            }, 100);
             document.getElementById('modal').classList.add('active');
         }
         
         function addPlant() {
             const name = document.getElementById('add-name').value.trim();
             if (!name) { toast('❌ Podaj nazwę'); return; }
-            
+            const photoVal = document.getElementById('add-photo') ? document.getElementById('add-photo').value.trim() : '';
             appData.plants.push({
                 id: Date.now(),
                 name: name,
@@ -1957,13 +2059,26 @@
                 emoji: document.getElementById('add-emoji').value || '🌿',
                 interval: parseInt(document.getElementById('add-interval').value) || 7,
                 lastWatered: new Date().toISOString(),
-                status: 'healthy'
+                status: 'healthy',
+                coverPhoto: photoVal || null
             });
-            
             saveData();
             renderAll();
             closeModal();
-            toast('🌱 Dodano!');
+            toast('🌱 Dodano: ' + name + '!');
+        }
+
+        function addHandleFile(e) {
+            const file = e.target.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = function(ev) {
+                const inp = document.getElementById('add-photo');
+                const prev = document.getElementById('add-preview');
+                if (inp) inp.value = ev.target.result;
+                if (prev) prev.innerHTML = '<img src="' + ev.target.result + '" style="max-height:100px;border-radius:10px;">';
+            };
+            reader.readAsDataURL(file);
         }
         
         // ===== SCANNER =====
@@ -2461,6 +2576,69 @@
             document.getElementById('modal-body').innerHTML = html;
         }
         
+        function changeCoverPhoto(plantId) {
+            const p = appData.plants.find(x => x.id === plantId);
+            if (!p) return;
+            document.getElementById('modal-title').textContent = '🖼️ Zmień zdjęcie okładki';
+            document.getElementById('modal-body').innerHTML =
+                '<div style="display:flex;gap:8px;margin-bottom:12px;">' +
+                    '<button class="btn btn-secondary" style="flex:1;" onclick="document.getElementById(\'cpFileInput\').click()">📷 Z galerii</button>' +
+                '</div>' +
+                '<input type="file" id="cpFileInput" accept="image/*" style="display:none" onchange="cpHandleFile(' + plantId + ',event)">' +
+                '<div class="form-group"><label class="form-label">URL zdjęcia z internetu</label>' +
+                '<input type="text" class="form-input" id="cp-url" placeholder="https://..." value="' + (p.coverPhoto && !p.coverPhoto.startsWith('data:') ? p.coverPhoto : '') + '" style="font-size:12px;"></div>' +
+                '<div id="cp-preview" style="text-align:center;margin:10px 0;">' +
+                    (p.coverPhoto ? '<img src="' + p.coverPhoto + '" style="max-height:140px;border-radius:12px;object-fit:cover;">' : '') +
+                '</div>' +
+                '<div style="display:flex;gap:8px;">' +
+                    '<button class="btn btn-primary" style="flex:1;" onclick="cpSave(' + plantId + ')">💾 Zapisz</button>' +
+                    (p.coverPhoto ? '<button class="btn btn-secondary" style="color:var(--danger);" onclick="cpRemove(' + plantId + ')">🗑️ Usuń</button>' : '') +
+                '</div>';
+            document.getElementById('modal').classList.add('active');
+            setTimeout(function() {
+                var inp = document.getElementById('cp-url');
+                if (inp) inp.addEventListener('input', function() {
+                    var prev = document.getElementById('cp-preview');
+                    if (prev) prev.innerHTML = '<img src="' + this.value + '" style="max-height:140px;border-radius:12px;object-fit:cover;" onerror="this.remove()">';
+                });
+            }, 100);
+        }
+
+        function cpHandleFile(plantId, e) {
+            const file = e.target.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = function(ev) {
+                const inp = document.getElementById('cp-url');
+                const prev = document.getElementById('cp-preview');
+                if (inp) inp.value = '';
+                if (prev) prev.innerHTML = '<img src="' + ev.target.result + '" style="max-height:140px;border-radius:12px;">';
+                // Tymczasowo zapisz w data attribute
+                const btn = document.querySelector('[onclick="cpSave(' + plantId + ')"]');
+                if (btn) btn.dataset.b64 = ev.target.result;
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function cpSave(plantId) {
+            const p = appData.plants.find(x => x.id === plantId);
+            if (!p) return;
+            const btn = document.querySelector('[onclick="cpSave(' + plantId + ')"]');
+            const b64 = btn && btn.dataset.b64;
+            const url = document.getElementById('cp-url') ? document.getElementById('cp-url').value.trim() : '';
+            p.coverPhoto = b64 || url || p.coverPhoto;
+            saveData();
+            renderAll();
+            closeModal();
+            setTimeout(function() { showMyPlant(plantId); }, 50);
+            toast('✅ Zdjęcie zaktualizowane!');
+        }
+
+        function cpRemove(plantId) {
+            const p = appData.plants.find(x => x.id === plantId);
+            if (p) { p.coverPhoto = null; saveData(); renderAll(); closeModal(); setTimeout(function() { showMyPlant(plantId); }, 50); toast('🗑️ Zdjęcie usunięte'); }
+        }
+
         // ===== TOAST =====
         function toast(msg) {
             const el = document.getElementById('toast');
