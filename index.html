@@ -2420,9 +2420,18 @@
             document.getElementById('fileInput').click();
         }
         
+        function resetFileInput(inputEl) {
+            // Klonowanie jest niezawodne na Androidzie/TWA - samo e.target.value='' często nie działa
+            const newInput = inputEl.cloneNode(false);
+            inputEl.parentNode.replaceChild(newInput, inputEl);
+            newInput.addEventListener('change', function(ev) { handleFile(ev); });
+        }
+
         function handleFile(e) {
             const file = e.target.files[0];
             if (!file) return;
+            // Resetuj input od razu - zanim FileReader skończy czytać
+            resetFileInput(e.target);
             const reader = new FileReader();
             reader.onload = function(ev) {
                 document.getElementById('scanner-preview').innerHTML =
@@ -2436,7 +2445,6 @@
                 analyzeImage(ev.target.result);
             };
             reader.readAsDataURL(file);
-            e.target.value = '';
         }
         
         async function analyzeImage(data) {
@@ -2654,9 +2662,29 @@
             }
             html += '<button class="btn btn-primary" style="flex:1;" onclick="addScanned(\'' + safeNameAttr + '\',\'' + safeSpeciesAttr + '\')">➕ Dodaj do roślin</button>';
             html += '</div>';
+            html += '<button class="btn btn-secondary btn-block" style="margin-top:10px;" onclick="resetScanner()">📸 Skanuj kolejną roślinę</button>';
             html += '</div>';
 
             document.getElementById('scanner-result').innerHTML = html;
+        }
+
+        function resetScanner() {
+            // Wyczyść wynik i podgląd
+            document.getElementById('scanner-result').innerHTML = '';
+            document.getElementById('scanner-preview').innerHTML =
+                '<div style="display:flex;flex-direction:column;align-items:center;gap:8px;color:var(--text-secondary);">' +
+                '<span style="font-size:48px;">🌿</span>' +
+                '<span style="font-size:14px;">Zrób zdjęcie rośliny</span>' +
+                '</div>';
+            // Reset inputów – ważne w TWA/Android WebView
+            var fi = document.getElementById('fileInput');
+            var ci = document.getElementById('cameraInput');
+            if (fi) fi.value = '';
+            if (ci) ci.value = '';
+            // Przewiń na górę sekcji skanera
+            var scanPage = document.getElementById('page-scanner');
+            if (scanPage) scanPage.scrollTop = 0;
+            window.scrollTo(0, 0);
         }
 
         function switchScanTab(tabName, btn) {
