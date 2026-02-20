@@ -3260,11 +3260,13 @@
                         // Dane z chmury są nowsze – załaduj je
                         const { _updatedAt, ...rest } = cloudData;
                         appData = { ...appData, ...rest, _updatedAt: cloudTime };
-                        // Zawsze przywróć apiKey z osobnego storage
-                        const savedKey = localStorage.getItem('plantcare_apikey');
-                        if (savedKey) {
-                            if (!appData.settings) appData.settings = {};
-                            appData.settings.apiKey = savedKey;
+                        // Przywróć apiKey z osobnego storage jeśli chmura go nie ma
+                        if (!appData.settings || !appData.settings.apiKey) {
+                            const savedKey = localStorage.getItem('plantcare_apikey');
+                            if (savedKey) {
+                                if (!appData.settings) appData.settings = {};
+                                appData.settings.apiKey = savedKey;
+                            }
                         }
                         localStorage.setItem('plantcare', JSON.stringify(appData));
                         renderAll();
@@ -3301,11 +3303,7 @@
                         return copy;
                     });
                 }
-                // Usuń klucz API (bezpieczeństwo – nie wysyłaj do chmury)
-                if (dataToSync.settings) {
-                    dataToSync.settings = Object.assign({}, dataToSync.settings);
-                    delete dataToSync.settings.apiKey;
-                }
+                // apiKey jest synchronizowany - jest bezpieczny bo Firestore jest chroniony regułami
                 await fbDb.collection('plantcare').doc(fbUid).set(dataToSync);
                 appData._updatedAt = dataToSync._updatedAt;
                 localStorage.setItem('plantcare', JSON.stringify(appData));
