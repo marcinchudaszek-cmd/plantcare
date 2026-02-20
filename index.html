@@ -908,17 +908,17 @@
                     </div>
                 </div>
                 <div class="scanner-btns">
-                    <button class="btn btn-secondary" onclick="document.getElementById('fileInput').click()">
+                    <label for="fileInput" class="btn btn-secondary" style="cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;">
                         🖼️ Galeria
-                    </button>
-                    <button class="btn btn-primary" onclick="document.getElementById('cameraInput').click()">
+                    </label>
+                    <label for="cameraInput" class="btn btn-primary" style="cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;">
                         📸 Aparat
-                    </button>
+                    </label>
                 </div>
             </div>
             
-            <input type="file" id="fileInput" accept="image/*" onchange="handleFile(event)" style="display:none;">
-            <input type="file" id="cameraInput" accept="image/*" capture="environment" onchange="handleFile(event)" style="display:none;">
+            <input type="file" id="fileInput" accept="image/*" onchange="handleFile(event)" style="position:absolute;width:1px;height:1px;opacity:0;pointer-events:none;">
+            <input type="file" id="cameraInput" accept="image/*" capture="environment" onchange="handleFile(event)" style="position:absolute;width:1px;height:1px;opacity:0;pointer-events:none;">
             
             <!-- Inputy dla dziennika zdjęć rośliny -->
             <input type="file" id="plantCameraInput" accept="image/*" capture="environment" onchange="handlePlantPhoto(event)" style="display:none;">
@@ -2513,7 +2513,7 @@
                     '<div class="alert alert-error">' +
                     '<div class="alert-title">❌ Błąd analizy</div>' +
                     '<div class="alert-text">' + err.message + '</div>' +
-                    '<button class="btn btn-secondary btn-block" style="margin-top:10px;" onclick="document.getElementById(\'fileInput\').click()">Spróbuj ponownie</button>' +
+                    '<label for="fileInput" class="btn btn-secondary btn-block" style="margin-top:10px;cursor:pointer;display:block;text-align:center;">Spróbuj ponownie</label>' +
                     '</div>';
             }
         }
@@ -2672,16 +2672,13 @@
             // Wyczyść wynik i podgląd
             document.getElementById('scanner-result').innerHTML = '';
             document.getElementById('scanner-preview').innerHTML =
-                '<div style="display:flex;flex-direction:column;align-items:center;gap:8px;color:var(--text-secondary);">' +
-                '<span style="font-size:48px;">🌿</span>' +
-                '<span style="font-size:14px;">Zrób zdjęcie rośliny</span>' +
-                '</div>';
-            // Reset inputów – ważne w TWA/Android WebView
+                '<div class="scanner-placeholder"><div>📷</div><p>Wybierz lub zrób zdjęcie</p></div>';
+            // Reset wartości inputów – kluczowe żeby można było wybrać ten sam plik
             var fi = document.getElementById('fileInput');
             var ci = document.getElementById('cameraInput');
             if (fi) fi.value = '';
             if (ci) ci.value = '';
-            // Przewiń na górę sekcji skanera
+            // Przewiń na górę
             var scanPage = document.getElementById('page-scanner');
             if (scanPage) scanPage.scrollTop = 0;
             window.scrollTo(0, 0);
