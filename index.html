@@ -947,7 +947,13 @@
         
         <!-- ENCYCLOPEDIA -->
         <div id="page-encyclopedia" class="page">
-            <h2 style="margin-bottom:16px;">📚 Encyklopedia</h2>
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;">
+                <h2 style="margin:0;">📚 Encyklopedia</h2>
+                <div style="display:flex;gap:8px;">
+                    <button id="btn-add-encyc" class="btn btn-secondary" style="display:none;padding:8px 12px;font-size:13px;" onclick="openAddEncycPlant()">➕ Dodaj</button>
+                    <button id="btn-edit-mode" class="btn btn-secondary" style="padding:8px 12px;font-size:13px;" onclick="toggleEncycEditMode()">✏️ Edytuj</button>
+                </div>
+            </div>
             
             <div class="search-box">
                 <input type="text" placeholder="Szukaj rośliny..." id="encyc-search" oninput="filterPlants()">
@@ -1960,7 +1966,8 @@
         // Łącznie: 88 roślin
 
         // ===== STATE =====
-        let appData = { plants: [], settings: { apiKey: '' } };
+        let appData = { plants: [], settings: { apiKey: '' }, encycCustom: {}, encycUserPlants: [] };
+        let encycEditMode = false;
         let currentFilter = 'all';
         
         // ===== INIT =====
@@ -2180,13 +2187,15 @@
         
         // ===== ENCYCLOPEDIA DETAILS =====
         function showEncycPlant(id) {
-            const p = encyclopediaDB.find(x => x.id === id);
+            var allPlants = encyclopediaDB.concat(appData.encycUserPlants || []);
+            const p = allPlants.find(x => x.id === id);
             if (!p) return;
             
             const badge = p.difficulty === 'easy' ? 'badge-easy' : p.difficulty === 'hard' ? 'badge-hard' : 'badge-medium';
             const badgeText = p.difficulty === 'easy' ? '👶 Łatwa' : p.difficulty === 'hard' ? '🎯 Trudna' : '📊 Średnia';
             
-            let html = '<img src="' + p.image + '" class="detail-img" onerror="this.outerHTML=\'<div style=font-size:80px;text-align:center;padding:20px;background:var(--bg-elevated);border-radius:16px;margin-bottom:16px;>' + p.emoji + '</div>\'">';
+            var customImg = (appData.encycCustom && appData.encycCustom[p.id] && appData.encycCustom[p.id].image) ? appData.encycCustom[p.id].image : p.image;
+            let html = '<img src="' + customImg + '" class="detail-img loaded" onerror="this.remove()">';
             html += '<div class="detail-header"><div class="detail-name">' + p.name + '</div><div class="detail-species">' + p.species + '</div><span class="badge ' + badge + '">' + badgeText + '</span></div>';
             html += '<div class="detail-desc">' + p.description + '</div>';
             
@@ -2942,6 +2951,224 @@
             if (p) { p.coverPhoto = null; saveData(); renderAll(); closeModal(); setTimeout(function() { showMyPlant(plantId); }, 50); toast('🗑️ Zdjęcie usunięte'); }
         }
 
+
+        // ===== ENCYKLOPEDIA – TRYB EDYCJI =====
+
+        function toggleEncycEditMode() {
+            encycEditMode = !encycEditMode;
+            const btn = document.getElementById('btn-edit-mode');
+            const addBtn = document.getElementById('btn-add-encyc');
+            if (btn) btn.innerHTML = encycEditMode ? '✅ Gotowe' : '✏️ Edytuj';
+            if (btn) btn.style.background = encycEditMode ? 'var(--accent)' : '';
+            if (btn) btn.style.color = encycEditMode ? '#000' : '';
+            if (addBtn) addBtn.style.display = encycEditMode ? 'block' : 'none';
+            renderEncyclopedia();
+        }
+
+        function eepClickFile() { document.getElementById("eepFile").click(); }
+        function aepClickFile() { document.getElementById("aepFile").click(); }
+
+        function editEncycPhoto(plantId) {
+            var allPlants = encyclopediaDB.concat(appData.encycUserPlants || []);
+            var p = allPlants.find(function(x) { return x.id === plantId; });
+            if (!p) return;
+            var custom = appData.encycCustom || {};
+            var currentImg = (custom[plantId] && custom[plantId].image) ? custom[plantId].image : p.image;
+            var isUserPlant = !!p._userAdded;
+
+            document.getElementById('modal-title').textContent = '📷 Zmień zdjęcie: ' + p.name;
+            document.getElementById('modal-body').innerHTML =
+                '<div style="text-align:center;margin-bottom:14px;">' +
+                    '<img id="eep-preview" src="' + currentImg + '" style="max-height:160px;border-radius:12px;object-fit:cover;width:100%;" onerror="this.remove()">' +
+                '</div>' +
+                '<div style="display:flex;gap:8px;margin-bottom:12px;">' +
+                    '<button class="btn btn-secondary" style="flex:1;font-size:13px;" onclick="eepClickFile()">📷 Z galerii</button>' +
+                    ((!isUserPlant && p.image) ? '<button class="btn btn-secondary" style="flex:1;font-size:13px;" onclick="eepReset(' + JSON.stringify(plantId) + ')">↩️ Oryginał</button>' : '') +
+                '</div>' +
+                '<input type="file" id="eepFile" accept="image/*" style="display:none" onchange="eepHandleFile(' + JSON.stringify(plantId) + ',event)">' +
+                '<div class="form-group"><label class="form-label">URL zdjęcia z internetu</label>' +
+                '<input type="text" class="form-input" id="eep-url" placeholder="https://..." style="font-size:12px;" value="' + (currentImg && !currentImg.startsWith('data:') ? currentImg : '') + '"></div>' +
+                (isUserPlant ?
+                    '<div class="form-group"><label class="form-label">Nazwa rośliny</label><input type="text" class="form-input" id="eep-name" value="' + p.name + '"></div>' +
+                    '<div class="form-group"><label class="form-label">Gatunek</label><input type="text" class="form-input" id="eep-species" value="' + p.species + '"></div>' +
+                    '<div class="form-group"><label class="form-label">Opis</label><textarea class="form-input" id="eep-desc" rows="3" style="resize:vertical;">' + (p.description||'') + '</textarea></div>'
+                : '') +
+                '<button class="btn btn-primary btn-block" onclick="eepSave(' + JSON.stringify(plantId) + ',' + isUserPlant + ')">💾 Zapisz</button>';
+
+            document.getElementById('modal').classList.add('active');
+            setTimeout(function() {
+                var inp = document.getElementById('eep-url');
+                if (inp) inp.addEventListener('input', function() {
+                    var prev = document.getElementById('eep-preview');
+                    if (prev && this.value) { prev.src = this.value; prev.style.display = 'block'; }
+                });
+            }, 100);
+        }
+
+        function eepHandleFile(plantId, e) {
+            var file = e.target.files[0];
+            if (!file) return;
+            var reader = new FileReader();
+            reader.onload = function(ev) {
+                var prev = document.getElementById('eep-preview');
+                var inp  = document.getElementById('eep-url');
+                if (prev) { prev.src = ev.target.result; prev.style.display = 'block'; }
+                if (inp)  inp.dataset.b64 = ev.target.result;
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function eepReset(plantId) {
+            if (!appData.encycCustom) appData.encycCustom = {};
+            delete appData.encycCustom[plantId];
+            saveData();
+            closeModal();
+            renderEncyclopedia();
+            toast('↩️ Przywrócono oryginał');
+        }
+
+        function eepSave(plantId, isUserPlant) {
+            var inp   = document.getElementById('eep-url');
+            var b64   = inp && inp.dataset.b64;
+            var url   = inp ? inp.value.trim() : '';
+            var newImg = b64 || url || null;
+
+            if (!appData.encycCustom) appData.encycCustom = {};
+
+            if (isUserPlant) {
+                // Edytuj roślinę użytkownika
+                var idx = (appData.encycUserPlants || []).findIndex(function(x) { return x.id === plantId; });
+                if (idx >= 0) {
+                    var nameEl = document.getElementById('eep-name');
+                    var specEl = document.getElementById('eep-species');
+                    var descEl = document.getElementById('eep-desc');
+                    if (nameEl) appData.encycUserPlants[idx].name = nameEl.value.trim() || appData.encycUserPlants[idx].name;
+                    if (specEl) appData.encycUserPlants[idx].species = specEl.value.trim() || appData.encycUserPlants[idx].species;
+                    if (descEl) appData.encycUserPlants[idx].description = descEl.value.trim();
+                    if (newImg) appData.encycUserPlants[idx].image = newImg;
+                }
+            } else {
+                if (newImg) {
+                    appData.encycCustom[plantId] = { image: newImg };
+                }
+            }
+            saveData();
+            closeModal();
+            renderEncyclopedia();
+            toast('✅ Zapisano!');
+        }
+
+        function deleteUserEncycPlant(plantId) {
+            if (!confirm('Usunąć tę roślinę z encyklopedii?')) return;
+            appData.encycUserPlants = (appData.encycUserPlants || []).filter(function(x) { return x.id !== plantId; });
+            saveData();
+            renderEncyclopedia();
+            toast('🗑️ Usunięto');
+        }
+
+        function openAddEncycPlant() {
+            document.getElementById('modal-title').textContent = '🌿 Dodaj roślinę do encyklopedii';
+            document.getElementById('modal-body').innerHTML =
+                '<div style="display:flex;gap:8px;margin-bottom:12px;">' +
+                    '<button class="btn btn-secondary" style="flex:1;font-size:13px;" onclick="aepClickFile()">📷 Dodaj zdjęcie</button>' +
+                '</div>' +
+                '<input type="file" id="aepFile" accept="image/*" style="display:none" onchange="aepHandleFile(event)">' +
+                '<div id="aep-preview" style="text-align:center;margin-bottom:12px;min-height:0;"></div>' +
+                '<div class="form-group"><label class="form-label">URL zdjęcia (opcjonalnie)</label>' +
+                '<input type="text" class="form-input" id="aep-url" placeholder="https://..." style="font-size:12px;"></div>' +
+                '<div class="form-group"><label class="form-label">Nazwa *</label>' +
+                '<input type="text" class="form-input" id="aep-name" placeholder="np. Monstera Albo"></div>' +
+                '<div class="form-group"><label class="form-label">Gatunek *</label>' +
+                '<input type="text" class="form-input" id="aep-species" placeholder="np. Monstera albovariegata"></div>' +
+                '<div class="form-group"><label class="form-label">Emoji</label>' +
+                '<input type="text" class="form-input" id="aep-emoji" value="🌿" style="width:80px;"></div>' +
+                '<div class="form-group"><label class="form-label">Opis</label>' +
+                '<textarea class="form-input" id="aep-desc" rows="3" placeholder="Krótki opis rośliny..." style="resize:vertical;"></textarea></div>' +
+                '<div class="form-group"><label class="form-label">Trudność</label>' +
+                '<select class="form-input" id="aep-diff"><option value="easy">🟢 Łatwa</option><option value="medium">🟡 Średnia</option><option value="hard">🔴 Trudna</option></select></div>' +
+                '<div class="form-group"><label class="form-label">Kategoria</label>' +
+                '<div style="display:flex;flex-wrap:wrap;gap:6px;" id="aep-cats">' +
+                    ['popular','easy','flowering','succulents','tropical','herbs','special'].map(function(c) {
+                        var labels = {popular:'🌟 Popularne',easy:'👶 Łatwe',flowering:'🌸 Kwitnące',succulents:'🌵 Sukulenty',tropical:'🌴 Tropikalne',herbs:'🌿 Zioła',special:'✨ Specjalne'};
+                        return '<label style="display:flex;align-items:center;gap:4px;font-size:13px;cursor:pointer;">' +
+                            '<input type="checkbox" value="' + c + '"> ' + (labels[c]||c) + '</label>';
+                    }).join('') +
+                '</div></div>' +
+                '<div class="form-group"><label class="form-label">Podlewanie</label>' +
+                '<input type="text" class="form-input" id="aep-water" placeholder="Co 7 dni"></div>' +
+                '<div class="form-group"><label class="form-label">Światło</label>' +
+                '<input type="text" class="form-input" id="aep-light" placeholder="Jasne pośrednie"></div>' +
+                '<div class="form-group"><label class="form-label">Toksyczna dla zwierząt?</label>' +
+                '<input type="text" class="form-input" id="aep-toxic" placeholder="Nie / Tak – ..."></div>' +
+                '<button class="btn btn-primary btn-block" onclick="confirmAddEncycPlant()">✅ Dodaj do encyklopedii</button>';
+
+            document.getElementById('modal').classList.add('active');
+            setTimeout(function() {
+                var inp = document.getElementById('aep-url');
+                if (inp) inp.addEventListener('input', function() {
+                    var prev = document.getElementById('aep-preview');
+                    if (prev) prev.innerHTML = '<img src="' + this.value + '" style="max-height:120px;border-radius:10px;object-fit:cover;" onerror="this.remove()">';
+                });
+            }, 100);
+        }
+
+        function aepHandleFile(e) {
+            var file = e.target.files[0];
+            if (!file) return;
+            var reader = new FileReader();
+            reader.onload = function(ev) {
+                var prev = document.getElementById('aep-preview');
+                var inp  = document.getElementById('aep-url');
+                if (prev) prev.innerHTML = '<img src="' + ev.target.result + '" style="max-height:120px;border-radius:10px;object-fit:cover;">';
+                if (inp) inp.dataset.b64 = ev.target.result;
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function confirmAddEncycPlant() {
+            var name = document.getElementById('aep-name').value.trim();
+            var species = document.getElementById('aep-species').value.trim();
+            if (!name || !species) { toast('❌ Podaj nazwę i gatunek'); return; }
+
+            var urlInp = document.getElementById('aep-url');
+            var img = (urlInp && urlInp.dataset.b64) || (urlInp && urlInp.value.trim()) || '';
+
+            var cats = [];
+            document.querySelectorAll('#aep-cats input:checked').forEach(function(cb) { cats.push(cb.value); });
+            if (!cats.length) cats = ['special'];
+
+            var newPlant = {
+                id: 'user_' + Date.now(),
+                name: name,
+                species: species,
+                emoji: document.getElementById('aep-emoji').value || '🌿',
+                image: img,
+                category: cats,
+                difficulty: document.getElementById('aep-diff').value,
+                origin: 'Własna kolekcja',
+                toxic: document.getElementById('aep-toxic').value || 'Nieznana',
+                maxHeight: '–',
+                description: document.getElementById('aep-desc').value.trim(),
+                care: {
+                    water: document.getElementById('aep-water').value || '–',
+                    light: document.getElementById('aep-light').value || '–',
+                    humidity: '–',
+                    temperature: '–'
+                },
+                funFacts: [],
+                diseases: [],
+                propagation: '–',
+                _userAdded: true
+            };
+
+            if (!appData.encycUserPlants) appData.encycUserPlants = [];
+            appData.encycUserPlants.push(newPlant);
+            saveData();
+            closeModal();
+            renderEncyclopedia();
+            toast('🌿 Dodano: ' + name + '!');
+        }
+
         // ===== TOAST =====
         function toast(msg) {
             const el = document.getElementById('toast');
@@ -3118,11 +3345,20 @@
             if (!raw) { toast('❌ Wklej konfigurację Firebase'); return; }
             let config;
             try {
-                // Obsłuż zarówno czysty JSON jak i const firebaseConfig = {...}
-                const jsonStr = raw.replace(/^.*?=\s*/, '').replace(/;?\s*$/, '');
+                // Wyciągnij obiekt {...} z dowolnego formatu
+                let jsonStr = raw;
+                // Usuń "const firebaseConfig = " itp.
+                const objMatch = jsonStr.match(/\{[\s\S]*\}/);
+                if (objMatch) jsonStr = objMatch[0];
+                // Zamień klucze JS bez cudzysłowów -> poprawny JSON
+                jsonStr = jsonStr.replace(/([{,]\s*)(\w+)(\s*):/g, '$1"$2"$3:');
+                // Zamień pojedyncze cudzysłowy wartości -> podwójne
+                jsonStr = jsonStr.replace(/:\s*'([^']*)'/g, ': "$1"');
+                // Usuń trailing commas
+                jsonStr = jsonStr.replace(/,(\s*[}\]])/g, '$1');
                 config = JSON.parse(jsonStr);
             } catch(e) {
-                toast('❌ Błędny format konfiguracji'); return;
+                toast('❌ Nie udało się sparsować – spróbuj ponownie'); return;
             }
             if (!config.apiKey || !config.projectId) {
                 toast('❌ Konfiguracja niekompletna'); return;
