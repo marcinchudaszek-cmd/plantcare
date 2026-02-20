@@ -2463,7 +2463,7 @@
                 const prompt = 'Jesteś ekspertem botaniki. Przeanalizuj to zdjęcie rośliny i odpowiedz TYLKO czystym JSON bez żadnego tekstu ani markdown.\n\nJeśli to roślina, zwróć:\n{\n  "isPlant": true,\n  "confidence": 85,\n  "name": "Polska nazwa rośliny",\n  "species": "Łacińska nazwa gatunkowa",\n  "description": "Krótki opis 2-3 zdania",\n  "care": {\n    "water": "Jak często podlewać",\n    "light": "Jakie oświetlenie",\n    "humidity": "Wilgotność w %",\n    "temperature": "Zakres °C"\n  },\n  "toxic": "Tak/Nie/krótki opis",\n  "difficulty": "easy/medium/hard",\n  "health": "healthy/warning/sick",\n  "healthNote": "Obserwacja kondycji lub null",\n  "tips": ["Tip 1", "Tip 2", "Tip 3"]\n}\n\nJeśli NIE jest to roślina:\n{"isPlant": false, "reason": "krótkie wyjaśnienie"}\n\nOdpowiedz TYLKO JSON.';
 
                 const res = await fetch(
-                    'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent?key=' + getLocalApiKey(),
+                    'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=' + getLocalApiKey(),
                     {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
