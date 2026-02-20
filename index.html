@@ -1980,6 +1980,12 @@
         function loadData() {
             const saved = localStorage.getItem('plantcare');
             if (saved) appData = JSON.parse(saved);
+            // Wczytaj apiKey z osobnego, bezpiecznego miejsca
+            const savedKey = localStorage.getItem('plantcare_apikey');
+            if (savedKey) {
+                if (!appData.settings) appData.settings = {};
+                appData.settings.apiKey = savedKey;
+            }
         }
         
         function saveData() {
@@ -2736,9 +2742,10 @@
             if (!val) { toast('❌ Wklej klucz API'); return; }
             if (!appData.settings) appData.settings = {};
             appData.settings.apiKey = val;
+            // Zapisz w OSOBNYM kluczu - nigdy nie nadpisywany przez sync
+            localStorage.setItem('plantcare_apikey', val);
             saveData();
             checkApiKey();
-            // Pokaż że klucz jest zapisany
             const btn = document.querySelector('[onclick="saveApiKey()"]');
             if (btn) { btn.textContent = '✅ Klucz zapisany!'; setTimeout(() => { btn.innerHTML = '💾 Zapisz klucz'; }, 2000); }
             toast('✅ Klucz API zapisany!');
@@ -3251,13 +3258,13 @@
                     const localTime = appData._updatedAt || 0;
                     if (cloudTime > localTime) {
                         // Dane z chmury są nowsze – załaduj je
-                        // Zachowaj lokalny apiKey i fbConfig – nigdy nie sync'ujemy ich
-                        const localApiKey = appData.settings && appData.settings.apiKey;
                         const { _updatedAt, ...rest } = cloudData;
                         appData = { ...appData, ...rest, _updatedAt: cloudTime };
-                        if (localApiKey) {
+                        // Zawsze przywróć apiKey z osobnego storage
+                        const savedKey = localStorage.getItem('plantcare_apikey');
+                        if (savedKey) {
                             if (!appData.settings) appData.settings = {};
-                            appData.settings.apiKey = localApiKey;
+                            appData.settings.apiKey = savedKey;
                         }
                         localStorage.setItem('plantcare', JSON.stringify(appData));
                         renderAll();
@@ -3332,9 +3339,13 @@
                 const cloudData = doc.data();
                 const { _updatedAt, ...rest } = cloudData;
                 // Przejmij dane ale zachowaj lokalny apiKey
-                const localApiKey = appData.settings && appData.settings.apiKey;
                 appData = Object.assign({}, appData, rest);
-                if (localApiKey && appData.settings) appData.settings.apiKey = localApiKey;
+                // Przywróć apiKey z osobnego storage
+                const savedKey2 = localStorage.getItem('plantcare_apikey');
+                if (savedKey2) {
+                    if (!appData.settings) appData.settings = {};
+                    appData.settings.apiKey = savedKey2;
+                }
                 appData._updatedAt = 0;  // wymuś zapis przy następnej sync
                 saveData();
                 renderAll();
