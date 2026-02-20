@@ -2748,14 +2748,34 @@
         function saveApiKey() {
             const val = document.getElementById('api-key').value.trim();
             if (!val) { toast('❌ Wklej klucz API'); return; }
-            if (!appData.settings) appData.settings = {};
-            // Klucz TYLKO w osobnym localStorage - nigdy w appData
+            // Zapisz lokalnie
             setLocalApiKey(val);
-            saveData();
+            // Zapisz w Firestore (trwałe - przeżywa reinstalację)
+            saveApiKeyToFirestore(val);
             checkApiKey();
             const btn = document.querySelector('[onclick="saveApiKey()"]');
             if (btn) { btn.textContent = '✅ Klucz zapisany!'; setTimeout(() => { btn.innerHTML = '💾 Zapisz klucz'; }, 2000); }
             toast('✅ Klucz API zapisany!');
+        }
+
+        function saveApiKeyToFirestore(key) {
+            if (!fbDb || !fbUid) return;
+            // Osobny dokument - nie miesza się z syncToCloud
+            fbDb.collection('plantcare_keys').doc(fbUid).set({ geminiKey: key })
+                .catch(function(e) { console.warn('Błąd zapisu klucza:', e); });
+        }
+
+        function loadApiKeyFromFirestore() {
+            if (!fbDb || !fbUid) return;
+            fbDb.collection('plantcare_keys').doc(fbUid).get().then(function(doc) {
+                if (doc.exists && doc.data().geminiKey) {
+                    setLocalApiKey(doc.data().geminiKey);
+                    // Odśwież pole w ustawieniach jeśli otwarte
+                    const keyInput = document.getElementById('api-key');
+                    if (keyInput && !keyInput.value) keyInput.value = doc.data().geminiKey;
+                    checkApiKey();
+                }
+            }).catch(function(e) { console.warn('Błąd odczytu klucza:', e); });
         }
         
         function exportData() {
@@ -3231,6 +3251,8 @@
 
                 // Zacznij nasłuchiwać na zmiany w Firestore (real-time sync)
                 startListening();
+                // Wczytaj klucz Gemini z Firestore
+                loadApiKeyFromFirestore();
 
                 updateSyncUI('connected');
                 return true;
