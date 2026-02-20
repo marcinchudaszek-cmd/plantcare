@@ -1970,6 +1970,22 @@
         let encycEditMode = false;
         let currentFilter = 'all';
         
+        // ===== APIKEY HELPERS – klucz ZAWSZE lokalny, nigdy w chmurze =====
+        function getLocalApiKey() {
+            return localStorage.getItem('plantcare_apikey') || '';
+        }
+        function setLocalApiKey(key) {
+            localStorage.setItem('plantcare_apikey', key);
+        }
+        function restoreApiKey() {
+            // Wywołaj po każdej operacji która może nadpisać appData
+            const key = getLocalApiKey();
+            if (key) {
+                if (!appData.settings) appData.settings = {};
+                appData.settings.apiKey = key;
+            }
+        }
+
         // ===== INIT =====
         function init() {
             loadData();
@@ -1980,12 +1996,7 @@
         function loadData() {
             const saved = localStorage.getItem('plantcare');
             if (saved) appData = JSON.parse(saved);
-            // Wczytaj apiKey z osobnego, bezpiecznego miejsca
-            const savedKey = localStorage.getItem('plantcare_apikey');
-            if (savedKey) {
-                if (!appData.settings) appData.settings = {};
-                appData.settings.apiKey = savedKey;
-            }
+            restoreApiKey();
         }
         
         function saveData() {
@@ -2743,7 +2754,7 @@
             if (!appData.settings) appData.settings = {};
             appData.settings.apiKey = val;
             // Zapisz w OSOBNYM kluczu - nigdy nie nadpisywany przez sync
-            localStorage.setItem('plantcare_apikey', val);
+            setLocalApiKey(val);
             saveData();
             checkApiKey();
             const btn = document.querySelector('[onclick="saveApiKey()"]');
@@ -3260,14 +3271,7 @@
                         // Dane z chmury są nowsze – załaduj je
                         const { _updatedAt, ...rest } = cloudData;
                         appData = { ...appData, ...rest, _updatedAt: cloudTime };
-                        // Przywróć apiKey z osobnego storage jeśli chmura go nie ma
-                        if (!appData.settings || !appData.settings.apiKey) {
-                            const savedKey = localStorage.getItem('plantcare_apikey');
-                            if (savedKey) {
-                                if (!appData.settings) appData.settings = {};
-                                appData.settings.apiKey = savedKey;
-                            }
-                        }
+                        restoreApiKey(); // zawsze przywróć lokalny klucz
                         localStorage.setItem('plantcare', JSON.stringify(appData));
                         renderAll();
                         renderScanHistory && renderScanHistory();
@@ -3303,7 +3307,11 @@
                         return copy;
                     });
                 }
-                // apiKey jest synchronizowany - jest bezpieczny bo Firestore jest chroniony regułami
+                // apiKey nigdy nie idzie do chmury – jest lokalny na każdym urządzeniu
+                if (dataToSync.settings) {
+                    dataToSync.settings = Object.assign({}, dataToSync.settings);
+                    delete dataToSync.settings.apiKey;
+                }
                 await fbDb.collection('plantcare').doc(fbUid).set(dataToSync);
                 appData._updatedAt = dataToSync._updatedAt;
                 localStorage.setItem('plantcare', JSON.stringify(appData));
@@ -3338,12 +3346,7 @@
                 const { _updatedAt, ...rest } = cloudData;
                 // Przejmij dane ale zachowaj lokalny apiKey
                 appData = Object.assign({}, appData, rest);
-                // Przywróć apiKey z osobnego storage
-                const savedKey2 = localStorage.getItem('plantcare_apikey');
-                if (savedKey2) {
-                    if (!appData.settings) appData.settings = {};
-                    appData.settings.apiKey = savedKey2;
-                }
+                restoreApiKey(); // przywróć lokalny klucz po imporcie
                 appData._updatedAt = 0;  // wymuś zapis przy następnej sync
                 saveData();
                 renderAll();
