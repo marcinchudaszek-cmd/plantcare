@@ -1966,7 +1966,7 @@
         // Łącznie: 88 roślin
 
         // ===== STATE =====
-        let appData = { plants: [], settings: { apiKey: '' }, encycCustom: {}, encycUserPlants: [] };
+        let appData = { plants: [], settings: {}, encycCustom: {}, encycUserPlants: [] };
         let encycEditMode = false;
         let currentFilter = 'all';
         
@@ -1979,11 +1979,7 @@
         }
         function restoreApiKey() {
             // Wywołaj po każdej operacji która może nadpisać appData
-            const key = getLocalApiKey();
-            if (key) {
-                if (!appData.settings) appData.settings = {};
-                appData.settings.apiKey = key;
-            }
+            // klucz żyje tylko w plantcare_apikey, nie w appData
         }
 
         // ===== INIT =====
@@ -2017,8 +2013,9 @@
             if (id === 'settings') {
                 // Wczytaj zapisany klucz do pola
                 const keyInput = document.getElementById('api-key');
-                if (keyInput && appData.settings && appData.settings.apiKey) {
-                    keyInput.value = appData.settings.apiKey;
+                const _k = getLocalApiKey();
+                if (keyInput && _k) {
+                    keyInput.value = _k;
                     // Pokaż status że klucz jest zapisany
                     const btn = document.querySelector('[onclick="saveApiKey()"]');
                     if (btn) btn.innerHTML = '✅ Klucz jest zapisany';
@@ -2414,7 +2411,7 @@
         function checkApiKey() {
             const warning = document.getElementById('api-warning');
             if (warning) {
-                warning.style.display = appData.settings.apiKey ? 'none' : 'block';
+                warning.style.display = getLocalApiKey() ? 'none' : 'block';
             }
             renderScanHistory();
         }
@@ -2443,7 +2440,7 @@
         }
         
         async function analyzeImage(data) {
-            if (!appData.settings.apiKey) {
+            if (!getLocalApiKey()) {
                 document.getElementById('scanner-result').innerHTML =
                     '<div class="alert alert-error"><div class="alert-title">❌ Brak klucza API</div>' +
                     '<div class="alert-text">Dodaj klucz Gemini w ustawieniach.</div></div>';
@@ -2458,7 +2455,7 @@
                 const prompt = 'Jesteś ekspertem botaniki. Przeanalizuj to zdjęcie rośliny i odpowiedz TYLKO czystym JSON bez żadnego tekstu ani markdown.\n\nJeśli to roślina, zwróć:\n{\n  "isPlant": true,\n  "confidence": 85,\n  "name": "Polska nazwa rośliny",\n  "species": "Łacińska nazwa gatunkowa",\n  "description": "Krótki opis 2-3 zdania",\n  "care": {\n    "water": "Jak często podlewać",\n    "light": "Jakie oświetlenie",\n    "humidity": "Wilgotność w %",\n    "temperature": "Zakres °C"\n  },\n  "toxic": "Tak/Nie/krótki opis",\n  "difficulty": "easy/medium/hard",\n  "health": "healthy/warning/sick",\n  "healthNote": "Obserwacja kondycji lub null",\n  "tips": ["Tip 1", "Tip 2", "Tip 3"]\n}\n\nJeśli NIE jest to roślina:\n{"isPlant": false, "reason": "krótkie wyjaśnienie"}\n\nOdpowiedz TYLKO JSON.';
 
                 const res = await fetch(
-                    'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent?key=' + appData.settings.apiKey,
+                    'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent?key=' + getLocalApiKey(),
                     {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
@@ -2752,8 +2749,7 @@
             const val = document.getElementById('api-key').value.trim();
             if (!val) { toast('❌ Wklej klucz API'); return; }
             if (!appData.settings) appData.settings = {};
-            appData.settings.apiKey = val;
-            // Zapisz w OSOBNYM kluczu - nigdy nie nadpisywany przez sync
+            // Klucz TYLKO w osobnym localStorage - nigdy w appData
             setLocalApiKey(val);
             saveData();
             checkApiKey();
@@ -3272,12 +3268,7 @@
                         // Dane z chmury są nowsze – załaduj je
                         const { _updatedAt, ...rest } = cloudData;
                         appData = { ...appData, ...rest, _updatedAt: cloudTime };
-                        // Jeśli chmura ma apiKey - zapisz go lokalnie
-                        if (appData.settings && appData.settings.apiKey) {
-                            setLocalApiKey(appData.settings.apiKey);
-                        } else {
-                            restoreApiKey(); // fallback - użyj lokalnego
-                        }
+                        // apiKey nie jest w appData - nic nie rób
                         localStorage.setItem('plantcare', JSON.stringify(appData));
                         renderAll();
                         renderScanHistory && renderScanHistory();
