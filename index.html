@@ -3251,8 +3251,14 @@
                     const localTime = appData._updatedAt || 0;
                     if (cloudTime > localTime) {
                         // Dane z chmury są nowsze – załaduj je
+                        // Zachowaj lokalny apiKey i fbConfig – nigdy nie sync'ujemy ich
+                        const localApiKey = appData.settings && appData.settings.apiKey;
                         const { _updatedAt, ...rest } = cloudData;
                         appData = { ...appData, ...rest, _updatedAt: cloudTime };
+                        if (localApiKey) {
+                            if (!appData.settings) appData.settings = {};
+                            appData.settings.apiKey = localApiKey;
+                        }
                         localStorage.setItem('plantcare', JSON.stringify(appData));
                         renderAll();
                         renderScanHistory && renderScanHistory();
