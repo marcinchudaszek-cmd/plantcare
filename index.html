@@ -2759,10 +2759,32 @@
         }
 
         function saveApiKeyToFirestore(key) {
-            if (!fbDb || !fbUid) return;
+            if (!fbDb || !fbUid) {
+                // Firebase jeszcze nie połączony – zapamiętaj klucz do wysłania po połączeniu
+                localStorage.setItem('plantcare_apikey_pending_sync', key);
+                return;
+            }
             // Osobny dokument - nie miesza się z syncToCloud
             fbDb.collection('plantcare_keys').doc(fbUid).set({ geminiKey: key })
+                .then(function() {
+                    localStorage.removeItem('plantcare_apikey_pending_sync');
+                })
                 .catch(function(e) { console.warn('Błąd zapisu klucza:', e); });
+        }
+
+        function syncPendingApiKey() {
+            // Wywoływana po połączeniu Firebase – wysyła klucz jeśli był zapisany przed połączeniem
+            const pending = localStorage.getItem('plantcare_apikey_pending_sync');
+            const localKey = getLocalApiKey();
+            const keyToSync = pending || localKey; // pending ma priorytet, potem lokalny klucz
+            if (keyToSync && fbDb && fbUid) {
+                fbDb.collection('plantcare_keys').doc(fbUid).set({ geminiKey: keyToSync })
+                    .then(function() {
+                        localStorage.removeItem('plantcare_apikey_pending_sync');
+                        console.log('✅ Klucz API zsynchronizowany z Firestore');
+                    })
+                    .catch(function(e) { console.warn('Błąd synchronizacji klucza:', e); });
+            }
         }
 
         function loadApiKeyFromFirestore() {
@@ -2770,10 +2792,14 @@
             fbDb.collection('plantcare_keys').doc(fbUid).get().then(function(doc) {
                 if (doc.exists && doc.data().geminiKey) {
                     setLocalApiKey(doc.data().geminiKey);
+                    localStorage.removeItem('plantcare_apikey_pending_sync');
                     // Odśwież pole w ustawieniach jeśli otwarte
                     const keyInput = document.getElementById('api-key');
-                    if (keyInput && !keyInput.value) keyInput.value = doc.data().geminiKey;
+                    if (keyInput) keyInput.value = doc.data().geminiKey;
                     checkApiKey();
+                } else {
+                    // Klucza nie ma w Firestore - wyślij lokalny jeśli istnieje
+                    syncPendingApiKey();
                 }
             }).catch(function(e) { console.warn('Błąd odczytu klucza:', e); });
         }
