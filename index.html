@@ -2780,6 +2780,7 @@
                 reader.onload = function(ev) {
                     try {
                         appData = JSON.parse(ev.target.result);
+                        restoreApiKey(); // przywróć klucz po imporcie z pliku
                         saveData();
                         renderAll();
                         toast('📥 Zaimportowano');
@@ -3271,7 +3272,12 @@
                         // Dane z chmury są nowsze – załaduj je
                         const { _updatedAt, ...rest } = cloudData;
                         appData = { ...appData, ...rest, _updatedAt: cloudTime };
-                        restoreApiKey(); // zawsze przywróć lokalny klucz
+                        // Jeśli chmura ma apiKey - zapisz go lokalnie
+                        if (appData.settings && appData.settings.apiKey) {
+                            setLocalApiKey(appData.settings.apiKey);
+                        } else {
+                            restoreApiKey(); // fallback - użyj lokalnego
+                        }
                         localStorage.setItem('plantcare', JSON.stringify(appData));
                         renderAll();
                         renderScanHistory && renderScanHistory();
@@ -3307,14 +3313,11 @@
                         return copy;
                     });
                 }
-                // apiKey nigdy nie idzie do chmury – jest lokalny na każdym urządzeniu
-                if (dataToSync.settings) {
-                    dataToSync.settings = Object.assign({}, dataToSync.settings);
-                    delete dataToSync.settings.apiKey;
-                }
-                await fbDb.collection('plantcare').doc(fbUid).set(dataToSync);
+                // apiKey idzie do chmury - dzięki temu działa na nowych urządzeniach/po reinstalacji
+                // Ustaw _updatedAt PRZED await - onSnapshot nie nadpisze gdy cloudTime == localTime
                 appData._updatedAt = dataToSync._updatedAt;
                 localStorage.setItem('plantcare', JSON.stringify(appData));
+                await fbDb.collection('plantcare').doc(fbUid).set(dataToSync);
                 setSyncBar(false);
                 updateSyncUI('connected');
             } catch(e) {
