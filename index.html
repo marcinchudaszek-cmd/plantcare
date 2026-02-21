@@ -1996,7 +1996,24 @@
         }
         
         function saveData() {
-            localStorage.setItem('plantcare', JSON.stringify(appData));
+            try {
+                localStorage.setItem('plantcare', JSON.stringify(appData));
+            } catch(e) {
+                // localStorage pełny - usuń miniatury ze skanów i spróbuj ponownie
+                if (appData.scanHistory) {
+                    appData.scanHistory = appData.scanHistory.map(function(s) {
+                        var c = Object.assign({}, s);
+                        delete c.thumb;
+                        return c;
+                    });
+                }
+                try {
+                    localStorage.setItem('plantcare', JSON.stringify(appData));
+                    toast('⚠️ Brak miejsca - usunięto miniatury skanów');
+                } catch(e2) {
+                    toast('❌ Brak miejsca w pamięci urządzenia');
+                }
+            }
             scheduleSyncToCloud && scheduleSyncToCloud();
         }
         
@@ -2695,14 +2712,31 @@
             if (btn) btn.classList.add('active');
         }
 
+        function compressThumb(imageData, callback) {
+            var img = new Image();
+            img.onload = function() {
+                var canvas = document.createElement('canvas');
+                canvas.width = 80;
+                canvas.height = 80;
+                var ctx = canvas.getContext('2d');
+                var size = Math.min(img.width, img.height);
+                var sx = (img.width - size) / 2;
+                var sy = (img.height - size) / 2;
+                ctx.drawImage(img, sx, sy, size, size, 0, 0, 80, 80);
+                callback(canvas.toDataURL('image/jpeg', 0.6));
+            };
+            img.onerror = function() { callback(null); };
+            img.src = imageData;
+        }
+
         function saveScanToHistory(r, imageData) {
             if (!appData.scanHistory) appData.scanHistory = [];
-            appData.scanHistory.unshift({
+            var entry = {
                 name: r.name || 'Nieznana',
                 species: r.species || '',
                 confidence: r.confidence || 0,
                 date: new Date().toISOString(),
-                thumb: imageData,
+                thumb: null,
                 description: r.description || '',
                 care: r.care || null,
                 health: r.health || null,
@@ -2710,10 +2744,14 @@
                 toxic: r.toxic || null,
                 difficulty: r.difficulty || null,
                 tips: r.tips || []
+            };
+            compressThumb(imageData, function(thumb) {
+                entry.thumb = thumb;
+                appData.scanHistory.unshift(entry);
+                if (appData.scanHistory.length > 5) appData.scanHistory = appData.scanHistory.slice(0, 5);
+                saveData();
+                renderScanHistory();
             });
-            if (appData.scanHistory.length > 5) appData.scanHistory = appData.scanHistory.slice(0, 5);
-            saveData();
-            renderScanHistory();
         }
 
         function renderScanHistory() {
