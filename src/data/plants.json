@@ -3118,5 +3118,958 @@
       "Żółte liście = przelanie"
     ],
     "propagation": "Sadzonki pędowe lub podział cebul wiosną."
+  },
+  {
+    "id": "pilea_cadierei",
+    "name": "Pilea srebrna",
+    "species": "Pilea cadierei",
+    "emoji": "🌿",
+    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Pilea_cadierei_kz01.jpg?width=400",
+    "category": [
+      "popular",
+      "tropical"
+    ],
+    "difficulty": "easy",
+    "origin": "Wietnam",
+    "toxic": "Nie",
+    "maxHeight": "30 cm",
+    "care": {
+      "water": "Co 5–7 dni, gdy wierzch ziemi przeschnie",
+      "light": "Jasne rozproszone, bez bezpośredniego słońca",
+      "humidity": "50–60%",
+      "temperature": "18–24°C"
+    },
+    "description": "Atrakcyjna roślina o ciemnozielonych liściach z metalicznymi srebrnymi plamami. Idealna dla początkujących, łatwa i wdzięczna.",
+    "funFacts": [
+      "Polskie nazwy: pilea aluminiowa, srebrna",
+      "Plamy na liściach to specjalna struktura odbijająca światło",
+      "Łatwo się rozmnaża – sadzonki ukorzeniają się w wodzie",
+      "Po kilku latach traci atrakcyjność – warto rozmnażać i odmładzać",
+      "Bezpieczna dla kotów i psów",
+      "W Wietnamie rośnie dziko w wilgotnych lasach"
+    ],
+    "diseases": [
+      "Opadające liście = za sucho lub przelanie (sprawdź ziemię)",
+      "Bledsnące plamy = za mało światła",
+      "Brązowe brzegi = niska wilgotność powietrza",
+      "Wydłużone łodygi = za mało światła, roślina ucieka",
+      "Żółte liście dolne = naturalne starzenie albo przelanie"
+    ],
+    "propagation": "Sadzonki wierzchołkowe 10 cm – ukorzeniaj w wodzie lub od razu w ziemi pod folią."
+  },
+  {
+    "id": "calathea_orbifolia",
+    "name": "Kalatea orbifolia",
+    "species": "Calathea orbifolia",
+    "emoji": "🌿",
+    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Goeppertia_orbifolia_-_Sunshine_Coast_Botanic_Gardens.jpg?width=400",
+    "category": [
+      "tropical",
+      "special"
+    ],
+    "difficulty": "hard",
+    "origin": "Boliwia",
+    "toxic": "Nie",
+    "maxHeight": "60–90 cm",
+    "care": {
+      "water": "Co 4–6 dni, ziemia lekko wilgotna",
+      "light": "Półcień, jasne rozproszone",
+      "humidity": "60–80%",
+      "temperature": "18–25°C, stabilna"
+    },
+    "description": "Najbardziej spektakularna z kalatej – ogromne, okrągłe liście z wyraźnymi srebrnymi pasami. Wymagająca, ale niezapomniana.",
+    "funFacts": [
+      "Liście potrafią mieć 30 cm średnicy",
+      "Należy do roślin 'modlitewnych' – wieczorem podnosi liście do góry",
+      "Bezpieczna dla kotów i psów",
+      "Bardzo wrażliwa na chlor – używaj odstanej lub deszczowej wody",
+      "W naturze rośnie na cienistym dnie tropikalnego lasu",
+      "Wymaga stałych warunków – zmiany jej nie służą"
+    ],
+    "diseases": [
+      "Brązowe końcówki = twarda woda lub niska wilgotność",
+      "Kędzierzawienie liści = za mało wody lub przeciąg",
+      "Żółte liście = przelanie",
+      "Opuszczone liście stale = problem z korzeniami",
+      "Wybledzone wzory = za dużo światła"
+    ],
+    "propagation": "Tylko przez podział kępy podczas przesadzania – cięcia łodygowe się nie ukorzeniają."
+  },
+  {
+    "id": "petroselinum",
+    "name": "Pietruszka",
+    "species": "Petroselinum crispum",
+    "emoji": "🌿",
+    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Parsley_in_a_pot.jpg?width=400",
+    "category": [
+      "herbs",
+      "easy"
+    ],
+    "difficulty": "easy",
+    "origin": "Region Morza Śródziemnego",
+    "toxic": "Nie",
+    "maxHeight": "30–60 cm",
+    "care": {
+      "water": "Co 2–3 dni, ziemia lekko wilgotna",
+      "light": "Jasne, kilka godzin słońca dziennie",
+      "humidity": "40–60%",
+      "temperature": "15–22°C"
+    },
+    "description": "Klasyczne zioło kuchenne z natką lub korzeniem. W doniczce na parapecie kuchennym daje świeży dodatek do potraw przez cały rok.",
+    "funFacts": [
+      "Roślina dwuletnia – w drugim roku kwitnie i ginie",
+      "Bogata w witaminę C – więcej niż cytryna na 100g",
+      "Symbolizowała śmierć w starożytnej Grecji – sadzono ją na grobach",
+      "Naturalny odświeżacz oddechu po jedzeniu czosnku",
+      "Najlepiej rośnie w chłodniejszej kuchni niż salonie",
+      "Świeżo cięta wytrzymuje w wodzie 1–2 tygodnie"
+    ],
+    "diseases": [
+      "Żółte liście = brak składników (azotu)",
+      "Wiotkie liście = brak wody",
+      "Białawy nalot = mączniak, przewietrzaj",
+      "Korzeń kwiatowy = drugi rok życia, naturalne",
+      "Mszyce – spłucz wodą z mydłem"
+    ],
+    "propagation": "Z nasion – kiełkują wolno (3–4 tygodnie). Lepiej kupić sadzonkę w doniczce lub wysiać kilka razy w sezonie."
+  },
+  {
+    "id": "thymus_vulgaris",
+    "name": "Tymianek",
+    "species": "Thymus vulgaris",
+    "emoji": "🌿",
+    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Thymus_vulgaris0.jpg?width=400",
+    "category": [
+      "herbs",
+      "easy"
+    ],
+    "difficulty": "easy",
+    "origin": "Region Morza Śródziemnego",
+    "toxic": "Nie",
+    "maxHeight": "20–40 cm",
+    "care": {
+      "water": "Co 5–7 dni, ziemia musi przeschnąć między podlewaniami",
+      "light": "Pełne słońce, minimum 6 godzin dziennie",
+      "humidity": "30–50% (niska)",
+      "temperature": "15–25°C, zimna toleruje"
+    },
+    "description": "Aromatyczny krzewinka z drobnymi liśćmi i intensywnym zapachem. Niezbędny w kuchni śródziemnomorskiej, świetnie sprawdza się w doniczce na parapecie.",
+    "funFacts": [
+      "W starożytnym Egipcie używany do balsamowania zwłok",
+      "Tymol z tymianku ma silne właściwości antybakteryjne",
+      "Im więcej słońca, tym intensywniejszy zapach",
+      "Przyciąga pszczoły – świetna roślina miododajna",
+      "Symbol odwagi w średniowieczu – rycerze nosili go w bitwach",
+      "Może rosnąć nawet 5–10 lat"
+    ],
+    "diseases": [
+      "Drewnowate, rzadkie pędy = za mało światła",
+      "Żółte liście = przelanie",
+      "Pleśń u podstawy = za wilgotno, za zimno",
+      "Brązowe końcówki = brak wody mimo wszystko",
+      "Nudny smak = brak słońca"
+    ],
+    "propagation": "Sadzonki półzdrewniałe latem – odetnij 10 cm pęd, zerwij dolne liście, wsadź w piasek z torfem."
+  },
+  {
+    "id": "ocimum_basilicum_thai",
+    "name": "Bazylia tajska",
+    "species": "Ocimum basilicum 'Thai'",
+    "emoji": "🌿",
+    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Thai_basil-1.jpg?width=400",
+    "category": [
+      "herbs",
+      "popular"
+    ],
+    "difficulty": "easy",
+    "origin": "Azja Południowo-Wschodnia",
+    "toxic": "Nie",
+    "maxHeight": "30–50 cm",
+    "care": {
+      "water": "Co 2–3 dni, lubi wilgoć",
+      "light": "Jasne, 4–6 godzin słońca",
+      "humidity": "50–60%",
+      "temperature": "18–26°C"
+    },
+    "description": "Wariant bazylii o ciemniejszych łodygach i fioletowych kwiatostanach. Smakuje anyżowo-lukrecjowo – niezbędna w kuchni tajskiej i wietnamskiej.",
+    "funFacts": [
+      "Smak różny od europejskiej bazylii – nuty anyżu i lukrecji",
+      "Liście są węższe i ciemniejsze niż u 'Genovese'",
+      "Łodygi i kwiaty mają fioletowy odcień",
+      "Składnik tradycyjnych dań pho i pad krapow",
+      "Toleruje wyższe temperatury niż europejska bazylia",
+      "Po przekwitnięciu liście tracą smak – obrywaj kwiatostany"
+    ],
+    "diseases": [
+      "Kwiatostany = przycinaj regularnie żeby nie kwitła",
+      "Czarniejące liście = za zimno, poniżej 15°C",
+      "Wybladłe liście = brak składników",
+      "Pleśń biała = mączniak, lepiej przewietrzaj",
+      "Żółte liście dolne = naturalne lub przelanie"
+    ],
+    "propagation": "Z nasion lub sadzonek wodnych – pęd 10 cm w wodzie ukorzenia się w tygodniu."
+  },
+  {
+    "id": "coriandrum_sativum",
+    "name": "Kolendra",
+    "species": "Coriandrum sativum",
+    "emoji": "🌿",
+    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Coriandrum_sativum_005.JPG?width=400",
+    "category": [
+      "herbs",
+      "easy"
+    ],
+    "difficulty": "medium",
+    "origin": "Region Morza Śródziemnego, Azja Mniejsza",
+    "toxic": "Nie",
+    "maxHeight": "20–60 cm",
+    "care": {
+      "water": "Co 2–3 dni, ziemia stale lekko wilgotna",
+      "light": "Jasne, 4–5 godzin słońca, ale nie palącego",
+      "humidity": "40–60%",
+      "temperature": "15–22°C – nie lubi upału!"
+    },
+    "description": "Aromatyczna roślina jednoroczna o charakterystycznym smaku, kochana lub nienawidzona. Świeża niezastąpiona w kuchni meksykańskiej, indyjskiej i tajskiej.",
+    "funFacts": [
+      "Część populacji ma gen który sprawia że smak kolendry przypomina mydło",
+      "Liście i nasiona to dwa zupełnie różne smaki kulinarne",
+      "Bardzo szybko wybija w pęd kwiatowy gdy gorąco – wtedy gorzknie",
+      "Nasiona to klasyczna przyprawa korzenna",
+      "Bogata w witaminy A, C i K",
+      "Najlepiej rośnie wiosną i jesienią, latem cierpi"
+    ],
+    "diseases": [
+      "Szybkie pójście w kwiat = za gorąco, sieje się ponownie",
+      "Żółte liście = przelanie albo wyczerpana ziemia",
+      "Mszyce na pędach kwiatowych",
+      "Pleśń przy nadmiernej wilgoci",
+      "Wiotki wzrost = brak światła"
+    ],
+    "propagation": "Tylko z nasion – nie ukorzenia się z sadzonek. Wysiej co 3–4 tygodnie żeby mieć ciągły zbiór."
+  },
+  {
+    "id": "origanum_vulgare",
+    "name": "Oregano",
+    "species": "Origanum vulgare",
+    "emoji": "🌿",
+    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Oregano_-_Origanum_vulgare.jpg?width=400",
+    "category": [
+      "herbs",
+      "easy"
+    ],
+    "difficulty": "easy",
+    "origin": "Region Morza Śródziemnego",
+    "toxic": "Nie",
+    "maxHeight": "30–80 cm",
+    "care": {
+      "water": "Co 5–7 dni, między podlewaniami przesusz",
+      "light": "Pełne słońce, minimum 6 godzin",
+      "humidity": "30–50%",
+      "temperature": "15–25°C"
+    },
+    "description": "Klasyczne zioło kuchni włoskiej i greckiej. Drobne liście o intensywnym aromacie pasują do pizzy, sosów pomidorowych i grilla.",
+    "funFacts": [
+      "Nazwa z greki: 'oros' (góra) i 'ganos' (radość) = 'radość gór'",
+      "W starożytnej Grecji symbol miłości i szczęścia",
+      "Suszone ma silniejszy aromat niż świeże – jedna z niewielu takich roślin",
+      "Wieloletnia – jedna roślina może dawać zioło latami",
+      "Pszczoły uwielbiają jej fioletowe kwiatki",
+      "Olejek oreganowy ma silne właściwości antybakteryjne"
+    ],
+    "diseases": [
+      "Drewniejące pędy = przycinaj wiosną żeby odmłodzić",
+      "Brązowe końcówki = brak wody mimo, że lubi przesuszanie",
+      "Pleśń = za wilgotno, słabe powietrze",
+      "Bladawkowy kolor = brak słońca",
+      "Mączniak prawdziwy w wilgoci"
+    ],
+    "propagation": "Sadzonki łodygowe wiosną, podział kępy lub nasiona. Bardzo łatwa."
+  },
+  {
+    "id": "citrus_limon",
+    "name": "Cytryna",
+    "species": "Citrus limon",
+    "emoji": "🍋",
+    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Lemon_tree_in_Sorrento.jpg?width=400",
+    "category": [
+      "flowering",
+      "special"
+    ],
+    "difficulty": "hard",
+    "origin": "Azja Południowo-Wschodnia",
+    "toxic": "Nie",
+    "maxHeight": "1–2 m w doniczce",
+    "care": {
+      "water": "Co 4–6 dni latem, rzadziej zimą",
+      "light": "Pełne słońce, minimum 6 godzin",
+      "humidity": "50–60%",
+      "temperature": "18–25°C latem, zimą 8–12°C"
+    },
+    "description": "Drzewko cytrynowe w doniczce – marzenie wielu hodowców. Wymaga uwagi, ale nagradza pachnącymi kwiatami i prawdziwymi cytrynami.",
+    "funFacts": [
+      "Może kwitnąć i owocować jednocześnie – kwiaty obok dojrzałych owoców",
+      "Owoce dojrzewają 6–9 miesięcy",
+      "Wymaga zimnego okresu spoczynku zimą żeby kwitnąć",
+      "Pąki są białe z zewnątrz, różowawe wewnątrz, intensywnie pachną",
+      "Wymaga specjalnego nawożenia 'do cytrusów'",
+      "Zimą do nieogrzewanego pomieszczenia, np. klatki schodowej"
+    ],
+    "diseases": [
+      "Opadające pąki = stres, zmiana miejsca albo przeciąg",
+      "Żółte liście z zielonymi nerwami = chloroza, brak żelaza",
+      "Brak owoców = za mało słońca lub brak zimnego spoczynku",
+      "Atak wełnowca i tarcznika – częste u cytrusów",
+      "Lepkie liście = mszyce"
+    ],
+    "propagation": "Najczęściej szczepi się na podkładkach. Z nasion rośnie wolno i nie zawsze owocuje. Sadzonki łatwiej."
+  },
+  {
+    "id": "punica_granatum",
+    "name": "Granat karłowy",
+    "species": "Punica granatum 'Nana'",
+    "emoji": "🌺",
+    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Punica_granatum_Nana.jpg?width=400",
+    "category": [
+      "flowering",
+      "special"
+    ],
+    "difficulty": "medium",
+    "origin": "Iran, Afganistan",
+    "toxic": "Nie",
+    "maxHeight": "60–120 cm",
+    "care": {
+      "water": "Co 4–5 dni latem, rzadko zimą",
+      "light": "Pełne słońce",
+      "humidity": "40–60%",
+      "temperature": "18–25°C latem, zimą 5–10°C"
+    },
+    "description": "Karłowa odmiana granatu, idealna do doniczki. Czerwono-pomarańczowe trąbkowate kwiaty i miniaturowe owoce robią wrażenie mimo małych rozmiarów.",
+    "funFacts": [
+      "Karłowa odmiana 'Nana' jest niska, ale kwitnie obficie",
+      "Kwiaty są jaskrawo pomarańczowo-czerwone, dzwonkowate",
+      "Owoce są małe, przeważnie ozdobne (gorzkie)",
+      "Liście jesienią żółkną i opadają – gatunek liściasty",
+      "Wymaga zimnego okresu spoczynku zimą",
+      "Symbol obfitości w wielu kulturach śródziemnomorskich"
+    ],
+    "diseases": [
+      "Opadanie kwiatów = za sucho lub za gorąco w okresie kwitnienia",
+      "Brak kwiatów = brak zimowego spoczynku",
+      "Żółte liście jesienią = naturalne",
+      "Mszyce na nowych pędach",
+      "Atak przędziorków przy suchym powietrzu"
+    ],
+    "propagation": "Sadzonki półzdrewniałe latem albo ukorzenione odrosty od korzeni."
+  },
+  {
+    "id": "coffea_arabica_dwarf",
+    "name": "Kawa arabska",
+    "species": "Coffea arabica 'Nana'",
+    "emoji": "☕",
+    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Coffea_arabica_-_Köhler–s_Medizinal-Pflanzen-189.jpg?width=400",
+    "category": [
+      "tropical",
+      "special"
+    ],
+    "difficulty": "medium",
+    "origin": "Etiopia",
+    "toxic": "Tak – owoce i nasiona",
+    "maxHeight": "1–1.5 m w doniczce",
+    "care": {
+      "water": "Co 4–5 dni, ziemia lekko wilgotna",
+      "light": "Jasne rozproszone, bez ostrego słońca",
+      "humidity": "60–80%",
+      "temperature": "18–24°C, nie poniżej 15°C"
+    },
+    "description": "Prawdziwa roślina kawowa w doniczce. Po 3–4 latach może zakwitnąć białymi pachnącymi kwiatami, a potem wydać czerwone owoce z ziarnami kawy.",
+    "funFacts": [
+      "Po 3–4 latach hodowli kwitnie i owocuje",
+      "Białe kwiaty pachną jak jaśmin",
+      "Z jednego ziarnka czerwonej 'wisienki' są dwa ziarna kawy",
+      "Liście zawierają nieco kofeiny – nie dla zwierząt!",
+      "Pochodzi z górskich lasów Etiopii",
+      "Najpopularniejsza karłowa odmiana to 'Nana'"
+    ],
+    "diseases": [
+      "Brązowe końcówki = niska wilgotność",
+      "Żółte liście = przelanie lub wyczerpana ziemia",
+      "Spalone liście = ostre słońce",
+      "Brak kwiatów = za młoda lub za ciemno",
+      "Czarniejące pędy = za zimno"
+    ],
+    "propagation": "Z nasion (świeżych ziaren) lub sadzonek półzdrewniałych. Wolny wzrost."
+  },
+  {
+    "id": "stephanotis",
+    "name": "Stefanotis",
+    "species": "Stephanotis floribunda",
+    "emoji": "🌸",
+    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Stephanotis_floribunda_2zz.jpg?width=400",
+    "category": [
+      "flowering",
+      "tropical"
+    ],
+    "difficulty": "hard",
+    "origin": "Madagaskar",
+    "toxic": "Tak – sok mleczny",
+    "maxHeight": "Pnącze 2–4 m",
+    "care": {
+      "water": "Co 4–6 dni latem, rzadziej zimą",
+      "light": "Bardzo jasne, ale nie bezpośrednie słońce",
+      "humidity": "60–70%",
+      "temperature": "18–24°C, zimą 12–15°C"
+    },
+    "description": "Pnącze o intensywnie pachnących, woskowych białych kwiatach. Jeden z ulubieńców do bukietów ślubnych ze względu na zapach i wygląd.",
+    "funFacts": [
+      "Polska nazwa: jaśmin madagaskarski",
+      "Kwiaty są używane w bukietach ślubnych w wielu kulturach",
+      "Aromat najsilniejszy wieczorem – wabi nocne owady zapylające",
+      "Może żyć dziesiątki lat przy odpowiednich warunkach",
+      "Zimą wymaga chłodu żeby zakwitnąć latem",
+      "Symbol szczęścia małżeńskiego"
+    ],
+    "diseases": [
+      "Brak kwiatów = brak chłodnej zimy",
+      "Opadające pąki = przeciąg lub stres",
+      "Żółte liście = przelanie",
+      "Atak wełnowca i tarcznika",
+      "Klejące liście = mszyce"
+    ],
+    "propagation": "Sadzonki półzdrewniałe wiosną – ukorzenianie trudne, wymaga cieplnego dna."
+  },
+  {
+    "id": "schlumbergera",
+    "name": "Szlumbergera (Kaktus bożonarodzeniowy)",
+    "species": "Schlumbergera truncata",
+    "emoji": "🌸",
+    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Schlumbergera_truncata1.jpg?width=400",
+    "category": [
+      "flowering",
+      "succulents"
+    ],
+    "difficulty": "easy",
+    "origin": "Brazylia (lasy deszczowe)",
+    "toxic": "Nie",
+    "maxHeight": "30–40 cm",
+    "care": {
+      "water": "Co 7–10 dni, więcej w okresie kwitnienia",
+      "light": "Jasne rozproszone",
+      "humidity": "50–60%",
+      "temperature": "18–22°C, do kwitnienia 10–13°C"
+    },
+    "description": "Mimo nazwy 'kaktus' to roślina lasów tropikalnych, nie pustyni. Kwitnie obficie zimą – stąd druga nazwa 'kaktus bożonarodzeniowy'.",
+    "funFacts": [
+      "W naturze rośnie na drzewach jako epifit",
+      "Kwitnie w zależności od długości dnia – krótsze dni indukują pąki",
+      "Może żyć 30–50 lat",
+      "Łatwo się rozmnaża – odłam segment, zostaw na dzień, wsadź",
+      "Odmiany różowe, czerwone, białe, pomarańczowe, fioletowe",
+      "Bezpieczna dla zwierząt"
+    ],
+    "diseases": [
+      "Opadające pąki = zmiana miejsca albo nagłe wahania temperatury",
+      "Brak kwiatów = brak chłodnej jesieni z krótkim dniem",
+      "Wiotki segmenty = przelanie i gnijące korzenie",
+      "Pomarańczowe segmenty = za dużo słońca",
+      "Pęknięcia segmentów = nadmierne podlewanie"
+    ],
+    "propagation": "Najprostsza – odłam 2–3 segmenty, zostaw na dzień, wsadź w lekkie podłoże. Ukorzenia się w 2 tygodnie."
+  },
+  {
+    "id": "spathiphyllum_picasso",
+    "name": "Skrzydłokwiat Picasso",
+    "species": "Spathiphyllum 'Picasso'",
+    "emoji": "🌸",
+    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Spathiphyllum_cochlearispathum_RTBG.jpg?width=400",
+    "category": [
+      "flowering",
+      "tropical",
+      "popular"
+    ],
+    "difficulty": "easy",
+    "origin": "Ameryka Środkowa i Południowa",
+    "toxic": "Tak – kryształy szczawianu",
+    "maxHeight": "40–60 cm",
+    "care": {
+      "water": "Co 5–7 dni, lubi wilgoć",
+      "light": "Półcień do jasnego rozproszonego",
+      "humidity": "60–70%",
+      "temperature": "18–25°C"
+    },
+    "description": "Wariegata skrzydłokwiatu – liście są pokryte białymi plamami i pasami. Wszystkie zalety zwykłego skrzydłokwiatu plus dramatyczny wygląd.",
+    "funFacts": [
+      "Każdy liść ma unikalny wzór bieli – jak obraz Picasso",
+      "Wymaga więcej światła niż zwykła odmiana żeby zachować wzory",
+      "Tak samo jak zwykła kwitnie białymi 'żaglami'",
+      "Świetny wskaźnik wody – opada gdy potrzebuje pić",
+      "Oczyszcza powietrze – usuwa formaldehyd i benzen",
+      "Mniej żywotna niż klasyczna – wzory kosztują energię"
+    ],
+    "diseases": [
+      "Bledsnące wzory = za mało światła",
+      "Brązowe końcówki = twarda woda lub niska wilgotność",
+      "Opadnięte liście = brak wody (podnieś po podlaniu)",
+      "Spalone liście = bezpośrednie słońce",
+      "Brak kwiatów = za młoda lub za ciemno"
+    ],
+    "propagation": "Tylko przez podział kępy podczas przesadzania."
+  },
+  {
+    "id": "anthurium_clarinervium",
+    "name": "Anturium clarinervium",
+    "species": "Anthurium clarinervium",
+    "emoji": "🌿",
+    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Anthurium_clarinervium.jpg?width=400",
+    "category": [
+      "tropical",
+      "special"
+    ],
+    "difficulty": "hard",
+    "origin": "Meksyk (Chiapas)",
+    "toxic": "Tak – kryształy szczawianu",
+    "maxHeight": "40–60 cm",
+    "care": {
+      "water": "Co 5–7 dni, woda miękka",
+      "light": "Jasne rozproszone, nigdy bezpośrednie",
+      "humidity": "70–80% (bardzo wysoka)",
+      "temperature": "20–26°C, stabilna"
+    },
+    "description": "Anturium nie kwiatowe ale liściaste – sercowate liście z dramatycznymi srebrnymi nerwami przypominającymi koronkę. Modny gatunek wśród kolekcjonerów.",
+    "funFacts": [
+      "Liście są aksamitne w dotyku",
+      "Młode liście są jasnobrązowe, dojrzewają do ciemnozielonego",
+      "Srebrne nerwy są bardziej wyraźne na cieniu niż na słońcu",
+      "Bardzo drogi gatunek – cena rośnie z rozmiarem",
+      "W naturze rośnie w wapiennych lasach – preferuje mineralne podłoża",
+      "Kwitnie skromnie – nie dla kwiatów, tylko liści"
+    ],
+    "diseases": [
+      "Brązowe końcówki = twarda woda lub niska wilgotność",
+      "Bledsnące nerwy = za dużo słońca",
+      "Żółte liście = przelanie",
+      "Czarne plamy = grzyb od nadmiaru wilgoci",
+      "Wolny wzrost normalnie – to powoli rosnący gatunek"
+    ],
+    "propagation": "Podział kępy lub z sadzonek korzeniowych. Trudne – nie dla początkujących."
+  },
+  {
+    "id": "tradescantia_nanouk",
+    "name": "Tradescantia Nanouk",
+    "species": "Tradescantia albiflora 'Nanouk'",
+    "emoji": "💜",
+    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Tradescantia_albiflora_Nanouk.jpg?width=400",
+    "category": [
+      "popular",
+      "tropical"
+    ],
+    "difficulty": "easy",
+    "origin": "Hodowlana (Holandia)",
+    "toxic": "Tak – sok podrażnia skórę",
+    "maxHeight": "Pędy do 60 cm",
+    "care": {
+      "water": "Co 5–7 dni, gdy wierzch ziemi przeschnie",
+      "light": "Jasne, kilka godzin słońca dla zachowania koloru",
+      "humidity": "40–60%",
+      "temperature": "18–25°C"
+    },
+    "description": "Trendy odmiana tradeskanji o pasiastych liściach w kolorach różu, zieleni i kremu. Bardzo łatwa, szybko rośnie, idealna w wiszących doniczkach.",
+    "funFacts": [
+      "Stworzona w 2012 roku w Holandii",
+      "Im więcej światła, tym intensywniejsze różowe paski",
+      "Liście są mięsiste i lekko wełniste",
+      "Łatwo łamie się przy przesadzaniu – traktuj delikatnie",
+      "Kwitnie drobnymi różowymi kwiatami",
+      "Sok może podrażniać skórę i być toksyczny dla zwierząt"
+    ],
+    "diseases": [
+      "Bledsnące różowe paski = za mało światła",
+      "Wydłużone, łyse pędy = za mało światła",
+      "Żółte liście dolne = naturalne lub przelanie",
+      "Brązowe końcówki = za suche powietrze",
+      "Sflaczałe liście = brak wody"
+    ],
+    "propagation": "Najprostsza – odetnij 10 cm pęd, wsadź w wodę albo ziemię, ukorzeni się w tygodniu."
+  },
+  {
+    "id": "alocasia_polly",
+    "name": "Alokazja Polly",
+    "species": "Alocasia × amazonica 'Polly'",
+    "emoji": "🌿",
+    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Alocasia_x_Amazonica.jpg?width=400",
+    "category": [
+      "tropical",
+      "special"
+    ],
+    "difficulty": "hard",
+    "origin": "Hodowlana (krzyżówka azjatyckich gatunków)",
+    "toxic": "Tak – kryształy szczawianu",
+    "maxHeight": "40–60 cm",
+    "care": {
+      "water": "Co 4–6 dni, ziemia lekko wilgotna",
+      "light": "Jasne rozproszone",
+      "humidity": "60–80%",
+      "temperature": "18–25°C, stabilna"
+    },
+    "description": "Mała ale efektowna alokazja o ciemnych, lśniących liściach z białymi nerwami. Znana z dramatycznego wyglądu i wymagającej natury.",
+    "funFacts": [
+      "Krzyżówka A. longiloba i A. sanderiana",
+      "Liście są niemal czarne z białymi nerwami",
+      "Każdy liść trwa kilka miesięcy a potem żółknie i opada",
+      "Wytwarza bulwę – po stresie może obumrzeć i odrodzić się z bulwy",
+      "Lubi stałe warunki – każda zmiana to stres",
+      "Zimą może wejść w stan spoczynku i stracić wszystkie liście"
+    ],
+    "diseases": [
+      "Żółte i opadające liście = przelanie albo cykl naturalny",
+      "Brązowe końcówki = niska wilgotność",
+      "Wybledzone nerwy = za mało światła",
+      "Atak przędziorków przy suchym powietrzu",
+      "Spalone liście = ostre słońce"
+    ],
+    "propagation": "Przez podział bulwy lub odrosty z bulwy. Trudne, dla doświadczonych."
+  },
+  {
+    "id": "ficus_audrey",
+    "name": "Ficus Audrey",
+    "species": "Ficus benghalensis 'Audrey'",
+    "emoji": "🌳",
+    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Ficus_benghalensis_in_park.jpg?width=400",
+    "category": [
+      "popular",
+      "tropical"
+    ],
+    "difficulty": "medium",
+    "origin": "Indie (figowiec bengalski)",
+    "toxic": "Tak – sok mleczny podrażnia",
+    "maxHeight": "1.5–2 m w doniczce",
+    "care": {
+      "water": "Co 7–10 dni, gdy wierzch ziemi przeschnie",
+      "light": "Jasne rozproszone, lekkie słońce poranne",
+      "humidity": "50–60%",
+      "temperature": "18–24°C"
+    },
+    "description": "Modna alternatywa dla Ficus lyrata – aksamitne, jajowate liście z wyraźnymi jasnymi nerwami. Mniej kapryśny niż Lyrata, ale tak samo dekoracyjny.",
+    "funFacts": [
+      "W Indiach to święte drzewo – figowiec bengalski",
+      "Liście są lekko aksamitne w dotyku",
+      "Mniej wymagający niż Ficus lyrata przy podobnym wyglądzie",
+      "Może urosnąć w gigantyczne drzewo – w naturze do 30 m",
+      "Wytwarza korzenie powietrzne",
+      "Sok mleczny może podrażniać skórę"
+    ],
+    "diseases": [
+      "Opadające liście = przelanie lub stres ze zmian",
+      "Brązowe brzegi = niska wilgotność",
+      "Żółknięcie i opadanie dolnych liści = naturalne lub przelanie",
+      "Sflaczałe liście = brak wody",
+      "Atak tarcznika i wełnowca"
+    ],
+    "propagation": "Sadzonki półzdrewniałe – odetnij 15 cm pęd, ukorzeń w wodzie lub od razu w ziemi pod folią."
+  },
+  {
+    "id": "sansevieria_cylindrica",
+    "name": "Sansewieria walcowata",
+    "species": "Dracaena angolensis",
+    "emoji": "🌵",
+    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Sansevieria_cylindrica1.jpg?width=400",
+    "category": [
+      "succulents",
+      "popular"
+    ],
+    "difficulty": "easy",
+    "origin": "Angola",
+    "toxic": "Tak – dla zwierząt",
+    "maxHeight": "60–120 cm",
+    "care": {
+      "water": "Co 14–21 dni, ziemia musi być sucha",
+      "light": "Toleruje wszystko – od słońca do półcienia",
+      "humidity": "30–50% (niska)",
+      "temperature": "18–27°C"
+    },
+    "description": "Sansewieria o cylindrycznych, sztywnych pędach wyglądających jak włócznie. Często plecione w warkocze przez sprzedawców. Skrajnie odporna.",
+    "funFacts": [
+      "Pędy są okrągłe w przekroju, nie płaskie jak u zwykłej",
+      "Często sprzedawane jako 'warkocz' – pędy splecione razem",
+      "Magazynuje wodę w pędach jak sukulent",
+      "Wytwarza tlen w nocy – świetna do sypialni",
+      "Jedna z najtrwalszych roślin doniczkowych",
+      "Może żyć dziesięciolecia bez większej opieki"
+    ],
+    "diseases": [
+      "Pomarszczone pędy = brak wody (rzadko)",
+      "Sflaczałe, brązowe pędy = przelanie i gnicie",
+      "Czarne plamy u podstawy = nadmiar wilgoci",
+      "Powolny wzrost = norma",
+      "Brak nowych pędów = za mało światła"
+    ],
+    "propagation": "Z odrostów – odetnij młody pęd z fragmentem korzenia. Cięcia liścia również się ukorzeniają, ale wolno."
+  },
+  {
+    "id": "asparagus_setaceus",
+    "name": "Asparagus pierzasty",
+    "species": "Asparagus setaceus",
+    "emoji": "🌿",
+    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Asparagus_setaceus_kz1.JPG?width=400",
+    "category": [
+      "tropical",
+      "easy"
+    ],
+    "difficulty": "easy",
+    "origin": "Afryka Południowa",
+    "toxic": "Tak – jagody dla zwierząt",
+    "maxHeight": "60–100 cm",
+    "care": {
+      "water": "Co 4–5 dni, ziemia lekko wilgotna",
+      "light": "Jasne rozproszone, lekki półcień",
+      "humidity": "50–70%",
+      "temperature": "16–24°C"
+    },
+    "description": "Nie prawdziwa paproć, choć tak wygląda – delikatne, koronkowe gałązki dające efekt zielonej mgły. Ulubiona dekoracja w bukietach kwiatowych.",
+    "funFacts": [
+      "Mimo wyglądu paproci to roślina kwitnąca z rodziny szparagów",
+      "Spokrewniona z jadalnym szparagiem warzywnym",
+      "Czerwone jagody pojawiają się po niepozornych białych kwiatach",
+      "W bukietach kwiatowych jako 'zieleń' w tle",
+      "Pędy są bardzo delikatne – łatwo je uszkodzić",
+      "Kolce na łodygach – uważaj przy obchodzeniu"
+    ],
+    "diseases": [
+      "Żółknące pędy = przelanie lub za zimno",
+      "Brązowe końcówki = niska wilgotność",
+      "Łysienie wewnątrz krzaczka = za mało światła",
+      "Atak przędziorków przy suchym powietrzu",
+      "Drobne mszyce na nowych pędach"
+    ],
+    "propagation": "Przez podział kępy podczas przesadzania albo z nasion (wolne)."
+  },
+  {
+    "id": "philodendron_brasil",
+    "name": "Filodendron Brasil",
+    "species": "Philodendron hederaceum 'Brasil'",
+    "emoji": "🍃",
+    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Philodendron_hederaceum_Brasil.jpg?width=400",
+    "category": [
+      "popular",
+      "tropical"
+    ],
+    "difficulty": "easy",
+    "origin": "Hodowlana (kultywar)",
+    "toxic": "Tak – kryształy szczawianu",
+    "maxHeight": "Pędy do 3 m",
+    "care": {
+      "water": "Co 5–7 dni",
+      "light": "Półcień do jasnego rozproszonego",
+      "humidity": "50–70%",
+      "temperature": "18–27°C"
+    },
+    "description": "Wariegata zwykłego filodendrona pnącego – liście mają jasnozielone i kremowo-żółte pasy. Tak samo łatwa jak zwykła odmiana, dwa razy ładniejsza.",
+    "funFacts": [
+      "Nazwa od kolorów flagi Brazylii – zielony i żółty",
+      "Każdy liść jest inny – wariegacja jest losowa",
+      "Czasem produkuje liść całkiem zielony albo całkiem żółty",
+      "Im jaśniej (bez ostrego słońca), tym więcej żółtego",
+      "Bardzo łatwa w rozmnażaniu – jak Pothos",
+      "Może rosnąć na podporze (liście rosną większe) lub jako zwisająca"
+    ],
+    "diseases": [
+      "Mniej wariegacji = za mało światła",
+      "Cale żółte liście tracą zielone – mają za mało chlorofilu, mogą obumrzeć",
+      "Żółknące liście = przelanie",
+      "Brązowe końcówki = niska wilgotność",
+      "Powolny wzrost zimą"
+    ],
+    "propagation": "Sadzonki łodygowe – jak zwykły Philodendron. Wybierz pęd z dużą ilością wariegacji."
+  },
+  {
+    "id": "begonia_maculata_alba",
+    "name": "Begonia koralowa",
+    "species": "Begonia maculata var. wightii",
+    "emoji": "🌸",
+    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Begonia_maculata_-_Wightii_3.jpg?width=400",
+    "category": [
+      "flowering",
+      "tropical",
+      "special"
+    ],
+    "difficulty": "medium",
+    "origin": "Brazylia",
+    "toxic": "Tak – kryształy szczawianu",
+    "maxHeight": "60–120 cm",
+    "care": {
+      "water": "Co 4–6 dni, gdy wierzch ziemi przeschnie",
+      "light": "Jasne rozproszone",
+      "humidity": "60–70%",
+      "temperature": "18–24°C"
+    },
+    "description": "Spektakularna begonia o liściach w kropki – ciemnozielone z białymi punktami i czerwonym spodem. Kwitnie kaskadami białych albo różowych kwiatów.",
+    "funFacts": [
+      "Inspirowała projektantów Polka Dot – wzór w kropki",
+      "Spód liścia jest ciemnoczerwony – kontrast z zieloną górą",
+      "Tworzy kaskady białych kwiatów wiszące jak korale",
+      "Łodygi są bambusowe – stąd nazwa 'angel wing begonia'",
+      "Łatwa w rozmnażaniu z sadzonek",
+      "W naturze rośnie w lasach Brazylii, w wilgotnych zaroślach"
+    ],
+    "diseases": [
+      "Bledsnące kropki = za dużo światła",
+      "Brak kwiatów = za ciemno lub brak składników",
+      "Mączniak prawdziwy – częsta choroba begonii",
+      "Żółte liście = przelanie",
+      "Opadanie liści = nagła zmiana warunków"
+    ],
+    "propagation": "Sadzonki łodygowe z 1 węzłem – ukorzeniają się w wodzie w 2 tygodnie."
+  },
+  {
+    "id": "musa_dwarf",
+    "name": "Bananowiec karłowy",
+    "species": "Musa acuminata 'Super Dwarf Cavendish'",
+    "emoji": "🍌",
+    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Musa_acuminata.jpg?width=400",
+    "category": [
+      "tropical",
+      "special",
+      "flowering"
+    ],
+    "difficulty": "medium",
+    "origin": "Azja Południowo-Wschodnia",
+    "toxic": "Nie",
+    "maxHeight": "1–1.5 m w doniczce",
+    "care": {
+      "water": "Co 3–5 dni, lubi wilgoć",
+      "light": "Bardzo jasne, lekkie słońce",
+      "humidity": "60–80%",
+      "temperature": "20–28°C, nigdy poniżej 15°C"
+    },
+    "description": "Karłowa odmiana bananowca, którą można hodować w domu. Po 2–3 latach może wydać prawdziwe banany – małe, ale jadalne.",
+    "funFacts": [
+      "Banan to nie drzewo, tylko bylina – 'pień' to liście zwiną w rurkę",
+      "Po wydaniu owoców roślina ginie, ale zostawia odrosty",
+      "Karłowa odmiana 'Super Dwarf Cavendish' max 1.5 m wysokości",
+      "Liście mogą mieć po metrze długości",
+      "Wymaga bardzo dużo wody i światła",
+      "Rośnie szybko – w sezonie potrafi wypuścić nowy liść co tydzień"
+    ],
+    "diseases": [
+      "Pęknięte liście = naturalne, bananowiec tak ma",
+      "Brązowe końcówki = niska wilgotność",
+      "Żółte liście = przelanie lub brak składników",
+      "Nie kwitnie = za młoda lub za zimno",
+      "Atak przędziorków przy suchym powietrzu"
+    ],
+    "propagation": "Z odrostów (przybyszek) wyrastających z bulwy. Z nasion bardzo trudno – większość odmian jest sterylna."
+  },
+  {
+    "id": "rosmarinus",
+    "name": "Rozmaryn",
+    "species": "Salvia rosmarinus 'Officinalis'",
+    "emoji": "🌿",
+    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Rosmarinus_officinalis133095382.jpg?width=400",
+    "category": [
+      "herbs",
+      "easy"
+    ],
+    "difficulty": "medium",
+    "origin": "Region Morza Śródziemnego",
+    "toxic": "Nie",
+    "maxHeight": "60–150 cm",
+    "care": {
+      "water": "Co 5–7 dni, ziemia musi przeschnąć między podlewaniami",
+      "light": "Pełne słońce, minimum 6 godzin dziennie",
+      "humidity": "40–50% (niska)",
+      "temperature": "15–25°C latem, zimą 5–10°C"
+    },
+    "description": "Klasyczne ziele kuchni śródziemnomorskiej. Aromatyczne, igiełkowate liście pachną sosną i cytrusami. Wymaga słońca i dobrego drenażu.",
+    "funFacts": [
+      "Botanicznie należy do rodziny szałwii (od 2017)",
+      "Symbol pamięci w wielu kulturach",
+      "Może żyć dziesiątki lat i drzewieć",
+      "Kwitnie błękitnymi kwiatkami, które pszczoły uwielbiają",
+      "Olejek rozmarynowy ma działanie przeciwzapalne",
+      "W starożytnym Rzymie sadzony przy domach na szczęście"
+    ],
+    "diseases": [
+      "Drzewieje, mało zielone igły = przycinaj wiosną",
+      "Pleśń u podstawy = za wilgotno, brak drenażu",
+      "Bladonkrowe igły = brak żelaza",
+      "Mączniak w gorącym wilgotnym powietrzu",
+      "Powolny wzrost zimą – normalne"
+    ],
+    "propagation": "Sadzonki półzdrewniałe latem – odetnij 10 cm pęd, zerwij dolne igły, wsadź w piasek."
+  },
+  {
+    "id": "stromanthe_triostar",
+    "name": "Stromante trojkolorowa",
+    "species": "Stromanthe sanguinea 'Triostar'",
+    "emoji": "🌿",
+    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Stromanthe_sanguinea_%27Triostar%27.jpg?width=400",
+    "category": [
+      "tropical",
+      "special"
+    ],
+    "difficulty": "hard",
+    "origin": "Brazylia",
+    "toxic": "Nie",
+    "maxHeight": "60–80 cm",
+    "care": {
+      "water": "Co 4–6 dni, ziemia lekko wilgotna",
+      "light": "Jasne rozproszone",
+      "humidity": "60–80%",
+      "temperature": "18–25°C, stabilna"
+    },
+    "description": "Spektakularna roślina z rodziny Marantaceae – liście są zielone, kremowe i różowe, jedne nawet w pasiakach. Wieczorem składa liście jak modlitewne dłonie.",
+    "funFacts": [
+      "Spód liścia jest jaskrawo różowy",
+      "Wieczorem podnosi liście do góry – roślina 'modlitewna'",
+      "Każdy liść ma unikalny wzór wariegacji",
+      "Bezpieczna dla zwierząt domowych",
+      "Wymaga miękkiej wody – odstanej lub deszczowej",
+      "Wrażliwa na zmiany – nie lubi przeprowadzek"
+    ],
+    "diseases": [
+      "Brązowe końcówki = twarda woda lub niska wilgotność",
+      "Spalone białe partie = za jasne światło",
+      "Skrzywione liście = brak wody albo przeciąg",
+      "Bledsnący róż = za mało światła",
+      "Atak przędziorków przy suchym powietrzu"
+    ],
+    "propagation": "Tylko podział kępy podczas przesadzania – sadzonki łodygowe się nie ukorzeniają."
+  },
+  {
+    "id": "kalanchoe_thyrsiflora",
+    "name": "Kalanchoe naleśnikowe",
+    "species": "Kalanchoe thyrsiflora",
+    "emoji": "🌵",
+    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Kalanchoe_thyrsiflora_3.jpg?width=400",
+    "category": [
+      "succulents",
+      "special"
+    ],
+    "difficulty": "easy",
+    "origin": "Afryka Południowa",
+    "toxic": "Tak – dla zwierząt",
+    "maxHeight": "30–60 cm",
+    "care": {
+      "water": "Co 10–14 dni, ziemia musi przeschnąć",
+      "light": "Pełne słońce – im więcej, tym czerwieńsze brzegi",
+      "humidity": "30–40%",
+      "temperature": "18–25°C, zimą 10–15°C"
+    },
+    "description": "Sukulent o płaskich, okrągłych liściach przypominających naleśniki ułożone jeden na drugim. Brzegi liści czerwienieją na słońcu.",
+    "funFacts": [
+      "Angielska nazwa: 'Paddle plant' albo 'Flapjack'",
+      "Liście są okrągłe, płaskie, jakby ułożone w kolumnę",
+      "Im więcej słońca, tym intensywniejsze czerwone brzegi",
+      "Po wielu latach kwitnie żółtymi kwiatami i potem ginie – ale zostawia odrosty",
+      "Mączysty nalot na liściach to naturalna ochrona",
+      "Toksyczne dla kotów i psów – uważaj!"
+    ],
+    "diseases": [
+      "Wydłużenie i utrata kształtu = za mało światła",
+      "Żółknięcie liści = przelanie",
+      "Brak czerwieni = za mało słońca",
+      "Zmarszczone liście = brak wody (rzadko)",
+      "Mączniak przy zbyt wilgotnym powietrzu"
+    ],
+    "propagation": "Z liścia – odłam dolny liść, zostaw na 2 dni do zaschnięcia, połóż na ziemi. Albo z odrostów."
   }
 ]
