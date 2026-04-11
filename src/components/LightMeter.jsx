@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import plantsDB from '../data/plants.json';
-import { CATEGORIES } from '../data/categories.js';
 import {
   openCameraStream,
   stopCameraStream,
@@ -10,7 +9,7 @@ import {
   classifyLight
 } from '../lib/lightMeter.js';
 
-const SAMPLE_INTERVAL = 300; // ms — częstotliwość pomiaru
+const SAMPLE_INTERVAL = 300; // ms
 
 export default function LightMeter() {
   const videoRef = useRef(null);
@@ -23,83 +22,118 @@ export default function LightMeter() {
   const [lux, setLux] = useState(0);
   const [lum, setLum] = useState(0);
   const [paused, setPaused] = useState(false);
+  const [streamReady, setStreamReady] = useState(false);
 
-  const start = async () => {
+  // === START / STOP ===
+  const handleStart = async () => {
     setError(null);
     try {
       const stream = await openCameraStream();
       streamRef.current = stream;
-      if (videoRef.current) {
-        videoRef.current.srcObject = stream;
-        await videoRef.current.play();
-      }
-      setActive(true);
-      setPaused(false);
+      setActive(true); // dopiero teraz wyrenderuje się <video>
     } catch (e) {
       setError(e.message);
     }
   };
 
-  const stop = () => {
+  const handleStop = () => {
     if (intervalRef.current) {
       clearInterval(intervalRef.current);
       intervalRef.current = null;
     }
     stopCameraStream(streamRef.current);
     streamRef.current = null;
+    if (videoRef.current) {
+      videoRef.current.srcObject = null;
+    }
     setActive(false);
+    setStreamReady(false);
     setPaused(false);
   };
 
-  // Próbkowanie klatek
+  // === ATTACH STREAM po wyrenderowaniu video ===
   useEffect(() => {
-    if (!active || paused) return;
+    if (!active) return;
+    const video = videoRef.current;
+    const stream = streamRef.current;
+    if (!video || !stream) return;
+
+    video.srcObject = stream;
+
+    const onLoaded = () => {
+      video.play().then(() => {
+        setStreamReady(true);
+      }).catch((e) => {
+        setError('Nie udało się uruchomić podglądu: ' + e.message);
+      });
+    };
+
+    if (video.readyState >= 2) {
+      onLoaded();
+    } else {
+      video.addEventListener('loadedmetadata', onLoaded, { once: true });
+    }
+
+    return () => {
+      video.removeEventListener('loadedmetadata', onLoaded);
+    };
+  }, [active]);
+
+  // === SAMPLING ===
+  useEffect(() => {
+    if (!active || !streamReady || paused) return;
 
     const tick = () => {
       const video = videoRef.current;
       const canvas = canvasRef.current;
-      if (!video || !canvas || video.readyState < 2) return;
+      if (!video || !canvas) return;
+      if (video.videoWidth === 0 || video.videoHeight === 0) return;
 
-      // Małe canvas wystarczy — nie potrzebujemy pełnej rozdzielczości
       const w = 80;
       const h = 60;
       canvas.width = w;
       canvas.height = h;
       const ctx = canvas.getContext('2d', { willReadFrequently: true });
-      ctx.drawImage(video, 0, 0, w, h);
       try {
+        ctx.drawImage(video, 0, 0, w, h);
         const data = ctx.getImageData(0, 0, w, h);
         const l = calculateLuminance(data);
         setLum(l);
         setLux(luminanceToLux(l));
       } catch (e) {
-        // Czasem getImageData rzuca SecurityError, ignoruj
+        // SecurityError — ignoruj, kolejna klatka spróbuje
       }
     };
 
+    tick(); // pierwszy pomiar od razu
     intervalRef.current = setInterval(tick, SAMPLE_INTERVAL);
     return () => {
       if (intervalRef.current) clearInterval(intervalRef.current);
     };
-  }, [active, paused]);
+  }, [active, streamReady, paused]);
 
-  // Cleanup przy unmount
-  useEffect(() => () => stop(), []);
+  // === CLEANUP przy unmount ===
+  useEffect(() => {
+    return () => {
+      if (intervalRef.current) clearInterval(intervalRef.current);
+      stopCameraStream(streamRef.current);
+    };
+  }, []);
 
-  const classification = active ? classifyLight(lux) : null;
+  const classification = active && streamReady ? classifyLight(lux) : null;
   const colorMap = {
     danger: 'var(--danger)',
     warning: 'var(--warning)',
     accent: 'var(--accent)'
   };
 
-  // Polecane rośliny pasujące do bieżącego światła (top 3 z bazy)
   const recommendedPlants = classification
     ? plantsDB
         .filter((p) => p.category.some((c) => classification.categories.includes(c)))
         .slice(0, 3)
     : [];
 
+  // === RENDER: ekran startowy ===
   if (!active) {
     return (
       <div>
@@ -110,7 +144,7 @@ export default function LightMeter() {
             Skieruj kamerę na miejsce gdzie chcesz postawić roślinę. Aplikacja zmierzy
             jasność i podpowie jakie gatunki się tam sprawdzą.
           </p>
-          <button onClick={start} className="btn btn-primary">
+          <button onClick={handleStart} className="btn btn-primary">
             📷 Włącz kamerę
           </button>
           {error && <p className="text-xs text-danger mt-3">{error}</p>}
@@ -129,53 +163,65 @@ export default function LightMeter() {
     );
   }
 
+  // === RENDER: kamera aktywna ===
   return (
     <div>
-      {/* Wideo + nakładka */}
       <div className="card mb-3 !p-0 overflow-hidden relative">
+        {/* WAŻNE: video musi być ZAWSZE w DOM gdy active=true,
+            żeby ref był dostępny dla useEffect */}
         <video
           ref={videoRef}
           playsInline
           muted
-          className="w-full aspect-[4/3] object-cover bg-deep"
+          autoPlay
+          className="w-full aspect-[4/3] object-cover bg-deep block"
         />
         <canvas ref={canvasRef} className="hidden" />
 
-        {paused && (
+        {!streamReady && (
+          <div className="absolute inset-0 flex items-center justify-center">
+            <span className="text-muted text-sm">Uruchamiam kamerę…</span>
+          </div>
+        )}
+
+        {paused && streamReady && (
           <div className="absolute inset-0 bg-app/80 flex items-center justify-center">
             <span className="text-primary text-sm">⏸ Pauza</span>
           </div>
         )}
 
-        {/* Pasek z wartością na dole */}
-        <div className="absolute bottom-0 left-0 right-0 bg-app/85 backdrop-blur p-3">
-          <div className="flex items-baseline justify-between mb-2">
-            <span className="text-xs text-muted">Pomiar światła</span>
-            <span className="text-xs text-muted">~{Math.round(lum)} luminancji</span>
-          </div>
-          <div className="text-2xl font-medium text-primary leading-none mb-1">
-            ~{lux.toLocaleString('pl-PL')} lx
-          </div>
-          {classification && (
-            <div className="flex items-center gap-2 text-sm" style={{ color: colorMap[classification.color] }}>
-              <span>{classification.icon}</span>
-              <span>{classification.label}</span>
+        {streamReady && (
+          <div className="absolute bottom-0 left-0 right-0 bg-app/85 backdrop-blur p-3">
+            <div className="flex items-baseline justify-between mb-2">
+              <span className="text-xs text-muted">Pomiar światła</span>
+              <span className="text-xs text-muted">~{Math.round(lum)} luminancji</span>
             </div>
-          )}
-        </div>
+            <div className="text-2xl font-medium text-primary leading-none mb-1">
+              ~{lux.toLocaleString('pl-PL')} lx
+            </div>
+            {classification && (
+              <div className="flex items-center gap-2 text-sm" style={{ color: colorMap[classification.color] }}>
+                <span>{classification.icon}</span>
+                <span>{classification.label}</span>
+              </div>
+            )}
+          </div>
+        )}
       </div>
 
-      {/* Akcje */}
       <div className="grid grid-cols-2 gap-2 mb-3">
-        <button onClick={() => setPaused((v) => !v)} className="btn btn-secondary">
+        <button
+          onClick={() => setPaused((v) => !v)}
+          disabled={!streamReady}
+          className="btn btn-secondary disabled:opacity-50"
+        >
           {paused ? '▶ Wznów' : '⏸ Pauza'}
         </button>
-        <button onClick={stop} className="btn btn-secondary">
+        <button onClick={handleStop} className="btn btn-secondary">
           ✕ Wyłącz
         </button>
       </div>
 
-      {/* Rekomendacja */}
       {classification && (
         <div className="card mb-3">
           <h3 className="text-sm text-primary font-medium m-0 mb-2">Rekomendacja</h3>
