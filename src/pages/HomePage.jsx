@@ -83,7 +83,7 @@ export default function HomePage() {
       </Link>
 
       {/* Sezonowa porada */}
-      <section className="card mb-6">
+      <section className="card mb-3">
         <div className="flex items-baseline justify-between mb-2">
           <p className="text-xs text-muted m-0">Porada sezonowa</p>
           <span className="text-base">{tip.icon}</span>
@@ -91,6 +91,16 @@ export default function HomePage() {
         <p className="font-serif text-base text-primary m-0 mb-1.5">{tip.title}</p>
         <p className="text-xs text-secondary leading-relaxed m-0">{tip.body}</p>
       </section>
+
+      {/* Diagnoza chorob */}
+      <Link to="/diagnose" className="card flex items-center gap-3 mb-6 no-underline">
+        <div className="text-3xl flex-shrink-0">🩺</div>
+        <div className="flex-1 min-w-0">
+          <p className="font-serif text-base text-primary m-0">Diagnoza chorób</p>
+          <p className="text-xs text-muted m-0">Sfotografuj chorą roślinę, AI doradzi</p>
+        </div>
+        <span className="text-accent text-lg">→</span>
+      </Link>
 
       {/* Lista */}
       <section>
