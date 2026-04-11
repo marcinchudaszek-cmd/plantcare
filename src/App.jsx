@@ -14,6 +14,7 @@ import EncyclopediaDetailPage from './pages/EncyclopediaDetailPage.jsx';
 import SettingsPage from './pages/SettingsPage.jsx';
 import StatsPage from './pages/StatsPage.jsx';
 import DiagnosePage from './pages/DiagnosePage.jsx';
+import CalendarPage from './pages/CalendarPage.jsx';
 
 export default function App() {
   const hydrateApp = useAppStore((s) => s.hydrate);
@@ -53,6 +54,7 @@ export default function App() {
           <Route path="/settings" element={<SettingsPage />} />
           <Route path="/stats" element={<StatsPage />} />
           <Route path="/diagnose" element={<DiagnosePage />} />
+          <Route path="/calendar" element={<CalendarPage />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </main>

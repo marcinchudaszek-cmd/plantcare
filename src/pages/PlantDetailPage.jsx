@@ -5,7 +5,8 @@ import { useAppStore } from '../store/useAppStore.js';
 import {
   daysSinceWatered,
   waterStatusLabel,
-  waterState
+  waterState,
+  effectiveInterval
 } from '../lib/plantUtils.js';
 import plantsDB from '../data/plants.json';
 import PlantImage from '../components/PlantImage.jsx';
@@ -205,6 +206,26 @@ export default function PlantDetailPage() {
           className="w-full accent-accent"
         />
         <p className="text-xs text-primary m-0 text-center mt-1">co {plant.interval} {plant.interval === 1 ? 'dzień' : 'dni'}</p>
+
+        <div className="border-t border-soft mt-3 pt-3">
+          <label className="flex items-start gap-3 cursor-pointer">
+            <input
+              type="checkbox"
+              checked={!!plant.smartInterval}
+              onChange={(e) => updatePlant(plant.id, { smartInterval: e.target.checked })}
+              className="mt-0.5 accent-accent"
+            />
+            <span className="flex-1 min-w-0">
+              <span className="text-sm text-primary block">Smart-interwał</span>
+              <span className="text-xs text-muted block">Aplikacja sama dostosuje częstość do sezonu (zima rzadziej, lato częściej)</span>
+            </span>
+          </label>
+          {plant.smartInterval && encyc && (
+            <p className="text-xs text-accent mt-2 m-0">
+              Obecnie: co {effectiveInterval(plant, encyc)} {effectiveInterval(plant, encyc) === 1 ? 'dzień' : 'dni'}
+            </p>
+          )}
+        </div>
       </div>
 
       {/* Tagi — input */}

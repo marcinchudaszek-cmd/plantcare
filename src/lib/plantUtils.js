@@ -71,3 +71,61 @@ export function createUserPlant({ encycPlant, nickname, location, tags = [] }) {
     photos: []                         // ID zdjęć w storage.PHOTOS
   };
 }
+
+// === SMART-INTERWAL — automatyczne dostosowanie do sezonu ===
+
+/** Sezon na bazie miesiaca (0-11) */
+export function getSeason(date = new Date()) {
+  const m = date.getMonth();
+  if (m >= 2 && m <= 4) return 'spring';   // marzec-maj
+  if (m >= 5 && m <= 7) return 'summer';   // czerwiec-sierpien
+  if (m >= 8 && m <= 10) return 'autumn';  // wrzesien-listopad
+  return 'winter';                          // grudzien-luty
+}
+
+/**
+ * Modyfikator interwalu w zaleznosci od sezonu i kategorii rosliny.
+ * Zwraca mnoznik: 1.0 = bez zmian, 1.5 = rzadziej o 50%, 0.7 = czesciej.
+ *
+ * Logika:
+ * - Lato: pelny interwal z encyklopedii (mnoznik 1.0)
+ * - Wiosna/Jesien: lekko rzadziej (1.2)
+ * - Zima: znacznie rzadziej (1.7) - rosliny spia
+ * - Sukulenty/kaktusy zima: skrajnie rzadko (3.0)
+ * - Tropikalne lato: ciut czesciej (0.9) - duzo wody
+ */
+export function seasonalModifier(season, categories = []) {
+  const isSucc = categories.includes('succulents');
+  const isTropical = categories.includes('tropical');
+
+  if (season === 'winter') {
+    if (isSucc) return 3.0;     // sukulenty zima prawie wcale
+    return 1.7;                  // reszta o 70% rzadziej
+  }
+  if (season === 'summer') {
+    if (isTropical) return 0.9;  // tropikalne lato - czesciej
+    return 1.0;
+  }
+  // wiosna i jesien
+  return 1.2;
+}
+
+/**
+ * Liczy efektywny interwal rosliny.
+ * Jesli plant.smartInterval === false (lub brak), zwraca surowy plant.interval.
+ * Jesli true, modyfikuje wedlug sezonu i kategorii encyklopedii.
+ */
+export function effectiveInterval(plant, encycPlant) {
+  const base = plant.interval || 7;
+  if (!plant.smartInterval) return base;
+
+  const season = getSeason();
+  const categories = (encycPlant && encycPlant.category) || [];
+  const mod = seasonalModifier(season, categories);
+  return Math.max(1, Math.round(base * mod));
+}
+
+/** Etykieta sezonu po polsku */
+export function seasonLabel(season) {
+  return { spring: 'wiosna', summer: 'lato', autumn: 'jesien', winter: 'zima' }[season] || season;
+}
