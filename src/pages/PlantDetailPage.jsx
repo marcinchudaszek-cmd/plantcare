@@ -11,6 +11,8 @@ import {
 import plantsDB from '../data/plants.json';
 import PlantImage from '../components/PlantImage.jsx';
 import PhotoUploader from '../components/PhotoUploader.jsx';
+import GrowthTimeline from '../components/GrowthTimeline.jsx';
+import { generateShareCard, shareOrDownload } from '../lib/shareCard.js';
 import { usePhoto } from '../hooks/usePhoto.js';
 import { useSettingsStore } from '../store/useSettingsStore.js';
 
@@ -34,6 +36,21 @@ export default function PlantDetailPage() {
   const [journalText, setJournalText] = useState('');
   const [tagInput, setTagInput] = useState('');
   const [showDelete, setShowDelete] = useState(false);
+  const [sharing, setSharing] = useState(false);
+
+  const handleShare = async () => {
+    if (!plant) return;
+    setSharing(true);
+    try {
+      const encycLocal = plantsDB.find((p) => p.id === plant.encycId);
+      const blob = await generateShareCard(plant, encycLocal);
+      await shareOrDownload(blob, `plantcare-${plant.name.toLowerCase().replace(/\s+/g, '-')}.png`);
+    } catch (e) {
+      alert('Nie udało się przygotować obrazka: ' + e.message);
+    } finally {
+      setSharing(false);
+    }
+  };
 
   if (!plant) {
     return (
@@ -89,13 +106,24 @@ export default function PlantDetailPage() {
             <path d="M19 12H5M12 19l-7-7 7-7" />
           </svg>
         </button>
-        <button
-          onClick={() => setShowDelete((v) => !v)}
-          className="w-9 h-9 rounded-full bg-surface flex items-center justify-center text-muted"
-          aria-label="Więcej"
-        >
-          ⋯
-        </button>
+        <div className="flex gap-2">
+          <button
+            onClick={handleShare}
+            disabled={sharing}
+            className="w-9 h-9 rounded-full bg-surface flex items-center justify-center text-primary disabled:opacity-50"
+            aria-label="Udostępnij"
+            title="Udostępnij"
+          >
+            {sharing ? '⏳' : '↗'}
+          </button>
+          <button
+            onClick={() => setShowDelete((v) => !v)}
+            className="w-9 h-9 rounded-full bg-surface flex items-center justify-center text-muted"
+            aria-label="Więcej"
+          >
+            ⋯
+          </button>
+        </div>
       </header>
 
       {/* Cover */}
@@ -192,6 +220,9 @@ export default function PlantDetailPage() {
           className="w-full"
         />
       </div>
+
+      {/* Wzrost w czasie — pozioma timeline */}
+      <GrowthTimeline plant={plant} />
 
       {/* Edycja interwału */}
       <div className="card mb-4">

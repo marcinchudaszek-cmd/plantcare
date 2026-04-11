@@ -69,6 +69,7 @@ export const useAppStore = create((set, get) => ({
     const blob = await compressImage(file, 1600);
     const photoId = newPhotoId('plant');
     await savePhoto(photoId, blob);
+    const addedAt = new Date().toISOString();
 
     set((s) => ({
       plants: s.plants.map((p) => {
@@ -76,7 +77,9 @@ export const useAppStore = create((set, get) => ({
         const photos = [...(p.photos || []), photoId];
         // Pierwsze zdjęcie automatycznie staje się cover
         const coverPhotoId = p.coverPhotoId || photoId;
-        return { ...p, photos, coverPhotoId };
+        // Backward-compat: jeśli photoMeta nie istnieje, tworzymy
+        const photoMeta = { ...(p.photoMeta || {}), [photoId]: { addedAt } };
+        return { ...p, photos, coverPhotoId, photoMeta };
       })
     }));
     get()._save();
@@ -93,7 +96,10 @@ export const useAppStore = create((set, get) => ({
         const photos = (p.photos || []).filter((id) => id !== photoId);
         // Jeśli usuwamy cover, ustaw kolejne (lub null)
         const coverPhotoId = p.coverPhotoId === photoId ? (photos[0] || null) : p.coverPhotoId;
-        return { ...p, photos, coverPhotoId };
+        // Posprzątaj meta
+        const photoMeta = { ...(p.photoMeta || {}) };
+        delete photoMeta[photoId];
+        return { ...p, photos, coverPhotoId, photoMeta };
       })
     }));
     get()._save();
