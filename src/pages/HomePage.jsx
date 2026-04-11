@@ -5,6 +5,7 @@ import { useT } from '../lib/i18n.js';
 import PlantImage from '../components/PlantImage.jsx';
 import plantsDB from '../data/plants.json';
 import { useSettingsStore } from '../store/useSettingsStore.js';
+import { getTodayTip } from '../lib/seasonalTips.js';
 
 export default function HomePage() {
   const t = useT();
@@ -19,6 +20,7 @@ export default function HomePage() {
 
   const sorted = [...plants].sort((a, b) => daysSinceWatered(b) - daysSinceWatered(a));
   const today = sorted.slice(0, 5);
+  const tip = getTodayTip();
 
   // Hero text z accentem
   const heroText = () => {
@@ -64,8 +66,8 @@ export default function HomePage() {
         <p className="font-serif text-lg text-primary leading-snug m-0">{heroText()}</p>
       </section>
 
-      {/* Stats */}
-      <section className="grid grid-cols-3 gap-2 mb-6">
+      {/* Stats — klikalne, prowadzą do StatsPage */}
+      <Link to="/stats" className="grid grid-cols-3 gap-2 mb-4 no-underline">
         <div className="stat">
           <p className="text-xl text-primary font-medium m-0">{stats.total}</p>
           <p className="text-xs text-muted mt-1 m-0">{t('home.plants')}</p>
@@ -78,6 +80,16 @@ export default function HomePage() {
           <p className="text-xl text-primary font-medium m-0">{stats.journal}</p>
           <p className="text-xs text-muted mt-1 m-0">{t('home.entries')}</p>
         </div>
+      </Link>
+
+      {/* Sezonowa porada */}
+      <section className="card mb-6">
+        <div className="flex items-baseline justify-between mb-2">
+          <p className="text-xs text-muted m-0">Porada sezonowa</p>
+          <span className="text-base">{tip.icon}</span>
+        </div>
+        <p className="font-serif text-base text-primary m-0 mb-1.5">{tip.title}</p>
+        <p className="text-xs text-secondary leading-relaxed m-0">{tip.body}</p>
       </section>
 
       {/* Lista */}

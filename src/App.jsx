@@ -12,6 +12,7 @@ import ScannerPage from './pages/ScannerPage.jsx';
 import EncyclopediaPage from './pages/EncyclopediaPage.jsx';
 import EncyclopediaDetailPage from './pages/EncyclopediaDetailPage.jsx';
 import SettingsPage from './pages/SettingsPage.jsx';
+import StatsPage from './pages/StatsPage.jsx';
 
 export default function App() {
   const hydrateApp = useAppStore((s) => s.hydrate);
@@ -49,6 +50,7 @@ export default function App() {
           <Route path="/encyclopedia" element={<EncyclopediaPage />} />
           <Route path="/encyclopedia/:id" element={<EncyclopediaDetailPage />} />
           <Route path="/settings" element={<SettingsPage />} />
+          <Route path="/stats" element={<StatsPage />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </main>
