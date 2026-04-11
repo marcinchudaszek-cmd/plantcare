@@ -1,0 +1,158 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* === Forest & Cream — zmienne motywu ===
+   Zamiast hardkodowanych klas Tailwind, używam CSS vars,
+   żeby przełącznik motywu działał błyskawicznie bez rebuild. */
+
+:root {
+  /* Dark (domyślny) */
+  --bg-app:        #0b2218;
+  --bg-surface:    #153326;
+  --bg-deep:       #0b2218;
+  --bg-elevated:   #1d4433;
+  --border-soft:   rgba(240, 229, 200, 0.08);
+  --border-strong: rgba(240, 229, 200, 0.20);
+  --text-primary:  #f0e5c8;
+  --text-secondary:#9ab3a1;
+  --text-muted:    #6f8a78;
+  --accent:        #7dd66f;
+  --accent-text:   #0b2218;
+  --danger:        #d47866;
+  --warning:       #d4a24b;
+}
+
+html.light {
+  --bg-app:        #f6f1e4;
+  --bg-surface:    #ffffff;
+  --bg-deep:       #ede7d3;
+  --bg-elevated:   #e6dcc2;
+  --border-soft:   rgba(11, 34, 24, 0.08);
+  --border-strong: rgba(11, 34, 24, 0.20);
+  --text-primary:  #0f2c20;
+  --text-secondary:#4a6354;
+  --text-muted:    #7a8d80;
+  --accent:        #46a23a;
+  --accent-text:   #ffffff;
+  --danger:        #b85a48;
+  --warning:       #b8821e;
+}
+
+@layer base {
+  html, body, #root {
+    @apply min-h-screen;
+  }
+  body {
+    @apply font-sans antialiased;
+    background-color: var(--bg-app);
+    color: var(--text-primary);
+    padding-top: env(safe-area-inset-top);
+    padding-bottom: env(safe-area-inset-bottom);
+    transition: background-color 0.2s, color 0.2s;
+  }
+  h1, h2, h3, h4 {
+    @apply font-serif font-medium tracking-tight;
+  }
+  * { -webkit-tap-highlight-color: transparent; }
+
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-thumb {
+    background-color: var(--bg-elevated);
+    border-radius: 4px;
+  }
+}
+
+@layer components {
+  /* === Karty === */
+  .card {
+    background-color: var(--bg-surface);
+    border: 1px solid var(--border-soft);
+    @apply rounded-lg p-4;
+    transition: background-color 0.2s, border-color 0.2s;
+  }
+
+  /* === Stat === */
+  .stat {
+    background-color: var(--bg-surface);
+    border: 1px solid var(--border-soft);
+    @apply rounded-md p-3 text-center;
+  }
+
+  /* === Pill / tag === */
+  .pill {
+    @apply inline-flex items-center text-xs px-3 py-1 rounded-full;
+    background-color: var(--bg-surface);
+    color: var(--text-secondary);
+    border: 1px solid var(--border-soft);
+  }
+  .pill-on {
+    background-color: var(--bg-elevated);
+    color: var(--text-primary);
+    border-color: var(--border-strong);
+  }
+
+  /* === Bottom nav === */
+  .nav-btn {
+    @apply flex flex-col items-center gap-1 text-xs transition-colors;
+    color: var(--text-muted);
+  }
+  .nav-btn.active {
+    color: var(--accent);
+  }
+
+  /* === Buttony === */
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 px-4 py-3 rounded-md font-medium text-sm transition-all active:scale-[0.98];
+  }
+  .btn-primary {
+    background-color: var(--accent);
+    color: var(--accent-text);
+  }
+  .btn-primary:hover { filter: brightness(1.08); }
+
+  .btn-secondary {
+    background-color: var(--bg-surface);
+    color: var(--text-primary);
+    border: 1px solid var(--border-strong);
+  }
+  .btn-secondary:hover { background-color: var(--bg-elevated); }
+
+  .btn-ghost {
+    color: var(--text-primary);
+  }
+  .btn-ghost:hover { background-color: var(--bg-surface); }
+
+  /* === Input === */
+  .input {
+    @apply w-full rounded-md px-4 py-3 focus:outline-none;
+    background-color: var(--bg-surface);
+    color: var(--text-primary);
+    border: 1px solid var(--border-strong);
+  }
+  .input::placeholder { color: var(--text-muted); }
+  .input:focus { border-color: var(--accent); }
+
+  /* === Helper: ukryj scrollbar w poziomych listach === */
+  .scrollbar-hide::-webkit-scrollbar { display: none; }
+  .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+}
+
+/* === Utility text colors używające zmiennych motywu ===
+   Te skróty pozwalają używać "text-primary"/"text-secondary"/"text-muted"
+   zamiast kombinacji Tailwind klas. */
+.text-primary   { color: var(--text-primary); }
+.text-secondary { color: var(--text-secondary); }
+.text-muted     { color: var(--text-muted); }
+.text-accent    { color: var(--accent); }
+.text-danger    { color: var(--danger); }
+.text-warning   { color: var(--warning); }
+
+.bg-app      { background-color: var(--bg-app); }
+.bg-surface  { background-color: var(--bg-surface); }
+.bg-deep     { background-color: var(--bg-deep); }
+.bg-elevated { background-color: var(--bg-elevated); }
+.bg-accent   { background-color: var(--accent); }
+
+.border-soft   { border-color: var(--border-soft); }
+.border-strong { border-color: var(--border-strong); }

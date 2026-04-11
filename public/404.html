@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="pl">
+  <head>
+    <meta charset="utf-8">
+    <title>PlantCare</title>
+    <script>
+      // GitHub Pages 404 fallback dla SPA z HashRouter — przekierowujemy
+      // wszystko do index.html z zachowaniem ścieżki w hashu.
+      var path = window.location.pathname.replace(/^\/plantcare/, '');
+      var search = window.location.search;
+      window.location.replace('/plantcare/#' + path + search);
+    </script>
+  </head>
+  <body></body>
+</html>
