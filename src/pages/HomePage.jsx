@@ -103,11 +103,31 @@ export default function HomePage() {
       </Link>
 
       {/* Kalendarz */}
-      <Link to="/calendar" className="card flex items-center gap-3 mb-6 no-underline">
+      <Link to="/calendar" className="card flex items-center gap-3 mb-3 no-underline">
         <div className="text-3xl flex-shrink-0">📅</div>
         <div className="flex-1 min-w-0">
           <p className="font-serif text-base text-primary m-0">Kalendarz podlewania</p>
           <p className="text-xs text-muted m-0">Zobacz co i kiedy podlać w tym miesiącu</p>
+        </div>
+        <span className="text-accent text-lg">→</span>
+      </Link>
+
+      {/* Asystent czatu */}
+      <Link to="/chat" className="card flex items-center gap-3 mb-3 no-underline">
+        <div className="text-3xl flex-shrink-0">💬</div>
+        <div className="flex-1 min-w-0">
+          <p className="font-serif text-base text-primary m-0">Asystent ogrodniczy</p>
+          <p className="text-xs text-muted m-0">Zapytaj AI o cokolwiek o roślinach</p>
+        </div>
+        <span className="text-accent text-lg">→</span>
+      </Link>
+
+      {/* Quiz */}
+      <Link to="/quiz" className="card flex items-center gap-3 mb-6 no-underline">
+        <div className="text-3xl flex-shrink-0">🎯</div>
+        <div className="flex-1 min-w-0">
+          <p className="font-serif text-base text-primary m-0">Quiz — Rozpoznaj roślinę</p>
+          <p className="text-xs text-muted m-0">10 zdjęć, sprawdź swoją wiedzę</p>
         </div>
         <span className="text-accent text-lg">→</span>
       </Link>

@@ -15,6 +15,8 @@ import SettingsPage from './pages/SettingsPage.jsx';
 import StatsPage from './pages/StatsPage.jsx';
 import DiagnosePage from './pages/DiagnosePage.jsx';
 import CalendarPage from './pages/CalendarPage.jsx';
+import QuizPage from './pages/QuizPage.jsx';
+import ChatPage from './pages/ChatPage.jsx';
 
 export default function App() {
   const hydrateApp = useAppStore((s) => s.hydrate);
@@ -55,6 +57,8 @@ export default function App() {
           <Route path="/stats" element={<StatsPage />} />
           <Route path="/diagnose" element={<DiagnosePage />} />
           <Route path="/calendar" element={<CalendarPage />} />
+          <Route path="/quiz" element={<QuizPage />} />
+          <Route path="/chat" element={<ChatPage />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </main>

@@ -231,3 +231,103 @@ export async function diagnosePlantHealth(apiKey, imageBase64, mimeType = 'image
   }
   throw lastError || new Error('Nie udalo sie zdiagnozowac rosliny.');
 }
+
+// === ASYSTENT CZATU ===
+
+const CHAT_SYSTEM = `Jestes doswiadczonym ogrodnikiem-konsultantem specjalizujacym sie w roslinach doniczkowych. Odpowiadasz w jezyku polskim, krotko i konkretnie (2-5 zdan zwykle). Jesli pytanie jest niejasne, dopytaj. Pomagasz uzytkownikowi zadbac o jego rosliny, doradz w wyborze nowych, diagnozujesz problemy. Nie udzielaj porad medycznych ani prawnych. Bazujesz na sprawdzonej wiedzy ogrodniczej.`;
+
+/**
+ * Wysyla wiadomosc do Gemini z opcjonalnym kontekstem o roslinach uzytkownika.
+ *
+ * @param {string} apiKey
+ * @param {Array<{role: 'user'|'model', text: string}>} history - historia konwersacji
+ * @param {string} userMessage - nowa wiadomosc usera
+ * @param {Array} userPlants - opcjonalna lista nazw roslin uzytkownika do kontekstu
+ */
+export async function chatGemini(apiKey, history, userMessage, userPlants = [], opts = {}) {
+  const { timeout = 30000 } = opts;
+
+  if (!apiKey) throw new Error('Brak klucza API. Dodaj go w ustawieniach.');
+  if (!isValidApiKeyFormat(apiKey)) throw new Error('Klucz API ma nieprawidlowy format.');
+
+  // Buduj kontekst systemowy
+  let systemContext = CHAT_SYSTEM;
+  if (userPlants.length > 0) {
+    const plantList = userPlants.slice(0, 30).map((p) => '- ' + p.name + ' (' + p.species + ')').join('\n');
+    systemContext += '\n\nKolekcja uzytkownika (' + userPlants.length + ' roslin):\n' + plantList;
+  }
+
+  // Format konwersacji dla Gemini API
+  const contents = [];
+  // Pierwszy turn z systemContext
+  if (history.length === 0) {
+    contents.push({
+      role: 'user',
+      parts: [{ text: systemContext + '\n\nUzytkownik pyta: ' + userMessage }]
+    });
+  } else {
+    contents.push({
+      role: 'user',
+      parts: [{ text: systemContext }]
+    });
+    contents.push({
+      role: 'model',
+      parts: [{ text: 'Jasne, jestem do dyspozycji. W czym moge pomoc?' }]
+    });
+    for (const msg of history) {
+      contents.push({
+        role: msg.role,
+        parts: [{ text: msg.text }]
+      });
+    }
+    contents.push({
+      role: 'user',
+      parts: [{ text: userMessage }]
+    });
+  }
+
+  const body = {
+    contents,
+    generationConfig: {
+      temperature: 0.7,
+      topK: 32,
+      topP: 1,
+      maxOutputTokens: 1024
+    }
+  };
+
+  const ctrl = new AbortController();
+  const tid = setTimeout(() => ctrl.abort(), timeout);
+
+  try {
+    const res = await fetch(ENDPOINT + '?key=' + encodeURIComponent(apiKey), {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(body),
+      signal: ctrl.signal
+    });
+    clearTimeout(tid);
+
+    if (res.status === 401 || res.status === 403) {
+      throw new Error('Klucz API odrzucony przez Google.');
+    }
+    if (res.status === 429) {
+      throw new Error('Za duzo zapytan. Poczekaj chwile.');
+    }
+    if (!res.ok) {
+      throw new Error('Blad serwera Gemini: ' + res.status);
+    }
+
+    const data = await res.json();
+    const text = data && data.candidates && data.candidates[0] && data.candidates[0].content && data.candidates[0].content.parts && data.candidates[0].content.parts[0] && data.candidates[0].content.parts[0].text;
+    if (!text) throw new Error('Pusta odpowiedz z Gemini.');
+
+    return text.trim();
+  } catch (err) {
+    clearTimeout(tid);
+    if (err.name === 'AbortError') {
+      throw new Error('Przekroczono czas oczekiwania.');
+    }
+    throw err;
+  }
+}
