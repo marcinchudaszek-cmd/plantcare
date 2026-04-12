@@ -133,7 +133,7 @@ export default function EncyclopediaDetailPage() {
       </div>
 
       {/* Nazwa */}
-      <h1 className="text-2xl text-primary m-0 leading-tight">{plant.name}</h1>
+      <h1 className="text-2xl m-0 leading-tight" style={{ color: 'var(--text-primary)' }}>{plant.name}</h1>
       <p className="text-xs text-muted italic mt-1 mb-3">{plant.species}</p>
 
       {/* Pills (kategorie + difficulty) */}
