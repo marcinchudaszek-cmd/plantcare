@@ -2,7 +2,7 @@
 // Wszystko co dotyczy formatów, retry, błędów — w jednym miejscu.
 
 const ENDPOINT =
-  'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-exp:generateContent';
+  'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent';
 
 const PROMPT = `Przeanalizuj zdjęcie rośliny doniczkowej i odpowiedz WYŁĄCZNIE poprawnym JSON-em (bez markdownu, bez \`\`\`).
 
