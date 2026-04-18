@@ -126,6 +126,17 @@ export default function PlantDetailPage() {
         </div>
       </header>
 
+      {/* Potwierdzenie usunięcia */}
+      {showDelete && (
+        <div className="card mb-4" style={{ borderColor: 'var(--danger)' }}>
+          <p className="text-sm text-primary mb-3">{t('plantDetail.deleteConfirm')}</p>
+          <div className="flex gap-2">
+            <button onClick={() => setShowDelete(false)} className="btn btn-secondary flex-1">{t('common.cancel')}</button>
+            <button onClick={handleDelete} className="btn flex-1" style={{ backgroundColor: 'var(--danger)', color: '#fff' }}>{t('common.delete')}</button>
+          </div>
+        </div>
+      )}
+
       {/* Cover */}
       <PlantImage
         userPhotoId={plant.coverPhotoId}
@@ -313,17 +324,6 @@ export default function PlantDetailPage() {
         <div className="card mb-4">
           <h2 className="text-sm text-primary font-medium m-0 mb-2">{t('plantDetail.about')}</h2>
           <p className="text-sm text-secondary leading-relaxed m-0">{encyc.description}</p>
-        </div>
-      )}
-
-      {/* Akcja niebezpieczna */}
-      {showDelete && (
-        <div className="card mb-4">
-          <p className="text-sm text-primary mb-3">{t('plantDetail.deleteConfirm')}</p>
-          <div className="flex gap-2">
-            <button onClick={() => setShowDelete(false)} className="btn btn-secondary flex-1">{t('common.cancel')}</button>
-            <button onClick={handleDelete} className="btn flex-1">{t('common.delete')}</button>
-          </div>
         </div>
       )}
     </div>
