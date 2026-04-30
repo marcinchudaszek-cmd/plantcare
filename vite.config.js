@@ -4,7 +4,7 @@ import { VitePWA } from 'vite-plugin-pwa';
 
 // Bazowy path dla GitHub Pages: /plantcare/
 // Jeśli odpalasz lokalnie i to przeszkadza, ustaw VITE_BASE=/ w .env.local
-const base = process.env.VITE_BASE ?? '/plantcare/';
+const base = process.env.VITE_BASE ?? '/';
 
 export default defineConfig({
   base,
