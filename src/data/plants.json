@@ -4,7 +4,7 @@
     "name": "Monstera",
     "species": "Monstera deliciosa",
     "emoji": "🌿",
-    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Monstera_deliciosa_cropped.jpg?width=400",
+    "image": "plants/monstera.jpg",
     "category": [
       "popular",
       "tropical"
@@ -42,7 +42,7 @@
     "name": "Pothos (Epipremnum)",
     "species": "Epipremnum aureum",
     "emoji": "💚",
-    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Epipremnum_aureum1.jpg?width=400",
+    "image": "plants/pothos.jpg",
     "category": [
       "popular",
       "easy"
@@ -79,7 +79,7 @@
     "name": "Sansewieria (Wężownica)",
     "species": "Dracaena trifasciata",
     "emoji": "🗡️",
-    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Sansevieria_trifasciata1.jpg?width=400",
+    "image": "plants/sansevieria.jpg",
     "category": [
       "popular",
       "easy",
@@ -117,7 +117,7 @@
     "name": "Figowiec lirolistny",
     "species": "Ficus lyrata",
     "emoji": "🎻",
-    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Ficus_lyrata.jpg?width=400",
+    "image": "plants/ficus-lyrata.jpg",
     "category": [
       "popular",
       "tropical"
@@ -154,7 +154,7 @@
     "name": "Skrzydłokwiat",
     "species": "Spathiphyllum wallisii",
     "emoji": "🤍",
-    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Spathiphyllum_cochlearispathum_RTBG.jpg?width=400",
+    "image": "plants/spathiphyllum.jpg",
     "category": [
       "popular",
       "flowering",
@@ -192,7 +192,7 @@
     "name": "Filodendron sercowaty",
     "species": "Philodendron hederaceum",
     "emoji": "💚",
-    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Philodendron_hederaceum.jpg?width=400",
+    "image": "plants/philodendron.jpg",
     "category": [
       "popular",
       "easy",
@@ -229,7 +229,7 @@
     "name": "Pilea (Pieniążek)",
     "species": "Pilea peperomioides",
     "emoji": "💰",
-    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Pilea_peperomioides.jpg?width=400",
+    "image": "plants/pilea.jpg",
     "category": [
       "popular",
       "easy"
@@ -266,7 +266,7 @@
     "name": "Fikus sprężysty",
     "species": "Ficus elastica",
     "emoji": "🌳",
-    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Ficus_elastica_-_Rubber_tree.jpg?width=400",
+    "image": "plants/ficus-elastica.jpg",
     "category": [
       "popular",
       "tropical"
@@ -302,7 +302,7 @@
     "name": "Dracena obrzeżona",
     "species": "Dracaena marginata",
     "emoji": "🌴",
-    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Dracaena_marginata_0.jpg?width=400",
+    "image": "plants/dracaena.jpg",
     "category": [
       "popular",
       "tropical"
@@ -338,7 +338,7 @@
     "name": "Zamiokulkas",
     "species": "Zamioculcas zamiifolia",
     "emoji": "✨",
-    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Zamioculcas_zamiifolia_1.jpg?width=400",
+    "image": "plants/zamioculcas.jpg",
     "category": [
       "popular",
       "easy"
@@ -375,7 +375,7 @@
     "name": "Storczyk Falenopsis",
     "species": "Phalaenopsis",
     "emoji": "🦋",
-    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Phalaenopsis_hybrid2.jpg?width=400",
+    "image": "plants/orchid.jpg",
     "category": [
       "flowering"
     ],
@@ -412,7 +412,7 @@
     "name": "Anturium",
     "species": "Anthurium andraeanum",
     "emoji": "❤️",
-    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Anthurium_andraeanum.jpg?width=400",
+    "image": "plants/anthurium.jpg",
     "category": [
       "flowering",
       "tropical"
@@ -448,7 +448,7 @@
     "name": "Kalanchoe",
     "species": "Kalanchoe blossfeldiana",
     "emoji": "🌺",
-    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Kalanchoe_blossfeldiana_3.jpg?width=400",
+    "image": "plants/kalanchoe.jpg",
     "category": [
       "flowering",
       "succulents"
@@ -484,7 +484,7 @@
     "name": "Begonia królewska",
     "species": "Begonia rex",
     "emoji": "👑",
-    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Begonia_rex.jpg?width=400",
+    "image": "plants/begonia.jpg",
     "category": [
       "flowering"
     ],
@@ -519,7 +519,7 @@
     "name": "Fiołek afrykański",
     "species": "Saintpaulia ionantha",
     "emoji": "💜",
-    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/African_violet.jpg?width=400",
+    "image": "plants/african-violet.jpg",
     "category": [
       "flowering",
       "easy"
@@ -555,7 +555,7 @@
     "name": "Hibiskus chiński",
     "species": "Hibiscus rosa-sinensis",
     "emoji": "🌺",
-    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Hibiscus_rosa-sinensis.jpg?width=400",
+    "image": "plants/hibiscus.jpg",
     "category": [
       "flowering"
     ],
@@ -590,7 +590,7 @@
     "name": "Hoja (Woskownica)",
     "species": "Hoya carnosa",
     "emoji": "⭐",
-    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Hoya_carnosa.jpg?width=400",
+    "image": "plants/hoya.jpg",
     "category": [
       "flowering",
       "tropical"
@@ -626,7 +626,7 @@
     "name": "Begonia Pstrąg",
     "species": "Begonia maculata",
     "emoji": "🎨",
-    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Begonia_maculata.jpg?width=400",
+    "image": "plants/begonia-maculata.jpg",
     "category": [
       "flowering",
       "tropical"
@@ -662,7 +662,7 @@
     "name": "Echeweria",
     "species": "Echeveria elegans",
     "emoji": "🪷",
-    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Echeveria_elegans.jpg?width=400",
+    "image": "plants/echeveria.jpg",
     "category": [
       "succulents"
     ],
@@ -697,7 +697,7 @@
     "name": "Aloes zwyczajny",
     "species": "Aloe vera",
     "emoji": "🌱",
-    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Aloe_vera_(3).jpg?width=400",
+    "image": "plants/aloe.png",
     "category": [
       "succulents",
       "easy"
@@ -733,7 +733,7 @@
     "name": "Grubosz (Drzewko szczęścia)",
     "species": "Crassula ovata",
     "emoji": "🌳",
-    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Crassula_ovata_-_Jade_Plant.jpg?width=400",
+    "image": "plants/crassula.jpg",
     "category": [
       "succulents",
       "easy"
@@ -769,7 +769,7 @@
     "name": "Haworcja",
     "species": "Haworthiopsis attenuata",
     "emoji": "🦓",
-    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Haworthiopsis_attenuata.jpg?width=400",
+    "image": "plants/haworthia.jpg",
     "category": [
       "succulents",
       "easy"
@@ -805,7 +805,7 @@
     "name": "Żywe kamienie",
     "species": "Lithops",
     "emoji": "🪨",
-    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Lithops_lesliei_0.jpg?width=400",
+    "image": "plants/lithops.jpg",
     "category": [
       "succulents"
     ],
@@ -840,7 +840,7 @@
     "name": "Sznur pereł",
     "species": "Curio rowleyanus",
     "emoji": "📿",
-    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Curio_rowleyanus.jpg?width=400",
+    "image": "plants/string-of-pearls.jpg",
     "category": [
       "succulents"
     ],
@@ -875,7 +875,7 @@
     "name": "Sznur serc",
     "species": "Ceropegia woodii",
     "emoji": "💕",
-    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Ceropegia_woodii_0.jpg?width=400",
+    "image": "plants/string-of-hearts.jpg",
     "category": [
       "succulents"
     ],
@@ -910,7 +910,7 @@
     "name": "Eonium czarne",
     "species": "Aeonium arboreum",
     "emoji": "🖤",
-    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Aeonium_arboreum_var._atropurpureum.jpg?width=400",
+    "image": "plants/aeonium.jpg",
     "category": [
       "succulents"
     ],
@@ -944,7 +944,7 @@
     "name": "Kalatea",
     "species": "Goeppertia ornata",
     "emoji": "🎨",
-    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Calathea_roseopicta.jpg?width=400",
+    "image": "plants/calathea.jpg",
     "category": [
       "tropical"
     ],
@@ -979,7 +979,7 @@
     "name": "Maranta",
     "species": "Maranta leuconeura",
     "emoji": "🙏",
-    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Maranta_leuconeura_var._kerchoveana.jpg?width=400",
+    "image": "plants/maranta.jpg",
     "category": [
       "tropical",
       "easy"
@@ -1015,7 +1015,7 @@
     "name": "Alokacja (Słoniowe ucho)",
     "species": "Alocasia amazonica",
     "emoji": "🖤",
-    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Alocasia_amazonica.jpg?width=400",
+    "image": "plants/alocasia.jpg",
     "category": [
       "tropical"
     ],
@@ -1050,7 +1050,7 @@
     "name": "Difenbachia",
     "species": "Dieffenbachia seguine",
     "emoji": "🌿",
-    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Dieffenbachia_seguine.jpg?width=400",
+    "image": "plants/dieffenbachia.jpg",
     "category": [
       "tropical",
       "easy"
@@ -1086,7 +1086,7 @@
     "name": "Strelicja (Rajski ptak)",
     "species": "Strelitzia reginae",
     "emoji": "🦜",
-    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Strelitzia_reginae.jpg?width=400",
+    "image": "plants/strelitzia.jpg",
     "category": [
       "tropical",
       "flowering"
@@ -1122,7 +1122,7 @@
     "name": "Kaladium",
     "species": "Caladium bicolor",
     "emoji": "🩷",
-    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Caladium_bicolor_cultivar.jpg?width=400",
+    "image": "plants/caladium.jpg",
     "category": [
       "tropical"
     ],
@@ -1157,7 +1157,7 @@
     "name": "Zielistka (Roślina-pająk)",
     "species": "Chlorophytum comosum",
     "emoji": "🕷️",
-    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Chlorophytum_comosum_0001.jpg?width=400",
+    "image": "plants/spider-plant.jpg",
     "category": [
       "easy",
       "popular"
@@ -1193,7 +1193,7 @@
     "name": "Trzykrotka",
     "species": "Tradescantia zebrina",
     "emoji": "💜",
-    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Tradescantia_zebrina.jpg?width=400",
+    "image": "plants/tradescantia.jpg",
     "category": [
       "easy",
       "popular"
@@ -1228,7 +1228,7 @@
     "name": "Peperomia",
     "species": "Peperomia obtusifolia",
     "emoji": "🌿",
-    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Peperomia_obtusifolia1.jpg?width=400",
+    "image": "plants/peperomia.jpg",
     "category": [
       "easy",
       "popular"
@@ -1264,7 +1264,7 @@
     "name": "Bluszcz",
     "species": "Hedera helix",
     "emoji": "🍀",
-    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Hedera_helix_001.jpg?width=400",
+    "image": "plants/ivy.jpg",
     "category": [
       "easy",
       "popular"
@@ -1300,7 +1300,7 @@
     "name": "Aglaonema",
     "species": "Aglaonema commutatum",
     "emoji": "🌿",
-    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Aglaonema_modestum.jpg?width=400",
+    "image": "plants/aglaonema.jpg",
     "category": [
       "easy",
       "popular"
@@ -1336,7 +1336,7 @@
     "name": "Monstera dziurawa",
     "species": "Monstera adansonii",
     "emoji": "🕳️",
-    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Monstera_adansonii.jpg?width=400",
+    "image": "plants/monstera-adansonii.jpg",
     "category": [
       "popular",
       "tropical"
@@ -1372,7 +1372,7 @@
     "name": "Areka (Palma złota)",
     "species": "Dypsis lutescens",
     "emoji": "🌴",
-    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Dypsis_lutescens.jpg?width=400",
+    "image": "plants/palm-areca.jpg",
     "category": [
       "popular",
       "tropical"
@@ -1408,7 +1408,7 @@
     "name": "Paproć bostońska",
     "species": "Nephrolepis exaltata",
     "emoji": "🌿",
-    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Nephrolepis_exaltata.jpg?width=400",
+    "image": "plants/boston-fern.png",
     "category": [
       "easy",
       "tropical"
@@ -1444,7 +1444,7 @@
     "name": "Muchołówka",
     "species": "Dionaea muscipula",
     "emoji": "🪤",
-    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Dionaea_muscipula_showing_trigger_hairs.jpg?width=400",
+    "image": "plants/venus.jpg",
     "category": [
       "special"
     ],
@@ -1480,7 +1480,7 @@
     "name": "Bonsai Fikus",
     "species": "Ficus microcarpa",
     "emoji": "🎋",
-    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Juniper_bonsai_tree.jpg?width=400",
+    "image": "plants/bonsai.jpg",
     "category": [
       "special"
     ],
@@ -1515,7 +1515,7 @@
     "name": "Tillandsia (Roślina powietrzna)",
     "species": "Tillandsia ionantha",
     "emoji": "🌬️",
-    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Tillandsia_ionantha.jpg?width=400",
+    "image": "plants/tillandsia.jpg",
     "category": [
       "special"
     ],
@@ -1549,7 +1549,7 @@
     "name": "Kawowiec arabski",
     "species": "Coffea arabica",
     "emoji": "☕",
-    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Coffea_arabica_-_K%C3%B6hler%E2%80%93s_Medizinal-Pflanzen-189.jpg?width=400",
+    "image": "plants/coffee.jpg",
     "category": [
       "special"
     ],
@@ -1584,7 +1584,7 @@
     "name": "Mimoza wstydliwa",
     "species": "Mimosa pudica",
     "emoji": "😳",
-    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Mimosa_pudica_leaves.jpg?width=400",
+    "image": "plants/mimosa.jpg",
     "category": [
       "special"
     ],
@@ -1618,7 +1618,7 @@
     "name": "Szczawik trójkątny",
     "species": "Oxalis triangularis",
     "emoji": "🦋",
-    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Oxalis_triangularis_1.jpg?width=400",
+    "image": "plants/oxalis.jpg",
     "category": [
       "special",
       "easy"
@@ -1653,7 +1653,7 @@
     "name": "Cytryna Meyera",
     "species": "Citrus × meyeri",
     "emoji": "🍋",
-    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Citrus_x_meyeri.jpg?width=400",
+    "image": "plants/citrus.jpg",
     "category": [
       "special"
     ],
@@ -1688,7 +1688,7 @@
     "name": "Rosiczka",
     "species": "Drosera capensis",
     "emoji": "💧",
-    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Drosera_capensis.jpg?width=400",
+    "image": "plants/venus-flytrapper.jpg",
     "category": [
       "special"
     ],
@@ -1722,7 +1722,7 @@
     "name": "Pothos Neon",
     "species": "Epipremnum aureum Neon",
     "emoji": "💛",
-    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Epipremnum_aureum_Neon.jpg?width=400",
+    "image": "plants/pothos-neon.jpg",
     "category": [
       "popular",
       "easy"
@@ -1756,7 +1756,7 @@
     "name": "Rhipsalis",
     "species": "Rhipsalis baccifera",
     "emoji": "🪸",
-    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Rhipsalis_baccifera.jpg?width=400",
+    "image": "plants/rhipsalis.jpg",
     "category": [
       "succulents",
       "tropical"
@@ -1791,7 +1791,7 @@
     "name": "Fitonia (Nerve Plant)",
     "species": "Fittonia albivenis",
     "emoji": "🧠",
-    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Fittonia_verschaffeltii.jpg?width=400",
+    "image": "plants/fittonia.jpg",
     "category": [
       "tropical"
     ],
@@ -1826,7 +1826,7 @@
     "name": "Syngonium",
     "species": "Syngonium podophyllum",
     "emoji": "🏹",
-    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Syngonium_podophyllum_1.jpg?width=400",
+    "image": "plants/syngonium.jpg",
     "category": [
       "popular",
       "easy"
@@ -1860,7 +1860,7 @@
     "name": "Roślina w kropki (Hypoestes)",
     "species": "Hypoestes phyllostachya",
     "emoji": "🔴",
-    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Hypoestes_phyllostachya_0.jpg?width=400",
+    "image": "plants/polka-dot.jpg",
     "category": [
       "easy"
     ],
@@ -1893,7 +1893,7 @@
     "name": "ZZ Raven (Czarny ZZ)",
     "species": "Zamioculcas zamiifolia Raven",
     "emoji": "🖤",
-    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Zamioculcas_zamiifolia_1.jpg?width=400",
+    "image": "plants/zz-raven.jpg",
     "category": [
       "popular",
       "easy"
@@ -1926,7 +1926,7 @@
     "name": "Bromelia (Guzmania)",
     "species": "Guzmania lingulata",
     "emoji": "🔥",
-    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Guzmania_lingulata.jpg?width=400",
+    "image": "plants/bromeliad.jpg",
     "category": [
       "flowering",
       "tropical"
@@ -1961,7 +1961,7 @@
     "name": "Paproć gniazdowa",
     "species": "Asplenium nidus",
     "emoji": "🪺",
-    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Asplenium_nidus.jpg?width=400",
+    "image": "plants/bird-nest-fern.jpg",
     "category": [
       "tropical"
     ],
@@ -1995,7 +1995,7 @@
     "name": "Szeflera (Parasol karła)",
     "species": "Schefflera arboricola",
     "emoji": "☂️",
-    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Schefflera_arboricola.jpg?width=400",
+    "image": "plants/schefflera.jpg",
     "category": [
       "easy",
       "popular"
@@ -2029,7 +2029,7 @@
     "name": "Palma Kentia",
     "species": "Howea forsteriana",
     "emoji": "🌴",
-    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Howea_forsteriana.jpg?width=400",
+    "image": "plants/palm-kentia.jpg",
     "category": [
       "popular",
       "tropical"
@@ -2064,7 +2064,7 @@
     "name": "Bazylia",
     "species": "Ocimum basilicum",
     "emoji": "🌿",
-    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Ocimum_basilicum_var._purpurascens.jpg?width=400",
+    "image": "plants/basil.jpg",
     "category": [
       "easy",
       "herbs"
@@ -2101,7 +2101,7 @@
     "name": "Mięta pieprzowa",
     "species": "Mentha × piperita",
     "emoji": "🍃",
-    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Mint-1.jpg?width=400",
+    "image": "plants/mint.jpg",
     "category": [
       "easy",
       "herbs"
@@ -2138,7 +2138,7 @@
     "name": "Rozmaryn",
     "species": "Salvia rosmarinus",
     "emoji": "🌲",
-    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Rosemary_bush.jpg?width=400",
+    "image": "plants/rosemary.jpg",
     "category": [
       "easy",
       "herbs"
@@ -2175,7 +2175,7 @@
     "name": "Lawenda",
     "species": "Lavandula angustifolia",
     "emoji": "💜",
-    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Lavandula_angustifolia_Lavender_Blue.jpg?width=400",
+    "image": "plants/lavender.jpg",
     "category": [
       "easy",
       "herbs",
@@ -2213,7 +2213,7 @@
     "name": "Szczypiorek",
     "species": "Allium schoenoprasum",
     "emoji": "🌱",
-    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Allium_schoenoprasum_flower.jpg?width=400",
+    "image": "plants/chives.jpg",
     "category": [
       "easy",
       "herbs"
@@ -2248,7 +2248,7 @@
     "name": "Aloes drzewiasty",
     "species": "Aloe arborescens",
     "emoji": "🌵",
-    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Aloe_arborescens_flowers.jpg?width=400",
+    "image": "plants/aloe-arborescens.jpg",
     "category": [
       "succulents",
       "herbs"
@@ -2283,7 +2283,7 @@
     "name": "Opuncja figowa",
     "species": "Opuntia ficus-indica",
     "emoji": "🌵",
-    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Opuntia_ficus-indica_de.jpg?width=400",
+    "image": "plants/cactus-opuntia.jpg",
     "category": [
       "succulents",
       "special"
@@ -2319,7 +2319,7 @@
     "name": "Kaktus kolumnowy",
     "species": "Cereus repandus",
     "emoji": "🌵",
-    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Cereus_repandus.jpg?width=400",
+    "image": "plants/cactus-cereus.jpg",
     "category": [
       "succulents"
     ],
@@ -2353,7 +2353,7 @@
     "name": "Mammillaria",
     "species": "Mammillaria gracilis",
     "emoji": "🌸",
-    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Mammillaria_gracilis_1.jpg?width=400",
+    "image": "plants/cactus-mammillaria.jpg",
     "category": [
       "succulents"
     ],
@@ -2387,7 +2387,7 @@
     "name": "Gymnocalycium",
     "species": "Gymnocalycium mihanovichii",
     "emoji": "🔴",
-    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Gymnocalycium_mihanovichii_friedrichii.jpg?width=400",
+    "image": "plants/cactus-gymnocalycium.jpg",
     "category": [
       "succulents"
     ],
@@ -2421,7 +2421,7 @@
     "name": "Monstera Thai Constellation",
     "species": "Monstera deliciosa Thai Constellation",
     "emoji": "⭐",
-    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Monstera_Thai_Constellation.jpg?width=400",
+    "image": "plants/monstera-thai.jpg",
     "category": [
       "tropical",
       "popular"
@@ -2458,7 +2458,7 @@
     "name": "Filodendron Pink Princess",
     "species": "Philodendron erubescens Pink Princess",
     "emoji": "🩷",
-    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Philodendron_erubescens_Pink_Princess.jpg?width=400",
+    "image": "plants/philodendron-pink.jpg",
     "category": [
       "tropical",
       "popular"
@@ -2493,7 +2493,7 @@
     "name": "Anthurium Queen",
     "species": "Anthurium warocqueanum",
     "emoji": "👸",
-    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Anthurium_warocqueanum.jpg?width=400",
+    "image": "plants/anthurium-warocqueanum.jpg",
     "category": [
       "tropical"
     ],
@@ -2527,7 +2527,7 @@
     "name": "Scindapsus srebrny",
     "species": "Scindapsus pictus",
     "emoji": "🥈",
-    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Scindapsus_pictus.jpg?width=400",
+    "image": "plants/scindapsus-pictus.jpg",
     "category": [
       "popular",
       "easy",
@@ -2563,7 +2563,7 @@
     "name": "Dischidia",
     "species": "Dischidia nummularia",
     "emoji": "🪙",
-    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Dischidia_nummularia.jpg?width=400",
+    "image": "plants/dischidia.jpg",
     "category": [
       "tropical",
       "succulents"
@@ -2598,7 +2598,7 @@
     "name": "Ogon Osiołka",
     "species": "Sedum morganianum",
     "emoji": "🫏",
-    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Sedum_morganianum.jpg?width=400",
+    "image": "plants/burros-tail.jpg",
     "category": [
       "succulents"
     ],
@@ -2632,7 +2632,7 @@
     "name": "Kolumnea",
     "species": "Columnea gloriosa",
     "emoji": "🔥",
-    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Columnea_gloriosa.jpg?width=400",
+    "image": "plants/columnea.jpg",
     "category": [
       "flowering",
       "tropical"
@@ -2667,7 +2667,7 @@
     "name": "Roślina szminki",
     "species": "Aeschynanthus radicans",
     "emoji": "💄",
-    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Aeschynanthus_radicans.jpg?width=400",
+    "image": "plants/lipstick-plant.jpg",
     "category": [
       "flowering",
       "tropical"
@@ -2702,7 +2702,7 @@
     "name": "Oliwka europejska",
     "species": "Olea europaea",
     "emoji": "🫒",
-    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Olea_europaea_kz3.jpg?width=400",
+    "image": "plants/olive-tree.jpg",
     "category": [
       "special",
       "popular"
@@ -2738,7 +2738,7 @@
     "name": "Adenium (Pustynna Róża)",
     "species": "Adenium obesum",
     "emoji": "🌸",
-    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Adenium_obesum3.jpg?width=400",
+    "image": "plants/adenium.jpg",
     "category": [
       "succulents",
       "flowering",
@@ -2775,7 +2775,7 @@
     "name": "Fikus Ginseng",
     "species": "Ficus microcarpa Ginseng",
     "emoji": "🧙",
-    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Ficus_microcarpa_Ginseng_bonsai.jpg?width=400",
+    "image": "plants/ficus-ginseng.jpg",
     "category": [
       "special",
       "popular"
@@ -2810,7 +2810,7 @@
     "name": "Paproć Jeleni Róg",
     "species": "Platycerium bifurcatum",
     "emoji": "🦌",
-    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Platycerium_bifurcatum.jpg?width=400",
+    "image": "plants/staghorn-fern.jpg",
     "category": [
       "tropical",
       "special"
@@ -2845,7 +2845,7 @@
     "name": "Selaginella",
     "species": "Selaginella uncinata",
     "emoji": "🌈",
-    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Selaginella_uncinata_rainbow.jpg?width=400",
+    "image": "plants/selaginella.jpg",
     "category": [
       "tropical",
       "special"
@@ -2880,7 +2880,7 @@
     "name": "Fitonia Czerwona",
     "species": "Fittonia albivenis Red",
     "emoji": "❤️",
-    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Fittonia_albivenis_red.jpg?width=400",
+    "image": "plants/nerve-plant-red.jpg",
     "category": [
       "tropical"
     ],
@@ -2914,7 +2914,7 @@
     "name": "Pachira (Drzewo szczęścia)",
     "species": "Pachira aquatica",
     "emoji": "🎰",
-    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Pachira_aquatica.jpg?width=400",
+    "image": "plants/pachira.jpg",
     "category": [
       "popular",
       "easy"
@@ -2950,7 +2950,7 @@
     "name": "Nepenthes (Dzbanecznik)",
     "species": "Nepenthes × ventrata",
     "emoji": "🫙",
-    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Nepenthes_ventrata_whole_plant.jpg?width=400",
+    "image": "plants/nepenthes.jpg",
     "category": [
       "special"
     ],
@@ -2985,7 +2985,7 @@
     "name": "Juka słoniowa",
     "species": "Yucca elephantipes",
     "emoji": "🗡️",
-    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Yucca_elephantipes.jpg?width=400",
+    "image": "plants/yucca.jpg",
     "category": [
       "popular",
       "easy"
@@ -3020,7 +3020,7 @@
     "name": "Neoregelia",
     "species": "Neoregelia carolinae",
     "emoji": "🎯",
-    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Neoregelia_carolinae.jpg?width=400",
+    "image": "plants/bromeliaceae-neoregelia.jpg",
     "category": [
       "tropical",
       "flowering"
@@ -3055,7 +3055,7 @@
     "name": "Hoja serce",
     "species": "Hoya kerrii",
     "emoji": "💚",
-    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Hoya_kerrii.jpg?width=400",
+    "image": "plants/hoya-kerrii.jpg",
     "category": [
       "succulents",
       "popular"
@@ -3090,7 +3090,7 @@
     "name": "Begonia Bolivijska",
     "species": "Begonia boliviensis",
     "emoji": "🧡",
-    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Begonia_boliviensis_Santa_Cruz.jpg?width=400",
+    "image": "plants/begonia-boliviensis.jpg",
     "category": [
       "flowering"
     ],
@@ -3124,7 +3124,7 @@
     "name": "Pilea srebrna",
     "species": "Pilea cadierei",
     "emoji": "🌿",
-    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Pilea_cadierei_kz01.jpg?width=400",
+    "image": "plants/pilea_cadierei.jpg",
     "category": [
       "popular",
       "tropical"
@@ -3162,7 +3162,7 @@
     "name": "Kalatea orbifolia",
     "species": "Calathea orbifolia",
     "emoji": "🌿",
-    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Goeppertia_orbifolia_-_Sunshine_Coast_Botanic_Gardens.jpg?width=400",
+    "image": "plants/calathea_orbifolia.jpg",
     "category": [
       "tropical",
       "special"
@@ -3200,7 +3200,7 @@
     "name": "Pietruszka",
     "species": "Petroselinum crispum",
     "emoji": "🌿",
-    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Parsley_in_a_pot.jpg?width=400",
+    "image": "plants/petroselinum.jpg",
     "category": [
       "herbs",
       "easy"
@@ -3238,7 +3238,7 @@
     "name": "Tymianek",
     "species": "Thymus vulgaris",
     "emoji": "🌿",
-    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Thymus_vulgaris0.jpg?width=400",
+    "image": "plants/thymus_vulgaris.jpg",
     "category": [
       "herbs",
       "easy"
@@ -3276,7 +3276,7 @@
     "name": "Bazylia tajska",
     "species": "Ocimum basilicum 'Thai'",
     "emoji": "🌿",
-    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Thai_basil-1.jpg?width=400",
+    "image": "plants/ocimum_basilicum_thai.jpg",
     "category": [
       "herbs",
       "popular"
@@ -3314,7 +3314,7 @@
     "name": "Kolendra",
     "species": "Coriandrum sativum",
     "emoji": "🌿",
-    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Coriandrum_sativum_005.JPG?width=400",
+    "image": "plants/coriandrum_sativum.jpg",
     "category": [
       "herbs",
       "easy"
@@ -3352,7 +3352,7 @@
     "name": "Oregano",
     "species": "Origanum vulgare",
     "emoji": "🌿",
-    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Oregano_-_Origanum_vulgare.jpg?width=400",
+    "image": "plants/origanum_vulgare.jpg",
     "category": [
       "herbs",
       "easy"
@@ -3390,7 +3390,7 @@
     "name": "Cytryna",
     "species": "Citrus limon",
     "emoji": "🍋",
-    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Lemon_tree_in_Sorrento.jpg?width=400",
+    "image": "plants/citrus_limon.jpg",
     "category": [
       "flowering",
       "special"
@@ -3428,7 +3428,7 @@
     "name": "Granat karłowy",
     "species": "Punica granatum 'Nana'",
     "emoji": "🌺",
-    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Punica_granatum_Nana.jpg?width=400",
+    "image": "plants/punica_granatum.jpg",
     "category": [
       "flowering",
       "special"
@@ -3466,7 +3466,7 @@
     "name": "Kawa arabska",
     "species": "Coffea arabica 'Nana'",
     "emoji": "☕",
-    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Coffea_arabica_-_Köhler–s_Medizinal-Pflanzen-189.jpg?width=400",
+    "image": "plants/coffea_arabica_dwarf.jpg",
     "category": [
       "tropical",
       "special"
@@ -3504,7 +3504,7 @@
     "name": "Stefanotis",
     "species": "Stephanotis floribunda",
     "emoji": "🌸",
-    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Stephanotis_floribunda_2zz.jpg?width=400",
+    "image": "plants/stephanotis.jpg",
     "category": [
       "flowering",
       "tropical"
@@ -3542,7 +3542,7 @@
     "name": "Szlumbergera (Kaktus bożonarodzeniowy)",
     "species": "Schlumbergera truncata",
     "emoji": "🌸",
-    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Schlumbergera_truncata1.jpg?width=400",
+    "image": "plants/schlumbergera.jpg",
     "category": [
       "flowering",
       "succulents"
@@ -3580,7 +3580,7 @@
     "name": "Skrzydłokwiat Picasso",
     "species": "Spathiphyllum 'Picasso'",
     "emoji": "🌸",
-    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Spathiphyllum_cochlearispathum_RTBG.jpg?width=400",
+    "image": "plants/spathiphyllum_picasso.jpg",
     "category": [
       "flowering",
       "tropical",
@@ -3619,7 +3619,7 @@
     "name": "Anturium clarinervium",
     "species": "Anthurium clarinervium",
     "emoji": "🌿",
-    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Anthurium_clarinervium.jpg?width=400",
+    "image": "plants/anthurium_clarinervium.jpg",
     "category": [
       "tropical",
       "special"
@@ -3657,7 +3657,7 @@
     "name": "Tradescantia Nanouk",
     "species": "Tradescantia albiflora 'Nanouk'",
     "emoji": "💜",
-    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Tradescantia_albiflora_Nanouk.jpg?width=400",
+    "image": "plants/tradescantia_nanouk.jpg",
     "category": [
       "popular",
       "tropical"
@@ -3695,7 +3695,7 @@
     "name": "Alokazja Polly",
     "species": "Alocasia × amazonica 'Polly'",
     "emoji": "🌿",
-    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Alocasia_x_Amazonica.jpg?width=400",
+    "image": "plants/alocasia_polly.jpg",
     "category": [
       "tropical",
       "special"
@@ -3733,7 +3733,7 @@
     "name": "Ficus Audrey",
     "species": "Ficus benghalensis 'Audrey'",
     "emoji": "🌳",
-    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Ficus_benghalensis_in_park.jpg?width=400",
+    "image": "plants/ficus_audrey.jpg",
     "category": [
       "popular",
       "tropical"
@@ -3771,7 +3771,7 @@
     "name": "Sansewieria walcowata",
     "species": "Dracaena angolensis",
     "emoji": "🌵",
-    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Sansevieria_cylindrica1.jpg?width=400",
+    "image": "plants/sansevieria_cylindrica.jpg",
     "category": [
       "succulents",
       "popular"
@@ -3809,7 +3809,7 @@
     "name": "Asparagus pierzasty",
     "species": "Asparagus setaceus",
     "emoji": "🌿",
-    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Asparagus_setaceus_kz1.JPG?width=400",
+    "image": "plants/asparagus_setaceus.jpg",
     "category": [
       "tropical",
       "easy"
@@ -3847,7 +3847,7 @@
     "name": "Filodendron Brasil",
     "species": "Philodendron hederaceum 'Brasil'",
     "emoji": "🍃",
-    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Philodendron_hederaceum_Brasil.jpg?width=400",
+    "image": "plants/philodendron_brasil.jpg",
     "category": [
       "popular",
       "tropical"
@@ -3885,7 +3885,7 @@
     "name": "Begonia koralowa",
     "species": "Begonia maculata var. wightii",
     "emoji": "🌸",
-    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Begonia_maculata_-_Wightii_3.jpg?width=400",
+    "image": "plants/begonia_maculata_alba.jpg",
     "category": [
       "flowering",
       "tropical",
@@ -3924,7 +3924,7 @@
     "name": "Bananowiec karłowy",
     "species": "Musa acuminata 'Super Dwarf Cavendish'",
     "emoji": "🍌",
-    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Musa_acuminata.jpg?width=400",
+    "image": "plants/musa_dwarf.jpg",
     "category": [
       "tropical",
       "special",
@@ -3963,7 +3963,7 @@
     "name": "Rozmaryn",
     "species": "Salvia rosmarinus 'Officinalis'",
     "emoji": "🌿",
-    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Rosmarinus_officinalis133095382.jpg?width=400",
+    "image": "plants/rosmarinus.jpg",
     "category": [
       "herbs",
       "easy"
@@ -4001,7 +4001,7 @@
     "name": "Stromante trojkolorowa",
     "species": "Stromanthe sanguinea 'Triostar'",
     "emoji": "🌿",
-    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Stromanthe_sanguinea_%27Triostar%27.jpg?width=400",
+    "image": "plants/stromanthe_triostar.jpg",
     "category": [
       "tropical",
       "special"
@@ -4039,7 +4039,7 @@
     "name": "Kalanchoe naleśnikowe",
     "species": "Kalanchoe thyrsiflora",
     "emoji": "🌵",
-    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Kalanchoe_thyrsiflora_3.jpg?width=400",
+    "image": "plants/kalanchoe_thyrsiflora.jpg",
     "category": [
       "succulents",
       "special"

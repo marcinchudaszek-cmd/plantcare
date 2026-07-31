@@ -32,8 +32,17 @@ export default function PlantImage({
   const userUrl = usePhoto(userPhotoId);
   const overrideUrl = usePhoto(encycOverrideId);
 
+  // Ścieżki lokalne z plants.json (np. "plants/monstera.jpg") rozwiąż względem
+  // BASE_URL, żeby działały przy każdym base ('/' lub '/plantcare/').
+  // Zewnętrzne URL-e oraz blob:/data: (zdjęcia usera) zostają bez zmian.
+  const resolve = (s) => {
+    if (!s || /^(https?:|blob:|data:)/.test(s)) return s;
+    const base = import.meta.env.BASE_URL || '/';
+    return base.replace(/\/?$/, '/') + s.replace(/^\//, '');
+  };
+
   // Wybierz źródło z najwyższym priorytetem
-  const finalSrc = userUrl || overrideUrl || src || null;
+  const finalSrc = userUrl || overrideUrl || resolve(src) || null;
 
   const [imgError, setImgError] = useState(false);
 
