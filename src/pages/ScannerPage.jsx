@@ -6,6 +6,7 @@ import { useAppStore } from '../store/useAppStore.js';
 import { recognizePlant, fileToBase64 } from '../lib/gemini.js';
 import plantsDB from '../data/plants.json';
 import LightMeter from '../components/LightMeter.jsx';
+import CameraCapture from '../components/CameraCapture.jsx';
 
 const MAX_DIM = 1280;       // limit największego boku przed wysłaniem do API
 const THUMB_DIM = 200;      // miniaturka do historii
@@ -16,6 +17,8 @@ export default function ScannerPage() {
   const scanHistory = useSettingsStore((s) => s.scanHistory);
   const addScanToHistory = useSettingsStore((s) => s.addScanToHistory);
   const addPlantFromEncyc = useAppStore((s) => s.addPlantFromEncyc);
+  const addCustomPlant = useAppStore((s) => s.addCustomPlant);
+  const addPlantPhoto = useAppStore((s) => s.addPlantPhoto);
   const navigate = useNavigate();
 
   const fileRef = useRef(null);
@@ -28,13 +31,13 @@ export default function ScannerPage() {
   const [result, setResult] = useState(null);
   const [error, setError] = useState(null);
   const [tab, setTab] = useState('plant'); // 'plant' | 'light'
+  const [camOpen, setCamOpen] = useState(false);
 
-  const handleFile = async (e) => {
-    const file = e.target.files?.[0];
+  // Wspólny pipeline: przygotuj zdjęcie (z galerii, aparatu lub kamery na żywo)
+  const ingestFile = async (file) => {
     if (!file) return;
     setError(null);
     setResult(null);
-
     try {
       // Skompresuj do max 1280px (oszczędność transferu i tokenów)
       const { blob, dataUrl } = await resizeImage(file, MAX_DIM);
@@ -45,9 +48,17 @@ export default function ScannerPage() {
     } catch (err) {
       setError('Nie udało się przygotować zdjęcia: ' + err.message);
     }
+  };
 
-    // Reset inputa, żeby ten sam plik dało się wybrać ponownie
-    e.target.value = '';
+  const handleFile = async (e) => {
+    const file = e.target.files?.[0];
+    e.target.value = ''; // reset, by ten sam plik dało się wybrać ponownie
+    await ingestFile(file);
+  };
+
+  const handleCameraCapture = async (file) => {
+    setCamOpen(false);
+    await ingestFile(file);
   };
 
   const handleScan = async () => {
@@ -88,9 +99,32 @@ export default function ScannerPage() {
     }
   };
 
-  const handleAddToCollection = () => {
+  // Dodaje zeskanowane zdjęcie jako okładkę nowej rośliny (jeśli jest)
+  const attachScanPhoto = async (plantId) => {
+    if (!previewBlob) return;
+    try {
+      const file = new File([previewBlob], `skan_${Date.now()}.jpg`, { type: previewBlob.type || 'image/jpeg' });
+      await addPlantPhoto(plantId, file);
+    } catch { /* zdjęcie opcjonalne — pomiń błąd */ }
+  };
+
+  // Roślina rozpoznana i znaleziona w bazie
+  const handleAddToCollection = async () => {
     if (!result?.match) return;
     const newPlant = addPlantFromEncyc(result.match);
+    await attachScanPhoto(newPlant.id);
+    navigate(`/plants/${newPlant.id}`);
+  };
+
+  // Roślina rozpoznana, ale spoza bazy — dodaj jako własną (z danymi z AI)
+  const handleAddScanned = async () => {
+    if (!result) return;
+    const newPlant = addCustomPlant({
+      name: result.name || 'Moja roślina',
+      species: result.species || '',
+      emoji: result.match?.emoji || '🌿'
+    });
+    await attachScanPhoto(newPlant.id);
     navigate(`/plants/${newPlant.id}`);
   };
 
@@ -138,16 +172,25 @@ export default function ScannerPage() {
           handleFile={handleFile}
           handleScan={handleScan}
           handleAddToCollection={handleAddToCollection}
+          handleAddScanned={handleAddScanned}
           handleReset={handleReset}
+          onLiveCamera={() => setCamOpen(true)}
           scanHistory={scanHistory}
           t={t}
+        />
+      )}
+
+      {camOpen && (
+        <CameraCapture
+          onCapture={handleCameraCapture}
+          onClose={() => setCamOpen(false)}
         />
       )}
     </div>
   );
 }
 
-function PlantScanner({ apiKey, loading, previewUrl, previewBlob, result, error, fileRef, camRef, handleFile, handleScan, handleAddToCollection, handleReset, scanHistory, t }) {
+function PlantScanner({ apiKey, loading, previewUrl, previewBlob, result, error, fileRef, camRef, handleFile, handleScan, handleAddToCollection, handleAddScanned, handleReset, onLiveCamera, scanHistory, t }) {
   return (
     <>
       {/* Brak klucza API → ostrzeżenie */}
@@ -176,7 +219,7 @@ function PlantScanner({ apiKey, loading, previewUrl, previewBlob, result, error,
           )}
         </div>
 
-        <div className="grid grid-cols-2 gap-2">
+        <div className="grid grid-cols-3 gap-2">
           <button
             onClick={() => fileRef.current?.click()}
             className="btn btn-secondary"
@@ -188,6 +231,12 @@ function PlantScanner({ apiKey, loading, previewUrl, previewBlob, result, error,
             className="btn btn-secondary"
           >
             📸 Aparat
+          </button>
+          <button
+            onClick={onLiveCamera}
+            className="btn btn-secondary"
+          >
+            🎥 Na żywo
           </button>
         </div>
         <input
@@ -235,6 +284,7 @@ function PlantScanner({ apiKey, loading, previewUrl, previewBlob, result, error,
         <ResultCard
           result={result}
           onAdd={handleAddToCollection}
+          onAddCustom={handleAddScanned}
           onReset={handleReset}
         />
       )}
@@ -335,7 +385,7 @@ function resizeImage(file, maxDim) {
 
 // === Subcomponents ===
 
-function ResultCard({ result, onAdd, onReset }) {
+function ResultCard({ result, onAdd, onAddCustom, onReset }) {
   const conf = Math.round((result.confidence || 0) * 100);
   const confColor =
     conf >= 80 ? 'text-accent' : conf >= 50 ? 'text-warning' : 'text-danger';
@@ -391,11 +441,16 @@ function ResultCard({ result, onAdd, onReset }) {
       ) : (
         <>
           <p className="text-xs text-muted m-0 mb-2">
-            Tej rośliny nie ma jeszcze w naszej bazie.
+            Tej rośliny nie ma w naszej bazie — możesz ją dodać jako własną.
           </p>
-          <button onClick={onReset} className="btn btn-secondary w-full">
-            Nowy skan
-          </button>
+          <div className="flex gap-2">
+            <button onClick={onReset} className="btn btn-secondary flex-1">
+              Nowy skan
+            </button>
+            <button onClick={onAddCustom} className="btn btn-primary flex-[2]">
+              + Dodaj do kolekcji
+            </button>
+          </div>
         </>
       )}
     </div>

@@ -3,7 +3,7 @@
 
 import { create } from 'zustand';
 import { loadKey, saveKey, KEYS } from '../lib/storage.js';
-import { createUserPlant } from '../lib/plantUtils.js';
+import { createUserPlant, createCustomPlant } from '../lib/plantUtils.js';
 import { savePhoto, deletePhoto, newPhotoId, compressImage } from '../lib/photoStore.js';
 import { invalidatePhotoUrl } from '../hooks/usePhoto.js';
 
@@ -29,6 +29,14 @@ export const useAppStore = create((set, get) => ({
   // ===== ROŚLINY =====
   addPlantFromEncyc: (encycPlant, opts = {}) => {
     const newPlant = createUserPlant({ encycPlant, ...opts });
+    set((s) => ({ plants: [...s.plants, newPlant] }));
+    get()._save();
+    return newPlant;
+  },
+
+  // Dodaje własną roślinę (spoza encyklopedii — ręcznie lub ze skanu AI)
+  addCustomPlant: (fields = {}) => {
+    const newPlant = createCustomPlant(fields);
     set((s) => ({ plants: [...s.plants, newPlant] }));
     get()._save();
     return newPlant;

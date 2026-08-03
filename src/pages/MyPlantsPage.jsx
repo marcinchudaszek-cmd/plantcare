@@ -1,23 +1,29 @@
 import { useMemo, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useAppStore } from '../store/useAppStore.js';
 import { daysSinceWatered, needsWater } from '../lib/plantUtils.js';
 import { useT } from '../lib/i18n.js';
 import PlantCard from '../components/PlantCard.jsx';
+import Sheet from '../components/Sheet.jsx';
 
 const SORT_KEYS = ['urgency', 'name', 'added'];
+const EMOJI_CHOICES = ['🌿', '🪴', '🌱', '🌵', '🌸', '🌺', '🌴', '🍀', '🌻', '🌹'];
 
 export default function MyPlantsPage() {
   const t = useT();
+  const navigate = useNavigate();
   const SORT_OPTIONS = [
     { key: 'urgency', label: t('myPlants.sortUrgency') },
     { key: 'name',    label: t('myPlants.sortName') },
     { key: 'added',   label: t('myPlants.sortAdded') }
   ];
   const plants = useAppStore((s) => s.plants);
+  const addCustomPlant = useAppStore((s) => s.addCustomPlant);
+  const addPlantPhoto = useAppStore((s) => s.addPlantPhoto);
   const [search, setSearch] = useState('');
   const [sort, setSort] = useState('urgency');
   const [tagFilter, setTagFilter] = useState(null);
+  const [formOpen, setFormOpen] = useState(false);
 
   // Wszystkie unikalne tagi z roślin
   const allTags = useMemo(() => {
@@ -55,6 +61,15 @@ export default function MyPlantsPage() {
     return sorted;
   }, [plants, search, sort, tagFilter]);
 
+  const handleCreate = async (fields, photoFile) => {
+    const newPlant = addCustomPlant(fields);
+    if (photoFile) {
+      try { await addPlantPhoto(newPlant.id, photoFile); } catch { /* zdjęcie opcjonalne */ }
+    }
+    setFormOpen(false);
+    navigate(`/plants/${newPlant.id}`);
+  };
+
   // Pusty stan
   if (plants.length === 0) {
     return (
@@ -65,10 +80,17 @@ export default function MyPlantsPage() {
           <p className="text-sm text-muted m-0 mb-4">
             {t('myPlants.empty')}
           </p>
-          <Link to="/encyclopedia" className="btn btn-primary inline-flex">
-            📚 {t('myPlants.pickFromDB')}
-          </Link>
+          <div className="flex flex-col gap-2 items-center">
+            <Link to="/encyclopedia" className="btn btn-primary inline-flex">
+              📚 {t('myPlants.pickFromDB')}
+            </Link>
+            <button onClick={() => setFormOpen(true)} className="btn btn-secondary inline-flex">
+              ➕ Dodaj własną roślinę
+            </button>
+          </div>
         </div>
+
+        <AddPlantSheet open={formOpen} onClose={() => setFormOpen(false)} onCreate={handleCreate} />
       </div>
     );
   }
@@ -78,6 +100,16 @@ export default function MyPlantsPage() {
       <div className="flex items-baseline justify-between mb-4">
         <h1 className="text-2xl text-primary m-0">{t('myPlants.title')}</h1>
         <span className="text-xs text-muted">{plants.length}</span>
+      </div>
+
+      {/* Akcje dodawania */}
+      <div className="flex gap-2 mb-3">
+        <Link to="/encyclopedia" className="btn btn-secondary flex-1 justify-center">
+          📚 Z bazy
+        </Link>
+        <button onClick={() => setFormOpen(true)} className="btn btn-primary flex-1 justify-center">
+          ➕ Własna
+        </button>
       </div>
 
       {/* Wyszukiwarka */}
@@ -135,6 +167,140 @@ export default function MyPlantsPage() {
           ))}
         </div>
       )}
+
+      <AddPlantSheet open={formOpen} onClose={() => setFormOpen(false)} onCreate={handleCreate} />
     </div>
+  );
+}
+
+// === Formularz dodawania własnej rośliny ===
+function AddPlantSheet({ open, onClose, onCreate }) {
+  const [name, setName] = useState('');
+  const [species, setSpecies] = useState('');
+  const [emoji, setEmoji] = useState('🌿');
+  const [location, setLocation] = useState('');
+  const [interval, setInterval] = useState(7);
+  const [photoFile, setPhotoFile] = useState(null);
+  const [photoUrl, setPhotoUrl] = useState(null);
+  const [saving, setSaving] = useState(false);
+
+  const reset = () => {
+    setName(''); setSpecies(''); setEmoji('🌿'); setLocation('');
+    setInterval(7); setPhotoFile(null);
+    if (photoUrl) URL.revokeObjectURL(photoUrl);
+    setPhotoUrl(null); setSaving(false);
+  };
+
+  const handleClose = () => { reset(); onClose(); };
+
+  const handlePhoto = (e) => {
+    const f = e.target.files?.[0];
+    e.target.value = '';
+    if (!f) return;
+    if (photoUrl) URL.revokeObjectURL(photoUrl);
+    setPhotoFile(f);
+    setPhotoUrl(URL.createObjectURL(f));
+  };
+
+  const handleSubmit = async () => {
+    if (saving) return;
+    setSaving(true);
+    await onCreate(
+      { name, species, emoji, location, interval: Number(interval) || 7 },
+      photoFile
+    );
+    reset();
+  };
+
+  return (
+    <Sheet open={open} onClose={handleClose} title="Dodaj własną roślinę">
+      <div className="space-y-4">
+        {/* Zdjęcie (opcjonalne) */}
+        <div>
+          <label className="block text-xs text-muted mb-1">Zdjęcie (opcjonalne)</label>
+          <div className="flex items-center gap-3">
+            <div className="w-16 h-16 rounded-md bg-deep border border-soft overflow-hidden flex items-center justify-center text-2xl flex-shrink-0">
+              {photoUrl ? (
+                <img src={photoUrl} alt="" className="w-full h-full object-cover" />
+              ) : (emoji || '🌿')}
+            </div>
+            <label className="btn btn-secondary cursor-pointer">
+              🖼️ Wybierz zdjęcie
+              <input type="file" accept="image/*" onChange={handlePhoto} className="hidden" />
+            </label>
+          </div>
+        </div>
+
+        {/* Nazwa */}
+        <div>
+          <label className="block text-xs text-muted mb-1">Nazwa *</label>
+          <input
+            type="text"
+            className="input"
+            placeholder="np. Stefan, Monstera z salonu"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
+        </div>
+
+        {/* Gatunek */}
+        <div>
+          <label className="block text-xs text-muted mb-1">Gatunek (opcjonalnie)</label>
+          <input
+            type="text"
+            className="input"
+            placeholder="np. Monstera deliciosa"
+            value={species}
+            onChange={(e) => setSpecies(e.target.value)}
+          />
+        </div>
+
+        {/* Emoji */}
+        <div>
+          <label className="block text-xs text-muted mb-1">Ikona</label>
+          <div className="flex flex-wrap gap-2">
+            {EMOJI_CHOICES.map((em) => (
+              <button
+                key={em}
+                type="button"
+                onClick={() => setEmoji(em)}
+                className={`w-9 h-9 rounded-md text-xl flex items-center justify-center border ${emoji === em ? 'border-strong bg-deep' : 'border-soft'}`}
+              >
+                {em}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Lokalizacja */}
+        <div>
+          <label className="block text-xs text-muted mb-1">Lokalizacja (opcjonalnie)</label>
+          <input
+            type="text"
+            className="input"
+            placeholder="np. salon, parapet kuchenny"
+            value={location}
+            onChange={(e) => setLocation(e.target.value)}
+          />
+        </div>
+
+        {/* Interwał podlewania */}
+        <div>
+          <label className="block text-xs text-muted mb-1">Podlewanie co ile dni</label>
+          <input
+            type="number"
+            min="1"
+            max="120"
+            className="input"
+            value={interval}
+            onChange={(e) => setInterval(e.target.value)}
+          />
+        </div>
+
+        <button onClick={handleSubmit} disabled={saving} className="btn btn-primary w-full disabled:opacity-50">
+          {saving ? '⏳ Zapisuję…' : 'Dodaj roślinę'}
+        </button>
+      </div>
+    </Sheet>
   );
 }

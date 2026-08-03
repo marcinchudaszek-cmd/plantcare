@@ -72,6 +72,25 @@ export function createUserPlant({ encycPlant, nickname, location, tags = [] }) {
   };
 }
 
+/** Tworzy własną roślinę użytkownika (spoza encyklopedii) */
+export function createCustomPlant({ name, species = '', emoji = '🌿', location = '', tags = [], interval = 7 } = {}) {
+  return {
+    id: `plant_${Date.now()}_${Math.random().toString(36).slice(2, 7)}`,
+    encycId: null,                     // brak powiązania z plants.json
+    custom: true,                      // roślina dodana ręcznie / ze skanu
+    name: (name || '').trim() || 'Moja roślina',
+    species: (species || '').trim(),
+    emoji: emoji || '🌿',
+    location: location || '',
+    tags,
+    interval: Number(interval) > 0 ? Number(interval) : 7,
+    lastWatered: null,
+    addedAt: new Date().toISOString(),
+    journal: [],
+    photos: []
+  };
+}
+
 // === SMART-INTERWAL — automatyczne dostosowanie do sezonu ===
 
 /** Sezon na bazie miesiaca (0-11) */
