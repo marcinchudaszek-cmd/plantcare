@@ -1,50 +1,33 @@
-# PlantCare 2.0
+# PlantCare
 
-Nowa, modułowa wersja PlantCare. **Vite + React + Tailwind + Zustand + PWA.**
+Asystent pielęgnacji roślin — PWA (Vite + React + Tailwind + Zustand), opublikowana pod
+**https://plantcare.beagleapps.pl** i jako aplikacja Android (TWA) `com.beagleappsstudio.plantcare`.
 
-## Szybki start
+## Co jest w aplikacji
+
+- Moje rośliny: kolekcja, dziennik zdjęć, tagi, podlewanie, oś wzrostu, karta do udostępnienia
+- Skaner: rozpoznawanie rośliny ze zdjęcia (kamera na żywo albo galeria) — Gemini 2.5 Flash
+- Diagnoza chorób ze zdjęcia, asystent ogrodniczy (czat) — Gemini
+- Encyklopedia 113 roślin (`src/data/plants.json`, zdjęcia lokalnie w `public/plants/`)
+- Kalendarz podlewania, przypomnienia, statystyki, quiz, porady sezonowe, miernik światła
+- Kopia zapasowa do pliku JSON (ze zdjęciami), język PL / EN / DE, motyw jasny / ciemny
+
+Dane leżą w IndexedDB na urządzeniu. AI działa na kluczu Gemini wpisanym przez użytkownika w Ustawieniach.
+
+## Praca lokalna
 
 ```powershell
-# Wejdź do katalogu projektu
-cd plantcare
-
-# Zainstaluj zależności
-npm install
-
-# Odpal dev server (otworzy się http://localhost:5173/plantcare/)
-npm run dev
+npm.cmd install
+npm.cmd run dev      # http://localhost:5173/
+npm.cmd run build    # produkcja do dist/
+npm.cmd run deploy   # build + publikacja na gałąź gh-pages (domena z public/CNAME)
 ```
 
-## Co już działa (faza 1)
+## Android (TWA)
 
-- ✅ Vite + React + Tailwind skonfigurowane
-- ✅ Design system "Forest & Cream" w Tailwind config
-- ✅ HashRouter + 5 stron (Home, Plants, Scanner, Encyclopedia, Settings)
-- ✅ Bottom nav z aktywnym stanem
-- ✅ Strona główna ze wstępnym layoutem (placeholder data)
-- ✅ Pozostałe 4 strony jako placeholdery
-- ✅ vite-plugin-pwa z manifestem (ikony, theme, scope)
-- ✅ Ikony i favicon przeniesione z poprzedniej wersji
+Projekt Bubblewrap leży poza repo: `Desktop\Projekty\pliki-z-aplikacji\plantcare\twa-plantcare`
+(klucz `android.keystore`, kopia w `klucze i hasla\PlantCare-klucz`). Plik powiązań
+`/.well-known/assetlinks.json` jest na gałęzi gh-pages — musi zawierać odcisk klucza wysyłania
+i klucza podpisywania z Play Console.
 
-## Następne fazy
-
-2. Wyciągnięcie 75 roślin z monolitu do `src/data/plants.json`
-3. Store (Zustand) + IndexedDB (idb-keyval)
-4. Strony Home/Plants/Encyclopedia podłączone do prawdziwych danych
-5. Modal szczegółów rośliny + dziennik + tagi
-6. Skaner Gemini (modular SDK, retry, błędy)
-7. Firebase v10 modular sync
-8. Push notifications + i18n + tryb jasny
-9. Build + TWA do Google Play
-
-## Uwagi
-
-**Base path:** Domyślnie projekt buduje się dla `https://marcinchudaszek-cmd.github.io/plantcare/`.
-Jeśli chcesz przetestować inny path, ustaw zmienną w `.env.local`:
-```
-VITE_BASE=/
-```
-
-**HashRouter zamiast BrowserRouter** — celowo, żeby działało na GitHub Pages bez konfiguracji 404.html.
-
-**Service Worker w dev:** wyłączony (HMR psułby cache). Włącza się automatycznie po `npm run build`.
+Szczegóły publikacji: `DEPLOYMENT.md`.
