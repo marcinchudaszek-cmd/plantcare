@@ -1,9 +1,9 @@
 import { useRef, useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { useT } from '../lib/i18n.js';
+import { useT, locale } from '../lib/i18n.js';
 import { useSettingsStore } from '../store/useSettingsStore.js';
 import { useAppStore } from '../store/useAppStore.js';
-import { recognizePlant, fileToBase64 } from '../lib/gemini.js';
+import { recognizePlant, fileToBase64, aiAvailable, AiError } from '../lib/gemini.js';
 import plantsDB from '../data/plants.json';
 import LightMeter from '../components/LightMeter.jsx';
 import CameraCapture from '../components/CameraCapture.jsx';
@@ -14,6 +14,7 @@ const THUMB_DIM = 200;      // miniaturka do historii
 export default function ScannerPage() {
   const t = useT();
   const apiKey = useSettingsStore((s) => s.apiKey);
+  const canUseAi = aiAvailable(apiKey);
   const scanHistory = useSettingsStore((s) => s.scanHistory);
   const addScanToHistory = useSettingsStore((s) => s.addScanToHistory);
   const addPlantFromEncyc = useAppStore((s) => s.addPlantFromEncyc);
@@ -46,7 +47,7 @@ export default function ScannerPage() {
       setPreviewBlob(blob);
       setThumb(thumbUrl);
     } catch (err) {
-      setError('Nie udało się przygotować zdjęcia: ' + err.message);
+      setError(t('ai.err.image'));
     }
   };
 
@@ -63,8 +64,8 @@ export default function ScannerPage() {
 
   const handleScan = async () => {
     if (!previewBlob) return;
-    if (!apiKey) {
-      setError('Najpierw dodaj klucz API w ustawieniach.');
+    if (!canUseAi) {
+      setError(t('ai.err.noKey'));
       return;
     }
 
@@ -93,7 +94,7 @@ export default function ScannerPage() {
         matchId: match?.id || null
       });
     } catch (err) {
-      setError(err.message || 'Nie udało się rozpoznać rośliny.');
+      setError(err.message || t('ai.err.empty'));
     } finally {
       setLoading(false);
     }
@@ -120,7 +121,7 @@ export default function ScannerPage() {
   const handleAddScanned = async () => {
     if (!result) return;
     const newPlant = addCustomPlant({
-      name: result.name || 'Moja roślina',
+      name: result.name || t('scanner.myPlant'),
       species: result.species || '',
       emoji: result.match?.emoji || '🌿'
     });
@@ -147,13 +148,13 @@ export default function ScannerPage() {
           onClick={() => setTab('plant')}
           className={`pill flex-1 justify-center py-2 ${tab === 'plant' ? 'pill-on' : ''}`}
         >
-          🌱 Roślina
+          🌱 {t('scanner.tabPlant')}
         </button>
         <button
           onClick={() => setTab('light')}
           className={`pill flex-1 justify-center py-2 ${tab === 'light' ? 'pill-on' : ''}`}
         >
-          ☀️ Światło
+          ☀️ {t('scanner.tabLight')}
         </button>
       </div>
 
@@ -161,7 +162,7 @@ export default function ScannerPage() {
         <LightMeter />
       ) : (
         <PlantScanner
-          apiKey={apiKey}
+          canUseAi={canUseAi}
           loading={loading}
           previewUrl={previewUrl}
           previewBlob={previewBlob}
@@ -190,18 +191,18 @@ export default function ScannerPage() {
   );
 }
 
-function PlantScanner({ apiKey, loading, previewUrl, previewBlob, result, error, fileRef, camRef, handleFile, handleScan, handleAddToCollection, handleAddScanned, handleReset, onLiveCamera, scanHistory, t }) {
+function PlantScanner({ canUseAi, loading, previewUrl, previewBlob, result, error, fileRef, camRef, handleFile, handleScan, handleAddToCollection, handleAddScanned, handleReset, onLiveCamera, scanHistory, t }) {
   return (
     <>
       {/* Brak klucza API → ostrzeżenie */}
-      {!apiKey && (
+      {!canUseAi && (
         <div className="card mb-4">
           <p className="text-sm text-primary m-0 mb-2">⚠️ {t('scanner.noKey')}</p>
           <p className="text-xs text-muted m-0 mb-3">
             {t('scanner.noKeyHint')}
           </p>
           <Link to="/settings" className="btn btn-primary w-full">
-            Przejdź do ustawień
+            {t('scanner.goSettings')}
           </Link>
         </div>
       )}
@@ -210,11 +211,11 @@ function PlantScanner({ apiKey, loading, previewUrl, previewBlob, result, error,
       <div className="card mb-3">
         <div className="aspect-square rounded-md bg-deep mb-3 flex items-center justify-center overflow-hidden border border-soft">
           {previewUrl ? (
-            <img src={previewUrl} alt="Podgląd" className="w-full h-full object-cover" />
+            <img src={previewUrl} alt={t('diagnose.preview')} className="w-full h-full object-cover" />
           ) : (
             <div className="text-center text-muted">
               <div className="text-4xl mb-2">📷</div>
-              <p className="text-xs m-0">Wybierz lub zrób zdjęcie</p>
+              <p className="text-xs m-0">{t('scanner.pickPhoto')}</p>
             </div>
           )}
         </div>
@@ -224,19 +225,19 @@ function PlantScanner({ apiKey, loading, previewUrl, previewBlob, result, error,
             onClick={() => fileRef.current?.click()}
             className="btn btn-secondary"
           >
-            🖼️ Galeria
+            🖼️ {t('scanner.gallery')}
           </button>
           <button
             onClick={() => camRef.current?.click()}
             className="btn btn-secondary"
           >
-            📸 Aparat
+            📸 {t('scanner.camera')}
           </button>
           <button
             onClick={onLiveCamera}
             className="btn btn-secondary"
           >
-            🎥 Na żywo
+            🎥 {t('scanner.live')}
           </button>
         </div>
         <input
@@ -260,14 +261,14 @@ function PlantScanner({ apiKey, loading, previewUrl, previewBlob, result, error,
       {previewUrl && !result && (
         <div className="flex gap-2 mb-3">
           <button onClick={handleReset} className="btn btn-secondary flex-1">
-            Anuluj
+            {t('common.cancel')}
           </button>
           <button
             onClick={handleScan}
-            disabled={loading || !apiKey}
+            disabled={loading || !canUseAi}
             className="btn btn-primary flex-[2] disabled:opacity-50"
           >
-            {loading ? '⏳ Rozpoznaję…' : '✨ Rozpoznaj'}
+            {loading ? `⏳ ${t('scanner.recognizing')}` : `✨ ${t('scanner.recognize')}`}
           </button>
         </div>
       )}
@@ -294,10 +295,10 @@ function PlantScanner({ apiKey, loading, previewUrl, previewBlob, result, error,
         <div className="card mb-3">
           <h2 className="text-sm text-primary font-medium m-0 mb-2">💡 {t('scanner.tipsTitle')}</h2>
           <ul className="text-xs text-secondary leading-relaxed m-0 pl-4 space-y-1">
-            <li>Zrób wyraźne zdjęcie całej rośliny lub liścia</li>
-            <li>Dobre oświetlenie pomaga w rozpoznaniu</li>
-            <li>AI sprawdzi też czy roślina wygląda na zdrową</li>
-            <li>Jeśli rozpozna gatunek z bazy, dodasz go jednym kliknięciem</li>
+            <li>{t('scanner.tip1')}</li>
+            <li>{t('scanner.tip2')}</li>
+            <li>{t('scanner.tip3')}</li>
+            <li>{t('scanner.tip4')}</li>
           </ul>
         </div>
       )}
@@ -367,7 +368,7 @@ function resizeImage(file, maxDim) {
       ctx.drawImage(img, 0, 0, w, h);
       canvas.toBlob(
         (blob) => {
-          if (!blob) return reject(new Error('Konwersja nie powiodła się'));
+          if (!blob) return reject(new AiError('image'));
           const dataUrl = canvas.toDataURL('image/jpeg', 0.85);
           resolve({ blob, dataUrl });
         },
@@ -377,7 +378,7 @@ function resizeImage(file, maxDim) {
     };
     img.onerror = () => {
       URL.revokeObjectURL(url);
-      reject(new Error('Niepoprawne zdjęcie'));
+      reject(new AiError('image'));
     };
     img.src = url;
   });
@@ -386,26 +387,27 @@ function resizeImage(file, maxDim) {
 // === Subcomponents ===
 
 function ResultCard({ result, onAdd, onAddCustom, onReset }) {
+  const t = useT();
   const conf = Math.round((result.confidence || 0) * 100);
   const confColor =
     conf >= 80 ? 'text-accent' : conf >= 50 ? 'text-warning' : 'text-danger';
 
   const healthMeta = {
-    good:    { label: 'Wygląda zdrowo', color: 'text-accent', icon: '✓' },
-    warning: { label: 'Wymaga uwagi',    color: 'text-warning', icon: '⚠' },
-    bad:     { label: 'Problemy',        color: 'text-danger', icon: '✗' }
+    good:    { label: t('scanner.healthGood'), color: 'text-accent', icon: '✓' },
+    warning: { label: t('scanner.healthWarning'),    color: 'text-warning', icon: '⚠' },
+    bad:     { label: t('scanner.healthBad'),        color: 'text-danger', icon: '✗' }
   }[result.health] || { label: '—', color: 'text-muted', icon: '?' };
 
   return (
     <div className="card mb-3">
       <div className="flex items-start justify-between mb-3">
         <div className="flex-1 min-w-0">
-          <p className="text-xs text-muted m-0 mb-1">Rozpoznano:</p>
+          <p className="text-xs text-muted m-0 mb-1">{t('scanner.recognized')}</p>
           <h2 className="font-serif text-lg text-primary m-0">{result.name}</h2>
           <p className="text-xs text-muted italic m-0">{result.species}</p>
         </div>
         <div className="text-right ml-3 flex-shrink-0">
-          <p className="text-xs text-muted m-0">Pewność</p>
+          <p className="text-xs text-muted m-0">{t('scanner.confidence')}</p>
           <p className={`text-xl font-medium m-0 ${confColor}`}>{conf}%</p>
         </div>
       </div>
@@ -427,28 +429,28 @@ function ResultCard({ result, onAdd, onAddCustom, onReset }) {
         <>
           <div className="flex items-center gap-2 text-xs text-accent mb-2">
             <span>✓</span>
-            <span>Znaleziono w bazie roślin</span>
+            <span>{t('scanner.foundInDB')}</span>
           </div>
           <div className="flex gap-2">
             <button onClick={onReset} className="btn btn-secondary flex-1">
-              Nowy skan
+              {t('scanner.newScan')}
             </button>
             <button onClick={onAdd} className="btn btn-primary flex-[2]">
-              + Dodaj do kolekcji
+              + {t('scanner.addToCollection')}
             </button>
           </div>
         </>
       ) : (
         <>
           <p className="text-xs text-muted m-0 mb-2">
-            Tej rośliny nie ma w naszej bazie — możesz ją dodać jako własną.
+            {t('scanner.notInDBCustom')}
           </p>
           <div className="flex gap-2">
             <button onClick={onReset} className="btn btn-secondary flex-1">
-              Nowy skan
+              {t('scanner.newScan')}
             </button>
             <button onClick={onAddCustom} className="btn btn-primary flex-[2]">
-              + Dodaj do kolekcji
+              + {t('scanner.addToCollection')}
             </button>
           </div>
         </>
@@ -458,7 +460,7 @@ function ResultCard({ result, onAdd, onAddCustom, onReset }) {
 }
 
 function HistoryRow({ item }) {
-  const date = new Date(item.date).toLocaleString('pl-PL', {
+  const date = new Date(item.date).toLocaleString(locale(), {
     day: 'numeric',
     month: 'short',
     hour: '2-digit',

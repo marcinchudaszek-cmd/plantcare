@@ -1,13 +1,16 @@
 import { useRef, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useSettingsStore } from '../store/useSettingsStore.js';
-import { diagnosePlantHealth, fileToBase64 } from '../lib/gemini.js';
+import { diagnosePlantHealth, fileToBase64, aiAvailable, AiError } from '../lib/gemini.js';
+import { useT } from '../lib/i18n.js';
 
 const MAX_DIM = 1280;
 
 export default function DiagnosePage() {
   const navigate = useNavigate();
   const apiKey = useSettingsStore((s) => s.apiKey);
+  const t = useT();
+  const canUseAi = aiAvailable(apiKey);
 
   const fileRef = useRef(null);
   const camRef = useRef(null);
@@ -29,15 +32,15 @@ export default function DiagnosePage() {
       setPreviewUrl(out.dataUrl);
       setPreviewBlob(out.blob);
     } catch (err) {
-      setError('Nie udalo sie przygotowac zdjecia: ' + err.message);
+      setError(t('ai.err.image'));
     }
     e.target.value = '';
   };
 
   const handleDiagnose = async () => {
     if (!previewBlob) return;
-    if (!apiKey) {
-      setError('Najpierw dodaj klucz API w ustawieniach.');
+    if (!canUseAi) {
+      setError(t('ai.err.noKey'));
       return;
     }
 
@@ -50,7 +53,7 @@ export default function DiagnosePage() {
       const r = await diagnosePlantHealth(apiKey, b64, previewBlob.type || 'image/jpeg');
       setResult(r);
     } catch (err) {
-      setError(err.message || 'Nie udalo sie zdiagnozowac rosliny.');
+      setError(err.message || t('ai.err.empty'));
     } finally {
       setLoading(false);
     }
@@ -69,23 +72,23 @@ export default function DiagnosePage() {
         <button
           onClick={() => navigate(-1)}
           className="w-9 h-9 rounded-full bg-surface flex items-center justify-center"
-          aria-label="Wroc"
+          aria-label={t('common.back')}
         >
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-primary">
             <path d="M19 12H5M12 19l-7-7 7-7" />
           </svg>
         </button>
-        <h1 className="text-2xl text-primary m-0">Diagnoza chorob</h1>
+        <h1 className="text-2xl text-primary m-0">{t('diagnose.title')}</h1>
       </header>
 
-      {!apiKey ? (
+      {!canUseAi ? (
         <div className="card">
-          <p className="text-sm text-primary m-0 mb-2">Brak klucza API</p>
+          <p className="text-sm text-primary m-0 mb-2">{t('ai.noKeyTitle')}</p>
           <p className="text-xs text-muted m-0 mb-3">
-            Aby diagnozowac rosliny, dodaj darmowy klucz API Gemini w ustawieniach.
+            {t('diagnose.noKeyHint')}
           </p>
           <Link to="/settings" className="btn btn-primary w-full">
-            Przejdz do ustawien
+            {t('ai.goSettings')}
           </Link>
         </div>
       ) : (
@@ -93,20 +96,20 @@ export default function DiagnosePage() {
           <div className="card mb-3">
             <div className="aspect-square rounded-md bg-deep mb-3 flex items-center justify-center overflow-hidden border border-soft">
               {previewUrl ? (
-                <img src={previewUrl} alt="Podglad" className="w-full h-full object-cover" />
+                <img src={previewUrl} alt={t('diagnose.preview')} className="w-full h-full object-cover" />
               ) : (
                 <div className="text-center text-muted">
                   <div className="text-4xl mb-2">+</div>
-                  <p className="text-xs m-0">Sfotografuj chora rosline</p>
+                  <p className="text-xs m-0">{t('diagnose.photoPrompt')}</p>
                 </div>
               )}
             </div>
             <div className="grid grid-cols-2 gap-2">
               <button onClick={() => fileRef.current && fileRef.current.click()} className="btn btn-secondary">
-                Galeria
+                {t('scanner.gallery')}
               </button>
               <button onClick={() => camRef.current && camRef.current.click()} className="btn btn-secondary">
-                Aparat
+                {t('scanner.camera')}
               </button>
             </div>
             <input ref={fileRef} type="file" accept="image/*" onChange={handleFile} className="hidden" />
@@ -115,13 +118,13 @@ export default function DiagnosePage() {
 
           {previewUrl && !result && (
             <div className="flex gap-2 mb-3">
-              <button onClick={handleReset} className="btn btn-secondary flex-1">Anuluj</button>
+              <button onClick={handleReset} className="btn btn-secondary flex-1">{t('common.cancel')}</button>
               <button
                 onClick={handleDiagnose}
                 disabled={loading}
                 className="btn btn-primary flex-[2] disabled:opacity-50"
               >
-                {loading ? 'Analizuje...' : 'Diagnozuj'}
+                {loading ? t('diagnose.analyzing') : t('diagnose.diagnose')}
               </button>
             </div>
           )}
@@ -136,12 +139,12 @@ export default function DiagnosePage() {
 
           {!previewUrl && !result && (
             <div className="card">
-              <h2 className="text-sm text-primary font-medium m-0 mb-2">Jak fotografowac</h2>
+              <h2 className="text-sm text-primary font-medium m-0 mb-2">{t('diagnose.howTitle')}</h2>
               <ul className="text-xs text-secondary leading-relaxed m-0 pl-4 space-y-1">
-                <li>Sfotografuj problematyczna czesc (chory lisc, lodyga, korzenie)</li>
-                <li>Z bliska, ostre, w dobrym swietle</li>
-                <li>Lepiej zrobic zdjecie spodu liscia jesli widzisz tam cos niepokojacego</li>
-                <li>AI zaproponuje diagnoze - to nie zastapi konsultacji z fachowcem przy powaznych problemach</li>
+                <li>{t('diagnose.how1')}</li>
+                <li>{t('diagnose.how2')}</li>
+                <li>{t('diagnose.how3')}</li>
+                <li>{t('diagnose.how4')}</li>
               </ul>
             </div>
           )}
@@ -166,7 +169,7 @@ function resizeImage(file, maxDim) {
       canvas.getContext('2d').drawImage(img, 0, 0, w, h);
       canvas.toBlob(
         (blob) => {
-          if (!blob) return reject(new Error('Konwersja nie powiodla sie'));
+          if (!blob) return reject(new AiError('image'));
           resolve({ blob, dataUrl: canvas.toDataURL('image/jpeg', 0.85) });
         },
         'image/jpeg',
@@ -175,20 +178,21 @@ function resizeImage(file, maxDim) {
     };
     img.onerror = () => {
       URL.revokeObjectURL(url);
-      reject(new Error('Niepoprawne zdjecie'));
+      reject(new AiError('image'));
     };
     img.src = url;
   });
 }
 
 function DiagnosisCard({ result, onReset }) {
+  const t = useT();
   const severityMap = {
-    ok:       { color: 'var(--accent)',     label: 'Stan dobry' },
-    minor:    { color: 'var(--accent)',     label: 'Lekkie objawy' },
-    moderate: { color: 'var(--warning)',    label: 'Wymaga uwagi' },
-    severe:   { color: 'var(--danger)',     label: 'Powazny problem' },
-    critical: { color: 'var(--danger)',     label: 'Pilnie ratuj' },
-    unknown:  { color: 'var(--text-muted)', label: 'Brak diagnozy' }
+    ok:       { color: 'var(--accent)',     label: t('diagnose.sevOk') },
+    minor:    { color: 'var(--accent)',     label: t('diagnose.sevMinor') },
+    moderate: { color: 'var(--warning)',    label: t('diagnose.sevModerate') },
+    severe:   { color: 'var(--danger)',     label: t('diagnose.sevSevere') },
+    critical: { color: 'var(--danger)',     label: t('diagnose.sevCritical') },
+    unknown:  { color: 'var(--text-muted)', label: t('diagnose.sevUnknown') }
   };
   const sev = severityMap[result.severity] || severityMap.unknown;
 
@@ -196,9 +200,9 @@ function DiagnosisCard({ result, onReset }) {
     <div className="space-y-3 mb-3">
       <div className="card" style={{ borderLeftWidth: 4, borderLeftStyle: 'solid', borderLeftColor: sev.color }}>
         <div className="flex items-baseline justify-between mb-1">
-          <span className="text-xs text-muted">Diagnoza</span>
+          <span className="text-xs text-muted">{t('diagnose.result')}</span>
           {result.urgent && (
-            <span className="text-xs" style={{ color: 'var(--danger)' }}>Pilne</span>
+            <span className="text-xs" style={{ color: 'var(--danger)' }}>{t('diagnose.urgent')}</span>
           )}
         </div>
 
@@ -223,7 +227,7 @@ function DiagnosisCard({ result, onReset }) {
 
       {result.causes && result.causes.length > 0 && (
         <div className="card">
-          <h3 className="text-sm text-primary font-medium m-0 mb-2">Mozliwe przyczyny</h3>
+          <h3 className="text-sm text-primary font-medium m-0 mb-2">{t('diagnose.causes')}</h3>
           <ul className="text-sm text-secondary leading-relaxed m-0 list-none p-0 space-y-1">
             {result.causes.map((c, i) => (
               <li key={i} className="flex gap-2">
@@ -237,7 +241,7 @@ function DiagnosisCard({ result, onReset }) {
 
       {result.treatment && result.treatment.length > 0 && (
         <div className="card">
-          <h3 className="text-sm text-primary font-medium m-0 mb-3">Plan ratunkowy</h3>
+          <h3 className="text-sm text-primary font-medium m-0 mb-3">{t('diagnose.treatment')}</h3>
           <ol className="text-sm text-secondary leading-relaxed m-0 list-none p-0 space-y-2">
             {result.treatment.map((step, i) => (
               <li key={i} className="flex gap-3">
@@ -256,13 +260,13 @@ function DiagnosisCard({ result, onReset }) {
 
       {result.prevention && (
         <div className="card">
-          <h3 className="text-sm text-primary font-medium m-0 mb-2">Na przyszlosc</h3>
+          <h3 className="text-sm text-primary font-medium m-0 mb-2">{t('diagnose.prevention')}</h3>
           <p className="text-sm text-secondary leading-relaxed m-0">{result.prevention}</p>
         </div>
       )}
 
       <button onClick={onReset} className="btn btn-secondary w-full">
-        Nowa diagnoza
+        {t('diagnose.newDiagnosis')}
       </button>
     </div>
   );

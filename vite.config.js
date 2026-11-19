@@ -38,6 +38,8 @@ export default defineConfig({
         ]
       },
       workbox: {
+        // Obsługa kliknięcia w powiadomienie (public/sw-notifications.js)
+        importScripts: ["sw-notifications.js"],
         // Pomijamy zewnętrzne API w cache (Gemini, Wikimedia)
         navigateFallbackDenylist: [/^\/api/, /googleapis/, /wikimedia/],
         runtimeCaching: [

@@ -1,3 +1,4 @@
+import { translate as tr } from './i18n.js';
 // Generuje obrazek udostepnieniowy 1080x1080 (kwadrat na Insta).
 // Zawiera nazwe, gatunek, cover photo, statystyki (dni w kolekcji, podlewania, wpisy).
 
@@ -80,10 +81,10 @@ export async function generateShareCard(plant, encyc) {
   const statSpacing = W / 4;
   const startX = statSpacing / 2;
 
-  drawStat(ctx, startX,                  statY, stats.daysInCollection, 'dni z nami');
-  drawStat(ctx, startX + statSpacing,    statY, stats.journalEntries,    'wpisów');
-  drawStat(ctx, startX + statSpacing * 2, statY, stats.photoCount,       'zdjęć');
-  drawStat(ctx, startX + statSpacing * 3, statY, stats.tagCount,         'tagów');
+  drawStat(ctx, startX,                  statY, stats.daysInCollection, tr('share.days'));
+  drawStat(ctx, startX + statSpacing,    statY, stats.journalEntries,    tr('share.entries'));
+  drawStat(ctx, startX + statSpacing * 2, statY, stats.photoCount,       tr('share.photos'));
+  drawStat(ctx, startX + statSpacing * 3, statY, stats.tagCount,         tr('share.tags'));
 
   // === STOPKA ===
   ctx.fillStyle = '#7dd66f';
@@ -167,7 +168,7 @@ export async function shareOrDownload(blob, filename) {
     const file = new File([blob], filename, { type: 'image/png' });
     if (navigator.canShare({ files: [file] })) {
       try {
-        await navigator.share({ files: [file], title: 'Moja roślina z PlantCare' });
+        await navigator.share({ files: [file], title: tr('share.title') });
         return 'shared';
       } catch (e) {
         if (e.name !== 'AbortError') throw e;

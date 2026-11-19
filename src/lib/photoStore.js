@@ -1,3 +1,4 @@
+import { translate as tr } from './i18n.js';
 // Osobna baza IndexedDB tylko na zdjęcia (Bloby).
 // Trzymanie ich osobno od user-data ma kilka zalet:
 // 1. user-data jest mały (kB) i może być często serializowany do JSON
@@ -51,14 +52,14 @@ export function compressImage(file, maxDim = 1600) {
       canvas.height = h;
       canvas.getContext('2d').drawImage(img, 0, 0, w, h);
       canvas.toBlob(
-        (blob) => (blob ? resolve(blob) : reject(new Error('Konwersja nie powiodła się'))),
+        (blob) => (blob ? resolve(blob) : reject(new Error(tr('ai.err.image')))),
         'image/jpeg',
         0.85
       );
     };
     img.onerror = () => {
       URL.revokeObjectURL(url);
-      reject(new Error('Niepoprawne zdjęcie'));
+      reject(new Error(tr('ai.err.image')));
     };
     img.src = url;
   });

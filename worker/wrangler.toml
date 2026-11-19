@@ -1,0 +1,26 @@
+# Backend AI dla PlantCare (rozpoznawanie roślin, diagnoza, asystent) — pośrednik do Gemini.
+#
+# Wdrożenie:  npm.cmd run worker:deploy
+# Sekrety (NIE trafiają do tego pliku ani do repozytorium) — wartość przekierowana z pliku,
+# bo wklejana ręcznie w PowerShellu potrafi dojść pusta albo z doklejonymi znakami:
+#   Get-Content worker\klucz-gemini.txt | npx.cmd wrangler secret put GEMINI_API_KEY --config worker/wrangler.toml
+#   Get-Content worker\app-token.txt    | npx.cmd wrangler secret put APP_TOKEN      --config worker/wrangler.toml
+# Ten sam APP_TOKEN wpisz do .env jako VITE_AI_TOKEN (plik .env jest poza gitem) i przebuduj aplikację.
+
+name = "plantcare-ai"
+main = "index.js"
+compatibility_date = "2026-08-01"
+
+[observability]
+enabled = true
+
+[vars]
+# Kolejność = kolejność prób. Każdy model ma osobny dzienny limit w darmowym progu.
+GEMINI_MODELS = "gemini-2.5-flash,gemini-2.5-flash-lite"
+# Dzienny limit zapytań: na urządzenie (skrót adresu IP) i łącznie dla wszystkich.
+DAILY_LIMIT_PER_IP = "25"
+DAILY_LIMIT_TOTAL = "300"
+
+[[kv_namespaces]]
+binding = "LIMITS"
+id = "f28317e708f54c0e8add95418bdc8a87"

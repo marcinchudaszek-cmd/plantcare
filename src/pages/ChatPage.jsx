@@ -2,20 +2,16 @@ import { useState, useEffect, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useSettingsStore } from '../store/useSettingsStore.js';
 import { useAppStore } from '../store/useAppStore.js';
-import { chatGemini } from '../lib/gemini.js';
+import { chatGemini, aiAvailable } from '../lib/gemini.js';
+import { useT } from '../lib/i18n.js';
 
-const SUGGESTED_QUESTIONS = [
-  'Jaka roślina pasuje do łazienki bez okna?',
-  'Dlaczego liście mojej Monstery żółkną?',
-  'Czy mogę przesadzić rośliny zimą?',
-  'Jak rozmnożyć Pothos?',
-  'Co lubi paproć?',
-  'Polec mi roślinę dla początkującego'
-];
+const SUGGESTED_KEYS = ['chat.q1', 'chat.q2', 'chat.q3', 'chat.q4', 'chat.q5', 'chat.q6'];
 
 export default function ChatPage() {
   const navigate = useNavigate();
   const apiKey = useSettingsStore((s) => s.apiKey);
+  const t = useT();
+  const SUGGESTED_QUESTIONS = SUGGESTED_KEYS.map((k) => t(k));
   const plants = useAppStore((s) => s.plants);
 
   const [messages, setMessages] = useState([]); // [{role, text}]
@@ -67,17 +63,17 @@ export default function ChatPage() {
     setError(null);
   };
 
-  if (!apiKey) {
+  if (!aiAvailable(apiKey)) {
     return (
       <div className="px-5 pt-6">
         <Header navigate={navigate} />
         <div className="card">
-          <p className="text-sm text-primary m-0 mb-2">⚠️ Brak klucza API</p>
+          <p className="text-sm text-primary m-0 mb-2">⚠️ {t('ai.noKeyTitle')}</p>
           <p className="text-xs text-muted m-0 mb-3">
-            Aby porozmawiać z asystentem, dodaj darmowy klucz Gemini w ustawieniach.
+            {t('chat.noKeyHint')}
           </p>
           <Link to="/settings" className="btn btn-primary w-full">
-            Przejdź do ustawień
+            {t('ai.goSettings')}
           </Link>
         </div>
       </div>
@@ -98,17 +94,16 @@ export default function ChatPage() {
               <div className="flex items-center gap-3 mb-2">
                 <div className="text-3xl">💬</div>
                 <div>
-                  <p className="font-serif text-base text-primary m-0">Asystent ogrodniczy</p>
-                  <p className="text-xs text-muted m-0">Zna Twoją kolekcję ({plants.length} {plants.length === 1 ? 'roślina' : 'roślin'})</p>
+                  <p className="font-serif text-base text-primary m-0">{t('chat.title')}</p>
+                  <p className="text-xs text-muted m-0">{t('chat.knows', { n: plants.length })}</p>
                 </div>
               </div>
               <p className="text-xs text-secondary leading-relaxed m-0">
-                Zapytaj o wszystko związane z roślinami doniczkowymi. Asystent ma wiedzę
-                o Twoich roślinach, więc może doradzić w konkretnych sprawach.
+                {t('chat.intro')}
               </p>
             </div>
 
-            <p className="text-xs text-muted mb-2">Sugerowane pytania:</p>
+            <p className="text-xs text-muted mb-2">{t('chat.suggested')}</p>
             <div className="space-y-2">
               {SUGGESTED_QUESTIONS.map((q, i) => (
                 <button
@@ -129,7 +124,7 @@ export default function ChatPage() {
             {loading && (
               <div className="flex">
                 <div className="card max-w-[80%]" style={{ marginRight: 'auto' }}>
-                  <p className="text-sm text-muted m-0">⏳ Asystent myśli…</p>
+                  <p className="text-sm text-muted m-0">⏳ {t('chat.thinking')}</p>
                 </div>
               </div>
             )}
@@ -149,7 +144,7 @@ export default function ChatPage() {
             type="text"
             value={input}
             onChange={(e) => setInput(e.target.value)}
-            placeholder="Zapytaj o cokolwiek..."
+            placeholder={t('chat.placeholder')}
             disabled={loading}
             className="flex-1 px-3 py-2 rounded-md bg-surface text-primary border border-soft text-sm disabled:opacity-50"
           />
@@ -181,23 +176,24 @@ function MessageBubble({ msg }) {
 }
 
 function Header({ navigate, onClear }) {
+  const t = useT();
   return (
     <header className="flex items-center justify-between mb-3">
       <div className="flex items-center gap-3">
         <button
           onClick={() => navigate(-1)}
           className="w-9 h-9 rounded-full bg-surface flex items-center justify-center"
-          aria-label="Wroc"
+          aria-label={t('common.back')}
         >
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-primary">
             <path d="M19 12H5M12 19l-7-7 7-7" />
           </svg>
         </button>
-        <h1 className="text-xl text-primary m-0">Asystent</h1>
+        <h1 className="text-xl text-primary m-0">{t('chat.short')}</h1>
       </div>
       {onClear && (
         <button onClick={onClear} className="text-xs text-muted px-2 py-1">
-          🗑 Wyczyść
+          🗑 {t('chat.clear')}
         </button>
       )}
     </header>

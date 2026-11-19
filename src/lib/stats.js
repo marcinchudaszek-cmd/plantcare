@@ -1,3 +1,4 @@
+import { translate as tr } from './i18n.js';
 // Statystyki kolekcji — czyste funkcje, łatwo testowalne.
 
 const DAY_MS = 1000 * 60 * 60 * 24;
@@ -78,15 +79,21 @@ export function calculateStats(plants, plantsDB) {
   return stats;
 }
 
+/** Polska odmiana: 1 rok / 2–4 lata / 5+ lat (w EN/DE „Few” = „Many”) */
+function plural(n, base) {
+  if (n === 1) return tr(`${base}One`, { n });
+  const lastTwo = n % 100, last = n % 10;
+  if (last >= 2 && last <= 4 && (lastTwo < 12 || lastTwo > 14)) return tr(`${base}Few`, { n });
+  return tr(`${base}Many`, { n });
+}
+
 /** Format dni → ludzki tekst */
 export function formatDays(days) {
-  if (days < 1) return 'mniej niż dzień';
-  if (days === 1) return '1 dzień';
-  if (days < 30) return `${days} dni`;
-  if (days < 60) return '~1 miesiąc';
-  if (days < 365) return `~${Math.round(days / 30)} miesięcy`;
+  if (days < 1) return tr('time.lessThanDay');
+  if (days < 30) return plural(days, 'time.day');
+  if (days < 365) return '~' + plural(Math.max(1, Math.round(days / 30)), 'time.month');
   const years = Math.floor(days / 365);
   const remMonths = Math.round((days % 365) / 30);
-  if (remMonths === 0) return years === 1 ? '1 rok' : `${years} lat`;
-  return `${years} ${years === 1 ? 'rok' : 'lat'} ${remMonths} mies.`;
+  if (remMonths === 0) return plural(years, 'time.year');
+  return `${plural(years, 'time.year')} ${plural(remMonths, 'time.month')}`;
 }

@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { useSettingsStore } from '../store/useSettingsStore.js';
 import { useAppStore } from '../store/useAppStore.js';
-import { isValidApiKeyFormat } from '../lib/gemini.js';
+import { isValidApiKeyFormat, workerAvailable } from '../lib/gemini.js';
 import { useT, SUPPORTED_LANGUAGES } from '../lib/i18n.js';
 import {
   isSupported as notifSupported,
@@ -21,6 +21,8 @@ export default function SettingsPage() {
   const setTheme = useSettingsStore((s) => s.setTheme);
   const language = useSettingsStore((s) => s.language);
   const setLanguage = useSettingsStore((s) => s.setLanguage);
+  const userName = useSettingsStore((s) => s.userName) || '';
+  const setUserName = useSettingsStore((s) => s.setUserName);
   const notifEnabled = useSettingsStore((s) => s.notificationsEnabled);
   const setNotifEnabled = useSettingsStore((s) => s.setNotificationsEnabled);
   const scanHistory = useSettingsStore((s) => s.scanHistory);
@@ -53,20 +55,21 @@ export default function SettingsPage() {
     setNotifPerm(result);
     if (result === 'granted') {
       setNotifEnabled(true);
-      notify('🌿 PlantCare', 'Powiadomienia włączone. Będziemy przypominać o podlewaniu.');
+      notify('🌿 PlantCare', t('notifications.enabledBody'));
     } else {
       setNotifEnabled(false);
     }
   };
   const handleDisableNotifs = () => setNotifEnabled(false);
-  const handleTestNotif = () => {
-    notify('🌿 PlantCare', 'To jest testowe powiadomienie. Wszystko działa.');
+  const handleTestNotif = async () => {
+    const ok = await notify('🌿 PlantCare', t('notifications.testBody'));
+    if (!ok) alert(t('notifications.testFailed'));
   };
 
   // === Backup ===
   const handleExport = async () => {
     try { await downloadBackup(); }
-    catch (e) { alert('Błąd eksportu: ' + e.message); }
+    catch (e) { alert(t('settings.exportError', { detail: e.message })); }
   };
   const handleImportClick = () => importRef.current?.click();
   const handleImportFile = async (e) => {
@@ -83,13 +86,26 @@ export default function SettingsPage() {
       await hydrateSettings();
       alert(t('settings.importSuccess'));
     } catch (err) {
-      alert('Błąd importu: ' + err.message);
+      alert(t('settings.importError', { detail: err.message }));
     }
   };
 
   return (
     <div className="px-5 pt-6">
       <h1 className="text-2xl text-primary mb-4">{t('settings.title')}</h1>
+
+      {/* === Imię === */}
+      <div className="card mb-3">
+        <h2 className="text-sm text-primary font-medium m-0 mb-2">👤 {t('settings.name')}</h2>
+        <input
+          className="input"
+          placeholder={t('settings.namePlaceholder')}
+          value={userName}
+          maxLength={30}
+          onChange={(e) => setUserName(e.target.value)}
+        />
+        <p className="text-xs text-muted mt-2 m-0">{t('settings.nameHint')}</p>
+      </div>
 
       {/* === Klucz API Gemini === */}
       <div className="card mb-3">
@@ -98,23 +114,24 @@ export default function SettingsPage() {
           {apiKey && <span className="text-xs text-accent">● {t('settings.apiKeyActive')}</span>}
         </div>
         <p className="text-xs text-secondary mb-3">
-          Pobierz darmowy klucz z{' '}
+          {t(workerAvailable() ? 'settings.apiKeyOptional' : 'settings.apiKeyHint').split('{link}')[0]}
           <a href="https://aistudio.google.com/apikey" target="_blank" rel="noreferrer" className="text-accent underline">
             Google AI Studio
-          </a>.
+          </a>
+          {t(workerAvailable() ? 'settings.apiKeyOptional' : 'settings.apiKeyHint').split('{link}')[1]}
         </p>
         <div className="relative mb-2">
           <input
             type={reveal ? 'text' : 'password'}
             className="input pr-12"
-            placeholder="AIza..."
+            placeholder="AIza… / AQ.…"
             value={draft}
             onChange={(e) => setDraft(e.target.value)}
             autoComplete="off"
             spellCheck="false"
           />
           <button onClick={() => setReveal((v) => !v)} className="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-muted">
-            {reveal ? 'ukryj' : 'pokaż'}
+            {reveal ? t('settings.hide') : t('settings.show')}
           </button>
         </div>
         {!isValid && <p className="text-xs text-danger mb-2">{t('settings.apiKeyInvalid')}</p>}
@@ -169,18 +186,19 @@ export default function SettingsPage() {
       <div className="card mb-3">
         <h2 className="text-sm text-primary font-medium m-0 mb-2">🔔 {t('settings.notifications')}</h2>
         {!notifSupported() ? (
-          <p className="text-xs text-muted m-0">Twoja przeglądarka nie wspiera powiadomień.</p>
+          <p className="text-xs text-muted m-0">{t('notifications.unsupported')}</p>
         ) : notifPerm === 'denied' ? (
           <p className="text-xs text-danger m-0">{t('settings.notificationsDenied')}</p>
         ) : notifEnabled && notifPerm === 'granted' ? (
           <>
-            <p className="text-xs text-accent mb-3">● {t('settings.notificationsEnabled')}</p>
+            <p className="text-xs text-accent mb-1">● {t('settings.notificationsEnabled')}</p>
+            <p className="text-xs text-muted mb-3">{t('notifications.hint')}</p>
             <div className="flex gap-2">
               <button onClick={handleTestNotif} className="btn btn-secondary flex-1 text-xs">
                 {t('settings.notificationsTest')}
               </button>
               <button onClick={handleDisableNotifs} className="btn btn-secondary flex-1 text-xs">
-                Wyłącz
+                {t('notifications.disable')}
               </button>
             </div>
           </>

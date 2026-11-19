@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
-import { useT } from '../lib/i18n.js';
+import { useT, locale } from '../lib/i18n.js';
 import { useAppStore } from '../store/useAppStore.js';
 import {
   daysSinceWatered,
@@ -46,7 +46,7 @@ export default function PlantDetailPage() {
       const blob = await generateShareCard(plant, encycLocal);
       await shareOrDownload(blob, `plantcare-${plant.name.toLowerCase().replace(/\s+/g, '-')}.png`);
     } catch (e) {
-      alert('Nie udało się przygotować obrazka: ' + e.message);
+      alert(t('share.failed'));
     } finally {
       setSharing(false);
     }
@@ -56,7 +56,7 @@ export default function PlantDetailPage() {
     return (
       <div className="px-5 pt-6">
         <p className="text-sm text-muted mb-4">{t('plantDetail.notFound')}</p>
-        <Link to="/plants" className="btn btn-secondary inline-flex">← Wróć</Link>
+        <Link to="/plants" className="btn btn-secondary inline-flex">← {t('common.back')}</Link>
       </div>
     );
   }
@@ -100,7 +100,7 @@ export default function PlantDetailPage() {
         <button
           onClick={() => navigate(-1)}
           className="w-9 h-9 rounded-full bg-surface flex items-center justify-center"
-          aria-label="Wróć"
+          aria-label={t('common.back')}
         >
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#f0e5c8" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
             <path d="M19 12H5M12 19l-7-7 7-7" />
@@ -111,15 +111,15 @@ export default function PlantDetailPage() {
             onClick={handleShare}
             disabled={sharing}
             className="w-9 h-9 rounded-full bg-surface flex items-center justify-center text-primary disabled:opacity-50"
-            aria-label="Udostępnij"
-            title="Udostępnij"
+            aria-label={t('plantDetail.share')}
+            title={t('plantDetail.share')}
           >
             {sharing ? '⏳' : '↗'}
           </button>
           <button
             onClick={() => setShowDelete((v) => !v)}
             className="w-9 h-9 rounded-full bg-surface flex items-center justify-center text-muted"
-            aria-label="Więcej"
+            aria-label={t('common.more')}
           >
             ⋯
           </button>
@@ -156,7 +156,7 @@ export default function PlantDetailPage() {
       <div className="flex flex-wrap gap-2 mb-4">
         {encyc?.difficulty && (
           <span className="pill pill-on">
-            {encyc.difficulty === 'easy' ? 'Łatwa' : encyc.difficulty === 'medium' ? 'Średnia' : 'Trudna'}
+            {t(`difficulty.${encyc.difficulty}`)}
           </span>
         )}
         {encyc?.care?.light && (
@@ -165,14 +165,14 @@ export default function PlantDetailPage() {
         {encyc?.care?.temperature && (
           <span className="pill">{encyc.care.temperature}</span>
         )}
-        {(plant.tags || []).map((t) => (
+        {(plant.tags || []).map((tag) => (
           <button
-            key={t}
-            onClick={() => handleRemoveTag(t)}
+            key={tag}
+            onClick={() => handleRemoveTag(tag)}
             className="pill pill-on"
-            title="Kliknij żeby usunąć"
+            title={t('plantDetail.tapToRemove')}
           >
-            #{t} ✕
+            #{tag} ✕
           </button>
         ))}
       </div>
@@ -195,8 +195,8 @@ export default function PlantDetailPage() {
 
       {/* Mini-staty */}
       <div className="grid grid-cols-2 gap-2 mb-4">
-        <MiniStat label={t('plantDetail.lastWatered')} value={plant.lastWatered ? `${daysSince} dni temu` : 'Nigdy'} />
-        <MiniStat label={t('plantDetail.cycle')} value={`Co ${plant.interval} dni`} />
+        <MiniStat label={t('plantDetail.lastWatered')} value={plant.lastWatered ? (daysSince === 0 ? t('water.today') : daysSince === 1 ? t('plantDetail.dayAgo') : t('plantDetail.daysAgo', { n: daysSince })) : t('plantDetail.never')} />
+        <MiniStat label={t('plantDetail.cycle')} value={plant.interval === 1 ? t('plantDetail.everyDay') : t('plantDetail.everyDays', { n: plant.interval })} />
         <MiniStat label={t('plantDetail.entries')} value={(plant.journal || []).length} />
         <MiniStat label={t('plantDetail.location')} value={plant.location || '—'} />
       </div>
@@ -204,12 +204,12 @@ export default function PlantDetailPage() {
       {/* Galeria zdjęć */}
       <div className="card mb-4">
         <div className="flex items-baseline justify-between mb-3">
-          <h2 className="text-sm text-primary font-medium m-0">📸 Galeria</h2>
+          <h2 className="text-sm text-primary font-medium m-0">📸 {t('plantDetail.gallery')}</h2>
           <span className="text-xs text-muted">{(plant.photos || []).length}</span>
         </div>
 
         {(plant.photos || []).length === 0 ? (
-          <p className="text-xs text-muted text-center mb-3">Brak własnych zdjęć</p>
+          <p className="text-xs text-muted text-center mb-3">{t('plantDetail.noPhotos')}</p>
         ) : (
           <div className="grid grid-cols-3 gap-2 mb-3">
             {plant.photos.map((photoId) => (
@@ -226,7 +226,7 @@ export default function PlantDetailPage() {
 
         <PhotoUploader
           onUpload={(file) => addPlantPhoto(plant.id, file)}
-          label="📷 Dodaj zdjęcie"
+          label={`📷 ${t('photos.add')}`}
           variant="secondary"
           className="w-full"
         />
@@ -247,7 +247,7 @@ export default function PlantDetailPage() {
           onChange={(e) => updatePlant(plant.id, { interval: Number(e.target.value) })}
           className="w-full accent-accent"
         />
-        <p className="text-xs text-primary m-0 text-center mt-1">co {plant.interval} {plant.interval === 1 ? 'dzień' : 'dni'}</p>
+        <p className="text-xs text-primary m-0 text-center mt-1">{plant.interval === 1 ? t('plantDetail.everyDay') : t('plantDetail.everyDays', { n: plant.interval })}</p>
 
         <div className="border-t border-soft mt-3 pt-3">
           <label className="flex items-start gap-3 cursor-pointer">
@@ -258,13 +258,13 @@ export default function PlantDetailPage() {
               className="mt-0.5 accent-accent"
             />
             <span className="flex-1 min-w-0">
-              <span className="text-sm text-primary block">Smart-interwał</span>
-              <span className="text-xs text-muted block">Aplikacja sama dostosuje częstość do sezonu (zima rzadziej, lato częściej)</span>
+              <span className="text-sm text-primary block">{t('plantDetail.smartInterval')}</span>
+              <span className="text-xs text-muted block">{t('plantDetail.smartIntervalHint')}</span>
             </span>
           </label>
           {plant.smartInterval && encyc && (
             <p className="text-xs text-accent mt-2 m-0">
-              Obecnie: co {effectiveInterval(plant, encyc)} {effectiveInterval(plant, encyc) === 1 ? 'dzień' : 'dni'}
+              {t('plantDetail.currently', { n: effectiveInterval(plant, encyc) })}
             </p>
           )}
         </div>
@@ -301,7 +301,7 @@ export default function PlantDetailPage() {
           onChange={(e) => setJournalText(e.target.value)}
         />
         <button onClick={handleAddJournal} className="btn btn-primary w-full mb-4" disabled={!journalText.trim()}>
-          Dodaj wpis
+          {t('plantDetail.addEntry')}
         </button>
 
         {(plant.journal || []).length === 0 ? (
@@ -331,6 +331,7 @@ export default function PlantDetailPage() {
 }
 
 function GalleryThumb({ photoId, isCover, onSetCover, onRemove }) {
+  const t = useT();
   const url = usePhoto(photoId);
   const [confirming, setConfirming] = useState(false);
 
@@ -354,7 +355,7 @@ function GalleryThumb({ photoId, isCover, onSetCover, onRemove }) {
             type="button"
             onClick={onSetCover}
             className="w-6 h-6 rounded-full bg-app/80 text-xs flex items-center justify-center"
-            title="Ustaw jako główne"
+            title={t('plantDetail.setCover')}
           >
             ★
           </button>
@@ -364,7 +365,7 @@ function GalleryThumb({ photoId, isCover, onSetCover, onRemove }) {
           onClick={() => confirming ? onRemove() : setConfirming(true)}
           onBlur={() => setConfirming(false)}
           className="w-6 h-6 rounded-full bg-app/80 text-xs flex items-center justify-center"
-          title={confirming ? 'Kliknij ponownie żeby potwierdzić' : 'Usuń'}
+          title={confirming ? t('plantDetail.tapAgain') : t('common.delete')}
           style={confirming ? { backgroundColor: 'var(--danger)', color: 'var(--accent-text)' } : undefined}
         >
           ✕
@@ -384,8 +385,9 @@ function MiniStat({ label, value }) {
 }
 
 function JournalEntry({ entry, onDelete }) {
+  const t = useT();
   const date = new Date(entry.date);
-  const dateStr = date.toLocaleDateString('pl-PL', { day: 'numeric', month: 'short' });
+  const dateStr = date.toLocaleDateString(locale(), { day: 'numeric', month: 'short' });
 
   return (
     <div className="flex gap-3 py-2 border-t border-soft">
@@ -394,7 +396,7 @@ function JournalEntry({ entry, onDelete }) {
       <button
         onClick={onDelete}
         className="text-muted hover:text-danger text-xs"
-        aria-label="Usuń wpis"
+        aria-label={t('plantDetail.deleteEntry')}
       >
         ✕
       </button>

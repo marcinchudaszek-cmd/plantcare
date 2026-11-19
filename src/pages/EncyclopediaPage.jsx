@@ -55,7 +55,7 @@ export default function EncyclopediaPage() {
           onClick={() => setFilter('all')}
           className={`pill flex-shrink-0 ${filter === 'all' ? 'pill-on' : ''}`}
         >
-          Wszystkie
+          {t('myPlants.all')}
         </button>
         {CATEGORY_LIST.map((c) => (
           <button
@@ -63,7 +63,7 @@ export default function EncyclopediaPage() {
             onClick={() => setFilter(c.key)}
             className={`pill flex-shrink-0 ${filter === c.key ? 'pill-on' : ''}`}
           >
-            {c.emoji} {c.label}
+            {c.emoji} {t(`cat.${c.key}`)}
           </button>
         ))}
       </div>
@@ -87,7 +87,8 @@ export default function EncyclopediaPage() {
 }
 
 function EncycCard({ plant, owned }) {
-  const diffLabel = { easy: 'Łatwa', medium: 'Średnia', hard: 'Trudna' }[plant.difficulty] || '';
+  const t = useT();
+  const diffLabel = plant.difficulty ? t(`difficulty.${plant.difficulty}`) : '';
   const diffColor = { easy: 'text-accent', medium: 'text-warning', hard: 'text-danger' }[plant.difficulty];
   const overrides = useSettingsStore((s) => s.encycPhotoOverrides);
 

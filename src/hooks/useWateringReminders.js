@@ -3,32 +3,32 @@ import { useAppStore } from '../store/useAppStore.js';
 import { useSettingsStore } from '../store/useSettingsStore.js';
 import { notifyAboutWatering, getPermission } from '../lib/notifications.js';
 
-const CHECK_INTERVAL_MS = 1000 * 60 * 60 * 4; // co 4 godziny gdy aplikacja otwarta
-const FIRST_CHECK_DELAY_MS = 1000 * 30;        // 30 sekund po starcie (nie od razu)
+const CHECK_INTERVAL_MS = 1000 * 60 * 60; // co godzinę, gdy aplikacja jest otwarta
+const FIRST_CHECK_DELAY_MS = 1000 * 30;    // 30 sekund po starcie (nie od razu)
 
-/** Hook uruchamiający periodyczny check podlewania */
+/**
+ * Przypomnienia o podlewaniu. Działają, gdy aplikacja jest otwarta albo wraca na ekran
+ * (zdarzenie visibilitychange). notifyAboutWatering pilnuje limitu „raz dziennie”.
+ */
 export function useWateringReminders() {
-  const plants = useAppStore((s) => s.plants);
   const notificationsEnabled = useSettingsStore((s) => s.notificationsEnabled);
+  const loaded = useAppStore((s) => s.loaded);
 
   useEffect(() => {
-    if (!notificationsEnabled) return;
+    if (!notificationsEnabled || !loaded) return;
     if (getPermission() !== 'granted') return;
 
-    let intervalId;
-    const firstTimer = setTimeout(() => {
-      notifyAboutWatering(plants);
-      intervalId = setInterval(() => {
-        // Pobierz świeży stan ze store w momencie wykonania
-        const currentPlants = useAppStore.getState().plants;
-        notifyAboutWatering(currentPlants);
-      }, CHECK_INTERVAL_MS);
-    }, FIRST_CHECK_DELAY_MS);
+    const check = () => notifyAboutWatering(useAppStore.getState().plants);
+    const onVisible = () => { if (document.visibilityState === 'visible') check(); };
+
+    const firstTimer = setTimeout(check, FIRST_CHECK_DELAY_MS);
+    const intervalId = setInterval(check, CHECK_INTERVAL_MS);
+    document.addEventListener('visibilitychange', onVisible);
 
     return () => {
       clearTimeout(firstTimer);
-      if (intervalId) clearInterval(intervalId);
+      clearInterval(intervalId);
+      document.removeEventListener('visibilitychange', onVisible);
     };
-  }, [notificationsEnabled, plants.length]);
-  // ^ celowo plants.length, nie plants — żeby nie restartować timera przy każdym updacie
+  }, [notificationsEnabled, loaded]);
 }

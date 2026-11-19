@@ -6,6 +6,7 @@ import { loadKey, saveKey, KEYS } from '../lib/storage.js';
 
 const INITIAL = {
   apiKey: '',
+  userName: '',                  // imię na ekranie głównym (opcjonalne)
   theme: 'dark',                  // 'dark' | 'light'
   language: 'pl',                 // 'pl' | 'en' | 'de'
   notificationsEnabled: false,    // czy user włączył push
@@ -21,16 +22,21 @@ export const useSettingsStore = create((set, get) => ({
 
   hydrate: async () => {
     const data = await loadKey(KEYS.SETTINGS, INITIAL);
-    set({ ...data, loaded: true });
+    set({ ...INITIAL, ...data, loaded: true });
   },
 
   _save: () => {
-    const { apiKey, theme, language, notificationsEnabled, scanHistory, encycPhotoOverrides } = get();
-    saveKey(KEYS.SETTINGS, { apiKey, theme, language, notificationsEnabled, scanHistory, encycPhotoOverrides });
+    const { apiKey, userName, theme, language, notificationsEnabled, scanHistory, encycPhotoOverrides } = get();
+    saveKey(KEYS.SETTINGS, { apiKey, userName, theme, language, notificationsEnabled, scanHistory, encycPhotoOverrides });
   },
 
   setApiKey: (key) => {
     set({ apiKey: key });
+    get()._save();
+  },
+
+  setUserName: (userName) => {
+    set({ userName });
     get()._save();
   },
 

@@ -1,3 +1,4 @@
+import { translate as tr } from './i18n.js';
 // Pomocnicze funkcje do liczenia stanu roślin.
 // Czyste, bez side-effectów — łatwo testowalne, łatwo używać wszędzie.
 
@@ -43,15 +44,15 @@ export function waterState(plant) {
 
 /** Człowieczy opis: "Za 2 dni" / "Dziś" / "Spóźnione 3 dni" / "Nigdy nie podlana" */
 export function waterStatusLabel(plant) {
-  if (!plant.lastWatered) return 'Nigdy nie podlana';
+  if (!plant.lastWatered) return tr('water.never');
   const d = daysSinceWatered(plant);
   const interval = plant.interval || 7;
   const diff = interval - d;
-  if (diff > 1) return `Za ${diff} dni`;
-  if (diff === 1) return 'Jutro';
-  if (diff === 0) return 'Dziś';
-  if (diff === -1) return 'Spóźnione 1 dzień';
-  return `Spóźnione ${Math.abs(diff)} dni`;
+  if (diff > 1) return tr('water.inDays', { n: diff });
+  if (diff === 1) return tr('water.tomorrow');
+  if (diff === 0) return tr('water.today');
+  if (diff === -1) return tr('water.lateOne');
+  return tr('water.lateMany', { n: Math.abs(diff) });
 }
 
 /** Tworzy nową roślinę użytkownika na bazie wpisu z encyklopedii */
@@ -78,7 +79,7 @@ export function createCustomPlant({ name, species = '', emoji = '🌿', location
     id: `plant_${Date.now()}_${Math.random().toString(36).slice(2, 7)}`,
     encycId: null,                     // brak powiązania z plants.json
     custom: true,                      // roślina dodana ręcznie / ze skanu
-    name: (name || '').trim() || 'Moja roślina',
+    name: (name || '').trim() || tr('scanner.myPlant'),
     species: (species || '').trim(),
     emoji: emoji || '🌿',
     location: location || '',
@@ -144,7 +145,7 @@ export function effectiveInterval(plant, encycPlant) {
   return Math.max(1, Math.round(base * mod));
 }
 
-/** Etykieta sezonu po polsku */
+/** Etykieta sezonu w języku interfejsu */
 export function seasonLabel(season) {
-  return { spring: 'wiosna', summer: 'lato', autumn: 'jesien', winter: 'zima' }[season] || season;
+  return ['spring', 'summer', 'autumn', 'winter'].includes(season) ? tr(`season.${season}`) : season;
 }

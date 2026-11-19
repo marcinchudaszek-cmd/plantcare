@@ -1,4 +1,5 @@
 import { useRef, useState } from 'react';
+import { useT } from '../lib/i18n.js';
 
 /**
  * Reużywalny przycisk do uploadu zdjęcia.
@@ -13,10 +14,11 @@ import { useRef, useState } from 'react';
  */
 export default function PhotoUploader({
   onUpload,
-  label = '📷 Dodaj zdjęcie',
+  label,
   className = '',
   variant = 'secondary'
 }) {
+  const t = useT();
   const fileRef = useRef(null);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState(null);
@@ -31,7 +33,7 @@ export default function PhotoUploader({
     try {
       await onUpload(file);
     } catch (err) {
-      setError(err.message || 'Nie udało się dodać zdjęcia');
+      setError(err.message || t('photos.addFailed'));
     } finally {
       setBusy(false);
     }
@@ -45,7 +47,7 @@ export default function PhotoUploader({
         disabled={busy}
         className={`btn btn-${variant} ${className} disabled:opacity-50`}
       >
-        {busy ? '⏳ Zapisuję…' : label}
+        {busy ? `⏳ ${t('photos.saving')}` : (label || `📷 ${t('photos.add')}`)}
       </button>
       <input
         ref={fileRef}

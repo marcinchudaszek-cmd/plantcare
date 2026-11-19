@@ -8,3 +8,8 @@ dist-ssr
 !.vscode/extensions.json
 .DS_Store
 *.log
+worker/.dev.vars
+worker/klucz-gemini.txt
+worker/app-token.txt
+.wrangler
+worker/.wrangler

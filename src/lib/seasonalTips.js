@@ -1,3 +1,5 @@
+import { currentLang } from './i18n.js';
+import TRANSLATIONS from '../data/i18n/tips.json';
 // Sezonowe porady ogrodnicze — jedna nowa karta na Home każdego dnia.
 // 12 miesięcy × 3 porady = 36 wpisów w cyklu rocznym.
 // Algorytm wybiera poradę po (miesiąc, dzień % 3) — dzięki temu w danym
@@ -18,7 +20,7 @@ const TIPS = {
       icon: '🌡️'
     },
     {
-      title: 'Sprawdź czy nie marzną',
+      title: 'Sprawdź, czy nie marzną',
       body: 'Liście stykające się z zimną szybą przez noc mogą się przeziębić. Odsuń doniczki kilka centymetrów od okna.',
       icon: '🪟'
     }
@@ -36,7 +38,7 @@ const TIPS = {
     },
     {
       title: 'Czas planować przesadzanie',
-      body: 'Marzec jest miesiącem przesadzania. Już teraz sprawdź które rośliny mają korzenie wystające z otworów drenażowych — to one będą priorytetem.',
+      body: 'Marzec jest miesiącem przesadzania. Już teraz sprawdź, które rośliny mają korzenie wystające z otworów drenażowych — to one będą priorytetem.',
       icon: '📋'
     }
   ],
@@ -66,7 +68,7 @@ const TIPS = {
     },
     {
       title: 'Uważaj na ostre słońce',
-      body: 'Słońce jest mocniejsze niż się wydaje. Rośliny które stały zimą w cieniu mogą się oparzyć. Wprowadzaj na słońce stopniowo.',
+      body: 'Słońce jest mocniejsze niż się wydaje. Rośliny, które stały zimą w cieniu mogą się oparzyć. Wprowadzaj na słońce stopniowo.',
       icon: '☀️'
     },
     {
@@ -170,7 +172,7 @@ const TIPS = {
     },
     {
       title: 'Storczyki potrzebują chłodu',
-      body: 'Phalaenopsis żeby zakwitł na zimę potrzebuje 2–3 tygodni z różnicą 8°C między dniem a nocą. Postaw przy oknie.',
+      body: 'Phalaenopsis, żeby zakwitł, na zimę potrzebuje 2–3 tygodni z różnicą 8°C między dniem a nocą. Postaw przy oknie.',
       icon: '🌸'
     },
     {
@@ -192,7 +194,7 @@ const TIPS = {
     },
     {
       title: 'Sprawdź rośliny pod przelewanie',
-      body: 'Listopad to miesiąc kiedy najwięcej rosin ginie z powodu nawyków letnich. Wolniejszy wzrost = mniej wody. Nie podlewaj rutynowo.',
+      body: 'Listopad to miesiąc, kiedy najwięcej roślin ginie z powodu nawyków letnich. Wolniejszy wzrost = mniej wody. Nie podlewaj rutynowo.',
       icon: '⚠️'
     }
   ],
@@ -209,7 +211,7 @@ const TIPS = {
     },
     {
       title: 'Choinka żywa? Pamiętaj o wodzie',
-      body: 'Jeśli masz cięte drzewko w wodzie — sprawdzaj poziom codziennie, jodła pije zaskakująco dużo. Pusta podstawa = sucha igliwie w 2 dni.',
+      body: 'Jeśli masz cięte drzewko w wodzie — sprawdzaj poziom codziennie, jodła pije zaskakująco dużo. Pusta podstawa = suche igły w 2 dni.',
       icon: '🌲'
     }
   ]
@@ -224,10 +226,17 @@ export function getTodayTip(date = new Date()) {
   const month = date.getMonth();
   const day = date.getDate();
   const monthTips = TIPS[month] || TIPS[0];
-  return monthTips[day % monthTips.length];
+  const idx = day % monthTips.length;
+  return localize(monthTips[idx], TIPS[month] ? month : 0, idx);
+}
+
+/** Podmienia tytuł i treść na wersję w języku interfejsu (polski jest w TIPS) */
+function localize(tip, month, idx) {
+  const tr = TRANSLATIONS[currentLang()]?.[`${month}.${idx}`];
+  return tr ? { ...tip, title: tr[0], body: tr[1] } : tip;
 }
 
 /** Wszystkie porady danego miesiąca */
 export function getMonthTips(monthIndex) {
-  return TIPS[monthIndex] || [];
+  return (TIPS[monthIndex] || []).map((tip, i) => localize(tip, monthIndex, i));
 }

@@ -1,3 +1,4 @@
+import { translate as tr } from './i18n.js';
 // Eksport / import całego state aplikacji do pliku JSON.
 // Wersja 3 — z obsługą galerii zdjęć (Blob → base64).
 
@@ -20,7 +21,7 @@ function blobToBase64(blob) {
         data: comma >= 0 ? result.slice(comma + 1) : result
       });
     };
-    reader.onerror = () => reject(new Error('Nie udało się odczytać Bloba'));
+    reader.onerror = () => reject(new Error(tr('ai.err.read')));
     reader.readAsDataURL(blob);
   });
 }
@@ -92,17 +93,17 @@ export function readBackupFile(file) {
       try {
         const parsed = JSON.parse(reader.result);
         if (parsed.format !== 'plantcare-backup') {
-          return reject(new Error('To nie jest plik backupu PlantCare.'));
+          return reject(new Error(tr('backup.notBackup')));
         }
         if (!parsed.userData) {
-          return reject(new Error('Plik nie zawiera danych roślin.'));
+          return reject(new Error(tr('backup.noData')));
         }
         resolve(parsed);
       } catch (e) {
-        reject(new Error('Niepoprawny format JSON.'));
+        reject(new Error(tr('backup.badJson')));
       }
     };
-    reader.onerror = () => reject(new Error('Nie udało się odczytać pliku.'));
+    reader.onerror = () => reject(new Error(tr('ai.err.read')));
     reader.readAsText(file);
   });
 }

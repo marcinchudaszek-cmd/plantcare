@@ -4,13 +4,14 @@
   "version": "2.0.0",
   "type": "module",
   "description": "PlantCare 2.0 — inteligentny asystent pielęgnacji roślin",
-  "homepage": "https://marcinchudaszek-cmd.github.io/plantcare/",
+  "homepage": "https://plantcare.beagleapps.pl/",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview --port 5174",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "deploy": "gh-pages -d dist --dotfiles",
+    "worker:deploy": "wrangler deploy --config worker/wrangler.toml"
   },
   "dependencies": {
     "idb-keyval": "^6.2.1",

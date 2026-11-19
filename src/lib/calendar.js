@@ -1,3 +1,4 @@
+import { locale } from './i18n.js';
 // Predykcja podlewan w danym miesiacu.
 // Algorytm: dla kazdej rosliny licz "nastepne podlanie" = lastWatered + interval.
 // Jesli ta data wpada w obecny miesiac, dodaj. Potem licz nastepne (wcześniejsze)
@@ -56,17 +57,26 @@ export function getMonthSchedule(year, month, plants, plantsDB) {
   return schedule;
 }
 
-/** Nazwa miesiaca po polsku */
+/** Nazwa miesiąca w języku interfejsu (mianownik) */
 export function monthName(month) {
-  return [
-    'styczeń', 'luty', 'marzec', 'kwiecień', 'maj', 'czerwiec',
-    'lipiec', 'sierpień', 'wrzesień', 'październik', 'listopad', 'grudzień'
-  ][month] || '';
+  return new Date(2024, month, 1).toLocaleString(locale(), { month: 'long' });
+}
+
+/** Np. „19 listopada” / „19 November” */
+export function dayMonthLabel(year, month, day) {
+  return new Date(year, month, day).toLocaleDateString(locale(), { day: 'numeric', month: 'long' });
+}
+
+/** Skróty dni tygodnia od poniedziałku (1 stycznia 2024 to poniedziałek) */
+export function weekdayHeaders() {
+  return Array.from({ length: 7 }, (_, i) =>
+    new Date(2024, 0, 1 + i).toLocaleDateString(locale(), { weekday: 'short' }).replace('.', '')
+  );
 }
 
 /** Skrót dnia tygodnia (PN, WT, ...) — getDay() zwraca 0=niedziela */
 export function dayOfWeekShort(date) {
-  return ['Nd', 'Pn', 'Wt', 'Śr', 'Cz', 'Pt', 'So'][date.getDay()];
+  return date.toLocaleDateString(locale(), { weekday: 'short' }).replace('.', '');
 }
 
 /** Czy data to dzisiaj */

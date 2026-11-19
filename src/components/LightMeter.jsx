@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import plantsDB from '../data/plants.json';
+import { useT, locale } from '../lib/i18n.js';
 import {
   openCameraStream,
   stopCameraStream,
@@ -12,6 +13,7 @@ import {
 const SAMPLE_INTERVAL = 300; // ms
 
 export default function LightMeter() {
+  const t = useT();
   const videoRef = useRef(null);
   const canvasRef = useRef(null);
   const streamRef = useRef(null);
@@ -64,7 +66,7 @@ export default function LightMeter() {
       video.play().then(() => {
         setStreamReady(true);
       }).catch((e) => {
-        setError('Nie udało się uruchomić podglądu: ' + e.message);
+        setError(t('camera.startFailed'));
       });
     };
 
@@ -139,24 +141,23 @@ export default function LightMeter() {
       <div>
         <div className="card mb-3 text-center py-10">
           <div className="text-5xl mb-3">☀️</div>
-          <h2 className="text-base text-primary m-0 mb-2">Miernik światła</h2>
+          <h2 className="text-base text-primary m-0 mb-2">{t('light.title')}</h2>
           <p className="text-xs text-muted mb-4 max-w-xs mx-auto">
-            Skieruj kamerę na miejsce gdzie chcesz postawić roślinę. Aplikacja zmierzy
-            jasność i podpowie jakie gatunki się tam sprawdzą.
+            {t('light.intro')}
           </p>
           <button onClick={handleStart} className="btn btn-primary">
-            📷 Włącz kamerę
+            📷 {t('light.start')}
           </button>
           {error && <p className="text-xs text-danger mt-3">{error}</p>}
         </div>
 
         <div className="card">
-          <h3 className="text-sm text-primary font-medium m-0 mb-2">💡 Jak używać</h3>
+          <h3 className="text-sm text-primary font-medium m-0 mb-2">💡 {t('light.howTitle')}</h3>
           <ul className="text-xs text-secondary leading-relaxed m-0 pl-4 space-y-1">
-            <li>Skieruj telefon w stronę miejsca jakby ustawiał roślinę</li>
-            <li>Trzymaj nieruchomo przez 2-3 sekundy</li>
-            <li>Nie kieruj prosto w słońce — uszkodzisz pomiar i kamerę</li>
-            <li>Pomiar jest przybliżony — kamera sama dostosowuje ekspozycję</li>
+            <li>{t('light.how1')}</li>
+            <li>{t('light.how2')}</li>
+            <li>{t('light.how3')}</li>
+            <li>{t('light.how4')}</li>
           </ul>
         </div>
       </div>
@@ -180,7 +181,7 @@ export default function LightMeter() {
 
         {!streamReady && (
           <div className="absolute inset-0 flex items-center justify-center">
-            <span className="text-muted text-sm">Uruchamiam kamerę…</span>
+            <span className="text-muted text-sm">{t('light.starting')}</span>
           </div>
         )}
 
@@ -193,11 +194,11 @@ export default function LightMeter() {
         {streamReady && (
           <div className="absolute bottom-0 left-0 right-0 bg-app/85 backdrop-blur p-3">
             <div className="flex items-baseline justify-between mb-2">
-              <span className="text-xs text-muted">Pomiar światła</span>
+              <span className="text-xs text-muted">{t('light.measure')}</span>
               <span className="text-xs text-muted">~{Math.round(lum)} luminancji</span>
             </div>
             <div className="text-2xl font-medium text-primary leading-none mb-1">
-              ~{lux.toLocaleString('pl-PL')} lx
+              ~{lux.toLocaleString(locale())} lx
             </div>
             {classification && (
               <div className="flex items-center gap-2 text-sm" style={{ color: colorMap[classification.color] }}>
@@ -215,23 +216,23 @@ export default function LightMeter() {
           disabled={!streamReady}
           className="btn btn-secondary disabled:opacity-50"
         >
-          {paused ? '▶ Wznów' : '⏸ Pauza'}
+          {paused ? `▶ ${t('light.resume')}` : `⏸ ${t('light.pause')}`}
         </button>
         <button onClick={handleStop} className="btn btn-secondary">
-          ✕ Wyłącz
+          ✕ {t('notifications.disable')}
         </button>
       </div>
 
       {classification && (
         <div className="card mb-3">
-          <h3 className="text-sm text-primary font-medium m-0 mb-2">Rekomendacja</h3>
+          <h3 className="text-sm text-primary font-medium m-0 mb-2">{t('light.recommendation')}</h3>
           <p className="text-sm text-secondary leading-relaxed m-0 mb-3">
             {classification.recommendation}
           </p>
 
           {recommendedPlants.length > 0 && (
             <div className="space-y-2">
-              <p className="text-xs text-muted m-0">Pasujące gatunki z bazy:</p>
+              <p className="text-xs text-muted m-0">{t('light.matching')}</p>
               {recommendedPlants.map((p) => (
                 <Link
                   key={p.id}

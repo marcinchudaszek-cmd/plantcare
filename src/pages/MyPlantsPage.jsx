@@ -85,7 +85,7 @@ export default function MyPlantsPage() {
               📚 {t('myPlants.pickFromDB')}
             </Link>
             <button onClick={() => setFormOpen(true)} className="btn btn-secondary inline-flex">
-              ➕ Dodaj własną roślinę
+              ➕ {t('myPlants.addOwn')}
             </button>
           </div>
         </div>
@@ -105,10 +105,10 @@ export default function MyPlantsPage() {
       {/* Akcje dodawania */}
       <div className="flex gap-2 mb-3">
         <Link to="/encyclopedia" className="btn btn-secondary flex-1 justify-center">
-          📚 Z bazy
+          📚 {t('myPlants.fromDB')}
         </Link>
         <button onClick={() => setFormOpen(true)} className="btn btn-primary flex-1 justify-center">
-          ➕ Własna
+          ➕ {t('myPlants.own')}
         </button>
       </div>
 
@@ -175,6 +175,7 @@ export default function MyPlantsPage() {
 
 // === Formularz dodawania własnej rośliny ===
 function AddPlantSheet({ open, onClose, onCreate }) {
+  const t = useT();
   const [name, setName] = useState('');
   const [species, setSpecies] = useState('');
   const [emoji, setEmoji] = useState('🌿');
@@ -213,11 +214,11 @@ function AddPlantSheet({ open, onClose, onCreate }) {
   };
 
   return (
-    <Sheet open={open} onClose={handleClose} title="Dodaj własną roślinę">
+    <Sheet open={open} onClose={handleClose} title={t('myPlants.addOwn')}>
       <div className="space-y-4">
         {/* Zdjęcie (opcjonalne) */}
         <div>
-          <label className="block text-xs text-muted mb-1">Zdjęcie (opcjonalne)</label>
+          <label className="block text-xs text-muted mb-1">{t('myPlants.photoOptional')}</label>
           <div className="flex items-center gap-3">
             <div className="w-16 h-16 rounded-md bg-deep border border-soft overflow-hidden flex items-center justify-center text-2xl flex-shrink-0">
               {photoUrl ? (
@@ -225,7 +226,7 @@ function AddPlantSheet({ open, onClose, onCreate }) {
               ) : (emoji || '🌿')}
             </div>
             <label className="btn btn-secondary cursor-pointer">
-              🖼️ Wybierz zdjęcie
+              🖼️ {t('myPlants.pickPhoto')}
               <input type="file" accept="image/*" onChange={handlePhoto} className="hidden" />
             </label>
           </div>
@@ -233,11 +234,11 @@ function AddPlantSheet({ open, onClose, onCreate }) {
 
         {/* Nazwa */}
         <div>
-          <label className="block text-xs text-muted mb-1">Nazwa *</label>
+          <label className="block text-xs text-muted mb-1">{t('myPlants.name')} *</label>
           <input
             type="text"
             className="input"
-            placeholder="np. Stefan, Monstera z salonu"
+            placeholder={t('myPlants.namePlaceholder')}
             value={name}
             onChange={(e) => setName(e.target.value)}
           />
@@ -245,11 +246,11 @@ function AddPlantSheet({ open, onClose, onCreate }) {
 
         {/* Gatunek */}
         <div>
-          <label className="block text-xs text-muted mb-1">Gatunek (opcjonalnie)</label>
+          <label className="block text-xs text-muted mb-1">{t('myPlants.speciesOptional')}</label>
           <input
             type="text"
             className="input"
-            placeholder="np. Monstera deliciosa"
+            placeholder={t('myPlants.speciesPlaceholder')}
             value={species}
             onChange={(e) => setSpecies(e.target.value)}
           />
@@ -257,7 +258,7 @@ function AddPlantSheet({ open, onClose, onCreate }) {
 
         {/* Emoji */}
         <div>
-          <label className="block text-xs text-muted mb-1">Ikona</label>
+          <label className="block text-xs text-muted mb-1">{t('myPlants.icon')}</label>
           <div className="flex flex-wrap gap-2">
             {EMOJI_CHOICES.map((em) => (
               <button
@@ -274,11 +275,11 @@ function AddPlantSheet({ open, onClose, onCreate }) {
 
         {/* Lokalizacja */}
         <div>
-          <label className="block text-xs text-muted mb-1">Lokalizacja (opcjonalnie)</label>
+          <label className="block text-xs text-muted mb-1">{t('myPlants.locationOptional')}</label>
           <input
             type="text"
             className="input"
-            placeholder="np. salon, parapet kuchenny"
+            placeholder={t('encyclopedia.locationPlaceholder')}
             value={location}
             onChange={(e) => setLocation(e.target.value)}
           />
@@ -286,7 +287,7 @@ function AddPlantSheet({ open, onClose, onCreate }) {
 
         {/* Interwał podlewania */}
         <div>
-          <label className="block text-xs text-muted mb-1">Podlewanie co ile dni</label>
+          <label className="block text-xs text-muted mb-1">{t('myPlants.intervalLabel')}</label>
           <input
             type="number"
             min="1"
@@ -298,7 +299,7 @@ function AddPlantSheet({ open, onClose, onCreate }) {
         </div>
 
         <button onClick={handleSubmit} disabled={saving} className="btn btn-primary w-full disabled:opacity-50">
-          {saving ? '⏳ Zapisuję…' : 'Dodaj roślinę'}
+          {saving ? `⏳ ${t('photos.saving')}` : t('myPlants.addPlant')}
         </button>
       </div>
     </Sheet>

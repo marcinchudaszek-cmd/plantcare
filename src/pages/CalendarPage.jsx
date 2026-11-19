@@ -2,11 +2,13 @@ import { useState, useMemo } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAppStore } from '../store/useAppStore.js';
 import plantsDB from '../data/plants.json';
-import { getMonthSchedule, monthName, isToday } from '../lib/calendar.js';
+import { getMonthSchedule, monthName, isToday, weekdayHeaders, dayMonthLabel } from '../lib/calendar.js';
+import { useT } from '../lib/i18n.js';
 import Sheet from '../components/Sheet.jsx';
 
 export default function CalendarPage() {
   const navigate = useNavigate();
+  const t = useT();
   const plants = useAppStore((s) => s.plants);
 
   const today = new Date();
@@ -52,20 +54,20 @@ export default function CalendarPage() {
         <button
           onClick={() => navigate(-1)}
           className="w-9 h-9 rounded-full bg-surface flex items-center justify-center"
-          aria-label="Wroc"
+          aria-label={t('common.back')}
         >
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-primary">
             <path d="M19 12H5M12 19l-7-7 7-7" />
           </svg>
         </button>
-        <h1 className="text-2xl text-primary m-0">Kalendarz</h1>
+        <h1 className="text-2xl text-primary m-0">{t('calendar.title')}</h1>
       </header>
 
       {plants.length === 0 ? (
         <div className="card text-center py-12">
           <div className="text-4xl mb-3">📅</div>
           <p className="text-sm text-muted m-0">
-            Dodaj rośliny żeby zobaczyć kalendarz podlewania.
+            {t('calendar.empty')}
           </p>
         </div>
       ) : (
@@ -88,7 +90,7 @@ export default function CalendarPage() {
           <div className="card mb-3">
             {/* Dni tygodnia */}
             <div className="grid grid-cols-7 gap-1 mb-2">
-              {['Pn', 'Wt', 'Śr', 'Cz', 'Pt', 'So', 'Nd'].map((d) => (
+              {weekdayHeaders().map((d) => (
                 <div key={d} className="text-center text-xs text-muted">
                   {d}
                 </div>
@@ -134,22 +136,22 @@ export default function CalendarPage() {
 
           {/* Przycisk "dzisiaj" */}
           <button onClick={goToday} className="btn btn-secondary w-full mb-3">
-            Skocz do dziś
+            {t('calendar.jumpToday')}
           </button>
 
           {/* Legenda */}
           <div className="card">
-            <p className="text-xs text-muted m-0 mb-2">Legenda</p>
+            <p className="text-xs text-muted m-0 mb-2">{t('calendar.legend')}</p>
             <div className="space-y-1.5 text-xs text-secondary">
               <div className="flex items-center gap-2">
                 <div className="w-4 h-4 rounded-md bg-accent" />
-                <span>Dzisiaj</span>
+                <span>{t('calendar.today')}</span>
               </div>
               <div className="flex items-center gap-2">
                 <div className="w-4 h-4 rounded-md bg-deep flex items-center justify-center">
                   <span className="w-1 h-1 rounded-full" style={{ backgroundColor: 'var(--accent)' }} />
                 </div>
-                <span>Dzień z planowanymi podlewaniami</span>
+                <span>{t('calendar.plannedDay')}</span>
               </div>
             </div>
           </div>
@@ -160,17 +162,17 @@ export default function CalendarPage() {
       <Sheet
         open={selectedDay !== null}
         onClose={() => setSelectedDay(null)}
-        title={selectedDay ? `${selectedDay} ${monthName(month)}` : ''}
+        title={selectedDay ? dayMonthLabel(year, month, selectedDay) : ''}
       >
         {selectedSchedule && selectedSchedule.plants.length === 0 ? (
           <div className="text-center py-6">
             <div className="text-3xl mb-2">💧</div>
-            <p className="text-sm text-muted m-0">Tego dnia nic do podlania</p>
+            <p className="text-sm text-muted m-0">{t('calendar.nothing')}</p>
           </div>
         ) : (
           <div className="space-y-2">
             <p className="text-xs text-muted m-0 mb-2">
-              Roślin do podlania: {selectedSchedule?.plants.length}
+              {t('notifications.many', { n: selectedSchedule?.plants.length })}
             </p>
             {selectedSchedule?.plants.map((plant) => (
               <Link

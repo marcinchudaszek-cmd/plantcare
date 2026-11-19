@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import { useT } from '../lib/i18n.js';
 
 /**
  * Podgląd kamery na żywo (getUserMedia) z migawką.
@@ -8,6 +9,7 @@ import { useEffect, useRef, useState } from 'react';
  * (TWA) system zapyta o uprawnienie do kamery przy pierwszym użyciu.
  */
 export default function CameraCapture({ onCapture, onClose }) {
+  const t = useT();
   const videoRef = useRef(null);
   const streamRef = useRef(null);
   const [error, setError] = useState(null);
@@ -19,7 +21,7 @@ export default function CameraCapture({ onCapture, onClose }) {
 
     async function start() {
       if (!navigator.mediaDevices?.getUserMedia) {
-        setError('Ta przeglądarka nie udostępnia kamery na żywo. Użyj przycisku „Aparat”.');
+        setError(t('camera.noLive'));
         return;
       }
       try {
@@ -39,11 +41,11 @@ export default function CameraCapture({ onCapture, onClose }) {
         setReady(true);
       } catch (err) {
         if (err?.name === 'NotAllowedError') {
-          setError('Brak zgody na aparat. Zezwól na dostęp do kamery w ustawieniach i spróbuj ponownie.');
+          setError(t('camera.deniedLong'));
         } else if (err?.name === 'NotFoundError') {
-          setError('Nie znaleziono kamery w tym urządzeniu.');
+          setError(t('camera.notFound'));
         } else {
-          setError('Nie udało się uruchomić kamery: ' + (err?.message || err));
+          setError(t('camera.startFailed'));
         }
       }
     }
@@ -71,7 +73,7 @@ export default function CameraCapture({ onCapture, onClose }) {
       (blob) => {
         setBusy(false);
         if (!blob) {
-          setError('Nie udało się zrobić zdjęcia. Spróbuj ponownie.');
+          setError(t('camera.shotFailed'));
           return;
         }
         const file = new File([blob], `aparat_${Date.now()}.jpg`, { type: 'image/jpeg' });
@@ -85,11 +87,11 @@ export default function CameraCapture({ onCapture, onClose }) {
   return (
     <div className="fixed inset-0 z-[110] bg-black flex flex-col">
       <div className="flex items-center justify-between px-4 py-3">
-        <span className="text-white text-sm">Kamera na żywo</span>
+        <span className="text-white text-sm">{t('camera.live')}</span>
         <button
           onClick={onClose}
           className="w-9 h-9 rounded-full bg-white/15 text-white flex items-center justify-center"
-          aria-label="Zamknij kamerę"
+          aria-label={t('camera.close')}
         >
           ✕
         </button>
@@ -100,7 +102,7 @@ export default function CameraCapture({ onCapture, onClose }) {
           <div className="px-6 text-center">
             <div className="text-4xl mb-3">📷</div>
             <p className="text-white text-sm leading-relaxed">{error}</p>
-            <button onClick={onClose} className="btn btn-secondary mt-4">Wróć</button>
+            <button onClick={onClose} className="btn btn-secondary mt-4">{t('common.back')}</button>
           </div>
         ) : (
           <video
@@ -117,7 +119,7 @@ export default function CameraCapture({ onCapture, onClose }) {
           <button
             onClick={snap}
             disabled={!ready || busy}
-            aria-label="Zrób zdjęcie"
+            aria-label={t('camera.shoot')}
             className="w-18 h-18 rounded-full border-4 border-white disabled:opacity-40"
             style={{ width: 72, height: 72, background: 'rgba(255,255,255,0.25)' }}
           />

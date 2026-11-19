@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { usePhoto } from '../hooks/usePhoto.js';
+import { useT, locale } from '../lib/i18n.js';
 
 /**
  * Wyswietla pozioma os czasu z miniaturkami zdjec rosliny.
@@ -9,6 +10,7 @@ import { usePhoto } from '../hooks/usePhoto.js';
  *   plant — { photos: [photoId], photoMeta: { [photoId]: { addedAt } } }
  */
 export default function GrowthTimeline({ plant }) {
+  const t = useT();
   const [openPhotoId, setOpenPhotoId] = useState(null);
 
   const photos = plant.photos || [];
@@ -29,8 +31,8 @@ export default function GrowthTimeline({ plant }) {
   return (
     <div className="card mb-4">
       <div className="flex items-baseline justify-between mb-3">
-        <h2 className="text-sm text-primary font-medium m-0">📈 Wzrost w czasie</h2>
-        <span className="text-xs text-muted">{photos.length} {photos.length === 1 ? 'zdjęcie' : 'zdjęć'}</span>
+        <h2 className="text-sm text-primary font-medium m-0">📈 {t('photos.growth')}</h2>
+        <span className="text-xs text-muted">{t(photos.length === 1 ? 'photos.countOne' : 'photos.countMany', { n: photos.length })}</span>
       </div>
 
       <div className="overflow-x-auto -mx-4 px-4 pb-2">
@@ -59,10 +61,10 @@ function TimelineItem({ photoId, addedAt, index, isLast, onClick }) {
   const url = usePhoto(photoId);
 
   const dateLabel = addedAt
-    ? new Date(addedAt).toLocaleDateString('pl-PL', { day: 'numeric', month: 'short' })
+    ? new Date(addedAt).toLocaleDateString(locale(), { day: 'numeric', month: 'short' })
     : '—';
   const yearLabel = addedAt
-    ? new Date(addedAt).toLocaleDateString('pl-PL', { year: 'numeric' })
+    ? new Date(addedAt).toLocaleDateString(locale(), { year: 'numeric' })
     : '';
 
   return (
@@ -98,7 +100,7 @@ function PhotoModal({ photoId, addedAt, onClose }) {
       )}
       {addedAt && (
         <p className="text-white text-sm mt-3 m-0">
-          {new Date(addedAt).toLocaleDateString('pl-PL', { day: 'numeric', month: 'long', year: 'numeric' })}
+          {new Date(addedAt).toLocaleDateString(locale(), { day: 'numeric', month: 'long', year: 'numeric' })}
         </p>
       )}
       <button

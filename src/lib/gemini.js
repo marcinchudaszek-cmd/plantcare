@@ -1,24 +1,37 @@
-// Warstwa komunikacji z Gemini API.
-// Wszystko co dotyczy formatów, retry, błędów — w jednym miejscu.
+// Warstwa komunikacji z Gemini.
+// Dwie drogi:
+//  1. własny klucz użytkownika (Ustawienia) — zapytanie idzie prosto do Google,
+//  2. worker PlantCare (klucz Beagle Apps, dzienny limit) — gdy użytkownik nie ma klucza,
+//     a build ma VITE_AI_TOKEN. Bez tokenu w buildzie AI wymaga własnego klucza.
+// Błędy rzucamy jako AiError z kodem — komunikat jest tłumaczony na język interfejsu.
 
-const ENDPOINT =
-  'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent';
+import { translate, currentLang } from './i18n.js';
 
-const PROMPT = `Przeanalizuj zdjęcie rośliny doniczkowej i odpowiedz WYŁĄCZNIE poprawnym JSON-em (bez markdownu, bez \`\`\`).
+const MODEL = 'gemini-2.5-flash';
+const ENDPOINT = `https://generativelanguage.googleapis.com/v1beta/models/${MODEL}:generateContent`;
+const WORKER_URL = import.meta.env.VITE_AI_WORKER || 'https://plantcare-ai.atlas-grzybow.workers.dev';
+const APP_TOKEN = import.meta.env.VITE_AI_TOKEN || '';
 
-Format:
-{
-  "name": "polska nazwa rośliny",
-  "species": "nazwa łacińska",
-  "confidence": 0.0-1.0,
-  "category": "tropical|succulents|flowering|herbs|special|popular",
-  "difficulty": "easy|medium|hard",
-  "health": "good|warning|bad",
-  "healthNote": "krótki opis stanu w języku polskim, max 2 zdania",
-  "description": "krótki opis rośliny w języku polskim, 1-2 zdania"
+export class AiError extends Error {
+  constructor(code, detail = '') {
+    super(translate(`ai.err.${code}`, { detail }));
+    this.code = code;
+  }
 }
 
-Jeśli na zdjęciu nie ma rośliny lub nie jesteś w stanie jej rozpoznać, ustaw confidence na 0 i name na "Nie rozpoznano".`;
+/** Czy AI jest dostępne: własny klucz albo worker wkompilowany w build */
+export function aiAvailable(apiKey) {
+  return !!apiKey || workerAvailable();
+}
+
+export function workerAvailable() {
+  return !!APP_TOKEN;
+}
+
+const LANG_NAMES = { pl: 'Polish', en: 'English', de: 'German' };
+function langName() {
+  return LANG_NAMES[currentLang()] || 'Polish';
+}
 
 /** Konwertuje plik na base64 (bez prefixu data:image/...) */
 export function fileToBase64(file) {
@@ -29,305 +42,205 @@ export function fileToBase64(file) {
       const comma = result.indexOf(',');
       resolve(comma >= 0 ? result.slice(comma + 1) : result);
     };
-    reader.onerror = () => reject(new Error('Nie udało się odczytać pliku'));
+    reader.onerror = () => reject(new AiError('read'));
     reader.readAsDataURL(file);
   });
 }
 
-/** Sprawdza poprawność klucza (lekko, tylko format) */
+/** Sprawdza poprawność klucza (lekko, tylko format). Google wydaje klucze „AIza…” i nowsze „AQ.…” */
 export function isValidApiKeyFormat(key) {
-  return typeof key === 'string' && key.startsWith('AIza') && key.length > 30;
-}
-
-/**
- * Wywołuje Gemini Vision API z obrazem.
- * Zwraca obiekt rozpoznania albo rzuca błąd z czytelnym message.
- *
- * Opcje: { signal, timeout, maxRetries }
- */
-export async function recognizePlant(apiKey, imageBase64, mimeType = 'image/jpeg', opts = {}) {
-  const { timeout = 30000, maxRetries = 2 } = opts;
-
-  if (!apiKey) throw new Error('Brak klucza API. Dodaj go w ustawieniach.');
-  if (!isValidApiKeyFormat(apiKey)) throw new Error('Klucz API ma nieprawidłowy format.');
-
-  const body = {
-    contents: [{
-      parts: [
-        { text: PROMPT },
-        { inline_data: { mime_type: mimeType, data: imageBase64 } }
-      ]
-    }],
-    generationConfig: {
-      temperature: 0.2,
-      topK: 32,
-      topP: 1,
-      maxOutputTokens: 1024,
-      responseMimeType: 'application/json'
-    }
-  };
-
-  let lastError = null;
-  for (let attempt = 0; attempt <= maxRetries; attempt++) {
-    const ctrl = new AbortController();
-    const tid = setTimeout(() => ctrl.abort(), timeout);
-
-    try {
-      const res = await fetch(`${ENDPOINT}?key=${encodeURIComponent(apiKey)}`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(body),
-        signal: ctrl.signal
-      });
-      clearTimeout(tid);
-
-      // Błędy autoryzacji — nie ma sensu retry
-      if (res.status === 401 || res.status === 403) {
-        throw new Error('Klucz API odrzucony przez Google. Sprawdź czy jest aktywny.');
-      }
-      if (res.status === 400) {
-        const txt = await res.text().catch(() => '');
-        throw new Error(`Błąd zapytania (400). ${txt.slice(0, 200)}`);
-      }
-
-      // Rate limit / przeciążenie — warto spróbować ponownie
-      if (res.status === 429 || res.status >= 500) {
-        lastError = new Error(`Serwer Gemini odpowiedział ${res.status} — ponawiam…`);
-        if (attempt < maxRetries) {
-          await sleep(1000 * (attempt + 1));
-          continue;
-        }
-        throw lastError;
-      }
-
-      if (!res.ok) {
-        throw new Error(`Nieoczekiwany błąd: ${res.status}`);
-      }
-
-      const data = await res.json();
-      const text = data?.candidates?.[0]?.content?.parts?.[0]?.text;
-      if (!text) throw new Error('Pusta odpowiedź z Gemini.');
-
-      // Czasem mimo responseMimeType json, model wciska markdown
-      const cleaned = text.replace(/^```(?:json)?\n?|\n?```$/g, '').trim();
-      try {
-        return JSON.parse(cleaned);
-      } catch {
-        throw new Error('Gemini zwrócił odpowiedź której nie można sparsować.');
-      }
-    } catch (err) {
-      clearTimeout(tid);
-      if (err.name === 'AbortError') {
-        lastError = new Error('Przekroczono czas oczekiwania (30 s).');
-      } else {
-        lastError = err;
-      }
-      if (attempt >= maxRetries) throw lastError;
-      await sleep(1000 * (attempt + 1));
-    }
-  }
-  throw lastError || new Error('Nie udało się rozpoznać rośliny.');
+  return typeof key === 'string' && /^(AIza|AQ\.)/.test(key) && key.length > 30;
 }
 
 function sleep(ms) {
   return new Promise((r) => setTimeout(r, ms));
 }
 
-// === DIAGNOSTYKA CHORÓB ===
-
-const DIAGNOSIS_PROMPT = `Jestes doswiadczonym ogrodnikiem-diagnostykiem. Przeanalizuj zdjecie chorej lub zaniepokojonej rosliny doniczkowej i odpowiedz WYLACZNIE poprawnym JSON-em (bez markdownu, bez backticks).
-
-Format:
-{
-  "plantName": "polska nazwa rosliny jesli rozpoznasz, inaczej null",
-  "severity": "ok|minor|moderate|severe|critical",
-  "severityLabel": "krotki opis powagi po polsku, np. 'Stan dobry', 'Lekkie objawy', 'Wymaga uwagi', 'Powazny problem', 'Pilnie ratuj'",
-  "primaryIssue": "glowny problem w 3-5 slowach po polsku, np. 'Przelanie korzeni', 'Niedobor swiatla'",
-  "diagnosis": "szczegolowa diagnoza w jezyku polskim, 2-4 zdania, co widzisz i dlaczego do tego doszlo",
-  "causes": ["lista 2-4 mozliwych przyczyn po polsku"],
-  "treatment": ["lista 3-6 krokow ratunkowych po polsku, w kolejnosci od najwazniejszego"],
-  "prevention": "krotka rada profilaktyczna na przyszlosc po polsku, 1-2 zdania",
-  "urgent": true/false
+function extractText(data) {
+  return data?.candidates?.[0]?.content?.parts?.map((p) => p.text || '').join('') || '';
 }
 
-Jesli na zdjeciu NIE ma rosliny lub jakosc zdjecia uniemozliwia diagnoze, zwroc:
-{ "severity": "unknown", "severityLabel": "Nie udalo sie ocenic", "diagnosis": "powod po polsku", "causes": [], "treatment": [], "prevention": "", "urgent": false }`;
-
-export async function diagnosePlantHealth(apiKey, imageBase64, mimeType = 'image/jpeg', opts = {}) {
-  const { timeout = 30000, maxRetries = 2 } = opts;
-
-  if (!apiKey) throw new Error('Brak klucza API. Dodaj go w ustawieniach.');
-  if (!isValidApiKeyFormat(apiKey)) throw new Error('Klucz API ma nieprawidlowy format.');
-
-  const body = {
-    contents: [{
-      parts: [
-        { text: DIAGNOSIS_PROMPT },
-        { inline_data: { mime_type: mimeType, data: imageBase64 } }
-      ]
-    }],
-    generationConfig: {
-      temperature: 0.3,
-      topK: 32,
-      topP: 1,
-      maxOutputTokens: 2048,
-      responseMimeType: 'application/json'
+function parseJson(text) {
+  const cleaned = text.replace(/^```(?:json)?\n?|\n?```$/g, '').trim();
+  try {
+    return JSON.parse(cleaned);
+  } catch {
+    // Model czasem dopisuje zdanie przed/po JSON-ie — wyciągamy pierwszy obiekt
+    const m = cleaned.match(/\{[\s\S]*\}/);
+    if (m) {
+      try { return JSON.parse(m[0]); } catch { /* niżej */ }
     }
-  };
+    throw new AiError('parse');
+  }
+}
+
+/**
+ * Jedno wywołanie generateContent — własnym kluczem albo przez worker.
+ * Ponawia przy 429/5xx i przekroczeniu czasu.
+ */
+async function generate(apiKey, body, { timeout = 45000, maxRetries = 2 } = {}) {
+  const own = !!apiKey;
+  if (!own && !workerAvailable()) throw new AiError('noKey');
+  if (own && !isValidApiKeyFormat(apiKey)) throw new AiError('keyFormat');
 
   let lastError = null;
   for (let attempt = 0; attempt <= maxRetries; attempt++) {
     const ctrl = new AbortController();
     const tid = setTimeout(() => ctrl.abort(), timeout);
-
     try {
-      const res = await fetch(ENDPOINT + '?key=' + encodeURIComponent(apiKey), {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(body),
-        signal: ctrl.signal
-      });
+      const res = own
+        ? await fetch(ENDPOINT, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'x-goog-api-key': apiKey },
+            body: JSON.stringify(body),
+            signal: ctrl.signal
+          })
+        : await fetch(`${WORKER_URL}/generate`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'X-App-Token': APP_TOKEN },
+            body: JSON.stringify(body),
+            signal: ctrl.signal
+          });
       clearTimeout(tid);
 
-      if (res.status === 401 || res.status === 403) {
-        throw new Error('Klucz API odrzucony przez Google. Sprawdz czy jest aktywny.');
-      }
-      if (res.status === 400) {
-        const txt = await res.text().catch(() => '');
-        throw new Error('Blad zapytania (400). ' + txt.slice(0, 200));
-      }
-      if (res.status === 429 || res.status >= 500) {
-        lastError = new Error('Serwer Gemini odpowiedzial ' + res.status + ' - ponawiam...');
-        if (attempt < maxRetries) {
-          await sleep(1000 * (attempt + 1));
-          continue;
+      if (!own) {
+        // Worker zwraca { error: { code } } przy własnych błędach
+        if (!res.ok) {
+          const payload = await res.json().catch(() => ({}));
+          const code = payload?.error?.code;
+          if (code === 'limit') throw new AiError('limit');
+          if (code === 'no-key') throw new AiError('workerOff');
+          if (res.status === 429 || res.status >= 500) {
+            lastError = new AiError('busy', String(res.status));
+            if (attempt < maxRetries) { await sleep(1500 * (attempt + 1)); continue; }
+            throw lastError;
+          }
+          throw new AiError('request', String(res.status));
         }
-        throw lastError;
-      }
-      if (!res.ok) {
-        throw new Error('Nieoczekiwany blad: ' + res.status);
+      } else {
+        if (res.status === 401 || res.status === 403) throw new AiError('keyRejected');
+        if (res.status === 400) {
+          const txt = await res.text().catch(() => '');
+          if (/API key not valid|API_KEY_INVALID/i.test(txt)) throw new AiError('keyRejected');
+          throw new AiError('request', '400');
+        }
+        if (res.status === 429 || res.status >= 500) {
+          lastError = new AiError(res.status === 429 ? 'quota' : 'busy', String(res.status));
+          if (attempt < maxRetries) { await sleep(1500 * (attempt + 1)); continue; }
+          throw lastError;
+        }
+        if (!res.ok) throw new AiError('request', String(res.status));
       }
 
       const data = await res.json();
-      const text = data && data.candidates && data.candidates[0] && data.candidates[0].content && data.candidates[0].content.parts && data.candidates[0].content.parts[0] && data.candidates[0].content.parts[0].text;
-      if (!text) throw new Error('Pusta odpowiedz z Gemini.');
-
-      const cleaned = text.replace(/^```(?:json)?\n?|\n?```$/g, '').trim();
-      try {
-        return JSON.parse(cleaned);
-      } catch {
-        throw new Error('Gemini zwrocil odpowiedz ktorej nie mozna sparsowac.');
-      }
+      const text = extractText(data);
+      if (!text) throw new AiError('empty');
+      return text;
     } catch (err) {
       clearTimeout(tid);
-      if (err.name === 'AbortError') {
-        lastError = new Error('Przekroczono czas oczekiwania (30 s).');
-      } else {
+      if (err.name === 'AbortError') lastError = new AiError('timeout');
+      else if (err instanceof AiError) {
+        // Błędy klucza, limitu i formatu — ponawianie nic nie da
+        if (!['busy', 'quota', 'empty'].includes(err.code)) throw err;
         lastError = err;
-      }
+      } else lastError = new AiError('network');
       if (attempt >= maxRetries) throw lastError;
-      await sleep(1000 * (attempt + 1));
+      await sleep(1500 * (attempt + 1));
     }
   }
-  throw lastError || new Error('Nie udalo sie zdiagnozowac rosliny.');
+  throw lastError || new AiError('network');
+}
+
+// === ROZPOZNAWANIE ROŚLINY ===
+
+function recognizePrompt() {
+  const lang = langName();
+  return `Analyse the photo of a plant (houseplant, balcony or garden plant) and reply ONLY with valid JSON (no markdown, no backticks).
+
+Format:
+{
+  "name": "common name of the plant in ${lang}",
+  "species": "Latin name",
+  "confidence": 0.0-1.0,
+  "category": "tropical|succulents|flowering|herbs|special|popular",
+  "difficulty": "easy|medium|hard",
+  "health": "good|warning|bad",
+  "healthNote": "short note about its condition in ${lang}, max 2 sentences",
+  "description": "short description of the plant in ${lang}, 1-2 sentences"
+}
+
+If there is no plant in the photo or you cannot identify it, set confidence to 0 and name to "?".`;
+}
+
+/** Rozpoznaje roślinę ze zdjęcia. Zwraca obiekt rozpoznania albo rzuca AiError. */
+export async function recognizePlant(apiKey, imageBase64, mimeType = 'image/jpeg', opts = {}) {
+  const text = await generate(apiKey, {
+    contents: [{ parts: [{ text: recognizePrompt() }, { inline_data: { mime_type: mimeType, data: imageBase64 } }] }],
+    generationConfig: { temperature: 0.2, thinkingConfig: { thinkingBudget: 0 }, maxOutputTokens: 1024, responseMimeType: 'application/json' }
+  }, opts);
+  const r = parseJson(text);
+  if (r.name === '?') r.name = translate('ai.notRecognized');
+  return r;
+}
+
+// === DIAGNOSTYKA CHORÓB ===
+
+function diagnosisPrompt() {
+  const lang = langName();
+  return `You are an experienced plant doctor. Analyse the photo of a sick or worrying plant and reply ONLY with valid JSON (no markdown, no backticks). All texts in ${lang}.
+
+Format:
+{
+  "plantName": "common name of the plant in ${lang} if you recognise it, otherwise null",
+  "severity": "ok|minor|moderate|severe|critical",
+  "severityLabel": "short severity label in ${lang}",
+  "primaryIssue": "main problem in 3-5 words in ${lang}",
+  "diagnosis": "detailed diagnosis in ${lang}, 2-4 sentences: what you see and why it happened",
+  "causes": ["2-4 possible causes in ${lang}"],
+  "treatment": ["3-6 rescue steps in ${lang}, most important first"],
+  "prevention": "short prevention tip in ${lang}, 1-2 sentences",
+  "urgent": true/false
+}
+
+If there is NO plant in the photo or the photo quality makes a diagnosis impossible, return:
+{ "severity": "unknown", "severityLabel": "", "diagnosis": "reason in ${lang}", "causes": [], "treatment": [], "prevention": "", "urgent": false }`;
+}
+
+export async function diagnosePlantHealth(apiKey, imageBase64, mimeType = 'image/jpeg', opts = {}) {
+  const text = await generate(apiKey, {
+    contents: [{ parts: [{ text: diagnosisPrompt() }, { inline_data: { mime_type: mimeType, data: imageBase64 } }] }],
+    generationConfig: { temperature: 0.3, thinkingConfig: { thinkingBudget: 0 }, maxOutputTokens: 2048, responseMimeType: 'application/json' }
+  }, opts);
+  return parseJson(text);
 }
 
 // === ASYSTENT CZATU ===
 
-const CHAT_SYSTEM = `Jestes doswiadczonym ogrodnikiem-konsultantem specjalizujacym sie w roslinach doniczkowych. Odpowiadasz w jezyku polskim, krotko i konkretnie (2-5 zdan zwykle). Jesli pytanie jest niejasne, dopytaj. Pomagasz uzytkownikowi zadbac o jego rosliny, doradz w wyborze nowych, diagnozujesz problemy. Nie udzielaj porad medycznych ani prawnych. Bazujesz na sprawdzonej wiedzy ogrodniczej.`;
+function chatSystem() {
+  const lang = langName();
+  return `You are an experienced gardening consultant specialising in houseplants, balcony and garden plants. Always answer in ${lang}, briefly and to the point (usually 2-5 sentences). If the question is unclear, ask a follow-up question. You help the user care for their plants, advise on choosing new ones and diagnose problems. Do not give medical or legal advice. Rely on proven horticultural knowledge.`;
+}
 
 /**
- * Wysyla wiadomosc do Gemini z opcjonalnym kontekstem o roslinach uzytkownika.
- *
- * @param {string} apiKey
- * @param {Array<{role: 'user'|'model', text: string}>} history - historia konwersacji
- * @param {string} userMessage - nowa wiadomosc usera
- * @param {Array} userPlants - opcjonalna lista nazw roslin uzytkownika do kontekstu
+ * Wysyła wiadomość do Gemini z opcjonalnym kontekstem o roślinach użytkownika.
+ * @param {Array<{role: 'user'|'model', text: string}>} history
  */
 export async function chatGemini(apiKey, history, userMessage, userPlants = [], opts = {}) {
-  const { timeout = 30000 } = opts;
-
-  if (!apiKey) throw new Error('Brak klucza API. Dodaj go w ustawieniach.');
-  if (!isValidApiKeyFormat(apiKey)) throw new Error('Klucz API ma nieprawidlowy format.');
-
-  // Buduj kontekst systemowy
-  let systemContext = CHAT_SYSTEM;
+  let system = chatSystem();
   if (userPlants.length > 0) {
-    const plantList = userPlants.slice(0, 30).map((p) => '- ' + p.name + ' (' + p.species + ')').join('\n');
-    systemContext += '\n\nKolekcja uzytkownika (' + userPlants.length + ' roslin):\n' + plantList;
+    const list = userPlants.slice(0, 30).map((p) => `- ${p.name} (${p.species || '?'})`).join('\n');
+    system += `\n\nThe user's collection (${userPlants.length} plants):\n${list}`;
   }
 
-  // Format konwersacji dla Gemini API
-  const contents = [];
-  // Pierwszy turn z systemContext
-  if (history.length === 0) {
-    contents.push({
-      role: 'user',
-      parts: [{ text: systemContext + '\n\nUzytkownik pyta: ' + userMessage }]
-    });
-  } else {
-    contents.push({
-      role: 'user',
-      parts: [{ text: systemContext }]
-    });
-    contents.push({
-      role: 'model',
-      parts: [{ text: 'Jasne, jestem do dyspozycji. W czym moge pomoc?' }]
-    });
-    for (const msg of history) {
-      contents.push({
-        role: msg.role,
-        parts: [{ text: msg.text }]
-      });
-    }
-    contents.push({
-      role: 'user',
-      parts: [{ text: userMessage }]
-    });
-  }
+  const contents = [
+    ...history.slice(-20).map((m) => ({ role: m.role, parts: [{ text: m.text }] })),
+    { role: 'user', parts: [{ text: userMessage }] }
+  ];
 
-  const body = {
+  const text = await generate(apiKey, {
+    systemInstruction: { parts: [{ text: system }] },
     contents,
-    generationConfig: {
-      temperature: 0.7,
-      topK: 32,
-      topP: 1,
-      maxOutputTokens: 1024
-    }
-  };
-
-  const ctrl = new AbortController();
-  const tid = setTimeout(() => ctrl.abort(), timeout);
-
-  try {
-    const res = await fetch(ENDPOINT + '?key=' + encodeURIComponent(apiKey), {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(body),
-      signal: ctrl.signal
-    });
-    clearTimeout(tid);
-
-    if (res.status === 401 || res.status === 403) {
-      throw new Error('Klucz API odrzucony przez Google.');
-    }
-    if (res.status === 429) {
-      throw new Error('Za duzo zapytan. Poczekaj chwile.');
-    }
-    if (!res.ok) {
-      throw new Error('Blad serwera Gemini: ' + res.status);
-    }
-
-    const data = await res.json();
-    const text = data && data.candidates && data.candidates[0] && data.candidates[0].content && data.candidates[0].content.parts && data.candidates[0].content.parts[0] && data.candidates[0].content.parts[0].text;
-    if (!text) throw new Error('Pusta odpowiedz z Gemini.');
-
-    return text.trim();
-  } catch (err) {
-    clearTimeout(tid);
-    if (err.name === 'AbortError') {
-      throw new Error('Przekroczono czas oczekiwania.');
-    }
-    throw err;
-  }
+    generationConfig: { temperature: 0.7, thinkingConfig: { thinkingBudget: 0 }, maxOutputTokens: 1024 }
+  }, { maxRetries: 1, ...opts });
+  return text.trim();
 }

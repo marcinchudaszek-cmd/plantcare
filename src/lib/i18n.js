@@ -14,11 +14,8 @@ function getByPath(obj, path) {
   return path.split('.').reduce((acc, key) => (acc && acc[key] !== undefined ? acc[key] : undefined), obj);
 }
 
-/** Hook zwracający funkcję t(key, vars?) */
-export function useT() {
-  const lang = useSettingsStore((s) => s.language);
+function makeT(lang) {
   const dict = DICTIONARIES[lang] || DICTIONARIES[FALLBACK_LANG];
-
   return (key, vars) => {
     let value = getByPath(dict, key);
     if (value === undefined) {
@@ -36,6 +33,29 @@ export function useT() {
     }
     return value;
   };
+}
+
+/** Hook zwracający funkcję t(key, vars?) */
+export function useT() {
+  const lang = useSettingsStore((s) => s.language);
+  return makeT(lang);
+}
+
+/** Tłumaczenie poza komponentami (powiadomienia, błędy w lib/) — bierze bieżący język */
+export function translate(key, vars) {
+  return makeT(useSettingsStore.getState().language)(key, vars);
+}
+
+const LOCALES = { pl: 'pl-PL', en: 'en-GB', de: 'de-DE' };
+
+/** Locale do formatowania dat i liczb (toLocaleDateString itp.) */
+export function locale() {
+  return LOCALES[useSettingsStore.getState().language] || LOCALES.pl;
+}
+
+/** Bieżący kod języka poza komponentami */
+export function currentLang() {
+  return useSettingsStore.getState().language || FALLBACK_LANG;
 }
 
 export const SUPPORTED_LANGUAGES = [

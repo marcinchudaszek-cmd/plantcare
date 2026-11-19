@@ -3,11 +3,13 @@ import { useNavigate } from 'react-router-dom';
 import plantsDB from '../data/plants.json';
 import { generateQuiz } from '../lib/quiz.js';
 import PlantImage from '../components/PlantImage.jsx';
+import { useT } from '../lib/i18n.js';
 
 const QUIZ_LENGTH = 10;
 
 export default function QuizPage() {
   const navigate = useNavigate();
+  const t = useT();
   const [quiz, setQuiz] = useState(() => generateQuiz(plantsDB, QUIZ_LENGTH));
   const [currentIdx, setCurrentIdx] = useState(0);
   const [score, setScore] = useState(0);
@@ -45,11 +47,11 @@ export default function QuizPage() {
   if (finished || showResult) {
     const pct = Math.round((score / quiz.length) * 100);
     let medal = '🌱';
-    let label = 'Dobry początek!';
-    if (pct >= 90) { medal = '🏆'; label = 'Mistrz roślin!'; }
-    else if (pct >= 70) { medal = '🥇'; label = 'Świetnie!'; }
-    else if (pct >= 50) { medal = '🥈'; label = 'Niezły wynik'; }
-    else if (pct >= 30) { medal = '🥉'; label = 'Można lepiej'; }
+    let label = t('quiz.r0');
+    if (pct >= 90) { medal = '🏆'; label = t('quiz.r4'); }
+    else if (pct >= 70) { medal = '🥇'; label = t('quiz.r3'); }
+    else if (pct >= 50) { medal = '🥈'; label = t('quiz.r2'); }
+    else if (pct >= 30) { medal = '🥉'; label = t('quiz.r1'); }
 
     return (
       <div className="px-5 pt-6">
@@ -59,14 +61,14 @@ export default function QuizPage() {
           <div className="text-6xl mb-3">{medal}</div>
           <p className="font-serif text-xl text-primary m-0 mb-2">{label}</p>
           <p className="text-3xl text-accent font-medium m-0 mb-1">{score} / {quiz.length}</p>
-          <p className="text-sm text-muted m-0">{pct}% poprawnych</p>
+          <p className="text-sm text-muted m-0">{t('quiz.percent', { n: pct })}</p>
         </div>
 
         <button onClick={handleRestart} className="btn btn-primary w-full mb-2">
-          🔄 Zagraj jeszcze raz
+          🔄 {t('quiz.again')}
         </button>
         <button onClick={() => navigate('/')} className="btn btn-secondary w-full">
-          ← Wróć do Home
+          ← {t('quiz.home')}
         </button>
       </div>
     );
@@ -85,8 +87,8 @@ export default function QuizPage() {
       {/* Postęp */}
       <div className="card mb-3">
         <div className="flex items-center justify-between text-xs text-muted mb-2">
-          <span>Pytanie {currentIdx + 1} z {quiz.length}</span>
-          <span>Wynik: {score}</span>
+          <span>{t('quiz.progress', { i: currentIdx + 1, n: quiz.length })}</span>
+          <span>{t('quiz.score', { n: score })}</span>
         </div>
         <div className="h-1.5 rounded-full bg-deep overflow-hidden">
           <div
@@ -101,14 +103,14 @@ export default function QuizPage() {
         <PlantImage
           src={current.plant.image}
           emoji={current.plant.emoji}
-          alt="Co to za roślina?"
+          alt={t('quiz.question')}
           className="w-full aspect-square"
           emojiSize="text-7xl"
         />
       </div>
 
       {/* Odpowiedzi */}
-      <p className="text-sm text-muted text-center mb-3">Co to za roślina?</p>
+      <p className="text-sm text-muted text-center mb-3">{t('quiz.question')}</p>
 
       <div className="space-y-2 mb-3">
         {current.options.map((opt, i) => {
@@ -148,17 +150,17 @@ export default function QuizPage() {
         <>
           {isCorrect ? (
             <div className="card mb-3" style={{ borderLeftWidth: 4, borderLeftStyle: 'solid', borderLeftColor: 'var(--accent)' }}>
-              <p className="text-sm text-accent font-medium m-0">✓ Poprawna odpowiedź!</p>
+              <p className="text-sm text-accent font-medium m-0">✓ {t('quiz.correct')}</p>
             </div>
           ) : (
             <div className="card mb-3" style={{ borderLeftWidth: 4, borderLeftStyle: 'solid', borderLeftColor: 'var(--danger)' }}>
               <p className="text-sm text-danger font-medium m-0 mb-1">✗ Niestety</p>
-              <p className="text-xs text-secondary m-0">Prawidłowo: <strong>{current.options[current.correctIndex].name}</strong></p>
+              <p className="text-xs text-secondary m-0">{t('quiz.correctWas')} <strong>{current.options[current.correctIndex].name}</strong></p>
             </div>
           )}
 
           <button onClick={handleNext} className="btn btn-primary w-full">
-            {currentIdx + 1 >= quiz.length ? 'Zakończ quiz →' : 'Następne pytanie →'}
+            {currentIdx + 1 >= quiz.length ? `${t('quiz.finish')} →` : `${t('quiz.next')} →`}
           </button>
         </>
       )}
@@ -167,12 +169,13 @@ export default function QuizPage() {
 }
 
 function Header({ navigate, title }) {
+  const t = useT();
   return (
     <header className="flex items-center gap-3 mb-6">
       <button
         onClick={() => navigate(-1)}
         className="w-9 h-9 rounded-full bg-surface flex items-center justify-center"
-        aria-label="Wroc"
+        aria-label={t('common.back')}
       >
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-primary">
           <path d="M19 12H5M12 19l-7-7 7-7" />

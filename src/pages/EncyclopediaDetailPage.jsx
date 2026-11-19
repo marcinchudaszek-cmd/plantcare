@@ -32,8 +32,8 @@ export default function EncyclopediaDetailPage() {
   if (!plant) {
     return (
       <div className="px-5 pt-6">
-        <p className="text-sm text-muted mb-4">Nie znaleziono rośliny o id „{id}".</p>
-        <Link to="/encyclopedia" className="btn btn-secondary inline-flex">← Wróć do bazy</Link>
+        <p className="text-sm text-muted mb-4">{t('encyclopedia.notFound', { id })}</p>
+        <Link to="/encyclopedia" className="btn btn-secondary inline-flex">← {t('encyclopedia.backToDB')}</Link>
       </div>
     );
   }
@@ -78,7 +78,7 @@ export default function EncyclopediaDetailPage() {
     removeOverride(plant.id);
   };
 
-  const diffLabel = { easy: 'Łatwa', medium: 'Średnia', hard: 'Trudna' }[plant.difficulty];
+  const diffLabel = plant.difficulty ? t(`difficulty.${plant.difficulty}`) : '';
   const diffColor = { easy: 'text-accent', medium: 'text-warning', hard: 'text-danger' }[plant.difficulty];
   const intervalDays = defaultIntervalDays(plant.care);
 
@@ -89,7 +89,7 @@ export default function EncyclopediaDetailPage() {
         <button
           onClick={() => navigate(-1)}
           className="w-9 h-9 rounded-full bg-surface flex items-center justify-center"
-          aria-label="Wróć"
+          aria-label={t('common.back')}
         >
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#f0e5c8" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
             <path d="M19 12H5M12 19l-7-7 7-7" />
@@ -97,7 +97,7 @@ export default function EncyclopediaDetailPage() {
         </button>
         {ownedCount > 0 && (
           <span className="pill pill-on text-xs">
-            ✓ Masz w kolekcji ({ownedCount})
+            ✓ {t('encyclopedia.ownedCount', { n: ownedCount })}
           </span>
         )}
       </header>
@@ -115,7 +115,7 @@ export default function EncyclopediaDetailPage() {
         <div className="absolute bottom-2 right-2 flex gap-2">
           <PhotoUploader
             onUpload={handleEncycPhotoUpload}
-            label={overrides[plant.id] ? '🔁 Zmień' : '📷 Własne zdjęcie'}
+            label={overrides[plant.id] ? `🔁 ${t('encyclopedia.changePhoto')}` : `📷 ${t('encyclopedia.ownPhoto')}`}
             variant="secondary"
             className="text-xs px-3 py-2"
           />
@@ -124,7 +124,7 @@ export default function EncyclopediaDetailPage() {
               type="button"
               onClick={handleResetEncycPhoto}
               className="btn btn-secondary text-xs px-3 py-2"
-              title="Przywróć domyślne zdjęcie"
+              title={t('encyclopedia.resetPhoto')}
             >
               ↺
             </button>
@@ -144,7 +144,7 @@ export default function EncyclopediaDetailPage() {
           if (!meta) return null;
           return (
             <span key={c} className="pill">
-              {meta.emoji} {meta.label}
+              {meta.emoji} {t(`cat.${c}`)}
             </span>
           );
         })}
@@ -158,7 +158,7 @@ export default function EncyclopediaDetailPage() {
         <div className="text-left">
           <p className="text-base font-medium m-0">{t('encyclopedia.addToCollection')}</p>
           <p className="text-xs text-muted m-0 mt-0.5">
-            {ownedCount > 0 ? `Masz już ${ownedCount} — dodaj kolejną` : 'Zacznij dbać o tę roślinę'}
+            {ownedCount > 0 ? t('encyclopedia.haveMore', { n: ownedCount }) : t('encyclopedia.startCaring')}
           </p>
         </div>
         <div className="w-10 h-10 rounded-full bg-deep flex items-center justify-center text-xl">+</div>
@@ -225,53 +225,53 @@ export default function EncyclopediaDetailPage() {
       <Sheet
         open={sheetOpen}
         onClose={() => setSheetOpen(false)}
-        title={`Dodaj: ${plant.name}`}
+        title={t('encyclopedia.addTitle', { name: plant.name })}
       >
         <div className="space-y-4">
           <div>
-            <label className="text-xs text-muted mb-1.5 block">Własna nazwa (opcjonalnie)</label>
+            <label className="text-xs text-muted mb-1.5 block">{t('encyclopedia.nickname')}</label>
             <input
               type="text"
               className="input"
-              placeholder={`np. „Stefan", „Monstera w salonie"`}
+              placeholder={t('encyclopedia.nicknamePlaceholder')}
               value={nickname}
               onChange={(e) => setNickname(e.target.value)}
             />
             <p className="text-xs text-muted mt-1">
-              Pusto = użyje „{plant.name}"
+              {t('encyclopedia.nicknameHint', { name: plant.name })}
             </p>
           </div>
 
           <div>
-            <label className="text-xs text-muted mb-1.5 block">Lokalizacja</label>
+            <label className="text-xs text-muted mb-1.5 block">{t('encyclopedia.location')}</label>
             <input
               type="text"
               className="input"
-              placeholder="np. salon, sypialnia, parapet kuchenny"
+              placeholder={t('encyclopedia.locationPlaceholder')}
               value={location}
               onChange={(e) => setLocation(e.target.value)}
             />
           </div>
 
           <div>
-            <label className="text-xs text-muted mb-1.5 block">Tagi (oddziel przecinkami)</label>
+            <label className="text-xs text-muted mb-1.5 block">{t('encyclopedia.tags')}</label>
             <input
               type="text"
               className="input"
-              placeholder="np. salon, prezent, rzadko podlewane"
+              placeholder={t('encyclopedia.tagsPlaceholder')}
               value={tagsInput}
               onChange={(e) => setTagsInput(e.target.value)}
             />
           </div>
 
           <div className="card">
-            <p className="text-xs text-muted m-0 mb-1">Domyślny interwał podlewania</p>
-            <p className="text-base text-accent font-medium m-0">co {intervalDays} dni</p>
-            <p className="text-xs text-muted m-0 mt-1">Zmienisz później na ekranie szczegółów</p>
+            <p className="text-xs text-muted m-0 mb-1">{t('encyclopedia.intervalDefault')}</p>
+            <p className="text-base text-accent font-medium m-0">{t('encyclopedia.intervalEvery', { n: intervalDays })}</p>
+            <p className="text-xs text-muted m-0 mt-1">{t('encyclopedia.intervalChangeLater')}</p>
           </div>
 
           <button onClick={handleAdd} className="btn btn-primary w-full">
-            Dodaj do kolekcji
+            {t('encyclopedia.addToCollection')}
           </button>
         </div>
       </Sheet>

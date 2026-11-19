@@ -11,6 +11,7 @@ export default function HomePage() {
   const t = useT();
   const plants = useAppStore((s) => s.plants);
   const waterPlant = useAppStore((s) => s.waterPlant);
+  const userName = useSettingsStore((s) => s.userName);
 
   const stats = {
     total: plants.length,
@@ -22,21 +23,27 @@ export default function HomePage() {
   const today = sorted.slice(0, 5);
   const tip = getTodayTip();
 
+  // Wstawia element w miejsce {accent} w przetłumaczonym zdaniu
+  const withAccent = (key, node, vars) => {
+    const [before, after = ''] = t(key, vars).split('{accent}');
+    return <>{before}{node}{after}</>;
+  };
+
   // Hero text z accentem
   const heroText = () => {
     if (stats.total === 0) {
       const accent = <span className="text-accent">{t('home.addFirst')}</span>;
-      return <>Twoja kolekcja jest pusta. {accent}.</>;
+      return withAccent('home.empty', accent);
     }
     if (stats.toWater === 0) {
       const accent = <span className="text-accent">{t('home.goodJob')}</span>;
-      return <>{t('home.allDone').replace('{accent}.', '').trim()} {accent}.</>;
+      return withAccent('home.allDone', accent);
     }
     const count = stats.toWater === 1
       ? t('home.onePlant')
       : t('home.manyPlants', { n: stats.toWater });
     const accent = <span className="text-accent">{count}</span>;
-    return <>Podlej {accent} i&nbsp;zaktualizuj dziennik.</>;
+    return withAccent('home.todoMany', accent);
   };
 
   return (
@@ -45,11 +52,11 @@ export default function HomePage() {
       <header className="flex items-center justify-between mb-6">
         <div className="flex items-center gap-3">
           <div className="w-10 h-10 rounded-full bg-elevated flex items-center justify-center text-primary font-medium">
-            M
+            {userName ? userName.trim().charAt(0).toUpperCase() : '🌿'}
           </div>
           <div>
             <p className="text-xs text-muted mb-0.5">{t('home.greet')}</p>
-            <h1 className="text-lg text-primary m-0">Marcin</h1>
+            <h1 className="text-lg text-primary m-0">{userName?.trim() || 'PlantCare'}</h1>
           </div>
         </div>
         <Link to="/settings" className="w-9 h-9 rounded-full bg-surface flex items-center justify-center">
@@ -85,7 +92,7 @@ export default function HomePage() {
       {/* Sezonowa porada */}
       <section className="card mb-3">
         <div className="flex items-baseline justify-between mb-2">
-          <p className="text-xs text-muted m-0">Porada sezonowa</p>
+          <p className="text-xs text-muted m-0">{t('home.seasonalTip')}</p>
           <span className="text-base">{tip.icon}</span>
         </div>
         <p className="font-serif text-base text-primary m-0 mb-1.5">{tip.title}</p>
@@ -96,8 +103,8 @@ export default function HomePage() {
       <Link to="/diagnose" className="card flex items-center gap-3 mb-3 no-underline">
         <div className="text-3xl flex-shrink-0">🩺</div>
         <div className="flex-1 min-w-0">
-          <p className="font-serif text-base text-primary m-0">Diagnoza chorób</p>
-          <p className="text-xs text-muted m-0">Sfotografuj chorą roślinę, AI doradzi</p>
+          <p className="font-serif text-base text-primary m-0">{t('diagnose.title')}</p>
+          <p className="text-xs text-muted m-0">{t('home.diagnoseHint')}</p>
         </div>
         <span className="text-accent text-lg">→</span>
       </Link>
@@ -106,8 +113,8 @@ export default function HomePage() {
       <Link to="/calendar" className="card flex items-center gap-3 mb-3 no-underline">
         <div className="text-3xl flex-shrink-0">📅</div>
         <div className="flex-1 min-w-0">
-          <p className="font-serif text-base text-primary m-0">Kalendarz podlewania</p>
-          <p className="text-xs text-muted m-0">Zobacz co i kiedy podlać w tym miesiącu</p>
+          <p className="font-serif text-base text-primary m-0">{t('home.calendar')}</p>
+          <p className="text-xs text-muted m-0">{t('home.calendarHint')}</p>
         </div>
         <span className="text-accent text-lg">→</span>
       </Link>
@@ -116,8 +123,8 @@ export default function HomePage() {
       <Link to="/chat" className="card flex items-center gap-3 mb-3 no-underline">
         <div className="text-3xl flex-shrink-0">💬</div>
         <div className="flex-1 min-w-0">
-          <p className="font-serif text-base text-primary m-0">Asystent ogrodniczy</p>
-          <p className="text-xs text-muted m-0">Zapytaj AI o cokolwiek o roślinach</p>
+          <p className="font-serif text-base text-primary m-0">{t('chat.title')}</p>
+          <p className="text-xs text-muted m-0">{t('home.chatHint')}</p>
         </div>
         <span className="text-accent text-lg">→</span>
       </Link>
@@ -126,8 +133,8 @@ export default function HomePage() {
       <Link to="/quiz" className="card flex items-center gap-3 mb-6 no-underline">
         <div className="text-3xl flex-shrink-0">🎯</div>
         <div className="flex-1 min-w-0">
-          <p className="font-serif text-base text-primary m-0">Quiz — Rozpoznaj roślinę</p>
-          <p className="text-xs text-muted m-0">10 zdjęć, sprawdź swoją wiedzę</p>
+          <p className="font-serif text-base text-primary m-0">{t('home.quiz')}</p>
+          <p className="text-xs text-muted m-0">{t('home.quizHint')}</p>
         </div>
         <span className="text-accent text-lg">→</span>
       </Link>

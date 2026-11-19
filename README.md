@@ -12,7 +12,15 @@ Asystent pielęgnacji roślin — PWA (Vite + React + Tailwind + Zustand), opubl
 - Kalendarz podlewania, przypomnienia, statystyki, quiz, porady sezonowe, miernik światła
 - Kopia zapasowa do pliku JSON (ze zdjęciami), język PL / EN / DE, motyw jasny / ciemny
 
-Dane leżą w IndexedDB na urządzeniu. AI działa na kluczu Gemini wpisanym przez użytkownika w Ustawieniach.
+Dane leżą w IndexedDB na urządzeniu.
+
+## AI (Gemini)
+
+- Własny klucz użytkownika (Ustawienia) → zapytania idą prosto do Google.
+- Bez klucza → worker `plantcare-ai` (`worker/`, https://plantcare-ai.atlas-grzybow.workers.dev) z kluczem
+  Beagle Apps i dziennym limitem (KV). Działa tylko wtedy, gdy build ma `VITE_AI_TOKEN` w `.env` (poza gitem,
+  wartość = sekret `APP_TOKEN` workera, kopia w `worker/app-token.txt`). Bez tokenu AI wymaga własnego klucza.
+- Wdrożenie workera: `npm.cmd run worker:deploy`; sekrety opisane w `worker/wrangler.toml`.
 
 ## Praca lokalna
 

@@ -49,53 +49,55 @@ export function luminanceToLux(lum) {
  * Klasyfikacja na 5 poziomów.
  * Zwraca { level, label, color, recommendation }
  */
+import { translate as tr } from './i18n.js';
+
 export function classifyLight(lux) {
   if (lux < 100) {
     return {
       level: 'very_low',
-      label: 'Bardzo ciemno',
+      label: tr('light.veryLow'),
       color: 'danger',
       icon: '🌑',
-      recommendation: 'Tylko najbardziej cieniolubne — Sansewieria, Zamiokulkas, Pothos.',
+      recommendation: tr('light.veryLowRec'),
       categories: ['easy']
     };
   }
   if (lux < 500) {
     return {
       level: 'low',
-      label: 'Cień / półcień',
+      label: tr('light.low'),
       color: 'warning',
       icon: '🌘',
-      recommendation: 'Rośliny tolerujące mało światła — Skrzydłokwiat, Filodendron, paprocie.',
+      recommendation: tr('light.lowRec'),
       categories: ['easy']
     };
   }
   if (lux < 2000) {
     return {
       level: 'medium',
-      label: 'Jasne rozproszone',
+      label: tr('light.medium'),
       color: 'accent',
       icon: '🌗',
-      recommendation: 'Idealne dla większości roślin doniczkowych — Monstera, Calathea, Dracena.',
+      recommendation: tr('light.mediumRec'),
       categories: ['popular', 'tropical']
     };
   }
   if (lux < 10000) {
     return {
       level: 'high',
-      label: 'Bardzo jasno',
+      label: tr('light.high'),
       color: 'accent',
       icon: '🌖',
-      recommendation: 'Świetne dla roślin lubiących światło — Fikus, Bananowiec, Kaktusy w półcieniu.',
+      recommendation: tr('light.highRec'),
       categories: ['tropical', 'flowering']
     };
   }
   return {
     level: 'sun',
-    label: 'Pełne słońce',
+    label: tr('light.sun'),
     color: 'warning',
     icon: '☀️',
-    recommendation: 'Dla sukulentów, kaktusów, ziół — Aloes, Lawenda, Bazylia, Rozmaryn.',
+    recommendation: tr('light.sunRec'),
     categories: ['succulents', 'herbs']
   };
 }
@@ -106,7 +108,7 @@ export function classifyLight(lux) {
  */
 export async function openCameraStream() {
   if (!navigator.mediaDevices?.getUserMedia) {
-    throw new Error('Twoja przeglądarka nie obsługuje kamery.');
+    throw new Error(tr('camera.unsupported'));
   }
   try {
     return await navigator.mediaDevices.getUserMedia({
@@ -119,12 +121,12 @@ export async function openCameraStream() {
     });
   } catch (e) {
     if (e.name === 'NotAllowedError') {
-      throw new Error('Brak zgody na dostęp do kamery.');
+      throw new Error(tr('camera.denied'));
     }
     if (e.name === 'NotFoundError') {
-      throw new Error('Nie znaleziono kamery.');
+      throw new Error(tr('camera.notFound'));
     }
-    throw new Error('Nie udało się uruchomić kamery: ' + e.message);
+    throw new Error(tr('camera.startFailed'));
   }
 }
 
