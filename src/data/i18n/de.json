@@ -422,5 +422,38 @@
     "notBackup": "Das ist keine PlantCare-Sicherungsdatei.",
     "noData": "Die Datei enthält keine Pflanzendaten.",
     "badJson": "Ungültiges Dateiformat."
+  },
+  "account": {
+    "title": "Konto & Synchronisierung",
+    "hint": "Melde dich an, um eine Cloud-Kopie deiner Sammlung und dieselben Pflanzen auf Handy und Computer zu haben. Ohne Konto funktioniert alles wie bisher, nur auf diesem Gerät.",
+    "google": "Weiter mit Google",
+    "email": "E-Mail",
+    "password": "Passwort (mind. 6 Zeichen)",
+    "signIn": "Anmelden",
+    "signUp": "Konto erstellen",
+    "toSignUp": "Kein Konto? Jetzt erstellen",
+    "toSignIn": "Schon ein Konto? Anmelden",
+    "forgot": "Passwort vergessen",
+    "resetSent": "Wir haben dir eine E-Mail mit einem Link zum Zurücksetzen geschickt.",
+    "confirmEmail": "Konto erstellt. Klicke auf den Link in der E-Mail, um es zu bestätigen, und melde dich dann an.",
+    "signedInAs": "Angemeldet als",
+    "syncing": "Synchronisiere…",
+    "lastSync": "Synchronisiert: {time}",
+    "notSynced": "Noch nicht synchronisiert",
+    "syncNow": "Jetzt synchronisieren",
+    "signOut": "Abmelden",
+    "deleteCloud": "Meine Cloud-Daten löschen",
+    "deleteConfirm": "Alle Pflanzen und Fotos aus der Cloud löschen? Auf diesem Gerät bleiben sie erhalten, aus der Cloud werden sie endgültig entfernt.",
+    "err": {
+      "fillIn": "Gib E-Mail und Passwort ein (mind. 6 Zeichen).",
+      "emailFirst": "Gib zuerst deine E-Mail ein.",
+      "badCredentials": "Falsche E-Mail oder falsches Passwort.",
+      "exists": "Ein Konto mit dieser E-Mail existiert bereits — melde dich an.",
+      "notConfirmed": "Bestätige zuerst deine E-Mail (Link in der Nachricht).",
+      "weakPassword": "Das Passwort ist zu schwach — nutze mindestens 6 Zeichen.",
+      "rateLimit": "Zu viele Versuche. Versuche es in ein paar Minuten erneut.",
+      "network": "Keine Verbindung zur Cloud. Deine Daten sind auf diesem Gerät sicher.",
+      "generic": "Etwas ist schiefgelaufen. Bitte versuche es erneut."
+    }
   }
 }

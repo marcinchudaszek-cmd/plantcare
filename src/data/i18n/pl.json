@@ -422,5 +422,38 @@
     "notBackup": "To nie jest plik kopii zapasowej PlantCare.",
     "noData": "Plik nie zawiera danych roślin.",
     "badJson": "Niepoprawny format pliku."
+  },
+  "account": {
+    "title": "Konto i synchronizacja",
+    "hint": "Zaloguj się, żeby mieć kopię kolekcji w chmurze i te same rośliny na telefonie i komputerze. Bez konta wszystko działa jak dotąd, tylko na tym urządzeniu.",
+    "google": "Zaloguj przez Google",
+    "email": "E-mail",
+    "password": "Hasło (min. 6 znaków)",
+    "signIn": "Zaloguj się",
+    "signUp": "Załóż konto",
+    "toSignUp": "Nie masz konta? Załóż je",
+    "toSignIn": "Masz już konto? Zaloguj się",
+    "forgot": "Nie pamiętam hasła",
+    "resetSent": "Wysłaliśmy e-mail z linkiem do zmiany hasła.",
+    "confirmEmail": "Konto założone. Kliknij link w e-mailu, żeby je potwierdzić, a potem się zaloguj.",
+    "signedInAs": "Zalogowano jako",
+    "syncing": "Synchronizuję…",
+    "lastSync": "Zsynchronizowano: {time}",
+    "notSynced": "Jeszcze nie zsynchronizowano",
+    "syncNow": "Synchronizuj",
+    "signOut": "Wyloguj",
+    "deleteCloud": "Usuń moje dane z chmury",
+    "deleteConfirm": "Usunąć wszystkie rośliny i zdjęcia z chmury? Na tym urządzeniu zostaną, ale z chmury znikną na stałe.",
+    "err": {
+      "fillIn": "Podaj e-mail i hasło (min. 6 znaków).",
+      "emailFirst": "Najpierw wpisz swój e-mail.",
+      "badCredentials": "Nieprawidłowy e-mail lub hasło.",
+      "exists": "Konto z tym e-mailem już istnieje — zaloguj się.",
+      "notConfirmed": "Najpierw potwierdź e-mail (link w wiadomości).",
+      "weakPassword": "Hasło jest za słabe — użyj co najmniej 6 znaków.",
+      "rateLimit": "Za dużo prób. Spróbuj za kilka minut.",
+      "network": "Brak połączenia z chmurą. Dane są bezpieczne na tym urządzeniu.",
+      "generic": "Coś poszło nie tak. Spróbuj ponownie."
+    }
   }
 }

@@ -4,6 +4,7 @@ import { useAppStore } from './store/useAppStore.js';
 import { useSettingsStore } from './store/useSettingsStore.js';
 import { useTheme } from './hooks/useTheme.js';
 import { useWateringReminders } from './hooks/useWateringReminders.js';
+import { startCloud } from './lib/cloudSync.js';
 import BottomNav from './components/BottomNav.jsx';
 import HomePage from './pages/HomePage.jsx';
 import MyPlantsPage from './pages/MyPlantsPage.jsx';
@@ -28,6 +29,11 @@ export default function App() {
     hydrateApp();
     hydrateSettings();
   }, [hydrateApp, hydrateSettings]);
+
+  // Konto w chmurze (Supabase) — startuje dopiero po wczytaniu danych lokalnych
+  useEffect(() => {
+    if (appLoaded) startCloud();
+  }, [appLoaded]);
 
   // Synchronizuj motyw z DOM (klasa html.light)
   useTheme();

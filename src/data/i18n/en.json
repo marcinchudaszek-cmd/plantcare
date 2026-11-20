@@ -422,5 +422,38 @@
     "notBackup": "This isn't a PlantCare backup file.",
     "noData": "The file contains no plant data.",
     "badJson": "Invalid file format."
+  },
+  "account": {
+    "title": "Account & sync",
+    "hint": "Sign in to keep a cloud copy of your collection and the same plants on your phone and computer. Without an account everything works as before, on this device only.",
+    "google": "Continue with Google",
+    "email": "Email",
+    "password": "Password (min. 6 characters)",
+    "signIn": "Sign in",
+    "signUp": "Create account",
+    "toSignUp": "No account? Create one",
+    "toSignIn": "Have an account? Sign in",
+    "forgot": "Forgot password",
+    "resetSent": "We've sent an email with a password reset link.",
+    "confirmEmail": "Account created. Click the link in the email to confirm it, then sign in.",
+    "signedInAs": "Signed in as",
+    "syncing": "Syncing…",
+    "lastSync": "Synced: {time}",
+    "notSynced": "Not synced yet",
+    "syncNow": "Sync now",
+    "signOut": "Sign out",
+    "deleteCloud": "Delete my cloud data",
+    "deleteConfirm": "Delete all plants and photos from the cloud? They stay on this device but are removed from the cloud for good.",
+    "err": {
+      "fillIn": "Enter an email and a password (min. 6 characters).",
+      "emailFirst": "Enter your email first.",
+      "badCredentials": "Wrong email or password.",
+      "exists": "An account with this email already exists — sign in.",
+      "notConfirmed": "Confirm your email first (link in the message).",
+      "weakPassword": "The password is too weak — use at least 6 characters.",
+      "rateLimit": "Too many attempts. Try again in a few minutes.",
+      "network": "Can't reach the cloud. Your data is safe on this device.",
+      "generic": "Something went wrong. Please try again."
+    }
   }
 }

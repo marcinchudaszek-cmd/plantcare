@@ -22,6 +22,14 @@ Dane leżą w IndexedDB na urządzeniu.
   wartość = sekret `APP_TOKEN` workera, kopia w `worker/app-token.txt`). Bez tokenu AI wymaga własnego klucza.
 - Wdrożenie workera: `npm.cmd run worker:deploy`; sekrety opisane w `worker/wrangler.toml`.
 
+## Konto i synchronizacja (Supabase)
+
+Opcjonalne konto (e-mail + hasło; Google po dodaniu klienta OAuth) — projekt Supabase `plantcare`
+(organizacja Beagle Apps, Frankfurt, `iqqhxafnpeyleptjqqeu`). Rośliny w tabeli `plants` (jsonb, RLS),
+zdjęcia w prywatnym buckecie `plant-photos`. Kod: `src/lib/cloudSync.js`, `src/components/AccountCard.jsx`.
+Klucze publiczne w `.env` (`VITE_SUPABASE_URL`, `VITE_SUPABASE_ANON_KEY`) — bez nich karta konta się nie pokazuje.
+Konfiguracja panelu: `SUPABASE_SETUP.md`.
+
 ## Praca lokalna
 
 ```powershell

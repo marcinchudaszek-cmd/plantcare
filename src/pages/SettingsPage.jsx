@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { useSettingsStore } from '../store/useSettingsStore.js';
 import { useAppStore } from '../store/useAppStore.js';
 import { isValidApiKeyFormat, workerAvailable } from '../lib/gemini.js';
+import AccountCard from '../components/AccountCard.jsx';
 import { useT, SUPPORTED_LANGUAGES } from '../lib/i18n.js';
 import {
   isSupported as notifSupported,
@@ -93,6 +94,9 @@ export default function SettingsPage() {
   return (
     <div className="px-5 pt-6">
       <h1 className="text-2xl text-primary mb-4">{t('settings.title')}</h1>
+
+      {/* === Konto i synchronizacja (tylko gdy skonfigurowano Supabase) === */}
+      <AccountCard />
 
       {/* === Imię === */}
       <div className="card mb-3">
