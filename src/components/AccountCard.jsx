@@ -11,6 +11,9 @@ import {
   deleteCloudData
 } from '../lib/cloudSync.js';
 
+// Logowanie Google włączamy dopiero po dodaniu klienta OAuth w Supabase (VITE_SUPABASE_GOOGLE=1 w .env)
+const GOOGLE_ENABLED = import.meta.env.VITE_SUPABASE_GOOGLE === '1';
+
 /** Karta „Konto i synchronizacja” w Ustawieniach. Bez konfiguracji Supabase nie renderuje się. */
 export default function AccountCard() {
   const t = useT();
@@ -103,9 +106,11 @@ export default function AccountCard() {
         <>
           <p className="text-xs text-secondary mb-3 leading-relaxed">{t('account.hint')}</p>
 
-          <button onClick={() => run(signInWithGoogle)} disabled={busy} className="btn btn-secondary w-full mb-3">
-            <span className="font-medium">G</span>&nbsp; {t('account.google')}
-          </button>
+          {GOOGLE_ENABLED && (
+            <button onClick={() => run(signInWithGoogle)} disabled={busy} className="btn btn-secondary w-full mb-3">
+              <span className="font-medium">G</span>&nbsp; {t('account.google')}
+            </button>
+          )}
 
           <form onSubmit={handleSubmit} className="space-y-2">
             <input
