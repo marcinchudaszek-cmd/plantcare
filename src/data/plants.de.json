@@ -1,0 +1,2882 @@
+{
+ "monstera": {
+  "name": "Monstera (Fensterblatt)",
+  "origin": "Mexiko, Panama",
+  "toxic": "Ja – Oxalatkristalle",
+  "maxHeight": "2–3 m im Haus",
+  "care": {
+   "water": "Alle 7–10 Tage, wenn die oberen 2 cm trocken sind",
+   "light": "Hell und indirekt, direkte Sonne meiden"
+  },
+  "description": "Die Königin der Zimmerpflanzen! Die typischen Löcher in den Blättern (Fensterung) helfen ihr, Tropenstürme zu überstehen und mehr Licht an die unteren Schichten durchzulassen.",
+  "funFacts": [
+   "In der Natur klettert sie bis zu 20 m hoch an Bäumen",
+   "Die Früchte schmecken reif (nach einem Jahr!) wie eine Mischung aus Banane und Ananas",
+   "Die Löcher in den Blättern erscheinen erst nach 2–3 Jahren",
+   "Luftwurzeln kann man in die Erde leiten – sie nehmen Wasser und Nährstoffe auf",
+   "Der Name „deliciosa“ kommt von den essbaren Früchten",
+   "Im Regenwald wächst sie im Schatten und klettert dem Licht entgegen"
+  ],
+  "diseases": [
+   "Gelbe Blätter = zu viel Wasser oder Mineralstoffmangel",
+   "Braune Flecken = Sonnenbrand oder Kalziummangel",
+   "Schwarze Flecken = Pilz durch zu viel Wasser – weniger gießen",
+   "Keine Löcher in den Blättern = zu wenig Licht oder zu junge Pflanze",
+   "Eingerollte Blätter = zu trocken oder zu kalt"
+  ],
+  "propagation": "Stecklinge mit mindestens 1 Knoten und einer Luftwurzel. In Wasser oder Perlite bewurzeln – Wurzeln nach 2–4 Wochen."
+ },
+ "pothos": {
+  "name": "Efeutute (Pothos)",
+  "origin": "Französisch-Polynesien",
+  "toxic": "Ja – reizend",
+  "maxHeight": "10 m als Kletterpflanze",
+  "care": {
+   "water": "Alle 7–14 Tage, verträgt Trockenheit sehr gut",
+   "light": "Von tiefem Schatten bis hell – außergewöhnlich anpassungsfähig"
+  },
+  "description": "Praktisch unverwüstlich! Sie wächst sogar in dunklen Büros und verträgt wochenlang kein Gießen. Filtert Formaldehyd und Benzol aus der Luft.",
+  "funFacts": [
+   "Die NASA zählt die Efeutute zu den TOP 10 der luftreinigenden Pflanzen",
+   "In der Natur werden ihre Blätter bis zu 1 Meter breit!",
+   "Sie kann viele Jahre nur in Wasser wachsen",
+   "Im Haus blüht sie selten – in der Natur erst nach über 10 Jahren",
+   "Sie nimmt Kohlenmonoxid auf – ein natürlicher Luftentgifter",
+   "Es gibt über 15 Farbsorten: Golden, Marble Queen, Neon, Manjula…"
+  ],
+  "diseases": [
+   "Gelbe Blätter = zu viel Wasser (der häufigste Fehler!)",
+   "Blasse oder grüne Blätter bei panaschierten Sorten = zu wenig Licht",
+   "Braune Spitzen = trockene Luft oder Salze im Wasser – abgekochtes Wasser nehmen",
+   "Faulender Stängel = Kälte + zu viel Feuchtigkeit"
+  ],
+  "propagation": "Am leichtesten zu vermehren! Einen Trieb mit 2–3 Knoten abschneiden und ins Wasser stellen. Wurzeln nach 1–2 Wochen."
+ },
+ "sansevieria": {
+  "name": "Bogenhanf (Sansevieria)",
+  "origin": "Westafrika",
+  "toxic": "Leicht giftig für Haustiere",
+  "maxHeight": "1,2 m",
+  "care": {
+   "water": "Alle 2–4 Wochen, im Winter alle 2 Monate",
+   "light": "Von tiefem Schatten bis volle Sonne"
+  },
+  "description": "Eine unverwüstliche Ikone! Die einzige beliebte Pflanze, die NACHTS Sauerstoff produziert (CAM-Photosynthese). Ideal fürs Schlafzimmer. Übersteht monatelange Vernachlässigung.",
+  "funFacts": [
+   "Die einzige beliebte Zimmerpflanze, die nachts Sauerstoff abgibt (CAM-Zyklus)",
+   "In Afrika wurden aus ihren Blattfasern Bogensehnen, Seile und Stoffe hergestellt",
+   "Sie überlebt 2–3 Monate ganz ohne Wasser",
+   "Die NASA empfiehlt sie als Luftfilter für Raumstationen",
+   "Die Sorte Moonshine hat fast silberne Blätter – ein seltener Anblick",
+   "Sie kann jahrzehntelang ohne Umtopfen in einem Topf wachsen"
+  ],
+  "diseases": [
+   "Weiche, faulende Blätter = zu viel Wasser – der Hauptkiller! Weniger gießen",
+   "Runzlige Blätter = braucht Wasser (selten)",
+   "Braune Spitzen = Sonnenbrand oder Kälte",
+   "Blasse Streifen verschwinden = zu wenig Licht bei panaschierten Sorten"
+  ],
+  "propagation": "Teilung (am schnellsten) oder Blattstecklinge: Blatt in 5-cm-Stücke schneiden, 2 Tage antrocknen lassen, in Sand stecken. Wurzeln nach 1–2 Monaten."
+ },
+ "ficus-lyrata": {
+  "name": "Geigenfeige",
+  "origin": "Westafrika",
+  "toxic": "Ja – reizender Milchsaft",
+  "maxHeight": "3 m im Haus",
+  "care": {
+   "water": "Alle 7–10 Tage, wenn die oberen 2–3 cm trocken sind",
+   "light": "Hell und indirekt, grelle Sonne und Zugluft MEIDEN",
+   "temperature": "18–25°C, gleichbleibend!"
+  },
+  "description": "Der Star von Instagram und Wohnmagazinen! Riesige geigenförmige Blätter. Sehr launisch – mag keinen Standortwechsel und kann bei Zugluft Blätter abwerfen.",
+  "funFacts": [
+   "In der Natur wird sie 15 m hoch und erwürgt andere Bäume (Würgefeige)",
+   "Ein einzelnes Blatt kann 45 cm lang und 30 cm breit sein",
+   "Nach dem Umstellen kann sie vor Stress die Hälfte der Blätter abwerfen – das ist normal",
+   "Sie braucht einen festen Platz – Lichtrichtung markieren und den Topf nicht drehen",
+   "Um 1900 war sie ein Luxussymbol in europäischen Salons"
+  ],
+  "diseases": [
+   "Braune Flecken mit gelbem Rand = Bakterienbefall durch unregelmäßiges Gießen",
+   "Blattabwurf = Stress (Standort, Temperatur, Zugluft) – keine Panik",
+   "Gelbe untere Blätter = natürliche Alterung oder zu viel Wasser",
+   "Rote Pünktchen = Ödem durch zu viel Wasser",
+   "Weiße Punkte = Schildläuse oder Weiße Fliege – mit Alkohol abwischen"
+  ],
+  "propagation": "Kopfstecklinge (15 cm) oder Abmoosen. Bewurzelungshormon ist nötig. Schwieriger als andere Feigen."
+ },
+ "spathiphyllum": {
+  "name": "Einblatt (Friedenslilie)",
+  "origin": "Mittelamerika und Kolumbien",
+  "toxic": "Ja – Oxalatkristalle",
+  "maxHeight": "1 m",
+  "care": {
+   "water": "Alle 5–7 Tage, mag gleichmäßige Feuchtigkeit",
+   "light": "Von tiefem Schatten bis hell indirekt"
+  },
+  "description": "Die Friedenslilie! Lässt dramatisch die Blätter hängen, wenn sie Durst hat, ist aber nach dem Gießen sofort wieder fit. Kann das ganze Jahr blühen. Ein toller Luftfilter.",
+  "funFacts": [
+   "Gehört zu den TOP 10 der luftreinigenden Pflanzen der NASA",
+   "Die weiße „Blüte“ ist ein umgewandeltes Blatt (Spatha), die echten Blüten sind winzig",
+   "Bei gutem Licht kann sie das ganze Jahr blühen",
+   "Einer der besten natürlichen Filter für Ammoniak und Aceton",
+   "Schlaffe Blätter sind ein Alarmsignal – 30 Minuten nach dem Gießen ist sie wieder fit",
+   "In der Natur blüht sie nur einmal im Jahr – im Haus öfter"
+  ],
+  "diseases": [
+   "Hängende Blätter = braucht Wasser – sofort gießen, in 30 Min. erholt",
+   "Gelbe Blätter = zu viel Wasser oder altes Blatt (natürlich)",
+   "Braune Spitzen = Chlor/Fluor im Wasser – abgekochtes Wasser nehmen",
+   "Keine Blüten = zu wenig Licht oder zu niedrige Temperatur"
+  ],
+  "propagation": "Beim Umtopfen teilen. Jedes Teilstück braucht Wurzeln und mind. 2–3 Blätter. Am besten im Frühling."
+ },
+ "philodendron": {
+  "name": "Herzblättriger Philodendron",
+  "origin": "Mittel- und Südamerika",
+  "toxic": "Ja – Oxalatkristalle",
+  "maxHeight": "6 m als Kletterpflanze",
+  "care": {
+   "water": "Alle 7–10 Tage, wenn die Oberfläche trocken ist",
+   "light": "Mittel bis hell indirekt"
+  },
+  "description": "Eine klassische Kletterpflanze mit hübschen herzförmigen Blättern. Wächst schnell, lässt sich leicht vermehren und verzeiht viel. Sehr ähnlich der Efeutute, aber mit matten Blättern.",
+  "funFacts": [
+   "Die Gattung Philodendron umfasst über 450 beschriebene Arten!",
+   "Der Name bedeutet „Baumfreund“ – in der Natur klettert er an Bäumen",
+   "Die Sorte Brasil hat gelbgrüne Streifen wie die brasilianische Flagge",
+   "Luftwurzeln helfen beim Klettern und nehmen Feuchtigkeit aus der Luft auf",
+   "Neue Blätter kommen eingerollt und bräunlich-rosa – das ist normal!"
+  ],
+  "diseases": [
+   "Gelbe Blätter = zu viel Wasser",
+   "Kleine Blätter = zu wenig Licht oder Dünger",
+   "Braune Spitzen = trockene Luft – öfter besprühen",
+   "Lange kahle Stängelabschnitte zwischen den Blättern = zu wenig Licht"
+  ],
+  "propagation": "Sehr einfach! Stecklinge mit einem Knoten in Wasser oder Erde. Wurzeln nach 2–3 Wochen."
+ },
+ "pilea": {
+  "name": "Ufopflanze (Pilea)",
+  "origin": "Südchina",
+  "toxic": "Nein – ungiftig",
+  "maxHeight": "40 cm",
+  "care": {
+   "water": "Alle 7–10 Tage, wenn die Oberfläche trocken ist",
+   "light": "Hell und indirekt, wöchentlich drehen"
+  },
+  "description": "Die Freundschaftspflanze! Sie bildet viele „Kindel“, die man an Freunde verschenken kann. Runde Blätter an langen Stielen sehen aus wie Münzen.",
+  "funFacts": [
+   "Jahrzehntelang wurde sie nur als Ableger weitergegeben – fast nicht zu kaufen",
+   "Erst 1984 wurde sie von Botanikern offiziell beschrieben!",
+   "Auch „Chinesischer Geldbaum“ genannt",
+   "Wöchentlich drehen – sie neigt sich schnell zum Licht",
+   "Sie bildet jedes Jahr Dutzende „Kindel“ – das perfekte Geschenk",
+   "Sie stammt aus der Provinz Yunnan in China, wo sie in feuchten Wäldern wächst"
+  ],
+  "diseases": [
+   "Eingerollte Blätter = zu viel Sonne oder braucht Wasser",
+   "Gelbe untere Blätter = natürliche Alterung oder zu viel Wasser",
+   "Blattabwurf = Zugluft oder Kälte",
+   "Blasse Blätter = zu wenig Licht"
+  ],
+  "propagation": "Sie bildet selbst Kindel! Ableger abtrennen, wenn sie 5–7 cm groß sind und eigene Wurzeln haben. Stängel bewurzeln auch in Wasser."
+ },
+ "ficus-elastica": {
+  "name": "Gummibaum",
+  "origin": "Indien, Indonesien",
+  "toxic": "Ja – reizender Milchsaft",
+  "maxHeight": "3 m im Haus",
+  "care": {
+   "water": "Alle 7–10 Tage",
+   "light": "Hell indirekt bis mittel"
+  },
+  "description": "Ein Bäumchen mit spektakulär glänzenden Blättern. Früher die wichtigste Quelle für Naturkautschuk. Die Sorte Burgundy hat fast schwarze Blätter – sehr stilvoll.",
+  "funFacts": [
+   "Im 19. Jahrhundert war er eine wichtige Kautschukquelle – daher der Name „Gummibaum“",
+   "In der Natur wird er bis zu 30 m hoch!",
+   "In Indien werden aus seinen Wurzeln lebende Brücken (Living Root Bridges) gezogen",
+   "Die Sorte Tineke ist rosa-cremefarben panaschiert",
+   "Der Milchsaft aus Wunden reizt stark – Handschuhe tragen"
+  ],
+  "diseases": [
+   "Blattabwurf = Stress (Kälte, Zugluft, Standortwechsel)",
+   "Gelbe Blätter = zu viel Wasser",
+   "Braune Flecken = Sonnenbrand",
+   "Staubige Blätter = regelmäßig feucht abwischen (Staub blockiert die Photosynthese)"
+  ],
+  "propagation": "Kopfstecklinge oder Abmoosen. Milchsaft – Handschuhe tragen! Bewurzelungshormon beschleunigt."
+ },
+ "dracaena": {
+  "name": "Drachenbaum (Dracaena marginata)",
+  "origin": "Madagaskar",
+  "toxic": "Ja – für Hunde und Katzen!",
+  "maxHeight": "3 m im Haus",
+  "care": {
+   "water": "Alle 10–14 Tage, mag Abtrocknen",
+   "light": "Mittel bis hell"
+  },
+  "description": "Ein elegantes schlankes Bäumchen mit rot gerandeten Blättern. Sehr tolerant gegenüber Vernachlässigung und wenig Licht. Reinigt die Luft von Schadstoffen.",
+  "funFacts": [
+   "Der Name „Dracaena“ bedeutet „Drachenweibchen“ – ihr Harz ist rot (Drachenblut)",
+   "Die NASA empfiehlt sie gegen Formaldehyd in Innenräumen",
+   "Sie kann über 100 Jahre alt werden – ein echtes Erbstück",
+   "Die Sorte Tricolor hat rosa, cremefarbene und grüne Streifen",
+   "Der Stamm kann natürliche Spiralen und Bögen bilden – sehr dekorativ"
+  ],
+  "diseases": [
+   "Braune Spitzen = Chlor/Fluor im Wasser – Regenwasser nehmen",
+   "Gelbe untere Blätter = natürliche Alterung (1–2 Blätter im Monat sind normal)",
+   "Weicher Stamm = zu viel Wasser und Wurzelfäule – durch Umtopfen retten",
+   "Blasse Blätter = zu wenig Licht bei bunten Sorten"
+  ],
+  "propagation": "Kopfstecklinge oder Stammstücke (5–10 cm). Sie bewurzeln in Wasser. Ein gekappter Stamm treibt seitlich neu aus."
+ },
+ "zamioculcas": {
+  "name": "Glücksfeder (Zamioculcas)",
+  "origin": "Ostafrika",
+  "toxic": "Ja – Oxalatkristalle",
+  "maxHeight": "1 m",
+  "care": {
+   "water": "Alle 2–4 Wochen oder noch seltener!",
+   "light": "Von tiefem Schatten bis hell"
+  },
+  "description": "Die Glücksfeder – Königin der Vernachlässigung! Dank dicker Rhizome übersteht sie monatelang ohne Wasser. Die glänzenden Blätter reflektieren Licht wie Plastik – sind aber echt!",
+  "funFacts": [
+   "Erst 1996 kam sie in den Handel!",
+   "Sie übersteht 4–6 Monate ohne einen Tropfen Wasser",
+   "Sie wächst sogar in fensterlosen Büros – dann aber sehr langsam",
+   "Die Sorte Raven hat fast schwarze Blätter – ein Hingucker auf Instagram",
+   "Ihre Rhizome speichern Wasser wie Kartoffeln – das Geheimnis ihrer Zähigkeit",
+   "Ein einzelnes Blatt in Erde kann nach 6–12 Monaten eine neue Pflanze bilden"
+  ],
+  "diseases": [
+   "Gelbe Blätter = ZU VIEL WASSER (der wichtigste und fast einzige Killer!)",
+   "Runzlige Stängel = braucht Wasser (selten, aber möglich)",
+   "Braune Flecken = Sonnenbrand",
+   "Kein Wachstum im Winter = normale Ruhephase"
+  ],
+  "propagation": "Rhizome beim Umtopfen teilen. Blattstecklinge funktionieren, aber sehr langsam (6–12 Monate). Am besten im Frühling teilen."
+ },
+ "orchid": {
+  "name": "Schmetterlingsorchidee (Phalaenopsis)",
+  "origin": "Südostasien",
+  "toxic": "Nein – ungiftig",
+  "maxHeight": "60 cm",
+  "care": {
+   "water": "Alle 7–10 Tage 15 Min. tauchen",
+   "light": "Hell und indirekt, keine direkte Sonne",
+   "temperature": "18–28°C, kühle Nächte lösen die Blüte aus"
+  },
+  "description": "Die Königin der Zimmerblumen! Sie blüht 3–6 Monate lang. Braucht helles, aber kein direktes Licht. Das Geheimnis der Blüte sind kühle Nächte (15°C).",
+  "funFacts": [
+   "Sie blüht 3–6 Monate am Stück – eine der am längsten blühenden Pflanzen",
+   "Kühle Nächte (15°C) über 2 Wochen regen einen neuen Blütentrieb an",
+   "In der Natur wächst sie auf Bäumen (Epiphyt) – die Wurzeln brauchen Luft",
+   "Durchsichtige Töpfe sind Standard – die Wurzeln betreiben Photosynthese!",
+   "Derselbe Trieb kann 2–3-mal blühen, wenn man ihn nicht abschneidet",
+   "Es gibt über 70 Phalaenopsis-Arten und Tausende Hybriden"
+  ],
+  "diseases": [
+   "Gelbe untere Blätter = natürlich (1–2 Blätter pro Jahr sind normal)",
+   "Faule Wurzeln (braun, weich) = zu viel Wasser",
+   "Schrumpelige, runzlige Blätter = zu wenig Wasser oder kranke Wurzeln",
+   "Keine Blüten = zu warme Nächte – auf eine kühlere Fensterbank stellen",
+   "Klebrige Blätter = Wollläuse oder Blattläuse – mit Alkohol abwischen"
+  ],
+  "propagation": "Kindel (Keikis) am Blütentrieb – abtrennen, wenn ihre eigenen Wurzeln 3+ cm lang sind. Auch Teilung ist möglich."
+ },
+ "anthurium": {
+  "name": "Flamingoblume (Anthurie)",
+  "origin": "Kolumbien, Ecuador",
+  "toxic": "Ja – Oxalatkristalle",
+  "maxHeight": "60 cm",
+  "care": {
+   "water": "Alle 7–10 Tage, mag gleichmäßige Feuchtigkeit",
+   "light": "Hell und indirekt – keine Sonne!"
+  },
+  "description": "Die glänzenden, lackierten „Blüten“ sind eigentlich farbige Hochblätter (Spatha). Unter guten Bedingungen blüht sie fast ohne Pause das ganze Jahr.",
+  "funFacts": [
+   "Die rote „Blüte“ ist eine Spatha – ein umgewandeltes Blatt, kein Blütenblatt",
+   "Die echte Blüte ist der kleine Kolben (Spadix) in der Mitte",
+   "Sie blüht fast ununterbrochen – eine der am längsten „blühenden“ Pflanzen",
+   "Erhältlich in Rot, Rosa, Weiß, Lila, Schwarz und Grün",
+   "In der Natur wächst sie als Epiphyt auf Regenwaldbäumen"
+  ],
+  "diseases": [
+   "Gelbe Blätter = zu viel Wasser oder zu viel direktes Licht",
+   "Braune Spitzen = trockene Luft oder Fluor im Wasser",
+   "Keine Blüten = zu wenig Licht oder zu niedrige Temperatur",
+   "Schwarze Flecken = Pilz durch zu viel Feuchtigkeit auf den Blättern"
+  ],
+  "propagation": "Teilung oder Seitentriebe. Jedes Teilstück braucht Wurzeln. In Sphagnum-Moos bewurzeln."
+ },
+ "kalanchoe": {
+  "name": "Flammendes Käthchen (Kalanchoe)",
+  "origin": "Madagaskar",
+  "toxic": "Ja – giftig für Haustiere",
+  "maxHeight": "30 cm",
+  "care": {
+   "water": "Alle 10–14 Tage, ein typischer Sukkulent",
+   "light": "Hell, einige Stunden direkte Sonne"
+  },
+  "description": "Ein beliebter blühender Sukkulent! Kleine Blüten in Rot, Rosa, Gelb, Orange oder Weiß halten 4–6 Wochen. Sehr pflegeleicht.",
+  "funFacts": [
+   "Mit 6 Wochen Dunkelheit (12 h am Tag) lässt sie sich erneut zur Blüte bringen",
+   "Sie stammt aus Madagaskar – einer Insel mit einzigartiger Flora",
+   "Kurze Tage (Photoperiodismus) regen die Knospenbildung an",
+   "Erhältlich in über 100 Farben und Sorten!",
+   "Ihre Blätter speichern Wasser – wochenlange Vernachlässigung ist kein Problem"
+  ],
+  "diseases": [
+   "Faulende Blätter = zu viel Wasser – der häufigste Fehler",
+   "Keine Blüten = zu wenig Licht oder keine Dunkelphase",
+   "Graue Flecken auf den Blättern = Echter Mehltau – besser lüften",
+   "Lange, blasse Triebe = zu wenig Sonne (Vergeilung)"
+  ],
+  "propagation": "Blatt- oder Triebstecklinge. 2 Tage antrocknen lassen, in trockenen Sand stecken. Wurzeln nach 3–4 Wochen."
+ },
+ "begonia": {
+  "name": "Königsbegonie (Begonia rex)",
+  "origin": "Indien, China",
+  "toxic": "Ja – besonders die Rhizome",
+  "maxHeight": "50 cm",
+  "care": {
+   "water": "Alle 7–10 Tage, Blätter nicht benetzen",
+   "light": "Hell und indirekt, keine direkte Sonne"
+  },
+  "description": "Die schönste Begonie! Gezogen wegen ihrer spektakulären metallisch schimmernden Blätter – silbern, rosa, weinrot und violett mit fantasievollen Mustern.",
+  "funFacts": [
+   "Sie wird vor allem wegen der Blätter gezogen, nicht wegen der Blüten",
+   "Die Sorte Escargot hat spiralig eingerollte Blätter wie ein Schneckenhaus",
+   "Der metallische Glanz entsteht durch spezielle lichtreflektierende Hautzellen",
+   "Es gibt mehrere Tausend (!) Begoniensorten und Hybriden",
+   "Sie stammt aus tropischen Gebieten, wo sie im Schatten von Felswänden wächst"
+  ],
+  "diseases": [
+   "Echter Mehltau (weißer Flaum) = schlechte Luftzirkulation + zu viel Feuchtigkeit",
+   "Stängelfäule = Staunässe + Kälte",
+   "Braune Flecken = Wasser auf den Blättern oder Sonnenbrand",
+   "Blattabwurf = Zugluft oder plötzlicher Temperaturwechsel"
+  ],
+  "propagation": "Blattstecklinge – Blatt abschneiden, auf feuchtes Perlite legen und Stücke ins Substrat drücken. Wurzeln nach 4–6 Wochen."
+ },
+ "african-violet": {
+  "name": "Usambaraveilchen",
+  "origin": "Tansania und Kenia",
+  "toxic": "Nein – ungiftig",
+  "maxHeight": "15 cm",
+  "care": {
+   "water": "Alle 7 Tage von unten (Untersetzer) gießen",
+   "light": "Hell, aber ohne direkte Sonne"
+  },
+  "description": "Eine Mini-Legende! Sie blüht praktisch das ganze Jahr. Der Schlüssel zum Erfolg ist das Gießen von unten – Wasser auf den Blättern hinterlässt Flecken. Ideal für die Fensterbank.",
+  "funFacts": [
+   "1892 von Baron von Saint Paul entdeckt – daher der lateinische Name",
+   "Gießen von unten (Untersetzer) ist die beste Methode – die Blätter mögen kein Wasser",
+   "Bei passendem Licht blüht sie fast ununterbrochen das ganze Jahr",
+   "Kaltes Wasser hinterlässt weiße Flecken auf den Blättern – lauwarmes nehmen",
+   "Miniatursorten wachsen in nur 5 cm großen Töpfen! Es gibt über 16.000 Sorten"
+  ],
+  "diseases": [
+   "Weiße Flecken auf den Blättern = kaltes Wasser oder Wasser direkt auf die Blätter",
+   "Faulender Wurzelhals = Staunässe + Kälte",
+   "Keine Blüten = zu wenig Licht oder zu großer Topf",
+   "Graubraune Blätter = Mehltau – Luftzirkulation verbessern"
+  ],
+  "propagation": "Blattstecklinge – ein gesundes Blatt mit Stiel abschneiden und in Wasser oder Perlite stellen. Kleine Pflänzchen nach 4–6 Wochen."
+ },
+ "hibiscus": {
+  "name": "Chinesischer Roseneibisch (Hibiskus)",
+  "origin": "Ostasien",
+  "toxic": "Nein – die Blüten sind essbar!",
+  "maxHeight": "2 m im Haus",
+  "care": {
+   "water": "In der Saison alle 5–7 Tage, im Winter weniger",
+   "light": "Volle Sonne, mind. 4–6 Std. täglich"
+  },
+  "description": "Ein tropischer Strauch mit riesigen Blüten bis 20 cm Durchmesser! Jede Blüte hält nur einen Tag, aber die Pflanze bildet sehr viele davon. Die Blüten sind essbar.",
+  "funFacts": [
+   "Jede einzelne Blüte lebt nur 24 Stunden – aber täglich öffnen sich neue",
+   "Die Blüten sind essbar – für Tee, Salate und Liköre",
+   "Symbol Malaysias und Hawaiis – dort blüht er das ganze Jahr im Freien",
+   "Er braucht täglich 4–6 Stunden direkte Sonne – liebt Südfenster",
+   "Im Winter weniger gießen und kühler stellen – der Schlüssel zur Frühlingsblüte"
+  ],
+  "diseases": [
+   "Knospenabwurf = plötzlicher Standortwechsel oder zu trocken",
+   "Gelbe Blätter = Eisen- oder Magnesiummangel oder zu viel Wasser",
+   "Blattläuse an jungen Trieben = häufig – mit Wasser oder Seifenlauge abspritzen",
+   "Keine Blüten = zu wenig Sonne oder zu kalt"
+  ],
+  "propagation": "Halbverholzte Stecklinge (15 cm) mit Bewurzelungshormon. Wurzeln nach 4–6 Wochen. Auch Aussaat ist möglich."
+ },
+ "hoya": {
+  "name": "Wachsblume (Hoya)",
+  "origin": "Ostasien und Australien",
+  "toxic": "Nein – ungiftig",
+  "maxHeight": "4 m als Kletterpflanze",
+  "care": {
+   "water": "Alle 10–14 Tage, ein typischer kletternder Sukkulent",
+   "light": "Hell indirekt, morgens etwas direkte Sonne"
+  },
+  "description": "Die wachsartigen Blätter gaben ihr den Namen „Wachsblume“. Sternförmige Blüten in kugeligen Dolden verströmen einen intensiven, süßen Duft – vor allem nachts.",
+  "funFacts": [
+   "Die Blüten duften vor allem nachts – eine Anpassung an nachtaktive Bestäuber",
+   "Blütenstiele nach der Blüte nicht abschneiden – dort blüht sie erneut!",
+   "Es gibt 200–500 Hoya-Arten mit unterschiedlich geformten Blättern",
+   "Sie mag es „eng“ im Topf – ein zu großer Topf verzögert die Blüte",
+   "Die Sorte Kerrii hat herzförmige Blätter – ein beliebtes Liebessymbol"
+  ],
+  "diseases": [
+   "Keine Blüten = zu wenig Licht oder zu großer Topf",
+   "Gelbe Blätter = zu viel Wasser oder zu wenig Nährstoffe",
+   "Runzlige Blätter = braucht Wasser (selten)",
+   "Wollläuse = weiße Flöckchen in den Blattachseln – mit Alkohol abwischen"
+  ],
+  "propagation": "Triebstecklinge mit 2–3 Knoten in Wasser oder Sphagnum. Wurzeln nach 3–5 Wochen."
+ },
+ "begonia-maculata": {
+  "name": "Forellenbegonie",
+  "origin": "Brasilien",
+  "toxic": "Ja – giftig für Haustiere",
+  "maxHeight": "1,5 m",
+  "care": {
+   "water": "Alle 7 Tage, wenn die oberen 2 cm trocken sind",
+   "light": "Hell und indirekt"
+  },
+  "description": "Die Instagram-Pflanze der letzten Jahre! Dunkelgrüne Blätter mit silbernen Punkten wie Forellenhaut und weinroter Unterseite. Sie bildet hübsche weiße Blüten.",
+  "funFacts": [
+   "1820 vom italienischen Botaniker Giuseppe Raddi in Brasilien entdeckt",
+   "Die silbernen Punkte sind eine wachsartige Hautschicht, die überschüssiges Licht reflektiert",
+   "Sie blüht mit kleinen weißen Blüten – ein toller Kontrast zu den dunklen Blättern",
+   "Eine der angesagtesten Zimmerpflanzen in den sozialen Medien",
+   "Sie wächst schnell – bis zu 30 cm in einer Saison"
+  ],
+  "diseases": [
+   "Mehltau (weißer Flaum auf den Blättern) = feuchte, stehende Luft",
+   "Blattabwurf = Kälte oder Zugluft",
+   "Stängelfäule = zu nass am Fuß",
+   "Braune Ränder = trockene Luft oder Fluor im Wasser"
+  ],
+  "propagation": "Triebstecklinge von 10–15 cm in Wasser. Sehr einfach – Wurzeln nach 1–2 Wochen."
+ },
+ "echeveria": {
+  "name": "Echeverie",
+  "origin": "Mexiko",
+  "toxic": "Nein – ungiftig",
+  "maxHeight": "15 cm",
+  "care": {
+   "water": "Alle 14–21 Tage, zwischen den Wassergaben ganz abtrocknen lassen",
+   "light": "Volle Sonne, 4–6 Std. täglich"
+  },
+  "description": "Eine saftige Rosette wie eine Blüte! Die Blätter tragen einen natürlichen Wachsbelag (Bereifung), der vor Sonne schützt. Dutzende Farben und Formen.",
+  "funFacts": [
+   "Der Wachsbelag (Bereifung) schützt vor Sonne und Wasserverlust – nicht abwischen!",
+   "In der Saison bildet sie lange Stiele mit kleinen glockenförmigen Blüten",
+   "Wasser- und Sonnenstress färben die Blätter rot und violett",
+   "Es gibt über 150 Arten und Hunderte Echeverien-Hybriden",
+   "Ideal für Sukkulenten-Arrangements und Terrarien"
+  ],
+  "diseases": [
+   "Lange, blasse Triebe = zu wenig Sonne (Vergeilung)",
+   "Faulende untere Blätter = zu viel Wasser oder schlechte Drainage",
+   "Runzlige Blätter = braucht Wasser (selten)",
+   "Verlust des Wachsbelags = beschädigte Haut – nicht anfassen, er wächst nach"
+  ],
+  "propagation": "Blattstecklinge (ganzes Blatt sauber abdrehen) oder Kindel. Blatt auf trockenen Sand legen, nicht eingraben – die Wurzeln kommen von selbst."
+ },
+ "aloe": {
+  "name": "Echte Aloe (Aloe vera)",
+  "origin": "Arabische Halbinsel",
+  "toxic": "Ja – der Latex unter der Haut",
+  "maxHeight": "60 cm",
+  "care": {
+   "water": "Alle 2–3 Wochen, im Winter seltener",
+   "light": "Hell bis volle Sonne"
+  },
+  "description": "Eine Hausapotheke im Topf! Das Gel aus den fleischigen Blättern lindert Verbrennungen, Stiche und Hautreizungen. Eine der meistgenutzten Heilpflanzen der Welt.",
+  "funFacts": [
+   "Seit über 3500 Jahren bekannt – in ägyptischen Papyri von 1552 v. Chr. erwähnt",
+   "Kleopatra soll Aloe-Gel als tägliche Gesichtscreme benutzt haben",
+   "Das Blattgel enthält über 200 biologisch aktive Stoffe",
+   "Die NASA zählte sie zu den Pflanzen, die die Luftqualität verbessern",
+   "Der Latex (gelbe Flüssigkeit unter der Haut) ist giftig – nur das klare Gel ist sicher"
+  ],
+  "diseases": [
+   "Braune, weiche Blätter = zu viel Wasser – austopfen, Wurzeln trocknen",
+   "Rote oder braune Blätter = zu viel Sonne oder Kälte",
+   "Runzlige Blätter = braucht Wasser oder kranke Wurzeln",
+   "Weiße Flecken = Sonnenbrand nach plötzlicher Sonneneinstrahlung"
+  ],
+  "propagation": "Kindel abtrennen, wenn sie 7–10 cm groß sind. 2 Tage antrocknen lassen, in Sand oder Perlite pflanzen."
+ },
+ "crassula": {
+  "name": "Geldbaum (Crassula)",
+  "origin": "Südafrika",
+  "toxic": "Ja – giftig für Haustiere",
+  "maxHeight": "1,5 m (langsam!)",
+  "care": {
+   "water": "Alle 14–21 Tage, verträgt Trockenheit",
+   "light": "Hell bis volle Sonne"
+  },
+  "description": "Ein Symbol für Glück und Wohlstand im Feng Shui und in asiatischen Kulturen. Wächst sehr langsam, lebt aber jahrzehntelang. Lässt sich zu einem Mini-Bonsai formen.",
+  "funFacts": [
+   "Im Feng Shui bringt er Reichtum – daher der Name „Geldbaum“",
+   "Er kann Jahrzehnte alt werden – sogar 70–100 Jahre!",
+   "Nach einigen Jahren blüht er im Winter mit kleinen weißen Sternen",
+   "Der Stamm verholzt mit dem Alter und sieht aus wie ein Miniaturbaum",
+   "Kältereiz (8–10°C) im Herbst löst eine besondere rosa Blüte aus"
+  ],
+  "diseases": [
+   "Weiche, hängende Blätter = zu viel Wasser (häufigste Todesursache!)",
+   "Runzlige Blätter = zu trocken",
+   "Braune Flecken = Sonnenbrand nach plötzlicher Sonne",
+   "Weiße Kristalle auf den Blättern = natürliche Salzausscheidung – normal"
+  ],
+  "propagation": "Blatt- oder Triebstecklinge. 2–3 Tage antrocknen lassen, in trockenen Sand pflanzen. Sehr einfach."
+ },
+ "haworthia": {
+  "name": "Haworthie",
+  "origin": "Südafrika",
+  "toxic": "Nein – ungiftig",
+  "maxHeight": "15 cm",
+  "care": {
+   "water": "Alle 14–21 Tage",
+   "light": "Hell und indirekt, verträgt Schatten (Ausnahme unter Sukkulenten)"
+  },
+  "description": "Eine Ausnahme unter den Sukkulenten – sie braucht keine volle Sonne! Die weißen Streifen sind Reihen kleiner Warzen. Ideal für Wohnungen mit weniger sonnigen Fenstern.",
+  "funFacts": [
+   "Einer der wenigen Sukkulenten, die Halbschatten vertragen",
+   "Die weißen Warzen auf den Blättern sind festes Gewebe, das überschüssiges Licht reflektiert",
+   "Sie bildet typische „Gruppen“ – Tochterrosetten rund um die Mutterpflanze",
+   "In der Natur wächst sie im Boden eingegraben – nur die Spitzen schauen heraus",
+   "In Japan als Sammlerpflanze geschätzt – seltene Sorten kosten ein Vermögen"
+  ],
+  "diseases": [
+   "Faulende Wurzeln = zu viel Wasser",
+   "Rote Blätter = zu viel direkte Sonne",
+   "Blass und lang gezogen = zu wenig Licht",
+   "Schrumpfen = Zeit zum Gießen"
+  ],
+  "propagation": "Tochterrosetten mit Wurzeln abtrennen. 2 Tage antrocknen lassen und pflanzen."
+ },
+ "lithops": {
+  "name": "Lebende Steine (Lithops)",
+  "origin": "Südafrika",
+  "toxic": "Nein – ungiftig",
+  "maxHeight": "3 cm",
+  "care": {
+   "water": "NUR im Sommer und Herbst; im Winter und Frühling KEIN Wasser!",
+   "light": "Volle Sonne, 4–6 Std. täglich"
+  },
+  "description": "Perfekte Tarnung! Sie sehen aus wie Kieselsteine – ein evolutionärer Trick gegen Pflanzenfresser. Die seltsamste Zimmerpflanze der Welt.",
+  "funFacts": [
+   "Sie haben sich so entwickelt, dass sie wie Kiesel aussehen – in der Natur fast unsichtbar",
+   "Gießen in der falschen Jahreszeit = Tod! Kein Wasser im Winter und Frühling (während der Häutung)",
+   "Jedes Jahr häuten sie sich – die alten Blätter platzen auf und ein neues Paar erscheint",
+   "Die Blüten sind größer als die Pflanze selbst und duften herrlich",
+   "Sie werden Jahrzehnte alt, wenn man sie nicht übergießt",
+   "Durchscheinende Fenster an der Oberseite lassen Licht ins Innere"
+  ],
+  "diseases": [
+   "Aufplatzen oder Fäulnis = ZU VIEL WASSER in der falschen Jahreszeit (häufigster Fehler!)",
+   "Keine Blüten = zu wenig Sonne oder falscher Gießrhythmus",
+   "Blasse Farbe = zu wenig Sonne"
+  ],
+  "propagation": "Aus Samen (langsam) oder durch Teilung der Gruppe während der Häutung."
+ },
+ "string-of-pearls": {
+  "name": "Erbsenpflanze (Senecio rowleyanus)",
+  "origin": "Namibia, Südafrika",
+  "toxic": "Ja – giftig",
+  "maxHeight": "90 cm (hängend)",
+  "care": {
+   "water": "Alle 14–21 Tage, mag Abtrocknen",
+   "light": "Hell mit einigen Stunden Sonne"
+  },
+  "description": "Eine Kette glänzender, runder Blätter wie Perlen! Jede Kugel ist ein reduziertes Blatt, das Wasser speichert. Wunderschön hängend aus Regal oder Ampel.",
+  "funFacts": [
+   "Die runden Blätter minimieren die Verdunstung – ein Wunder der Evolution",
+   "In der Natur hängt sie über Felswände in Südafrika und Namibia",
+   "Sie blüht mit kleinen weißen Blüten, die nach Zimt oder Vanille duften!",
+   "Der durchscheinende Streifen auf jeder Kugel ist ein „Lichtfenster“",
+   "Abgeschnittene Triebspitzen bewurzeln in Wasser – ein schönes Projekt für Kinder"
+  ],
+  "diseases": [
+   "Schrumpelnde Perlen = zu wenig Wasser oder kranke Wurzeln",
+   "Weiche, faulende Perlen = zu viel Wasser",
+   "Blasse, gelbe Perlen = zu wenig Sonne",
+   "Abfallende Perlen = normaler Vorgang; neue wachsen nach"
+  ],
+  "propagation": "Einen Trieb auf feuchte Erde legen und warten – die Knoten bewurzeln von selbst."
+ },
+ "string-of-hearts": {
+  "name": "Leuchterblume (Herzchenkette)",
+  "origin": "Südafrika",
+  "toxic": "Nein – ungiftig",
+  "maxHeight": "2 m (hängend)",
+  "care": {
+   "water": "Alle 14–21 Tage, eher trocken halten wie einen Sukkulenten",
+   "light": "Hell indirekt bis mittel"
+  },
+  "description": "Zarte herzförmige Blätter an fadendünnen Trieben! Ideal zum Herabhängen von Regalen. Eine sehr angesagte und fotogene Pflanze.",
+  "funFacts": [
+   "Eine der beliebtesten „Boho“-Zimmerpflanzen der letzten Jahre",
+   "Die Herzblätter haben eine violette Unterseite und grüne Muster oben",
+   "An den Trieben bildet sie kleine Knöllchen – Wasserspeicher!",
+   "Sie blüht mit seltsamen röhrenförmigen Blüten, die Fliegen zur Bestäubung anlocken",
+   "Die Sorte Silver Glory hat silbergraue Blätter"
+  ],
+  "diseases": [
+   "Gelbe Blätter = zu viel Wasser – selten, aber tödlich",
+   "Runzlige Blätter = Zeit zum Gießen",
+   "Blasse Blätter = zu wenig Licht",
+   "Blattabwurf = Kälte oder Stress"
+  ],
+  "propagation": "Einen Trieb auf feuchte Erde legen – er bewurzelt an den Knoten. Oder Stecklinge in Wasser."
+ },
+ "aeonium": {
+  "name": "Schwarze Rosette (Aeonium)",
+  "origin": "Kanarische Inseln",
+  "toxic": "Nein – ungiftig",
+  "maxHeight": "1 m",
+  "care": {
+   "water": "Alle 14–21 Tage, im Sommer trocken",
+   "light": "Volle Sonne – je mehr, desto dunkler die Blätter"
+  },
+  "description": "Eine dramatische Rosette aus dunkelvioletten bis schwarzen Blättern. Je mehr Sonne, desto dunkler die Farbe! Im Sommer geht sie in Ruhe und kann Blätter abwerfen.",
+  "funFacts": [
+   "Je mehr Sonne, desto schwärzer die Blätter – UV-Schutz durch Anthocyane",
+   "Sie hält Sommerruhe – anders als die meisten Sukkulenten",
+   "In der Natur wächst sie an sonnigen Vulkanklippen der Kanaren",
+   "Sie kann einen hohen gelben Blütenstand bilden – danach stirbt diese Rosette",
+   "Monokarp – jede Rosette blüht nur einmal im Leben"
+  ],
+  "diseases": [
+   "Blätter verblassen und werden grün = zu wenig Sonne",
+   "Blattabwurf im Sommer = normale Sommerruhe",
+   "Fäulnis = zu viel Wasser im Winter"
+  ],
+  "propagation": "Rosettenstecklinge – abschneiden, 2 Tage antrocknen lassen, in Sand stecken."
+ },
+ "calathea": {
+  "name": "Korbmarante (Calathea)",
+  "origin": "Brasilien, Südamerika",
+  "toxic": "Nein – ungiftig",
+  "maxHeight": "80 cm",
+  "care": {
+   "water": "Alle 5–7 Tage, mag gleichmäßige Feuchtigkeit",
+   "light": "Halbschatten bis hell indirekt – keine Sonne!",
+   "humidity": "60–80% – ENTSCHEIDEND"
+  },
+  "description": "Die Diva der Zimmerpflanzen! Bemalte Blätter mit rosa Streifen und violetter Unterseite. Sie faltet nachts die Blätter zusammen (Nyktinastie). Braucht hohe Luftfeuchtigkeit.",
+  "funFacts": [
+   "Nachts faltet sie die Blätter wie zum Gebet – daher „Gebetspflanze“",
+   "Die Blätter bewegen sich dank wassergefüllter Gelenkzellen (Pulvinus)",
+   "Die violette Unterseite fängt Licht ein, das vom Waldboden reflektiert wird",
+   "Sehr empfindlich gegen Chlor und Fluor im Leitungswasser – Regenwasser nehmen!",
+   "Beim Bewegen der Blätter raschelt sie leise – nachts kann man es hören"
+  ],
+  "diseases": [
+   "Braune Ränder = trockene Luft (das häufigste Problem in Wohnungen)",
+   "Gelbe Blätter = zu viel Wasser oder hartes Leitungswasser",
+   "Verblassende Muster = zu viel direkte Sonne",
+   "Eingerollte Blätter = zu kalt oder zu trocken"
+  ],
+  "propagation": "Im Frühling teilen. Jedes Teilstück braucht Wurzeln und mind. 2–3 Blätter."
+ },
+ "maranta": {
+  "name": "Pfeilwurz (Maranta)",
+  "origin": "Brasilien",
+  "toxic": "Nein – ungiftig",
+  "maxHeight": "30 cm",
+  "care": {
+   "water": "Alle 5–7 Tage, stets leicht feucht",
+   "light": "Halbschatten bis hell indirekt"
+  },
+  "description": "Die betende Pflanze! Nachts stellt sie die Blätter senkrecht auf. Dekorative Blattmuster in Grün, Weinrot und Weiß. Eine Cousine der Calathea, aber pflegeleichter.",
+  "funFacts": [
+   "Nachts stellt sie die Blätter senkrecht – daher der Name „Gebetspflanze“",
+   "Die Blattmuster sind einzigartig wie Fingerabdrücke – keine zwei gleichen sich",
+   "Pflegeleichter als die Calathea – verzeiht mehr Fehler",
+   "Sie blüht mit winzigen weißen Blüten, wird aber vor allem wegen der Blätter gezogen",
+   "Die Sorte Erythroneura hat scharlachrote Blattadern"
+  ],
+  "diseases": [
+   "Braune Ränder = trockene Luft oder Fluor im Wasser",
+   "Blasse Blätter = zu viel Sonne",
+   "Gelbe Blätter = zu viel Wasser",
+   "Spinnmilben = Gespinste unter den Blättern durch trockene Luft – regelmäßig besprühen"
+  ],
+  "propagation": "Beim Umtopfen teilen oder Triebstecklinge in Wasser bewurzeln."
+ },
+ "alocasia": {
+  "name": "Pfeilblatt (Alocasia)",
+  "origin": "Südostasien",
+  "toxic": "Ja – Oxalatkristalle",
+  "maxHeight": "1,5 m",
+  "care": {
+   "water": "Alle 7–10 Tage, mag Feuchtigkeit, aber keine Nässe",
+   "light": "Hell und indirekt, direkte Sonne MEIDEN",
+   "humidity": "60–80% – unverzichtbar"
+  },
+  "description": "Dramatische pfeilförmige Blätter mit kontrastreichen weißen Adern auf dunklem Grund. Braucht hohe Luftfeuchtigkeit, aber der Anblick lohnt die Mühe.",
+  "funFacts": [
+   "Unter guten Bedingungen werden die Blätter bis zu 60 cm lang",
+   "Neue Blätter kommen eingerollt wie Pergament und entfalten sich in wenigen Tagen",
+   "Bei Stress geht sie in Ruhe und verliert die Blätter – das ist Überleben, kein Tod",
+   "In der Natur wächst sie im Schatten tropischer Wälder an Asiens Flüssen",
+   "Die Sorte Polly ist kompakt – ideal für kleine Wohnungen"
+  ],
+  "diseases": [
+   "Gelbe Blätter = zu viel Wasser oder zu niedrige Temperatur",
+   "Braune Ränder = trockene Luft oder Magnesiummangel",
+   "Verlust aller Blätter = Stress oder Winter – in Ruhe lassen, sie treibt neu aus!",
+   "Spinnmilben = trockene Luft – besprühen und Luftfeuchtigkeit erhöhen"
+  ],
+  "propagation": "Knollen (Tochterknollen) beim Umtopfen teilen. Jede Knolle mit Wurzeln ergibt eine neue Pflanze."
+ },
+ "dieffenbachia": {
+  "name": "Dieffenbachie",
+  "origin": "Tropisches Amerika",
+  "toxic": "Stark giftig – kann zum Verlust der Sprache führen!",
+  "maxHeight": "1,5 m",
+  "care": {
+   "water": "Alle 7–10 Tage",
+   "light": "Mittel bis hell indirekt"
+  },
+  "description": "Große Blätter mit gelbgrünen Mustern machen sie zu einer auffälligen Büropflanze. ACHTUNG: Ihr Saft enthält Calciumoxalat-Kristalle, die die Mundmuskulatur lähmen können!",
+  "funFacts": [
+   "Historisch als Strafe genutzt – Menschen mussten darauf kauen und verloren die Sprache (engl. „Dumb Cane“)",
+   "Sie enthält Oxalatkristalle, die Schmerzen und Schwellungen im Mund verursachen",
+   "Eine der besten Büropflanzen – verträgt wenig Licht",
+   "Sie wächst schnell – unter guten Bedingungen mehrere cm pro Woche",
+   "Der Stamm kann in beliebiger Höhe gekappt werden – er treibt neu aus"
+  ],
+  "diseases": [
+   "Gelbe untere Blätter = natürliche Alterung oder zu viel Wasser",
+   "Blasse Blätter = zu wenig Licht",
+   "Braune Flecken = Sonnenbrand oder Kälte",
+   "Stammfäule = zu nasses Substrat"
+  ],
+  "propagation": "Kopfstecklinge oder Stammstücke bewurzeln. Handschuhe tragen!"
+ },
+ "strelitzia": {
+  "name": "Paradiesvogelblume (Strelitzie)",
+  "origin": "Südafrika",
+  "toxic": "Ja – für Haustiere",
+  "maxHeight": "1,5 m im Haus",
+  "care": {
+   "water": "In der Saison alle 7–10 Tage, im Winter seltener",
+   "light": "Volle Sonne, mind. 4–6 Std."
+  },
+  "description": "Eine exotische Blüte wie der Kopf eines Paradiesvogels! Im Haus dauert es Jahre bis zur ersten Blüte (5–7 Jahre), aber der Anblick ist umwerfend.",
+  "funFacts": [
+   "Die Blüte sieht aus wie ein exotischer Vogelkopf mit orangem Schopf und blauem Schnabel",
+   "Im Haus blüht sie nach 5–7 Jahren – Geduld lohnt sich",
+   "Ein Symbol von Kapstadt und Südafrika",
+   "In Afrika bestäuben Nektarvögel die Blüten, die auf dem „Sattel“ landen",
+   "Die Wurzeln vertragen leichte Trockenheit – nasses Substrat mag sie nicht"
+  ],
+  "diseases": [
+   "Braune Blätter = zu viel direkte Sonne bei Hitze",
+   "Keine Blüten = zu wenig Sonne, zu kleiner Topf oder zu junge Pflanze",
+   "Gelbe Blätter = zu viel Wasser oder Nährstoffmangel",
+   "Eingerissene Blätter = normal – in der Natur reißt der Wind sie ein, damit sie weniger Widerstand bieten"
+  ],
+  "propagation": "Teilung oder Samen (keimen monatelang). Teilung geht am schnellsten, verletzt aber die Wurzeln."
+ },
+ "caladium": {
+  "name": "Buntblatt (Caladium)",
+  "origin": "Südamerika",
+  "toxic": "Ja – Oxalatkristalle",
+  "maxHeight": "70 cm",
+  "care": {
+   "water": "Alle 5–7 Tage, stets feucht",
+   "light": "Hell und indirekt, keine Sonne",
+   "temperature": "20–30°C – mögen KEINE Kälte!"
+  },
+  "description": "Bemalte Blätter in Rosa, Weiß und Grün! Eine Saisonpflanze – im Winter geht sie in Ruhe und wirft die Blätter ab. Die Knolle überlebt und treibt im Frühling neu aus.",
+  "funFacts": [
+   "Die Blätter sind so dünn, dass sie in der Sonne leuchten wie Buntglas",
+   "Im Winter verliert sie alle Blätter und ruht – das ist kein Tod, sondern ihr Lebenszyklus",
+   "Es gibt über 1000 Sorten mit verschiedenen Mustern und Farben",
+   "Sie stammt von den Ufern des Amazonas, wo sie im Schatten der Bäume wächst",
+   "In Vietnam und im tropischen Asien wird sie das ganze Jahr im Freien gepflanzt"
+  ],
+  "diseases": [
+   "Welken und Blattabwurf im Herbst = natürliche Ruhe – nicht wegwerfen!",
+   "Faulende Knollen = zu nass in der Ruhezeit oder zu kalt",
+   "Braune Ränder = trockene Luft oder Sonne",
+   "Keine neuen Blätter = Knollen zu kalt – an einen warmen Ort stellen"
+  ],
+  "propagation": "Knollen vor der Saison teilen. Jede Knolle mit einem „Auge“ ergibt eine neue Pflanze."
+ },
+ "spider-plant": {
+  "name": "Grünlilie",
+  "origin": "Tropisches und südliches Afrika",
+  "toxic": "Nein – ungiftig",
+  "maxHeight": "60 cm",
+  "care": {
+   "water": "Alle 7–10 Tage, verträgt Vernachlässigung",
+   "light": "Von Halbschatten bis hell"
+  },
+  "description": "Ein unverwüstlicher Klassiker! Lange, überhängende Blätter und „Kindel“ an langen Ausläufern. NASA TOP 10 – entfernt Formaldehyd, Kohlenmonoxid und Benzol aus der Luft.",
+  "funFacts": [
+   "Gehört zu den TOP 10 der luftreinigenden Pflanzen der NASA",
+   "Sie bildet Kindel an langen Ausläufern – perfekt zum Verschenken",
+   "Dicke, fleischige Wurzeln speichern Wasser – sie übersteht wochenlang ohne Gießen",
+   "Sie kann über 100 Jahre weitergezogen werden – ein echtes Erbstück",
+   "Die rein grüne Form (ohne Streifen) ist noch pflegeleichter als die panaschierte"
+  ],
+  "diseases": [
+   "Braune Spitzen = Fluor im Wasser oder trockene Luft",
+   "Blasse Blätter = zu wenig Licht",
+   "Faulende Wurzeln = zu viel Wasser bei Kälte",
+   "Keine Kindel = zu großer Topf oder zu wenig Licht"
+  ],
+  "propagation": "Kindel abtrennen, sobald sie einige Wurzeln haben, und in einen neuen Topf pflanzen."
+ },
+ "tradescantia": {
+  "name": "Dreimasterblume (Tradescantia)",
+  "origin": "Mexiko, Mittelamerika",
+  "toxic": "Leicht reizend",
+  "maxHeight": "2 m hängend",
+  "care": {
+   "water": "Alle 7–10 Tage",
+   "light": "Hell bis sehr hell – im Schatten verblassen die Farben"
+  },
+  "description": "Das Zebra unter den Pflanzen! Violett-silberne Streifen auf den Blättern und eine tiefviolette Unterseite. Wächst schnell, lässt sich leicht vermehren. Je mehr Licht, desto kräftiger die Farben.",
+  "funFacts": [
+   "Je mehr Licht, desto intensiver das Violett der Blätter",
+   "Sie wächst buchstäblich wie verrückt – in der Saison mehrere cm pro Woche",
+   "In manchen Kulturen (Mexiko) werden die Blätter gegessen",
+   "Der Saft kann bei empfindlichen Menschen leichte Hautreizungen auslösen",
+   "Eine der am leichtesten zu bewurzelnden Pflanzen – jeder Zweig im Wasser genügt"
+  ],
+  "diseases": [
+   "Verlust der violetten Farbe = zu wenig Licht",
+   "Faulende Stängel = zu viel Wasser",
+   "Braune Blätter = Frost oder Sonnenbrand"
+  ],
+  "propagation": "Stecklinge in Wasser – Wurzeln innerhalb einer Woche. Eine der einfachsten!"
+ },
+ "peperomia": {
+  "name": "Zwergpfeffer (Peperomia)",
+  "origin": "Tropisches Amerika",
+  "toxic": "Nein – ungiftig",
+  "maxHeight": "30 cm",
+  "care": {
+   "water": "Alle 10–14 Tage, verträgt Trockenheit",
+   "light": "Hell indirekt bis mittel"
+  },
+  "description": "Die perfekte Miniatur! Glänzende, dicke Blätter speichern Wasser. Es gibt über 1000 Peperomia-Arten mit den verschiedensten Blattformen – von rund bis lanzettlich.",
+  "funFacts": [
+   "Die Gattung Peperomia umfasst über 1000 beschriebene Arten – eine der größten!",
+   "Dicke Blätter speichern Wasser wie bei Sukkulenten – sie verzeiht Vernachlässigung",
+   "Sie blüht mit langen, stabförmigen Blütenständen – ein exotischer Anblick",
+   "Ideal für Allergiker – sie bildet kaum Pollen",
+   "Die Sorte Watermelon hat Blätter wie Melonenschale – eines der schönsten Muster"
+  ],
+  "diseases": [
+   "Weiche, wässrige Blätter = zu viel Wasser",
+   "Runzlige Blätter = zu trocken oder zu warm",
+   "Gelbe Blätter = zu viel Wasser oder zu großer Topf",
+   "Braune Flecken = Sonnenbrand oder Bakterien"
+  ],
+  "propagation": "Blatt- oder Triebstecklinge. Sehr einfach in Wasser oder feuchtem Perlite."
+ },
+ "ivy": {
+  "name": "Efeu",
+  "origin": "Europa, Westasien",
+  "toxic": "Ja – mäßig giftig",
+  "maxHeight": "Unbegrenzt (Kletterpflanze)",
+  "care": {
+   "water": "Alle 7–10 Tage",
+   "light": "Von Schatten bis hell",
+   "temperature": "10–21°C – mag KEINE Wärme!"
+  },
+  "description": "Die klassische europäische Kletterpflanze! Sie kann hängen, klettern oder sich ausbreiten. Überraschend: In kühleren Räumen wächst sie besser. Einer der besten Luftfilter.",
+  "funFacts": [
+   "NASA TOP 10 – einer der wirksamsten Filter für Benzol und Formaldehyd",
+   "In der Natur kann er 400–500 Jahre alt werden und einen baumdicken Stamm bilden!",
+   "Er liebt KÜHLE – eine warme Wohnung bedeutet Stress; ideal für unbeheizte Räume",
+   "Haftwurzeln am Stängel halten ohne Stütze an Wänden",
+   "Seit der Antike Symbol der Ewigkeit, auch in Siegeskränzen"
+  ],
+  "diseases": [
+   "Spinnmilben = trockene, warme Luft – an einen kühleren Ort stellen",
+   "Gelbe Blätter = zu warm oder zu viel Wasser",
+   "Graue Flecken = Echter Mehltau durch schlechte Luftzirkulation",
+   "Blattabwurf = Wärme + trockene Luft oder zu viel Wasser"
+  ],
+  "propagation": "Stecklinge in Wasser – Wurzeln in 2–3 Wochen. Eine der einfachsten."
+ },
+ "aglaonema": {
+  "name": "Kolbenfaden (Aglaonema)",
+  "origin": "Südostasien",
+  "toxic": "Ja – Oxalatkristalle",
+  "maxHeight": "1 m",
+  "care": {
+   "water": "Alle 7–10 Tage",
+   "light": "Verträgt tiefen Schatten – aber die Farben verblassen"
+  },
+  "description": "Ein Überlebenskünstler! Verträgt tiefen Schatten, schlechtes Wasser und vergessenes Gießen. Bunte Sorten (rot, rosa, silbern) sehen aus wie gemalt.",
+  "funFacts": [
+   "Sie wächst mit kaum 10 % des natürlichen Tageslichts",
+   "In Asien gilt sie als Glücks- und Wohlstandsbringer",
+   "Rote und rosa Sorten brauchen mehr Licht, um ihre Farben zu behalten",
+   "Gehört zu den TOP 10 der luftreinigenden Pflanzen der NASA",
+   "Sie verträgt Büroklimaanlagen – daher die „Königin der Büropflanzen“"
+  ],
+  "diseases": [
+   "Gelbe Blätter = zu viel Wasser oder Zugluft",
+   "Blasse Farben = zu wenig Licht (vor allem bei bunten Sorten)",
+   "Braune Spitzen = trockene Luft oder Fluor im Wasser",
+   "Spinnmilben oder Wollläuse = Blattunterseiten kontrollieren"
+  ],
+  "propagation": "Beim Umtopfen teilen oder Triebstecklinge in Wasser bewurzeln."
+ },
+ "monstera-adansonii": {
+  "name": "Monstera adansonii (Affenmaske)",
+  "origin": "Mittel- und Südamerika",
+  "toxic": "Ja",
+  "maxHeight": "4 m als Kletterpflanze",
+  "care": {
+   "water": "Alle 7–10 Tage",
+   "light": "Hell und indirekt"
+  },
+  "description": "Die kleinere Cousine der Monstera deliciosa mit Blättern voller ovaler Löcher schon in jungen Jahren. Wächst schnell und sieht hängend oder am Moosstab wunderschön aus.",
+  "funFacts": [
+   "Löcher gibt es schon ab den ersten Blättern – anders als bei M. deliciosa",
+   "Unter guten Bedingungen wächst sie bis zu 30 cm im Monat!",
+   "In der Natur klettert sie an Bäumen in den Tropenwäldern Amerikas",
+   "Sie bewurzelt blitzschnell – sogar im Glas auf der Fensterbank",
+   "Es gibt auch Monstera obliqua – eine seltene Art mit extrem großen Löchern"
+  ],
+  "diseases": [
+   "Gelbe Blätter = zu viel Wasser",
+   "Keine Löcher = zu wenig Licht – näher ans Fenster stellen",
+   "Braune Ränder = trockene Luft",
+   "Kleine Blätter = braucht eine Kletterhilfe"
+  ],
+  "propagation": "Stecklinge mit Knoten in Wasser oder Sphagnum. Wurzeln nach 2–3 Wochen."
+ },
+ "palm-areca": {
+  "name": "Goldfruchtpalme (Areca)",
+  "origin": "Madagaskar",
+  "toxic": "Nein – ungiftig",
+  "maxHeight": "2,5 m im Haus",
+  "care": {
+   "water": "Alle 5–7 Tage, mag leicht feuchte Erde",
+   "light": "Hell und indirekt"
+  },
+  "description": "Die beliebteste Zimmerpalme! Elegante, gefiederte Wedel bringen Tropenflair. Ein natürlicher Luftbefeuchter – sie verdunstet bis zu 1 Liter Wasser am Tag!",
+  "funFacts": [
+   "Sie verdunstet bis zu 1 Liter Wasser täglich – ein natürlicher Luftbefeuchter",
+   "NASA TOP 10 – die beste Palme zur Luftreinigung",
+   "In Madagaskar (ihrer Heimat) ist sie vom Aussterben bedroht!",
+   "Gelbliche Stiele sind ein Artmerkmal, keine Krankheit – keine Sorge",
+   "In der Natur wächst sie in dichten Tropenwäldern im lichten Schatten"
+  ],
+  "diseases": [
+   "Braune Spitzen = trockene Luft oder Mineralsalze – umtopfen oder Erde durchspülen",
+   "Gelbe Blätter = zu viel Wasser oder Eisenmangel",
+   "Spinnmilben = trockene Luft – täglich besprühen",
+   "Braune Flecken = Sonnenbrand oder Kälte"
+  ],
+  "propagation": "Teilung (wenn sie mehrere Triebe hat) oder Samen (keimen in 2–3 Monaten)."
+ },
+ "boston-fern": {
+  "name": "Schwertfarn (Boston-Farn)",
+  "origin": "Tropisches Amerika",
+  "toxic": "Nein – ungiftig",
+  "maxHeight": "1 m",
+  "care": {
+   "water": "Alle 5–7 Tage, stets feucht",
+   "light": "Hell indirekt bis Halbschatten",
+   "humidity": "60–80% – entscheidend!"
+  },
+  "description": "Der klassische üppig überhängende Farn. Ideal fürs Badezimmer! Braucht hohe Luftfeuchtigkeit und regelmäßiges Gießen, belohnt dafür mit sattem Grün.",
+  "funFacts": [
+   "Eine der wirksamsten luftreinigenden Pflanzen",
+   "Ideal fürs Bad – die natürlich feuchte Umgebung tut ihm gut",
+   "Aus einer Ampel kann er über einen Meter herabhängen – ein Blickfang",
+   "In der Natur wächst er in feuchten Tropenwäldern auf der ganzen Welt",
+   "Leicht durch Teilung zu vermehren – nach einigen Jahren bildet er riesige Horste"
+  ],
+  "diseases": [
+   "Braune, vertrocknende Wedel = trockene Luft oder zu viel Wasser",
+   "Wedelabwurf = Zugluft oder plötzlich veränderte Bedingungen",
+   "Gelbe Wedel = zu viel Wasser oder zu hartes Wasser",
+   "Schildläuse = braune Höcker auf den Wedeln – mit Alkohol abwischen"
+  ],
+  "propagation": "Teilung oder Bewurzeln der Ausläufer – ähnlich wie bei Erdbeeren."
+ },
+ "venus": {
+  "name": "Venusfliegenfalle",
+  "origin": "North und South Carolina, USA",
+  "toxic": "Nein",
+  "maxHeight": "30 cm",
+  "care": {
+   "water": "NUR Regen- oder destilliertes Wasser, stets nass",
+   "light": "Volle Sonne, mind. 4–6 Std.",
+   "temperature": "5–30°C (BRAUCHT Winterruhe!)"
+  },
+  "description": "Die Legende der fleischfressenden Pflanzen! Die Fallen schnappen in Sekundenbruchteilen zu, wenn die Fühlhaare zweimal berührt werden. In der Natur wächst sie nur an einem Ort der Erde.",
+  "funFacts": [
+   "Sie wächst natürlich NUR im Umkreis von 160 km um Wilmington in den Carolinas – nirgendwo sonst!",
+   "Eine Falle schließt sich in 0,1–0,3 Sekunden – eine der schnellsten Bewegungen im Pflanzenreich",
+   "Jede Falle hält nur etwa 10 Fänge, dann wird sie schwarz und fällt ab",
+   "Sie BRAUCHT 3–4 Monate Winterruhe bei etwa 5°C – sonst stirbt sie nach einigen Jahren",
+   "NUR Regen- oder destilliertes Wasser verwenden – die Mineralien im Leitungswasser sind tödlich",
+   "In der Natur wächst sie in stickstoffarmem Boden – Insekten sind ihr Dünger"
+  ],
+  "diseases": [
+   "Schwarze Fallen = normal (jede hält ~10 Fänge) oder zu viel Wasser",
+   "Fallen bewegen sich nicht = die Pflanze spart Energie – nicht ohne Grund auslösen",
+   "Ganze Pflanze wird schwarz = mineralreiches Wasser oder keine Winterruhe",
+   "Kein Wachstum = braucht Winterruhe oder mehr Sonne"
+  ],
+  "propagation": "Teilung des Rhizoms oder Blattstecklinge (langsam, 3–6 Monate). Teilung ist am einfachsten."
+ },
+ "bonsai": {
+  "name": "Ficus-Bonsai",
+  "origin": "Ostasien (die Kunst), Asien-Pazifik (die Pflanze)",
+  "toxic": "Ja – reizender Saft",
+  "maxHeight": "Durch Schnitt begrenzt",
+  "care": {
+   "water": "Alle 5–7 Tage, gleichmäßig",
+   "light": "Hell, mind. einige Stunden Sonne"
+  },
+  "description": "Ein Miniaturbaum – lebende Kunst! Er braucht regelmäßigen Schnitt, Drahten und Umtopfen. Ficus microcarpa ist eine der einfachsten Arten für Bonsai.",
+  "funFacts": [
+   "Die Bonsai-Kunst stammt aus China (Penjing) und kam im 8. Jahrhundert nach Japan",
+   "Rekord-Bonsais sind über 800 Jahre alt – über Generationen weitergegeben",
+   "Wurzelschnitt beim Umtopfen ist der Schlüssel zur Miniaturgröße",
+   "Durch Drahten der Äste lässt sich jede Form erzielen – wie Bildhauerei mit lebendem Material",
+   "In Japan steht Bonsai für Harmonie, Geduld und Vergänglichkeit"
+  ],
+  "diseases": [
+   "Blattabwurf = Stress (Standortwechsel, Zugluft, Kälte)",
+   "Gelbe Blätter = zu viel Wasser oder zu großer Topf",
+   "Eingerollte Blätter = Austrocknung oder Schädlinge",
+   "Fäulnis = schlechte Drainage oder zu großer Topf"
+  ],
+  "propagation": "Halbverholzte Stecklinge mit Bewurzelungshormon oder Abmoosen."
+ },
+ "tillandsia": {
+  "name": "Luftpflanze (Tillandsie)",
+  "origin": "Mittel- und Südamerika",
+  "toxic": "Nein – ungiftig",
+  "maxHeight": "10 cm",
+  "care": {
+   "water": "Einmal pro Woche 20 Min. in Wasser tauchen",
+   "light": "Hell und indirekt"
+  },
+  "description": "Eine Pflanze ohne Erde! Sie nimmt Wasser und Nährstoffe über die Blätter auf (Trichome). Auf Stein, Holz oder Muschel – überall möglich. Die freieste Zimmerpflanze.",
+  "funFacts": [
+   "Sie braucht keine Erde – die Wurzeln dienen nur zum Festhalten, nicht zur Wasseraufnahme",
+   "Wasser und Nährstoffe nimmt sie über spezielle Saugschuppen auf (Trichome)",
+   "Vor der Blüte färbt sie sich leuchtend rot oder rosa – ein Signal für Kolibris",
+   "Nach der Blüte stirbt die Mutterpflanze, hinterlässt aber Kindel",
+   "Man kann sie auf Holz, Stein oder Glas kleben – volle kreative Freiheit"
+  ],
+  "diseases": [
+   "Braune, trockene Blätter = zu wenig Wasser oder zu trockene Luft",
+   "Faulende Mitte = zu viel Wasser oder kein Abtrocknen nach dem Tauchen",
+   "Eingerollte Blätter = zu trocken"
+  ],
+  "propagation": "Kindel abtrennen, wenn sie halb so groß wie die Mutterpflanze sind."
+ },
+ "coffee": {
+  "name": "Arabischer Kaffeestrauch",
+  "origin": "Äthiopien",
+  "toxic": "Samen und Blätter leicht giftig für Haustiere",
+  "maxHeight": "1,5 m im Haus",
+  "care": {
+   "water": "Alle 7–10 Tage",
+   "light": "Hell und indirekt – keine direkte Sonne!"
+  },
+  "description": "Ziehen Sie Ihren eigenen Kaffee! Nach einigen Jahren blüht er mit weißen, nach Jasmin duftenden Blüten und bildet dann rote Kirschen mit Kaffeebohnen darin.",
+  "funFacts": [
+   "Er stammt aus Äthiopien – die Legende erzählt von Kaldis Ziegen, die nach dem Fressen der Früchte tanzten",
+   "Er blüht mit kleinen weißen Blüten mit intensivem Jasminduft",
+   "Die roten Kirschen reifen 9 Monate – jede enthält 2 Kaffeebohnen",
+   "Eine Zimmerpflanze liefert vielleicht eine Handvoll Kaffee im Jahr – aber die Freude ist unbezahlbar",
+   "Arabica ist die edlere Art – angebaut auf 60 % der Plantagen weltweit"
+  ],
+  "diseases": [
+   "Gelbe Blätter = zu viel Sonne oder Eisenmangel",
+   "Blattabwurf = Stress, Zugluft oder zu trocken",
+   "Braune Flecken = Sonnenbrand",
+   "Kein Wachstum = Winterruhe – normal"
+  ],
+  "propagation": "Aus Samen (frische Bohnen aus der Kirsche) oder Triebstecklingen. Samen keimen in 1–2 Monaten."
+ },
+ "mimosa": {
+  "name": "Schamhafte Sinnpflanze (Mimose)",
+  "origin": "Süd- und Mittelamerika",
+  "toxic": "Leicht giftig",
+  "maxHeight": "60 cm",
+  "care": {
+   "water": "Alle 5–7 Tage, stets leicht feucht",
+   "light": "Volle Sonne oder sehr hell"
+  },
+  "description": "Die empfindliche Pflanze! Bei Berührung klappt sie sofort die Fiederblättchen zusammen und öffnet sie nach einigen Minuten wieder. Ein evolutionärer Schutz vor Pflanzenfressern.",
+  "funFacts": [
+   "Das Berührungssignal wandert mit etwa 4 cm pro Sekunde durch die Pflanze – schneller als gedacht",
+   "Morgens öffnet sie die Blätter, abends klappt sie sie von selbst zusammen (Nyktinastie)",
+   "Studien zeigen, dass sie „lernen“ kann – nach vielen harmlosen Berührungen reagiert sie nicht mehr",
+   "Charles Darwin untersuchte sie als eine der ersten Pflanzen mit sinnesähnlichem Verhalten",
+   "Sie blüht mit rosa Pompons, die wie winzige Igel aussehen"
+  ],
+  "diseases": [
+   "Blätter klappen bei Berührung nicht zu = die Pflanze spart Energie oder ist krank",
+   "Gelbe Blätter = zu viel Wasser oder Nährstoffmangel",
+   "Blattabwurf = Kälte oder Stress"
+  ],
+  "propagation": "Aus Samen. Über Nacht in warmem Wasser einweichen und warm aussäen."
+ },
+ "oxalis": {
+  "name": "Glücksklee (Oxalis triangularis)",
+  "origin": "Brasilien",
+  "toxic": "Leicht giftig – Oxalate",
+  "maxHeight": "25 cm",
+  "care": {
+   "water": "Alle 7–10 Tage",
+   "light": "Hell bis mittel"
+  },
+  "description": "Dreieckige violette Blättchen falten sich im Tagesrhythmus auf und zu. Im Sommer geht sie in Ruhe und treibt aus ihren Knöllchen neu aus. Eine der hübschesten pflegeleichten Pflanzen.",
+  "funFacts": [
+   "Nachts und an trüben Tagen faltet sie die Blätter – sie hat eine eigene innere Uhr",
+   "Zarte rosa Blüten bilden einen Kontrast zu den dunkelvioletten Blättern",
+   "Sie stammt aus Brasilien, wo sie an schattigen Plätzen wächst",
+   "Im Sommer ruht sie – nicht wegwerfen, wenn sie die Blätter verliert, sie treibt wieder aus!",
+   "Die violette Farbe stammt von Anthocyanen – wie bei Heidelbeeren"
+  ],
+  "diseases": [
+   "Blattverlust im Sommer = normale Sommerruhe",
+   "Lange Triebe = zu wenig Licht",
+   "Faulende Knöllchen = zu nass während der Ruhe"
+  ],
+  "propagation": "Knöllchen teilen. Jedes Knöllchen ergibt in wenigen Wochen eine neue Pflanze."
+ },
+ "citrus": {
+  "name": "Meyer-Zitrone",
+  "origin": "China",
+  "toxic": "Nein (die Früchte sind essbar!)",
+  "maxHeight": "1,5 m im Haus",
+  "care": {
+   "water": "Alle 5–7 Tage, gleichmäßig",
+   "light": "Volle Sonne – mind. 8 Std. täglich oder Pflanzenlampe",
+   "temperature": "18–30°C, Überwinterung bei 10–15°C"
+  },
+  "description": "Eine Zitrone im Topf! Die Meyer-Zitrone ist süßer und robuster als eine gewöhnliche Zitrone. Sie blüht duftend und trägt nach 1–3 Jahren essbare Früchte.",
+  "funFacts": [
+   "Die Meyer-Zitrone ist eine Kreuzung aus Zitrone und Mandarine – daher süßer",
+   "Unter guten Bedingungen blüht und fruchtet sie das ganze Jahr",
+   "Die Blüten duften intensiv und exotisch – nach Orange und Jasmin",
+   "In China wird sie seit Jahrhunderten in Kübeln am Eingang als Glückssymbol gehalten",
+   "Eine der besten Obstpflanzen für zu Hause – echte Ernte in der Wohnung"
+  ],
+  "diseases": [
+   "Blattabwurf = Stress (Standortwechsel, Kälte, Zugluft)",
+   "Gelbe Blätter = Eisenmangel oder zu hartes Wasser",
+   "Keine Früchte = zu wenig Sonne oder keine Bestäubung (Zweige schütteln)",
+   "Blattläuse an jungen Trieben = häufig – Wasserstrahl oder Seifenlauge"
+  ],
+  "propagation": "Halbverholzte Stecklinge oder Veredelung auf eine Unterlage."
+ },
+ "venus-flytrapper": {
+  "name": "Sonnentau (Drosera)",
+  "origin": "Südafrika",
+  "toxic": "Nein – ungiftig",
+  "maxHeight": "20 cm",
+  "care": {
+   "water": "NUR Regen- oder destilliertes Wasser; Untersetzer stets nass",
+   "light": "Volle Sonne, mind. 4 Std."
+  },
+  "description": "Fleischfressende Eleganz! Rote Tentakel mit klebrigem Tau fangen Insekten. Eine der einfachsten fleischfressenden Pflanzen – ideal für Einsteiger.",
+  "funFacts": [
+   "Die roten Tröpfchen sind kein Tau – sondern klebriger Schleim, der Insekten anlockt",
+   "Das Blatt rollt sich über mehrere Tage langsam um die Beute",
+   "Eine der einfachsten fleischfressenden Pflanzen – ein guter Einstieg",
+   "Sie verträgt niedrige Temperaturen – im Sommer darf sie auf den Balkon",
+   "NUR Regenwasser verwenden – die Mineralien im Leitungswasser töten sie in Monaten"
+  ],
+  "diseases": [
+   "Schwarze Blätter = natürliche Alterung oder Mineralien im Wasser",
+   "Keine klebrigen Tröpfchen = zu wenig Sonne oder zu trockene Luft",
+   "Fäulnis = falsches Substrat (Torf und Perlite verwenden)"
+  ],
+  "propagation": "Blattstecklinge auf Torf-Perlite-Gemisch. Samen."
+ },
+ "pothos-neon": {
+  "name": "Efeutute 'Neon'",
+  "origin": "Zuchtsorte (Art aus Polynesien)",
+  "toxic": "Ja – reizend",
+  "maxHeight": "5 m als Kletterpflanze",
+  "care": {
+   "water": "Alle 7–14 Tage",
+   "light": "Hell – je mehr Licht, desto neonfarbener!"
+  },
+  "description": "Eine leuchtende Efeutute-Sorte mit intensiv limettengrünen, fast leuchtenden Blättern. Bei starkem Licht wird die Farbe noch kräftiger.",
+  "funFacts": [
+   "Je mehr helles Licht, desto intensiver das Neon der Blätter",
+   "Im Schatten werden die Blätter grüner und verlieren ihr Neon – sie braucht mehr Licht als die normale Efeutute",
+   "Sie ist eine Mutation derselben Art wie die Golden Pothos – der Unterschied liegt in den Pigmenten",
+   "Eine der angesagtesten Instagram-Pflanzen – sie sieht aus wie von einem anderen Planeten"
+  ],
+  "diseases": [
+   "Verblassende Farbe = zu wenig Licht – an ein helleres Fenster stellen",
+   "Gelbe Blätter = zu viel Wasser",
+   "Braune Spitzen = trockene Luft"
+  ],
+  "propagation": "Genau wie die Golden Pothos – Stecklinge mit Knoten in Wasser."
+ },
+ "rhipsalis": {
+  "name": "Rutenkaktus (Rhipsalis)",
+  "origin": "Tropisches Amerika (der einzige Kaktus, der auch wild in Afrika wächst!)",
+  "toxic": "Nein – ungiftig",
+  "maxHeight": "1 m (hängend)",
+  "care": {
+   "water": "Alle 7–14 Tage, leicht feucht",
+   "light": "Hell indirekt bis Halbschatten – KEINE volle Sonne (ein Waldkaktus!)"
+  },
+  "description": "Ein Waldkaktus ohne Stacheln! Seine hängenden, fadenförmigen Triebe sehen aus wie Unterwasserkorallen. Die einzige Kakteenart, die auch außerhalb Amerikas wild wächst.",
+  "funFacts": [
+   "Der einzige Kaktus, der außerhalb Amerikas wild wächst – auch in Afrika und Sri Lanka",
+   "Ein Waldkaktus – anders als andere Kakteen braucht er KEINE volle Sonne, er mag Schatten!",
+   "Er blüht mit winzigen weißen Blüten, gefolgt von perlenartigen Beeren",
+   "Die Beeren haben klebrigen Saft – Vögel fressen sie und verbreiten die Samen",
+   "Ideal als Hängepflanze – die Triebe hängen einen Meter und mehr"
+  ],
+  "diseases": [
+   "Rote oder orange Triebe = Sonnenbrand oder Wasserstress",
+   "Abfallende Glieder = Stress (zu trocken oder zu nass)",
+   "Schrumpfende Triebe = zu trocken"
+  ],
+  "propagation": "Triebstecklinge – ein Glied abschneiden, einen Tag antrocknen lassen, in feuchten Torf stecken."
+ },
+ "fittonia": {
+  "name": "Silbernetzblatt (Fittonia)",
+  "origin": "Südamerika (Peru)",
+  "toxic": "Nein – ungiftig",
+  "maxHeight": "20 cm",
+  "care": {
+   "water": "Alle 5–7 Tage, stets feucht – NICHT nass",
+   "light": "Halbschatten bis hell indirekt"
+  },
+  "description": "Ein Adernetz auf Miniaturblättern – grüne Blätter mit weißen, rosa oder roten Adern. Ohne Wasser lässt sie dramatisch die Blätter hängen, erholt sich nach dem Gießen aber sofort.",
+  "funFacts": [
+   "Die Blattadern können weiß, rosa oder rot sein – ein natürliches Kunstwerk",
+   "Bei Durst lässt sie dramatisch die Blätter hängen – noch theatralischer als das Einblatt!",
+   "Ideal fürs Terrarium – sie liebt feuchte, geschlossene Umgebungen",
+   "Im Terrarium kommt sie monatelang ohne Gießen aus!",
+   "Sie stammt aus den feuchten Wäldern Amazoniens, an regengespeisten Bächen"
+  ],
+  "diseases": [
+   "Hängende Blätter = braucht Wasser – gießen, sie erholt sich schnell",
+   "Faulende Triebe = zu viel Wasser",
+   "Braune Flecken = zu hartes Wasser oder Sonne",
+   "Blasse Blätter = zu viel Sonne"
+  ],
+  "propagation": "Triebstecklinge in Wasser – Wurzeln nach 1–2 Wochen."
+ },
+ "syngonium": {
+  "name": "Purpurtute (Syngonium)",
+  "origin": "Mexiko, Mittelamerika",
+  "toxic": "Ja – Oxalatkristalle",
+  "maxHeight": "2 m als Kletterpflanze",
+  "care": {
+   "water": "Alle 7–10 Tage",
+   "light": "Hell indirekt bis mittel"
+  },
+  "description": "Pfeilförmige Blätter, die mit dem Alter ihre Form ändern! Junge sind kompakt, ältere teilen sich in „Finger“. Dutzende bunte Sorten.",
+  "funFacts": [
+   "Die Blattform ändert sich mit dem Alter stark – junge Blätter sind Pfeile, alte haben „Finger“",
+   "Es gibt über 30 Farbsorten – rosa, weiß, grün, mint",
+   "Sie kann hängend oder kletternd gezogen werden",
+   "Die Sorte Albo-Variegatum hat weiße und grüne Flecken – jedes Blatt sieht anders aus"
+  ],
+  "diseases": [
+   "Gelbe untere Blätter = natürliche Alterung oder zu viel Wasser",
+   "Braune Flecken = Sonnenbrand oder zu hartes Wasser",
+   "Blasse Farben = zu wenig Licht"
+  ],
+  "propagation": "Triebstecklinge mit Knoten in Wasser – Wurzeln in 1–2 Wochen."
+ },
+ "polka-dot": {
+  "name": "Punktblume (Hypoestes)",
+  "origin": "Madagaskar, Südafrika",
+  "toxic": "Nein – ungiftig",
+  "maxHeight": "30 cm",
+  "care": {
+   "water": "Alle 5–7 Tage, stets leicht feucht",
+   "light": "Hell – keine Sonne"
+  },
+  "description": "Blätter gesprenkelt wie ein Marienkäfer! Rosa, weiße oder rote Punkte auf grünem Grund. Sie wächst schnell und füllt Pflanzenarrangements wunderbar.",
+  "funFacts": [
+   "Je mehr helles Licht, desto kräftiger und deutlicher die Punkte",
+   "Sie bildet kleine lavendelfarbene Blüten – ein hübscher Akzent",
+   "Sie stammt aus Madagaskar – einer der an Endemiten reichsten Inseln der Welt",
+   "Ideal für gemischte Arrangements und Terrarien"
+  ],
+  "diseases": [
+   "Blasse, verschwindende Punkte = zu wenig Licht",
+   "Faulende Stängel = zu viel Wasser",
+   "Blattabwurf = Kälte oder Zugluft"
+  ],
+  "propagation": "Triebstecklinge in Wasser – sehr einfach."
+ },
+ "zz-raven": {
+  "name": "Schwarze Glücksfeder (ZZ Raven)",
+  "origin": "Zuchtsorte einer ostafrikanischen Pflanze",
+  "toxic": "Ja – Oxalatkristalle",
+  "maxHeight": "1 m",
+  "care": {
+   "water": "Alle 2–4 Wochen",
+   "light": "Von tiefem Schatten bis hell"
+  },
+  "description": "Die Gothic-Version der klassischen Glücksfeder! Neue Blätter treiben hellgrün aus und dunkeln dann zu fast schwarzem Violett nach. Eine eindrucksvolle Verwandlung live.",
+  "funFacts": [
+   "Neue Blätter kommen hellgrün und werden allmählich fast schwarz!",
+   "Die Farbe ändert sich über mehrere Wochen – man kann die Verwandlung beobachten",
+   "Erst um 2019 kam sie auf den Markt – eine der „neuen“ schwarzen Pflanzen",
+   "Dieselben Überlebenskünste wie die normale Glücksfeder – unverwüstlich"
+  ],
+  "diseases": [
+   "Gelbe Blätter = zu viel Wasser (genau wie bei der normalen Glücksfeder)",
+   "Blätter bleiben grün statt schwarz zu werden = zu wenig Licht"
+  ],
+  "propagation": "Rhizomteilung oder Blattstecklinge (6–12 Monate)."
+ },
+ "bromeliad": {
+  "name": "Bromelie (Guzmanie)",
+  "origin": "Mittel- und Südamerika",
+  "toxic": "Nein – ungiftig",
+  "maxHeight": "50 cm",
+  "care": {
+   "water": "Einmal pro Woche Wasser in die Rosette (Trichter), Erde fast trocken",
+   "light": "Hell und indirekt"
+  },
+  "description": "Ein spektakulärer Blütenstand über Monate! Die „Blüte“ sind eigentlich bunte Hochblätter um winzige Blüten. Nach der Blüte stirbt die Mutterpflanze, hinterlässt aber „Kindel“.",
+  "funFacts": [
+   "Auch die Ananas ist eine Bromelie – sie gehört zur selben Familie!",
+   "Der Blütenstand besteht aus bunten Hochblättern (Brakteen), nicht aus Blütenblättern",
+   "Wasser in den „Trichter“ in der Mitte gießen – so bewässert sie der Regen in der Natur",
+   "Die Mutterpflanze stirbt nach der Blüte – ein normaler Zyklus, kein Pflegefehler",
+   "Tochterrosetten kann man abtrennen und weiterziehen – sie blühen nach 2–3 Jahren"
+  ],
+  "diseases": [
+   "Faulender Fuß = zu nasses Substrat oder zu lange stehendes Wasser",
+   "Brauner Blütenstand = natürliches Ende der Blüte nach 2–6 Monaten",
+   "Blasse Farben = zu wenig helles Licht"
+  ],
+  "propagation": "Kindel abtrennen, wenn sie 1/3 der Größe der Mutterpflanze erreicht haben."
+ },
+ "bird-nest-fern": {
+  "name": "Nestfarn",
+  "origin": "Asien, Australien, Hawaii",
+  "toxic": "Nein – ungiftig",
+  "maxHeight": "1 m",
+  "care": {
+   "water": "Alle 5–7 Tage, stets leicht feucht",
+   "light": "Schatten bis hell indirekt"
+  },
+  "description": "Glänzende, gewellte Wedel wachsen aus einer zentralen Rosette wie ein Vogelnest. Einer der schönsten Farne für Innenräume – er wirkt wie eine Skulptur.",
+  "funFacts": [
+   "In der Natur wächst er als Epiphyt auf Bäumen – sein „Nest“ sammelt herabfallendes Laub als Dünger",
+   "Junge Wedel sind eingerollt wie Geigenschnecken – zart und schön",
+   "Niemals Wasser direkt in die Mitte der Rosette gießen – das führt zu Fäulnis",
+   "Widerstandsfähig gegen Insekten – in der Natur greift ihn kaum etwas an",
+   "Es gibt Sorten mit stark gewellten oder gekräuselten Wedelrändern"
+  ],
+  "diseases": [
+   "Braune Ränder = zu trockene Luft – Wedel besprühen",
+   "Gelbe Wedel = zu viel Wasser oder zu viel Sonne",
+   "Schwarze Flecken = Wasser in der Rosette und Fäulnis – nur die Erde gießen"
+  ],
+  "propagation": "Nur aus Sporen – langwierig und schwierig. Am einfachsten eine neue Pflanze kaufen."
+ },
+ "schefflera": {
+  "name": "Strahlenaralie (Schefflera)",
+  "origin": "Taiwan, China",
+  "toxic": "Ja – für Haustiere",
+  "maxHeight": "3 m im Haus",
+  "care": {
+   "water": "Alle 7–10 Tage, wenn die Oberfläche trocken ist",
+   "light": "Hell bis mittel"
+  },
+  "description": "Elegante, handförmige Blätter, angeordnet wie ein Schirm. Wächst schnell zu einem Bäumchen heran. Verträgt Vernachlässigung, mag aber regelmäßiges Gießen und einen hellen Platz.",
+  "funFacts": [
+   "Ihre gefingerten Blätter bestehen aus 7–9 fächerförmigen Teilblättchen – daher „Schirm“",
+   "In der Natur wird sie 4 m hoch und wächst als Hecke oder kleiner Baum",
+   "Sie lässt sich als Bonsai formen – die biegsamen Stämme lassen sich leicht flechten",
+   "Die panaschierte Form hat gelbgrüne Blätter – noch auffälliger"
+  ],
+  "diseases": [
+   "Blattabwurf = Stress (Umzug, Zugluft)",
+   "Gelbe Blätter = zu viel Wasser oder zu wenig Licht",
+   "Braune Spitzen = trockene Luft"
+  ],
+  "propagation": "Triebstecklinge oder Abmoosen."
+ },
+ "palm-kentia": {
+  "name": "Kentiapalme",
+  "origin": "Lord-Howe-Insel (Australien)",
+  "toxic": "Nein – ungiftig",
+  "maxHeight": "3 m im Haus",
+  "care": {
+   "water": "Alle 7–10 Tage",
+   "light": "Von Halbschatten bis hell – eine der wenigen schattenverträglichen Palmen"
+  },
+  "description": "Die königliche Palme der Büros und Hotels. Eine der wenigen Palmen, die Schatten und Zentralheizung vertragen. Wächst langsam, lebt aber jahrzehntelang.",
+  "funFacts": [
+   "Sie wächst natürlich nur auf der winzigen Lord-Howe-Insel im Pazifik – ein Endemit!",
+   "Seit dem 19. Jahrhundert in Europas Hotels und Palästen – ein Symbol der Eleganz",
+   "Eine der wenigen Palmen, die tiefen Schatten und trockene Luft vertragen",
+   "Langsames Wachstum – 30–60 cm pro Jahr, aber sie lebt Jahrzehnte",
+   "In der Natur wird sie 18 m hoch – im Haus bleibt sie klein"
+  ],
+  "diseases": [
+   "Braune Spitzen = trockene Luft oder Salz in der Erde",
+   "Gelbe untere Wedel = natürliche Alterung (1–2 pro Jahr sind normal)",
+   "Spinnmilben = trockene Umgebung – regelmäßig besprühen"
+  ],
+  "propagation": "Samen keimen in 2–3 Monaten. Teilung ist nicht möglich – sie hat nur einen Stamm."
+ },
+ "basil": {
+  "name": "Basilikum",
+  "origin": "Südasien, Afrika",
+  "toxic": "Nein – essbar!",
+  "maxHeight": "60 cm",
+  "care": {
+   "water": "Alle 2–3 Tage, mag kein Austrocknen",
+   "light": "Volle Sonne, mind. 6 Std."
+  },
+  "description": "Der König der Mittelmeerküche! Frische Blätter duften morgens vor der Hitze am intensivsten. Spitzen regelmäßig auskneifen, damit er buschig wird und später blüht.",
+  "funFacts": [
+   "Das Wort „Basilikum“ kommt vom griechischen „basilikos“ – königlich",
+   "Blüte = Ende des Aromas – gleich nach der Blüte werden die Blätter bitter",
+   "Es gibt über 60 Sorten: Thai, Zitrone, Schokolade, Violett...",
+   "Er verströmt Stoffe, die Fliegen und Mücken abschrecken – ein natürliches Repellent",
+   "Im alten Ägypten wurde er bei der Mumifizierung verwendet",
+   "Frisch schmeckt er am besten – Kochen zerstört die ätherischen Öle"
+  ],
+  "diseases": [
+   "Schwarze Flecken auf den Blättern = Falscher Mehltau oder Kälte",
+   "Welken = zu trocken oder zu heiß",
+   "Gelbe Blätter = zu viel Wasser oder zu großer Topf",
+   "Braune Ränder = kalte Luft oder Zugluft"
+  ],
+  "propagation": "Stecklinge in Wasser – Wurzeln nach 1–2 Wochen. Oder Samen – sie keimen warm in 5–7 Tagen."
+ },
+ "mint": {
+  "name": "Pfefferminze",
+  "origin": "Europäische Hybride",
+  "toxic": "Nein – essbar (Vorsicht bei Katzen)",
+  "maxHeight": "60 cm",
+  "care": {
+   "water": "Alle 2–3 Tage, mag Feuchtigkeit",
+   "light": "Halbsonnig bis hell"
+  },
+  "description": "Nicht zu bremsen! Sie breitet sich über Rhizome in alle Richtungen aus. Auch im Garten am besten im Topf pflanzen. Ideal für Tee, Cocktails und die Küche.",
+  "funFacts": [
+   "Das Menthol in den Blättern aktiviert Kälterezeptoren – daher das kühle Gefühl",
+   "Sie wuchert so stark, dass sie in 2 Saisons einen ganzen Garten erobern kann",
+   "Ein natürliches Repellent – Mücken und Mäuse mögen den Minzduft nicht",
+   "Pfefferminze ist eine Hybride – sie kommt nicht wild vor, nur als Kulturpflanze",
+   "Pfefferminztee wirkt krampflösend auf die Verdauung",
+   "Es gibt etwa 25 Minzarten, dazu Apfel-, Schoko- und Ananasminze..."
+  ],
+  "diseases": [
+   "Rost auf den Blättern = Pilz – befallene Blätter entfernen, besser lüften",
+   "Blattläuse = an jungen Trieben – mit Wasserstrahl abspülen",
+   "Faulende Wurzeln = zu viel Wasser",
+   "Ausgebleichte Blätter = zu viel direkte Sonne"
+  ],
+  "propagation": "Stecklinge in Wasser – Wurzeln nach einer Woche. Rhizomteilung. Eine der einfachsten."
+ },
+ "rosemary": {
+  "name": "Rosmarin",
+  "origin": "Mittelmeerraum",
+  "toxic": "Nein – essbar",
+  "maxHeight": "1 m",
+  "care": {
+   "water": "Alle 7–14 Tage, trockenheitsverträglich wie ein Sukkulent",
+   "light": "Volle Sonne, mind. 6 Std."
+  },
+  "description": "Ein Kraut, das zum Strauch wird! Mit dem Alter verholzt er und verträgt Trockenheit wie ein Sukkulent. Aromatische nadelartige Blätter das ganze Jahr. Seine blassblauen Blüten lieben Bestäuber.",
+  "funFacts": [
+   "Der Name kommt vom lateinischen „ros marinus“ – Tau des Meeres",
+   "In der Antike ein Symbol des Gedächtnisses – Studenten trugen Kränze zu Prüfungen",
+   "Rosmarinöl fördert die Durchblutung der Kopfhaut",
+   "Er verträgt Frost bis -10°C – draußen winterhart",
+   "Er kann über 30 Jahre alt werden und zu einem dekorativen Bäumchen heranwachsen",
+   "Die Blüten sind essbar – ideal zum Garnieren von Salaten"
+  ],
+  "diseases": [
+   "Mehltau = zu feuchte Luft – besser lüften",
+   "Faulende Wurzeln = zu viel Wasser (der Hauptkiller!)",
+   "Gelbe Blätter = zu nasse Erde",
+   "Trockene Spitzen = im Winter normal, er wächst langsam"
+  ],
+  "propagation": "Halbverholzte Stecklinge (10 cm) in Sand. Wurzeln nach 3–4 Wochen."
+ },
+ "lavender": {
+  "name": "Lavendel",
+  "origin": "Mittelmeerraum",
+  "toxic": "Nein – essbar und aromatisch",
+  "maxHeight": "60 cm",
+  "care": {
+   "water": "Alle 10–14 Tage, trocken halten",
+   "light": "Den ganzen Tag volle Sonne"
+  },
+  "description": "Der Duft der Provence im Topf! Violette Blütenähren im Sommer. Getrocknet behalten sie ihr Aroma jahrelang. Ein natürliches Mittel gegen Motten und Mücken.",
+  "funFacts": [
+   "Seit 2500 Jahren bekannt – die Römer nutzten ihn im Bad (lat. lavare = waschen)",
+   "Getrocknete Blüten duften 2–3 Jahre lang",
+   "Lavendel ist eine der beliebtesten Aromatherapie-Pflanzen der Welt",
+   "Ein natürliches Mottenmittel – Lavendelsäckchen im Kleiderschrank",
+   "Lavendelhonig gehört zu den begehrtesten Honigen der Welt",
+   "Lavendelöl wirkt beruhigend – in der Aromatherapie bei Schlaflosigkeit"
+  ],
+  "diseases": [
+   "Grauschimmel = zu feucht, zu wenig Luft",
+   "Faulende Wurzeln = zu nasse Erde – zu viel Wasser",
+   "Verholzte Triebe ohne Blätter = zu kleiner Topf oder alte Pflanze – zurückschneiden",
+   "Keine Blüten = zu wenig Sonne"
+  ],
+  "propagation": "Kopfstecklinge von 8 cm ohne Blüte. Wurzeln nach 3–4 Wochen."
+ },
+ "chives": {
+  "name": "Schnittlauch",
+  "origin": "Europa, Asien, Nordamerika",
+  "toxic": "Giftig für Hunde und Katzen!",
+  "maxHeight": "40 cm",
+  "care": {
+   "water": "Alle 3–5 Tage, gleichmäßig feucht",
+   "light": "Volle Sonne bis hell"
+  },
+  "description": "Das schnellste Küchenkraut! Nach dem Schneiden wächst er in einer Woche nach. Nie mehr als 1/3 auf einmal schneiden. Auch die violetten Blüten sind essbar.",
+  "funFacts": [
+   "Er wächst blitzschnell nach – man kann ihn das ganze Jahr alle 2–3 Wochen schneiden",
+   "Die Blüten sind essbar – eine hübsche Salatdeko mit mildem Zwiebelgeschmack",
+   "Eines der klassischen „fines herbes“ der französischen Küche",
+   "Seit über 5000 Jahren genutzt – eines der ältesten Kulturkräuter",
+   "Er hält Blattläuse fern – ein toller Mischkulturpartner"
+  ],
+  "diseases": [
+   "Rost = braune Flecken auf den Blättern – Befallenes entfernen, besser lüften",
+   "Mehltau = weißer Flaum – zu feucht",
+   "Gelbe Blätter = zu wenig Stickstoff oder zu großer Topf"
+  ],
+  "propagation": "Horst alle 2–3 Jahre teilen. Samen – sie keimen nach 10–14 Tagen."
+ },
+ "aloe-arborescens": {
+  "name": "Baumartige Aloe",
+  "origin": "Südafrika",
+  "toxic": "Ja – Latex",
+  "maxHeight": "2 m",
+  "care": {
+   "water": "Alle 2–3 Wochen",
+   "light": "Volle Sonne"
+  },
+  "description": "Die größere und robustere Schwester der Aloe vera! In Japan heißt sie „Kidachi-Aloe“ (Baum-Aloe). Ähnliche Heilwirkung, aber deutlich robuster und imposanter.",
+  "funFacts": [
+   "In Japan heißt sie „isha-irazu“ – „man braucht keinen Arzt“",
+   "Seit den 1980er-Jahren wird sie auf mögliche Wirkungen gegen Krebs untersucht",
+   "Im Winter blüht sie mit auffälligen orangefarbenen Blütenkerzen",
+   "Frosthart bis -5°C – im Sommer darf sie ins Freie",
+   "Im Verhältnis zu ihrer Größe bildet sie mehr Gel als die Aloe vera"
+  ],
+  "diseases": [
+   "Braune, weiche Blätter = zu viel Wasser",
+   "Rote Blätter = Sonnen- oder Wasserstress – normal",
+   "Runzlige Blätter = Zeit zum Gießen"
+  ],
+  "propagation": "Seitenrosetten abtrennen. 2 Tage antrocknen lassen und pflanzen."
+ },
+ "cactus-opuntia": {
+  "name": "Feigenkaktus (Opuntie)",
+  "origin": "Mexiko",
+  "toxic": "Nein – essbar! (Früchte und Glieder)",
+  "maxHeight": "1,5 m im Haus",
+  "care": {
+   "water": "Alle 3–4 Wochen, im Sommer öfter",
+   "light": "Volle Sonne"
+  },
+  "description": "Ein Kaktus mit essbaren Früchten und Gliedern! Die Früchte (Kaktusfeigen) sind süß, die Glieder (Nopales) nach dem Entfernen der Stacheln essbar. Ein Symbol Mexikos – er ist auf der Flagge!",
+  "funFacts": [
+   "Seit 700 Jahren auf Mexikos Wappen und Flagge",
+   "Die Glieder (Nopales) sind ein beliebtes Gemüse der mexikanischen Küche",
+   "Die Früchte (Kaktusfeigen) sind reich an Vitamin C",
+   "Auf Opuntien lebt die Cochenilleschildlaus – aus ihr gewinnt man Karmin (E120)",
+   "Er verträgt Temperaturen von -10°C bis +50°C – außergewöhnlich robust",
+   "In der Natur bildet er undurchdringliche Dickichte – ein natürlicher „Zaun“"
+  ],
+  "diseases": [
+   "Braune, weiche Glieder = zu viel Wasser",
+   "Gelbe, schrumpfende Glieder = zu wenig Wasser oder zu kalt",
+   "Weißer Wachsbelag = normal (Schutzwachs) oder Wollläuse"
+  ],
+  "propagation": "Ein Glied abschneiden, 5–7 Tage antrocknen lassen, bis die Wunde verheilt ist, dann in Sand pflanzen."
+ },
+ "cactus-cereus": {
+  "name": "Säulenkaktus (Cereus)",
+  "origin": "Südamerika",
+  "toxic": "Nein – ungiftig",
+  "maxHeight": "2 m im Haus",
+  "care": {
+   "water": "Alle 3–4 Wochen, im Winter gar nicht",
+   "light": "Volle Sonne"
+  },
+  "description": "Der klassische Säulenkaktus – er wächst kerzengerade wie eine grüne Säule. Einer der am schnellsten wachsenden Kakteen. Nach vielen Jahren blüht er nachts mit riesigen weißen Blüten.",
+  "funFacts": [
+   "Er blüht nur nachts – die Blüten öffnen sich nach Einbruch der Dunkelheit und welken vor Sonnenaufgang",
+   "Jede Blüte lebt nur eine Nacht – ist aber riesig (15–20 cm)",
+   "In der Natur wird er 10 m hoch und über 200 Jahre alt",
+   "Einer der schnellwüchsigsten Kakteen – bis 30 cm pro Jahr in der Sonne",
+   "Die Früchte (Pitaya) sind essbar – süß und rosarot"
+  ],
+  "diseases": [
+   "Braune Basis = Fäulnis durch zu viel Wasser – kritisch!",
+   "Schrumpeln = im Sommer zu wenig Wasser",
+   "Vergilben = zu wenig Sonne oder zu kalt"
+  ],
+  "propagation": "Eine 10 cm lange Spitze abschneiden, eine Woche antrocknen lassen, in Sand pflanzen."
+ },
+ "cactus-mammillaria": {
+  "name": "Warzenkaktus (Mammillaria)",
+  "origin": "Mexiko",
+  "toxic": "Nein – ungiftig",
+  "maxHeight": "15 cm",
+  "care": {
+   "water": "Alle 2–3 Wochen, im Winter gar nicht",
+   "light": "Volle Sonne"
+  },
+  "description": "Ein Kaktus mit Blütenkrone! Jedes Frühjahr bildet er einen Kranz kleiner rosa oder gelber Blüten um den Scheitel. Einer der am leichtesten zum Blühen zu bringenden Kakteen.",
+  "funFacts": [
+   "Er blüht jedes Jahr mit einem Blütenring um den Scheitel – wie ein Diadem",
+   "Die Gattung Mammillaria umfasst über 200 Arten – eine der größten bei den Kakteen",
+   "Seine Dornen sind in Fibonacci-Spiralen angeordnet – Mathematik in der Natur",
+   "Frosthart bis -5°C – im Sommer darf er nach draußen",
+   "Nach der Blüte bildet er rote Beeren – essbar!"
+  ],
+  "diseases": [
+   "Faulende Basis = zu viel Wasser – häufigste Todesursache",
+   "Keine Blüten = zu wenig Sonne oder zu warmer Winter",
+   "Wollläuse = weiße Flöckchen zwischen den Dornen – mit Alkohol abwischen"
+  ],
+  "propagation": "Seitliche Kindel abtrennen, 2 Tage antrocknen lassen und pflanzen."
+ },
+ "cactus-gymnocalycium": {
+  "name": "Erdbeerkaktus (Gymnocalycium)",
+  "origin": "Südamerika",
+  "toxic": "Nein – ungiftig",
+  "maxHeight": "8 cm",
+  "care": {
+   "water": "Alle 2–3 Wochen",
+   "light": "Hell und indirekt – eine Ausnahme unter den Kakteen!"
+  },
+  "description": "Ein Kaktus ohne Chlorophyll! Der „Mondkaktus“ ist eine rote oder gelbe Kugel, gepfropft auf eine grüne Unterlage. Ohne Chlorophyll lebt er von der Photosynthese der Unterlage.",
+  "funFacts": [
+   "Der Mondkaktus hat kein Chlorophyll und sitzt auf Hylocereus – er lebt vom „Blut“ der Unterlage",
+   "Rot, Gelb und Orange sind Pigmente, die kein Chlorophyll mehr überdeckt",
+   "Eine der beliebtesten Pflanzen in japanischen Gartencentern",
+   "Die Unterlage kann den gepfropften Kopf überleben – man kann einen neuen aufpfropfen",
+   "Er verträgt Halbschatten – eine Ausnahme unter den sonnenliebenden Kakteen"
+  ],
+  "diseases": [
+   "Verblassende Farbe = zu wenig oder zu viel Sonne",
+   "Faulende Unterlage = zu viel Wasser",
+   "Schrumpfen = zu trocken oder schlechte Veredelungsstelle"
+  ],
+  "propagation": "Kindel auf eine neue Hylocereus-Unterlage pfropfen."
+ },
+ "monstera-thai": {
+  "name": "Monstera Thai Constellation",
+  "origin": "Zuchtsorte (Labor in Thailand)",
+  "toxic": "Ja – Oxalatkristalle",
+  "maxHeight": "2 m",
+  "care": {
+   "water": "Alle 7–10 Tage",
+   "light": "Hell und indirekt – entscheidend für das Muster!"
+  },
+  "description": "Die teuerste Monstera der Welt! Cremeweiße Sprenkel und Streifen auf den Blättern wie ein Sternbild. Eine genetische Mutation aus einem thailändischen Labor – in der Natur gibt es sie nicht.",
+  "funFacts": [
+   "Sie entstand in den 1990ern als zufällige Mutation in einem thailändischen Labor",
+   "Auf dem Höhepunkt des Hypes (2021) kostete eine Pflanze 5.000–20.000 USD!",
+   "Das Muster jedes Blattes ist einzigartig – keine zwei Blätter gleichen sich",
+   "Sie wächst langsam, weil die weißen Bereiche wenig Chlorophyll haben",
+   "Weiße/cremefarbene Bereiche betreiben keine Photosynthese – die grünen müssen die ganze Pflanze „ernähren“",
+   "Die Preise haben sich normalisiert – heute ist sie erschwinglich"
+  ],
+  "diseases": [
+   "Wechselndes Muster = normale Variation – jedes Blatt ist anders",
+   "Gelbe Blätter = zu viel Wasser",
+   "Braune Flecken = trockene Luft oder Sonnenbrand",
+   "Langsames Wachstum = normal bei wenig Chlorophyll"
+  ],
+  "propagation": "Stecklinge mit Knoten – genau wie bei der normalen Monstera. Das Muster vererbt sich nicht immer."
+ },
+ "philodendron-pink": {
+  "name": "Philodendron Pink Princess",
+  "origin": "Zuchtsorte (Art aus Kolumbien)",
+  "toxic": "Ja – Oxalatkristalle",
+  "maxHeight": "1,5 m",
+  "care": {
+   "water": "Alle 7–10 Tage",
+   "light": "Hell und indirekt – nötig für das Rosa!"
+  },
+  "description": "Die rosa Prinzessin! Dunkelgrüne Blätter mit rosa oder cremefarbenen Flecken. Das Muster ist genetisch instabil – jedes Blatt ist eine Überraschung.",
+  "funFacts": [
+   "Das Rosa entsteht durch fehlendes Chlorophyll in diesen Bereichen (wie bei Thai Constellation)",
+   "2020–2021 kostete sie 1.000–5.000 USD pro Pflanze!",
+   "Das Muster ist genetisch instabil – sie kann zu reinem Grün „zurückschlagen“",
+   "Starkes Licht hilft, das Rosa zu erhalten und mehr panaschierte Blätter zu bilden",
+   "Die Sorte „Dark Lord“ hat fast schwarze Blätter ohne Muster – eine düstere Alternative"
+  ],
+  "diseases": [
+   "Verschwindendes Rosa = zu wenig Licht oder Rückmutation – mehr Licht geben",
+   "Gelbe Blätter = zu viel Wasser",
+   "Braune Spitzen = trockene Luft"
+  ],
+  "propagation": "Stecklinge mit Knoten in Wasser oder Sphagnum. Das Muster vererbt sich teilweise."
+ },
+ "anthurium-warocqueanum": {
+  "name": "Königin-Anthurie (A. warocqueanum)",
+  "origin": "Kolumbien",
+  "toxic": "Ja – Oxalatkristalle",
+  "maxHeight": "1 m",
+  "care": {
+   "water": "Alle 5–7 Tage, leicht feucht",
+   "light": "Hell und indirekt",
+   "humidity": "70–90% – absolut entscheidend!"
+  },
+  "description": "Die Königin der Anthurien! Riesige samtige Blätter bis 1 m Länge mit deutlichen silbrigen Adern. Sie braucht sehr hohe Luftfeuchtigkeit – eine typische Gewächshauspflanze.",
+  "funFacts": [
+   "Unter idealen Bedingungen werden die Blätter bis zu 100 cm lang",
+   "Die samtige Oberfläche entsteht durch mikroskopisch kleine Ausstülpungen der Blatthaut",
+   "Sie gilt als eine der schwierigsten Zimmerpflanzen – eine echte Herausforderung",
+   "In Kolumbien wächst sie in Nebelwäldern bei 80–90 % Luftfeuchtigkeit",
+   "Eine seltene Sammlerpflanze – Preise von Hunderten bis Tausenden"
+  ],
+  "diseases": [
+   "Braune Ränder und Spitzen = zu trockene Luft (das häufigste Problem!)",
+   "Gelbe Blätter = zu viel Wasser oder zu niedrige Temperatur",
+   "Langsames Wachstum = zu trockene oder zu kalte Bedingungen"
+  ],
+  "propagation": "Teilung oder Seitentriebe. Zur Vermehrung braucht sie ein Terrarium oder Gewächshaus."
+ },
+ "scindapsus-pictus": {
+  "name": "Silberne Efeutute (Scindapsus pictus)",
+  "origin": "Südostasien",
+  "toxic": "Ja – reizend",
+  "maxHeight": "3 m als Kletterpflanze",
+  "care": {
+   "water": "Alle 7–10 Tage",
+   "light": "Hell bis mittel indirekt"
+  },
+  "description": "Die silberne Efeutute! Matte, dunkelgrüne Blätter mit silbrigen Flecken wie verschüttetes Silber. So pflegeleicht wie die Efeutute, aber auffälliger. Sehr angesagt in der Inneneinrichtung.",
+  "funFacts": [
+   "Oft mit der Efeutute verwechselt, gehört aber zu einer anderen Gattung",
+   "Die Silberflecken sind Lufteinschlüsse im Blatt, die Licht reflektieren",
+   "Die Sorte Argyraeus hat kleinere, dichter gesprenkelte Blätter",
+   "Die Sorte Exotica hat größere, kontrastreichere Silbermuster",
+   "Seit 2022 eine der angesagtesten Pflanzen auf Instagram"
+  ],
+  "diseases": [
+   "Gelbe Blätter = zu viel Wasser",
+   "Verblassende Muster = zu wenig Licht",
+   "Braune Spitzen = trockene Luft"
+  ],
+  "propagation": "Stecklinge mit Knoten in Wasser. Wurzeln nach 2–3 Wochen."
+ },
+ "dischidia": {
+  "name": "Ameisenpflanze (Dischidia)",
+  "origin": "Südostasien, Australien",
+  "toxic": "Ja – reizender Saft",
+  "maxHeight": "60 cm (hängend)",
+  "care": {
+   "water": "Alle 7–14 Tage",
+   "light": "Hell und indirekt"
+  },
+  "description": "Die Ameisenpflanze! In der Natur bildet sie spezielle hohle Blätter – kleine „Häuser“, in denen Ameisen wohnen. Hängende Ketten kleiner runder Blätter wie Münzen.",
+  "funFacts": [
+   "In der Natur bildet sie hohle Beutelblätter, in denen Ameisen wohnen – Symbiose!",
+   "Die Ameisen schützen die Pflanze und düngen die Spezialblätter mit ihren Ausscheidungen",
+   "Verwandt mit der Hoya – ähnliche Ansprüche und ähnliches Aussehen",
+   "Die Sorte Million Hearts hat dicht stehende herzförmige Blätter",
+   "Ein Epiphyt – in der Natur wächst sie auf Bäumen, nicht in Erde"
+  ],
+  "diseases": [
+   "Runzlige Blätter = zu trocken",
+   "Faulende Stängel = zu viel Wasser",
+   "Braune Spitzen = trockene Luft"
+  ],
+  "propagation": "Triebstecklinge in Wasser oder Sphagnum."
+ },
+ "burros-tail": {
+  "name": "Eselsschwanz (Sedum morganianum)",
+  "origin": "Mexiko, Honduras",
+  "toxic": "Nein – ungiftig",
+  "maxHeight": "60 cm (hängend)",
+  "care": {
+   "water": "Alle 14–21 Tage",
+   "light": "Hell mit einigen Stunden Sonne"
+  },
+  "description": "Ein dicker, hängender „Schwanz“ aus Hunderten kleiner fleischiger Blätter. Er sieht aus wie ein Zopf aus saftigen Perlen. Sehr dekorativ in der Ampel oder auf dem Regal.",
+  "funFacts": [
+   "Die Blätter sitzen so locker, dass sie bei der kleinsten Berührung abfallen",
+   "Jedes abgefallene Blatt kann eine neue Pflanze bilden – auf Sand legen und warten",
+   "Ein ausgewachsener Trieb kann 60–90 cm herabhängen",
+   "Er blüht mit kleinen rosa Blüten an den Triebspitzen",
+   "Einer der eindrucksvollsten Sukkulenten für Hängeampeln"
+  ],
+  "diseases": [
+   "Blattabwurf bei Berührung = normal! Möglichst nicht anfassen",
+   "Runzlige Blätter = zu wenig Wasser",
+   "Faulende Basis = zu viel Wasser"
+  ],
+  "propagation": "Abgefallene Blätter auf trockenen Sand legen – neue Rosetten nach 2–4 Wochen."
+ },
+ "columnea": {
+  "name": "Goldfischpflanze (Columnea)",
+  "origin": "Mittel- und Südamerika",
+  "toxic": "Nein – ungiftig",
+  "maxHeight": "1 m (hängend)",
+  "care": {
+   "water": "Alle 5–7 Tage",
+   "light": "Hell bis mittel indirekt"
+  },
+  "description": "Ein Goldfisch im Topf! Hängende Triebe mit kleinen fleischigen Blättern und auffälligen röhrenförmigen Blüten in Form eines Goldfischmauls.",
+  "funFacts": [
+   "Die Blüten sehen aus wie Goldfischmäuler – daher „Goldfischpflanze“",
+   "Bei passendem Licht blüht sie viele Monate lang",
+   "In der Natur wächst sie als Epiphyt auf Regenwaldbäumen",
+   "Es gibt über 200 Columnea-Arten mit verschiedenen Blütenfarben",
+   "Verwandt mit Usambaraveilchen und Episcien – dieselbe Familie (Gesneriengewächse)"
+  ],
+  "diseases": [
+   "Keine Blüten = zu wenig Licht oder zu warm",
+   "Blattabwurf = Zugluft oder plötzlicher Temperaturwechsel",
+   "Faulende Stängel = zu viel Wasser"
+  ],
+  "propagation": "Triebstecklinge von 10 cm in feuchtem Perlite."
+ },
+ "lipstick-plant": {
+  "name": "Schamblume (Lippenstiftpflanze)",
+  "origin": "Malaysia, Indonesien",
+  "toxic": "Nein – ungiftig",
+  "maxHeight": "60 cm (hängend)",
+  "care": {
+   "water": "Alle 7–10 Tage",
+   "light": "Hell und indirekt"
+  },
+  "description": "Blüten, die aus dunklen Kelchen ragen wie ein Lippenstift aus der Hülse! Die leuchtend roten Blüten sind außergewöhnlich auffällig. Die hängenden Triebe sind ideal für Ampeln.",
+  "funFacts": [
+   "Die Blüten ragen aus dunklen Röhren wie ein Lippenstift aus der Hülse – daher der Name",
+   "In der Natur wird sie von Nektarvögeln bestäubt, die ihren Schnabel in die Röhre stecken",
+   "Bei hellem Licht und kühleren Nächten blüht sie üppig",
+   "Verwandt mit Episcien und Columneen – Familie der Gesneriengewächse",
+   "Es gibt eine Sorte mit gekräuselten, verdrehten Blättern – Twister"
+  ],
+  "diseases": [
+   "Keine Blüten = zu wenig Licht oder zu warme Nächte",
+   "Knospenabwurf = plötzlich veränderte Bedingungen",
+   "Gelbe Blätter = zu viel Wasser"
+  ],
+  "propagation": "Triebstecklinge von 10 cm in feuchtem Perlite."
+ },
+ "olive-tree": {
+  "name": "Olivenbaum",
+  "origin": "Mittelmeerraum",
+  "toxic": "Nein – die Früchte sind essbar",
+  "maxHeight": "1,5 m im Haus",
+  "care": {
+   "water": "Alle 7–14 Tage, trockenheitsverträglich",
+   "light": "Volle Sonne, mind. 6 Std. – ein Muss!",
+   "temperature": "10–30°C, Überwinterung bei 5–10°C"
+  },
+  "description": "Der Baum des Mittelmeers im Topf! Silbergraue Blätter und mit dem Alter ein knorriger Stamm. Nach einigen Jahren kann er Früchte tragen. Ein Symbol für Frieden und Langlebigkeit.",
+  "funFacts": [
+   "Olivenbäume werden Tausende Jahre alt – die ältesten über 3000 Jahre!",
+   "Seit der Antike ein Symbol für Frieden, Weisheit und Sieg",
+   "Er braucht eine kühle Winterruhe (5–10°C), um Früchte anzusetzen",
+   "Im Haus kann er 3–5 Jahre nach dem Pflanzen fruchten",
+   "Die silbrige Blattfarbe kommt von winzigen Schuppen, die überschüssige Sonne reflektieren",
+   "Wegen seiner Stammstruktur traditionell für Bonsai verwendet"
+  ],
+  "diseases": [
+   "Gelbe Blätter = zu nasse Erde oder zu wenig Sonne",
+   "Blattabwurf = Stress (Umstellen, Kälte)",
+   "Keine Früchte = keine Winterruhe oder kein Bestäuber"
+  ],
+  "propagation": "Halbverholzte Stecklinge im Sommer mit Bewurzelungshormon."
+ },
+ "adenium": {
+  "name": "Wüstenrose (Adenium)",
+  "origin": "Afrika, Arabische Halbinsel",
+  "toxic": "Stark giftig – alle Teile!",
+  "maxHeight": "1 m",
+  "care": {
+   "water": "Alle 14–21 Tage, im Winter gar nicht",
+   "light": "Volle Sonne",
+   "temperature": "20–35°C, mind. 15°C"
+  },
+  "description": "Die Schönheit der Wüste! Ihr dicker, flaschenförmiger Stamm speichert Wasser. Sie blüht spektakulär mit rosa oder roten Blüten wie ein Oleander. In Asien ein beliebter Bonsai.",
+  "funFacts": [
+   "Ihr dicker Stamm (Caudex) speichert Wasser über monatelange Dürre",
+   "In Asien (Thailand, China) wird sie seit Jahrhunderten als Glücks-Bonsai gezogen",
+   "Das Gift aus ihrem Milchsaft wurde traditionell für Pfeilspitzen genutzt",
+   "Bei Trockenheit blüht sie besonders stark – Stress regt die Blüte an",
+   "Sie kann Jahrhunderte alt werden – manche Exemplare sind über 300 Jahre alt",
+   "Es gibt Tausende Hybriden mit verschiedenen Blütenfarben und -formen"
+  ],
+  "diseases": [
+   "Faulender Stamm = zu viel Wasser im Winter (tödlicher Fehler!)",
+   "Blattabwurf im Winter = normale Ruhephase",
+   "Keine Blüten = zu wenig Sonne oder zu kühl"
+  ],
+  "propagation": "Samen (keimen in 1–2 Wochen) oder Stecklinge (schwieriger)."
+ },
+ "ficus-ginseng": {
+  "name": "Ginseng-Feige (Ficus Ginseng)",
+  "origin": "Ostasiatische Zuchtform",
+  "toxic": "Ja – reizender Saft",
+  "maxHeight": "60 cm",
+  "care": {
+   "water": "Alle 7–10 Tage",
+   "light": "Hell und indirekt"
+  },
+  "description": "Ein Bonsai mit knolligen Wurzeln wie eine Märchenfigur! Der dicke, knollige Stamm (eigentlich eine Wurzel) ist ein echter Blickfang. Im Handel beliebt als fertiger Bonsai.",
+  "funFacts": [
+   "Der dicke Stamm ist eine umgeformte Wurzel, speziell als Zierde gezogen",
+   "In Asien ein Symbol für Langlebigkeit und Weisheit – ein Geschenk zu wichtigen Anlässen",
+   "Kleine Blätter und harmonische Proportionen machen ihn ideal für Bonsai",
+   "In China und Thailand in Massen produziert – daher der niedrige Preis",
+   "Er lässt sich durch Schnitt und Drahten beliebig formen"
+  ],
+  "diseases": [
+   "Blattabwurf = Stress (Standortwechsel, Zugluft, Kälte)",
+   "Gelbe Blätter = zu viel Wasser oder zu trockene Luft",
+   "Kleine Blätter ohne Wachstum = zu wenig Nährstoffe oder zu kleiner Topf"
+  ],
+  "propagation": "Stecklinge oder Abmoosen."
+ },
+ "staghorn-fern": {
+  "name": "Geweihfarn",
+  "origin": "Australien, Asien",
+  "toxic": "Nein – ungiftig",
+  "maxHeight": "60 cm",
+  "care": {
+   "water": "Alle 1–2 Wochen 15 Min. tauchen",
+   "light": "Hell bis mittel indirekt"
+  },
+  "description": "Ein Epiphyt, der an der Wand wächst! Er hat zwei Wedelarten: braune Schilde (zum Festhalten) und grüne Geweihe (zur Zierde). Auf ein Brett oder Rinde montiert wie ein lebendes Bild an der Wand.",
+  "funFacts": [
+   "Er wächst nicht in Erde – man montiert ihn wie ein Bild auf Brett oder Rinde",
+   "Er hat zwei Wedelarten: Mantelblätter (braun, haftend) und Geweihe (grün, dekorativ)",
+   "Die braunen Mantelblätter sammeln Laub und Humus als Dünger – nicht entfernen!",
+   "Gegossen wird, indem man das ganze Brett 15–20 Minuten ins Wasser taucht",
+   "In der Natur wächst er auf Bäumen in Australiens Regenwäldern"
+  ],
+  "diseases": [
+   "Braune Mantelblätter = normal – Teil des Lebenszyklus, nicht entfernen!",
+   "Schwarze Flecken am Geweih = Pilz durch zu viel Wasser",
+   "Blasse, schlaffe Geweihe = zu wenig Licht"
+  ],
+  "propagation": "Beim Ummontieren Tochterpflanzen mit Mantelblatt abtrennen."
+ },
+ "selaginella": {
+  "name": "Pfauen-Moosfarn (Selaginella)",
+  "origin": "China",
+  "toxic": "Nein – ungiftig",
+  "maxHeight": "20 cm",
+  "care": {
+   "water": "Stets feucht halten – tiefer Untersetzer mit Wasser",
+   "light": "Halbschatten bis hell indirekt"
+  },
+  "description": "Regenbogenmoos! Die Blätter schimmern metallisch blaugrün wie ein Ölfilm auf Wasser. Ideal fürs Terrarium – dort entfaltet sie ihre ganze Schönheit.",
+  "funFacts": [
+   "Der Metallglanz entsteht durch Nanostrukturen in den Zellen, die Licht brechen – wie bei Schmetterlingsflügeln",
+   "Ein lebendes Fossil – ihre Verwandten wuchsen schon vor 400 Millionen Jahren",
+   "Im geschlossenen Terrarium kommt sie monatelang ohne Gießen aus",
+   "Sie stammt aus den feuchten Wäldern Chinas und Vietnams",
+   "Im dicht verschlossenen Terrarium bildet sie einen Miniaturwald wie im Märchen"
+  ],
+  "diseases": [
+   "Braunfärbung = zu trockene Luft oder zu viel Sonne",
+   "Fäulnis = stehendes Wasser am Fuß",
+   "Verlust des Glanzes = zu trockene Bedingungen"
+  ],
+  "propagation": "Triebstecklinge in feuchtem Moos oder im Terrarium."
+ },
+ "nerve-plant-red": {
+  "name": "Rotes Silbernetzblatt (Fittonia)",
+  "origin": "Peru",
+  "toxic": "Nein – ungiftig",
+  "maxHeight": "15 cm",
+  "care": {
+   "water": "Alle 5–7 Tage",
+   "light": "Halbschatten"
+  },
+  "description": "Ein Netz roter Adern auf dunkelgrünen Blättern – wie Blutgefäße unter dem Mikroskop. Eine Sorte mit leuchtend rotem Adernetz.",
+  "funFacts": [
+   "Die Blattadern können weiß, rosa oder scharlachrot sein – auf Farbe gezüchtet",
+   "Die perfekte Partnerin der grünen Fittonia – zusammen ein kontrastreiches Arrangement",
+   "Im Terrarium wächst sie üppig und fast ohne Pflege",
+   "Bei Durst lässt sie dramatisch die Blätter hängen – 15 Minuten nach dem Gießen ist sie wieder fit",
+   "Miniatursorten haben fingernagelgroße Blätter – ideal für Nano-Terrarien"
+  ],
+  "diseases": [
+   "Hängende Blätter = braucht Wasser – schnell gießen",
+   "Faulende Stängel = zu nass",
+   "Blasse Blätter = zu viel Sonne"
+  ],
+  "propagation": "Triebstecklinge in Wasser – sehr einfach."
+ },
+ "pachira": {
+  "name": "Glückskastanie (Pachira)",
+  "origin": "Mittel- und Südamerika",
+  "toxic": "Nein – die Samen sind essbar",
+  "maxHeight": "2 m im Haus",
+  "care": {
+   "water": "Alle 7–10 Tage",
+   "light": "Hell bis mittel"
+  },
+  "description": "Die geflochtene Glückskastanie! Fünf Stämme sind zu einem typischen Zopf geflochten. Im Feng Shui ein Symbol für Reichtum und Glück. Die Samen sind essbar – sie schmecken nach Nüssen.",
+  "funFacts": [
+   "Der geflochtene Stamm besteht aus 3–5 jungen Trieben, die künstlich verflochten wurden",
+   "Legende: Ein taiwanischer Bauer flocht 5 Pflanzen und wurde reich – ein Mythos, der Asien eroberte",
+   "Die Samen sind essbar und schmecken nach Kastanien oder Erdnüssen – man kann sie rösten",
+   "In der Natur wächst sie in tropischen Sumpfwäldern",
+   "Ein Symbol für Glück, Reichtum und Erfolg in asiatischen Kulturen",
+   "Sie verträgt Staunässe an den Wurzeln – eine beliebte Zimmerpflanze aus dem Sumpf"
+  ],
+  "diseases": [
+   "Gelbe Blätter = zu viel Wasser oder zu kalt",
+   "Blattabwurf = Stress (Standortwechsel)",
+   "Braune Spitzen = trockene Luft oder Salz in der Erde"
+  ],
+  "propagation": "Stecklinge oder Samen. Die Stämme werden von Hand geflochten, wenn sie etwa 1 cm dick sind."
+ },
+ "nepenthes": {
+  "name": "Kannenpflanze (Nepenthes)",
+  "origin": "Philippinen",
+  "toxic": "Nein – ungiftig",
+  "maxHeight": "1 m",
+  "care": {
+   "water": "NUR Regenwasser; stets feucht; nie selbst Wasser in die Kannen füllen!",
+   "light": "Hell indirekt bis mittel"
+  },
+  "description": "Ein Fleischfresser mit Kannen! Umgewandelte Blätter bilden Kannenfallen mit Verdauungsflüssigkeit. Sie fängt Insekten – in der Natur sogar kleine Säugetiere!",
+  "funFacts": [
+   "Die Kannen sind umgewandelte Blattspitzen voller Verdauungsenzyme",
+   "Große Arten können Ratten, Frösche und sogar kleine Vögel verdauen!",
+   "In den Kannen leben spezielle Spinnen und Fliegenlarven, die den Enzymen widerstehen",
+   "Die Kanne bildet Wachs und Enzyme selbst – völlig autark",
+   "N. × ventrata ist eine Hybride aus zwei Arten – leichter zu pflegen als reine Arten",
+   "NUR Regen- oder destilliertes Wasser verwenden – wie bei der Venusfliegenfalle"
+  ],
+  "diseases": [
+   "Vertrocknende Kannen = zu trockene Luft oder Stress",
+   "Schwarze Blätter = zu kalt oder zu viel Wasser",
+   "Keine Kannen = zu wenig Licht oder zu trockene Bedingungen"
+  ],
+  "propagation": "Kopfstecklinge in Sphagnum unter Folie. Bewurzeln langsam."
+ },
+ "yucca": {
+  "name": "Riesen-Palmlilie (Yucca)",
+  "origin": "Mexiko, Mittelamerika",
+  "toxic": "Ja – für Hunde und Katzen",
+  "maxHeight": "2 m im Haus",
+  "care": {
+   "water": "Alle 10–14 Tage, trockenheitsverträglich",
+   "light": "Hell bis volle Sonne"
+  },
+  "description": "Ein Wüstenbaum im Wohnzimmer! Harte, spitze Blätter wachsen aus einem dicken Stamm. Fast unverwüstlich – verträgt Vernachlässigung, trockene Luft und seltenes Gießen.",
+  "funFacts": [
+   "In der Natur werden Yuccas nur von Yuccamotten bestäubt (Koevolution!)",
+   "Bei passendem Licht kann sie mit Rispen weißer Blüten blühen",
+   "Ein gekappter Stamm treibt seitlich neu aus – man kann ihn zurückschneiden",
+   "Die Ureinwohner Amerikas fertigten aus Yuccablättern Seile, Körbe und Stoffe",
+   "Die Wurzel enthält Saponine – sie diente als natürliches Shampoo"
+  ],
+  "diseases": [
+   "Braune Spitzen = normal oder trockene Luft",
+   "Weicher Stamm am Fuß = zu viel Wasser und Wurzelfäule",
+   "Gelbe untere Blätter = natürliche Alterung"
+  ],
+  "propagation": "Einen 15 cm langen Kopf abschneiden, 2 Tage antrocknen lassen, pflanzen. Oder Seitentriebe abtrennen."
+ },
+ "bromeliaceae-neoregelia": {
+  "name": "Neoregelie",
+  "origin": "Brasilien",
+  "toxic": "Nein – ungiftig",
+  "maxHeight": "40 cm",
+  "care": {
+   "water": "Wasser in die Rosette (Trichter) + Substrat leicht feucht",
+   "light": "Hell bis sehr hell – bringt kräftige Farben hervor"
+  },
+  "description": "Eine Bromelie in Farbe! Die Mitte der Rosette färbt sich vor der Blüte intensiv rot oder rosa. Lange dekorativ – die farbige Mitte hält monatelang.",
+  "funFacts": [
+   "Die Rosettenmitte färbt sich einige Monate vor der Blüte rot",
+   "Je mehr Sonne, desto kräftiger die Farben von Blättern und Mitte",
+   "Wasser in den „Trichter“ in der Mitte gießen – so nehmen Bromelien in der Natur Feuchtigkeit auf",
+   "Die Streifen auf den Blättern können bei Sorten gelb, rosa oder cremefarben sein",
+   "Die Mutterpflanze stirbt nach der Blüte, hinterlässt aber viele Kindel"
+  ],
+  "diseases": [
+   "Faulende Mitte = Wasser steht zu lange – wöchentlich wechseln",
+   "Blasse Farben = zu wenig Licht",
+   "Braune Spitzen = trockene Luft"
+  ],
+  "propagation": "Kindel abtrennen, wenn sie 1/3 der Größe der Mutterpflanze erreicht haben."
+ },
+ "hoya-kerrii": {
+  "name": "Herzblatt-Hoya (Hoya kerrii)",
+  "origin": "Südostasien",
+  "toxic": "Nein – ungiftig",
+  "maxHeight": "4 m als Kletterpflanze",
+  "care": {
+   "water": "Alle 14–21 Tage",
+   "light": "Hell und indirekt"
+  },
+  "description": "Die Liebespflanze! Ihre fleischigen herzförmigen Blätter sind ein natürliches Liebessymbol. Als einzelnes Blatt verkauft ist sie eine süße Deko – wird aber nie zu einer ganzen Pflanze.",
+  "funFacts": [
+   "Ein einzelnes Blatt ohne Knoten wird NIE zu einer ganzen Pflanze – eine botanische Kuriosität",
+   "Für eine ganze Pflanze braucht man einen Steckling mit Stängelstück und Knoten",
+   "Nach einigen Jahren blüht sie wunderschön in Dolden – sie duften nach Schokolade!",
+   "Eine der beliebtesten Valentinstagspflanzen der Welt",
+   "Als Kletterpflanze kann sie Jahrzehnte alt und mehrere Meter lang werden"
+  ],
+  "diseases": [
+   "Runzlige Blätter = zu trocken",
+   "Gelbe Blätter = zu viel Wasser",
+   "Kein Wachstum = normal bei einem einzelnen Blatt ohne Knoten"
+  ],
+  "propagation": "Nur Stecklinge mit Knoten ergeben eine ganze Pflanze. Ein einzelnes Blatt bewurzelt, wächst aber nicht weiter."
+ },
+ "begonia-boliviensis": {
+  "name": "Bolivianische Begonie",
+  "origin": "Bolivien, Argentinien",
+  "toxic": "Ja – giftig für Haustiere",
+  "maxHeight": "50 cm (hängend)",
+  "care": {
+   "water": "Alle 5–7 Tage",
+   "light": "Hell indirekt bis gestreut"
+  },
+  "description": "Eine Kaskade orangefarbener Blüten! Hängende Triebe mit Dutzenden schmaler, röhrenförmiger Blüten den ganzen Sommer lang. Ideal für Hängeampeln auf dem Balkon.",
+  "funFacts": [
+   "Sie blüht vom Frühling bis in den Spätherbst – eine der am längsten blühenden Begonien",
+   "In der Natur wächst sie an Felswänden der Anden in 1000–2000 m Höhe",
+   "Ihre röhrenförmigen Blüten sind an die Bestäubung durch Kolibris angepasst",
+   "Eine Ampelpflanze, die mitteleuropäische Sommer liebt",
+   "Im Winter ruht sie – die Knolle kühl und trocken lagern"
+  ],
+  "diseases": [
+   "Blütenabwurf = zu trocken oder zu warm",
+   "Mehltau = feuchte Luft ohne Zirkulation",
+   "Gelbe Blätter = zu viel Wasser"
+  ],
+  "propagation": "Triebstecklinge oder Knollenteilung im Frühling."
+ },
+ "pilea_cadierei": {
+  "name": "Kanonierblume (Pilea cadierei)",
+  "origin": "Vietnam",
+  "toxic": "Nein",
+  "maxHeight": "30 cm",
+  "care": {
+   "water": "Alle 5–7 Tage, wenn die Erdoberfläche trocken ist",
+   "light": "Hell und indirekt, keine direkte Sonne"
+  },
+  "description": "Eine attraktive Pflanze mit dunkelgrünen Blättern und metallisch silbernen Flecken. Ideal für Einsteiger – einfach und dankbar.",
+  "funFacts": [
+   "Auch Aluminiumpflanze oder Silber-Pilea genannt",
+   "Die Flecken auf den Blättern sind eine spezielle lichtreflektierende Struktur",
+   "Sie lässt sich leicht vermehren – Stecklinge bewurzeln in Wasser",
+   "Nach einigen Jahren verliert sie an Schönheit – vermehren und verjüngen lohnt sich",
+   "Ungiftig für Katzen und Hunde",
+   "In Vietnam wächst sie wild in feuchten Wäldern"
+  ],
+  "diseases": [
+   "Hängende Blätter = zu trocken oder zu nass (Erde prüfen)",
+   "Verblassende Flecken = zu wenig Licht",
+   "Braune Ränder = niedrige Luftfeuchtigkeit",
+   "Lange Stängel = zu wenig Licht, die Pflanze streckt sich",
+   "Gelbe untere Blätter = natürliche Alterung oder zu viel Wasser"
+  ],
+  "propagation": "Kopfstecklinge von 10 cm – in Wasser oder direkt in Erde unter Folie bewurzeln."
+ },
+ "calathea_orbifolia": {
+  "name": "Korbmarante 'Orbifolia'",
+  "origin": "Bolivien",
+  "toxic": "Nein",
+  "maxHeight": "60–90 cm",
+  "care": {
+   "water": "Alle 4–6 Tage, Erde leicht feucht",
+   "light": "Halbschatten, hell und indirekt",
+   "temperature": "18–25°C, gleichbleibend"
+  },
+  "description": "Die spektakulärste Calathea – riesige runde Blätter mit deutlichen silbernen Streifen. Anspruchsvoll, aber unvergesslich.",
+  "funFacts": [
+   "Ihre Blätter können 30 cm Durchmesser haben",
+   "Eine der „Gebetspflanzen“ – abends stellt sie die Blätter auf",
+   "Ungiftig für Katzen und Hunde",
+   "Sehr chlorempfindlich – abgestandenes oder Regenwasser verwenden",
+   "In der Natur wächst sie auf dem schattigen Boden des Regenwaldes",
+   "Sie braucht stabile Bedingungen – Veränderungen bekommen ihr nicht"
+  ],
+  "diseases": [
+   "Braune Spitzen = hartes Wasser oder niedrige Luftfeuchtigkeit",
+   "Eingerollte Blätter = zu wenig Wasser oder Zugluft",
+   "Gelbe Blätter = zu viel Wasser",
+   "Dauerhaft hängende Blätter = Wurzelproblem",
+   "Verblasste Muster = zu viel Licht"
+  ],
+  "propagation": "Nur durch Teilung beim Umtopfen – Stängelstecklinge bewurzeln nicht."
+ },
+ "petroselinum": {
+  "name": "Petersilie",
+  "origin": "Mittelmeerraum",
+  "toxic": "Nein",
+  "maxHeight": "30–60 cm",
+  "care": {
+   "water": "Alle 2–3 Tage, Erde leicht feucht",
+   "light": "Hell, einige Stunden Sonne am Tag"
+  },
+  "description": "Ein klassisches Küchenkraut für Blätter oder Wurzel. Im Topf auf der Küchenfensterbank liefert sie das ganze Jahr frisches Grün für Gerichte.",
+  "funFacts": [
+   "Zweijährig – im zweiten Jahr blüht sie und stirbt ab",
+   "Reich an Vitamin C – mehr als Zitrone pro 100 g",
+   "Im alten Griechenland stand sie für den Tod – man pflanzte sie auf Gräber",
+   "Ein natürlicher Atemerfrischer nach Knoblauch",
+   "Sie wächst am besten in einer Küche, die kühler ist als das Wohnzimmer",
+   "Frisch geschnitten hält sie 1–2 Wochen im Wasser"
+  ],
+  "diseases": [
+   "Gelbe Blätter = Nährstoffmangel (Stickstoff)",
+   "Schlaffe Blätter = Wassermangel",
+   "Weißlicher Belag = Mehltau – lüften",
+   "Blütenstiel = zweites Lebensjahr, natürlich",
+   "Blattläuse – mit Seifenwasser abspülen"
+  ],
+  "propagation": "Aus Samen – keimen langsam (3–4 Wochen). Besser eine Topfpflanze kaufen oder mehrmals pro Saison säen."
+ },
+ "thymus_vulgaris": {
+  "name": "Thymian",
+  "origin": "Mittelmeerraum",
+  "toxic": "Nein",
+  "maxHeight": "20–40 cm",
+  "care": {
+   "water": "Alle 5–7 Tage, Erde zwischen den Wassergaben abtrocknen lassen",
+   "light": "Volle Sonne, mind. 6 Stunden am Tag",
+   "humidity": "30–50% (niedrig)",
+   "temperature": "15–25°C, verträgt Kälte"
+  },
+  "description": "Ein aromatischer Halbstrauch mit winzigen Blättern und intensivem Duft. Unverzichtbar in der Mittelmeerküche und ideal im Topf auf der Fensterbank.",
+  "funFacts": [
+   "Im alten Ägypten wurde er zum Einbalsamieren verwendet",
+   "Das Thymol aus dem Thymian wirkt stark antibakteriell",
+   "Je mehr Sonne, desto stärker der Duft",
+   "Er lockt Bienen an – eine tolle Bienenweide",
+   "Im Mittelalter ein Symbol für Mut – Ritter trugen ihn in die Schlacht",
+   "Er kann 5–10 Jahre alt werden"
+  ],
+  "diseases": [
+   "Verholzte, spärliche Triebe = zu wenig Licht",
+   "Gelbe Blätter = zu viel Wasser",
+   "Schimmel am Fuß = zu feucht, zu kalt",
+   "Braune Spitzen = doch zu wenig Wasser",
+   "Fader Geschmack = Sonnenmangel"
+  ],
+  "propagation": "Halbverholzte Stecklinge im Sommer – 10 cm Trieb abschneiden, untere Blätter entfernen, in Sand mit Torf stecken."
+ },
+ "ocimum_basilicum_thai": {
+  "name": "Thai-Basilikum",
+  "origin": "Südostasien",
+  "toxic": "Nein",
+  "maxHeight": "30–50 cm",
+  "care": {
+   "water": "Alle 2–3 Tage, mag Feuchtigkeit",
+   "light": "Hell, 4–6 Stunden Sonne"
+  },
+  "description": "Eine Basilikumsorte mit dunkleren Stängeln und violetten Blütenständen. Schmeckt nach Anis und Lakritz – unverzichtbar in der thailändischen und vietnamesischen Küche.",
+  "funFacts": [
+   "Der Geschmack unterscheidet sich vom europäischen Basilikum – Noten von Anis und Lakritz",
+   "Die Blätter sind schmaler und dunkler als bei ‚Genovese‘",
+   "Stängel und Blüten haben einen violetten Schimmer",
+   "Zutat traditioneller Gerichte wie Pho und Pad Krapow",
+   "Er verträgt höhere Temperaturen als europäisches Basilikum",
+   "Nach der Blüte verlieren die Blätter an Aroma – Blütenstände auskneifen"
+  ],
+  "diseases": [
+   "Blütenstände = regelmäßig entfernen, damit er nicht blüht",
+   "Schwarze Blätter = zu kalt, unter 15°C",
+   "Blasse Blätter = Nährstoffmangel",
+   "Weißer Schimmel = Mehltau – besser lüften",
+   "Gelbe untere Blätter = natürlich oder zu viel Wasser"
+  ],
+  "propagation": "Aus Samen oder Wasserstecklingen – ein 10 cm Trieb bewurzelt in einer Woche."
+ },
+ "coriandrum_sativum": {
+  "name": "Koriander",
+  "origin": "Mittelmeerraum, Kleinasien",
+  "toxic": "Nein",
+  "maxHeight": "20–60 cm",
+  "care": {
+   "water": "Alle 2–3 Tage, Erde stets leicht feucht",
+   "light": "Hell, 4–5 Stunden Sonne, aber keine sengende",
+   "temperature": "15–22°C – mag keine Hitze!"
+  },
+  "description": "Ein aromatisches einjähriges Kraut mit markantem Geschmack – man liebt oder hasst es. Frisch unverzichtbar in der mexikanischen, indischen und thailändischen Küche.",
+  "funFacts": [
+   "Manche Menschen haben ein Gen, durch das Koriander nach Seife schmeckt",
+   "Blätter und Samen sind in der Küche zwei völlig verschiedene Aromen",
+   "Bei Hitze schießt er sehr schnell in Blüte – und wird dann bitter",
+   "Die Samen sind ein klassisches Gewürz",
+   "Reich an den Vitaminen A, C und K",
+   "Am besten wächst er im Frühling und Herbst, im Sommer leidet er"
+  ],
+  "diseases": [
+   "Schnelles Schossen = zu heiß, er geht in Samen",
+   "Gelbe Blätter = zu viel Wasser oder ausgelaugte Erde",
+   "Blattläuse an den Blütenstielen",
+   "Schimmel bei zu viel Feuchtigkeit",
+   "Schwacher Wuchs = Lichtmangel"
+  ],
+  "propagation": "Nur aus Samen – Stecklinge bewurzeln nicht. Alle 3–4 Wochen nachsäen für eine laufende Ernte."
+ },
+ "origanum_vulgare": {
+  "name": "Oregano (Echter Dost)",
+  "origin": "Mittelmeerraum",
+  "toxic": "Nein",
+  "maxHeight": "30–80 cm",
+  "care": {
+   "water": "Alle 5–7 Tage, zwischendurch abtrocknen lassen",
+   "light": "Volle Sonne, mind. 6 Stunden"
+  },
+  "description": "Ein klassisches Kraut der italienischen und griechischen Küche. Die kleinen, intensiv duftenden Blätter passen zu Pizza, Tomatensaucen und Gegrilltem.",
+  "funFacts": [
+   "Der Name stammt aus dem Griechischen: ‚oros‘ (Berg) und ‚ganos‘ (Freude) = ‚Freude der Berge‘",
+   "Im alten Griechenland ein Symbol für Liebe und Glück",
+   "Getrocknet ist er aromatischer als frisch – eines der wenigen Kräuter dieser Art",
+   "Mehrjährig – eine Pflanze liefert jahrelang Kräuter",
+   "Bienen lieben seine violetten Blüten",
+   "Oreganoöl wirkt stark antibakteriell"
+  ],
+  "diseases": [
+   "Verholzende Triebe = im Frühling zum Verjüngen zurückschneiden",
+   "Braune Spitzen = zu wenig Wasser, obwohl er Trockenheit mag",
+   "Schimmel = zu feucht, schlechte Luftzirkulation",
+   "Blasse Farbe = Sonnenmangel",
+   "Echter Mehltau bei Feuchtigkeit"
+  ],
+  "propagation": "Stecklinge im Frühling, Teilung oder Samen. Sehr einfach."
+ },
+ "citrus_limon": {
+  "name": "Zitronenbaum",
+  "origin": "Südostasien",
+  "toxic": "Nein",
+  "maxHeight": "1–2 m im Topf",
+  "care": {
+   "water": "Im Sommer alle 4–6 Tage, im Winter seltener",
+   "light": "Volle Sonne, mind. 6 Stunden",
+   "temperature": "18–25°C im Sommer, im Winter 8–12°C"
+  },
+  "description": "Ein Zitronenbäumchen im Topf – der Traum vieler Pflanzenfreunde. Er braucht Aufmerksamkeit, belohnt aber mit duftenden Blüten und echten Zitronen.",
+  "funFacts": [
+   "Er kann gleichzeitig blühen und fruchten – Blüten neben reifen Früchten",
+   "Die Früchte reifen 6–9 Monate",
+   "Er braucht im Winter eine kühle Ruhezeit, um zu blühen",
+   "Die Knospen sind außen weiß, innen rosa und duften intensiv",
+   "Er braucht speziellen Zitrusdünger",
+   "Im Winter in einen unbeheizten Raum stellen, z. B. ins Treppenhaus"
+  ],
+  "diseases": [
+   "Knospenabwurf = Stress, Standortwechsel oder Zugluft",
+   "Gelbe Blätter mit grünen Adern = Chlorose, Eisenmangel",
+   "Keine Früchte = zu wenig Sonne oder keine kühle Ruhe",
+   "Woll- und Schildläuse – häufig bei Zitruspflanzen",
+   "Klebrige Blätter = Blattläuse"
+  ],
+  "propagation": "Meist auf Unterlagen veredelt. Aus Samen wächst er langsam und fruchtet nicht immer. Stecklinge sind einfacher."
+ },
+ "punica_granatum": {
+  "name": "Zwerg-Granatapfel",
+  "origin": "Iran, Afghanistan",
+  "toxic": "Nein",
+  "maxHeight": "60–120 cm",
+  "care": {
+   "water": "Im Sommer alle 4–5 Tage, im Winter selten",
+   "light": "Volle Sonne",
+   "temperature": "18–25°C im Sommer, im Winter 5–10°C"
+  },
+  "description": "Ein Zwerg-Granatapfel, ideal für den Topf. Seine rotorangen trompetenförmigen Blüten und Miniaturfrüchte beeindrucken trotz der geringen Größe.",
+  "funFacts": [
+   "Die Zwergsorte ‚Nana‘ bleibt klein, blüht aber üppig",
+   "Die Blüten sind leuchtend orangerot und glockenförmig",
+   "Die Früchte sind klein und vor allem dekorativ (bitter)",
+   "Im Herbst werden die Blätter gelb und fallen ab – er ist laubabwerfend",
+   "Er braucht im Winter eine kühle Ruhezeit",
+   "In vielen Mittelmeerkulturen ein Symbol für Fülle"
+  ],
+  "diseases": [
+   "Blütenabwurf = zu trocken oder zu heiß während der Blüte",
+   "Keine Blüten = keine Winterruhe",
+   "Gelbe Blätter im Herbst = natürlich",
+   "Blattläuse an jungen Trieben",
+   "Spinnmilben bei trockener Luft"
+  ],
+  "propagation": "Halbverholzte Stecklinge im Sommer oder bewurzelte Wurzelausläufer."
+ },
+ "coffea_arabica_dwarf": {
+  "name": "Zwerg-Kaffeepflanze (Arabica)",
+  "origin": "Äthiopien",
+  "toxic": "Ja – Früchte und Samen",
+  "maxHeight": "1–1,5 m im Topf",
+  "care": {
+   "water": "Alle 4–5 Tage, Erde leicht feucht",
+   "light": "Hell und indirekt, keine grelle Sonne",
+   "temperature": "18–24°C, nicht unter 15°C"
+  },
+  "description": "Eine echte Kaffeepflanze im Topf. Nach 3–4 Jahren kann sie mit duftenden weißen Blüten blühen und danach rote Kirschen mit Kaffeebohnen bilden.",
+  "funFacts": [
+   "Nach 3–4 Jahren Pflege blüht und fruchtet sie",
+   "Ihre weißen Blüten duften wie Jasmin",
+   "Jede rote ‚Kirsche‘ enthält zwei Kaffeebohnen",
+   "Die Blätter enthalten etwas Koffein – nichts für Haustiere!",
+   "Sie stammt aus den Bergwäldern Äthiopiens",
+   "Die beliebteste Zwergsorte ist ‚Nana‘"
+  ],
+  "diseases": [
+   "Braune Spitzen = niedrige Luftfeuchtigkeit",
+   "Gelbe Blätter = zu viel Wasser oder ausgelaugte Erde",
+   "Verbrannte Blätter = grelle Sonne",
+   "Keine Blüten = zu jung oder zu dunkel",
+   "Schwarze Triebe = zu kalt"
+  ],
+  "propagation": "Aus Samen (frische Bohnen) oder halbverholzten Stecklingen. Langsames Wachstum."
+ },
+ "stephanotis": {
+  "name": "Kranzschlinge (Stephanotis)",
+  "origin": "Madagaskar",
+  "toxic": "Ja – Milchsaft",
+  "maxHeight": "Kletterpflanze 2–4 m",
+  "care": {
+   "water": "Im Sommer alle 4–6 Tage, im Winter seltener",
+   "light": "Sehr hell, aber keine direkte Sonne",
+   "temperature": "18–24°C, im Winter 12–15°C"
+  },
+  "description": "Eine Kletterpflanze mit intensiv duftenden, wachsartigen weißen Blüten. Dank Duft und Aussehen ein Liebling für Brautsträuße.",
+  "funFacts": [
+   "Auch Madagaskar-Jasmin genannt",
+   "Ihre Blüten werden in vielen Kulturen für Brautsträuße verwendet",
+   "Der Duft ist abends am stärksten – er lockt nachtaktive Bestäuber an",
+   "Unter passenden Bedingungen wird sie Jahrzehnte alt",
+   "Sie braucht einen kühlen Winter, um im Sommer zu blühen",
+   "Ein Symbol für Eheglück"
+  ],
+  "diseases": [
+   "Keine Blüten = kein kühler Winter",
+   "Knospenabwurf = Zugluft oder Stress",
+   "Gelbe Blätter = zu viel Wasser",
+   "Woll- und Schildläuse",
+   "Klebrige Blätter = Blattläuse"
+  ],
+  "propagation": "Halbverholzte Stecklinge im Frühling – Bewurzelung schwierig, braucht Bodenwärme."
+ },
+ "schlumbergera": {
+  "name": "Weihnachtskaktus (Schlumbergera)",
+  "origin": "Brasilien (Regenwälder)",
+  "toxic": "Nein",
+  "maxHeight": "30–40 cm",
+  "care": {
+   "water": "Alle 7–10 Tage, während der Blüte mehr",
+   "light": "Hell und indirekt",
+   "temperature": "18–22°C, zur Blüteneinleitung 10–13°C"
+  },
+  "description": "Trotz des Namens „Kaktus“ ist er eine Pflanze tropischer Wälder, nicht der Wüste. Er blüht im Winter üppig – daher der Name „Weihnachtskaktus“.",
+  "funFacts": [
+   "In der Natur wächst er als Epiphyt auf Bäumen",
+   "Die Blüte hängt von der Tageslänge ab – kürzere Tage lösen Knospen aus",
+   "Er kann 30–50 Jahre alt werden",
+   "Leicht zu vermehren – ein Glied abbrechen, einen Tag liegen lassen, einpflanzen",
+   "Sorten in Rosa, Rot, Weiß, Orange und Violett",
+   "Ungiftig für Haustiere"
+  ],
+  "diseases": [
+   "Knospenabwurf = Standortwechsel oder plötzliche Temperaturschwankungen",
+   "Keine Blüten = kein kühler Herbst mit kurzen Tagen",
+   "Schlaffe Glieder = zu viel Wasser und faulende Wurzeln",
+   "Orange Glieder = zu viel Sonne",
+   "Aufgeplatzte Glieder = übermäßiges Gießen"
+  ],
+  "propagation": "Ganz einfach – 2–3 Glieder abbrechen, einen Tag liegen lassen, in lockeres Substrat stecken. Bewurzelt in 2 Wochen."
+ },
+ "spathiphyllum_picasso": {
+  "name": "Einblatt 'Picasso'",
+  "origin": "Mittel- und Südamerika",
+  "toxic": "Ja – Oxalatkristalle",
+  "maxHeight": "40–60 cm",
+  "care": {
+   "water": "Alle 5–7 Tage, mag Feuchtigkeit",
+   "light": "Halbschatten bis hell indirekt"
+  },
+  "description": "Ein panaschiertes Einblatt – die Blätter sind mit weißen Flecken und Streifen überzogen. Alle Vorzüge des normalen Einblatts plus ein dramatischer Look.",
+  "funFacts": [
+   "Jedes Blatt hat ein einzigartiges weißes Muster – wie ein Gemälde von Picasso",
+   "Es braucht mehr Licht als die normale Form, um das Muster zu behalten",
+   "Wie das normale Einblatt blüht es mit weißen „Segeln“",
+   "Ein toller Wasseranzeiger – es lässt die Blätter hängen, wenn es Durst hat",
+   "Es reinigt die Luft – entfernt Formaldehyd und Benzol",
+   "Weniger wüchsig als das klassische – das Muster kostet Energie"
+  ],
+  "diseases": [
+   "Verblassendes Muster = zu wenig Licht",
+   "Braune Spitzen = hartes Wasser oder niedrige Luftfeuchtigkeit",
+   "Hängende Blätter = Wassermangel (richten sich nach dem Gießen auf)",
+   "Verbrannte Blätter = direkte Sonne",
+   "Keine Blüten = zu jung oder zu dunkel"
+  ],
+  "propagation": "Nur durch Teilung beim Umtopfen."
+ },
+ "anthurium_clarinervium": {
+  "name": "Samt-Anthurie (A. clarinervium)",
+  "origin": "Mexiko (Chiapas)",
+  "toxic": "Ja – Oxalatkristalle",
+  "maxHeight": "40–60 cm",
+  "care": {
+   "water": "Alle 5–7 Tage, weiches Wasser",
+   "light": "Hell und indirekt, nie direkt",
+   "humidity": "70–80% (sehr hoch)",
+   "temperature": "20–26°C, gleichbleibend"
+  },
+  "description": "Eine Blatt-Anthurie statt einer Blüh-Anthurie – herzförmige Blätter mit dramatischen silbernen Adern wie Spitze. Eine angesagte Art unter Sammlern.",
+  "funFacts": [
+   "Die Blätter fühlen sich samtig an",
+   "Junge Blätter sind hellbraun und werden dunkelgrün",
+   "Die Silberadern sind im Schatten deutlicher als in der Sonne",
+   "Eine teure Art – der Preis steigt mit der Größe",
+   "In der Natur wächst sie in Kalksteinwäldern – sie bevorzugt mineralisches Substrat",
+   "Ihre Blüten sind unscheinbar – man zieht sie wegen der Blätter"
+  ],
+  "diseases": [
+   "Braune Spitzen = hartes Wasser oder niedrige Luftfeuchtigkeit",
+   "Verblassende Adern = zu viel Sonne",
+   "Gelbe Blätter = zu viel Wasser",
+   "Schwarze Flecken = Pilz durch zu viel Feuchtigkeit",
+   "Langsames Wachstum ist normal – eine langsam wachsende Art"
+  ],
+  "propagation": "Teilung oder Wurzelstecklinge. Schwierig – nichts für Einsteiger."
+ },
+ "tradescantia_nanouk": {
+  "name": "Tradescantia 'Nanouk'",
+  "origin": "Zuchtform (Niederlande)",
+  "toxic": "Ja – der Saft reizt die Haut",
+  "maxHeight": "Triebe bis 60 cm",
+  "care": {
+   "water": "Alle 5–7 Tage, wenn die Erdoberfläche trocken ist",
+   "light": "Hell, einige Stunden Sonne für die Farbe"
+  },
+  "description": "Eine angesagte Tradescantia mit gestreiften Blättern in Rosa, Grün und Creme. Sehr einfach, schnellwüchsig und ideal für Hängetöpfe.",
+  "funFacts": [
+   "2012 in den Niederlanden gezüchtet",
+   "Je mehr Licht, desto kräftiger die rosa Streifen",
+   "Die Blätter sind fleischig und leicht flaumig",
+   "Beim Umtopfen bricht sie leicht – vorsichtig behandeln",
+   "Sie blüht mit kleinen rosa Blüten",
+   "Der Saft kann die Haut reizen und für Haustiere giftig sein"
+  ],
+  "diseases": [
+   "Verblassende rosa Streifen = zu wenig Licht",
+   "Lange, kahle Triebe = zu wenig Licht",
+   "Gelbe untere Blätter = natürlich oder zu viel Wasser",
+   "Braune Spitzen = zu trockene Luft",
+   "Schlaffe Blätter = Wassermangel"
+  ],
+  "propagation": "Ganz einfach – 10 cm Trieb abschneiden, in Wasser oder Erde stecken, bewurzelt in einer Woche."
+ },
+ "alocasia_polly": {
+  "name": "Alocasia 'Polly' (Afrikanische Maske)",
+  "origin": "Zuchtform (Kreuzung asiatischer Arten)",
+  "toxic": "Ja – Oxalatkristalle",
+  "maxHeight": "40–60 cm",
+  "care": {
+   "water": "Alle 4–6 Tage, Erde leicht feucht",
+   "light": "Hell und indirekt",
+   "temperature": "18–25°C, gleichbleibend"
+  },
+  "description": "Eine kleine, aber eindrucksvolle Alocasia mit dunklen, glänzenden Blättern und weißen Adern. Bekannt für ihr dramatisches Aussehen und ihre anspruchsvolle Art.",
+  "funFacts": [
+   "Eine Kreuzung aus A. longiloba und A. sanderiana",
+   "Ihre Blätter sind fast schwarz mit weißen Adern",
+   "Jedes Blatt hält einige Monate, dann wird es gelb und fällt ab",
+   "Sie bildet eine Knolle – nach Stress kann sie einziehen und daraus neu austreiben",
+   "Sie mag stabile Bedingungen – jede Veränderung ist Stress",
+   "Im Winter kann sie ruhen und alle Blätter verlieren"
+  ],
+  "diseases": [
+   "Gelbe, abfallende Blätter = zu viel Wasser oder natürlicher Zyklus",
+   "Braune Spitzen = niedrige Luftfeuchtigkeit",
+   "Verblasste Adern = zu wenig Licht",
+   "Spinnmilben bei trockener Luft",
+   "Verbrannte Blätter = grelle Sonne"
+  ],
+  "propagation": "Teilung der Knolle oder Tochterknollen. Schwierig, für Erfahrene."
+ },
+ "ficus_audrey": {
+  "name": "Ficus 'Audrey' (Banyan-Feige)",
+  "origin": "Indien (Banyan-Feige)",
+  "toxic": "Ja – reizender Milchsaft",
+  "maxHeight": "1,5–2 m im Topf",
+  "care": {
+   "water": "Alle 7–10 Tage, wenn die Erdoberfläche trocken ist",
+   "light": "Hell und indirekt, sanfte Morgensonne"
+  },
+  "description": "Eine angesagte Alternative zur Geigenfeige – samtige, ovale Blätter mit deutlichen hellen Adern. Weniger launisch als die Geigenfeige, aber genauso dekorativ.",
+  "funFacts": [
+   "In Indien ein heiliger Baum – die Banyan-Feige",
+   "Die Blätter fühlen sich leicht samtig an",
+   "Weniger anspruchsvoll als die Geigenfeige bei ähnlichem Aussehen",
+   "Sie kann zu einem riesigen Baum werden – in der Natur bis 30 m",
+   "Sie bildet Luftwurzeln",
+   "Der Milchsaft kann die Haut reizen"
+  ],
+  "diseases": [
+   "Blattabwurf = zu viel Wasser oder Stress durch Veränderungen",
+   "Braune Ränder = niedrige Luftfeuchtigkeit",
+   "Untere Blätter vergilben und fallen = natürlich oder zu viel Wasser",
+   "Schlaffe Blätter = Wassermangel",
+   "Schild- und Wollläuse"
+  ],
+  "propagation": "Halbverholzte Stecklinge – 15 cm Trieb abschneiden, in Wasser oder direkt in Erde unter Folie bewurzeln."
+ },
+ "sansevieria_cylindrica": {
+  "name": "Zylindrischer Bogenhanf",
+  "origin": "Angola",
+  "toxic": "Ja – für Haustiere",
+  "maxHeight": "60–120 cm",
+  "care": {
+   "water": "Alle 14–21 Tage, die Erde muss trocken sein",
+   "light": "Verträgt alles – von Sonne bis Halbschatten",
+   "humidity": "30–50% (niedrig)"
+  },
+  "description": "Ein Bogenhanf mit runden, steifen Blättern, die wie Speere aussehen. Händler flechten sie oft zu Zöpfen. Extrem robust.",
+  "funFacts": [
+   "Die Blätter sind im Querschnitt rund, nicht flach wie beim normalen Bogenhanf",
+   "Oft als „Zopf“ verkauft – mit verflochtenen Blättern",
+   "Er speichert Wasser in den Blättern wie ein Sukkulent",
+   "Er produziert nachts Sauerstoff – ideal fürs Schlafzimmer",
+   "Eine der langlebigsten Zimmerpflanzen",
+   "Er kann mit wenig Pflege Jahrzehnte alt werden"
+  ],
+  "diseases": [
+   "Runzlige Blätter = Wassermangel (selten)",
+   "Schlaffe, braune Blätter = zu viel Wasser und Fäulnis",
+   "Schwarze Flecken am Fuß = zu viel Feuchtigkeit",
+   "Langsames Wachstum = normal",
+   "Keine neuen Triebe = zu wenig Licht"
+  ],
+  "propagation": "Über Ableger – einen jungen Trieb mit Wurzelstück abtrennen. Blattstecklinge bewurzeln auch, aber langsam."
+ },
+ "asparagus_setaceus": {
+  "name": "Zierspargel (Asparagus setaceus)",
+  "origin": "Südafrika",
+  "toxic": "Ja – die Beeren, für Haustiere",
+  "maxHeight": "60–100 cm",
+  "care": {
+   "water": "Alle 4–5 Tage, Erde leicht feucht",
+   "light": "Hell und indirekt, leichter Halbschatten"
+  },
+  "description": "Kein echter Farn, obwohl er so aussieht – zarte, spitzenartige Zweige wie grüner Nebel. Ein beliebtes Beigrün in Blumensträußen.",
+  "funFacts": [
+   "Trotz des farnartigen Aussehens eine Blütenpflanze aus der Familie der Spargelgewächse",
+   "Verwandt mit dem essbaren Gemüsespargel",
+   "Nach unscheinbaren weißen Blüten erscheinen rote Beeren",
+   "In Sträußen als Beigrün im Hintergrund",
+   "Die Triebe sind sehr zart – leicht zu beschädigen",
+   "An den Stängeln sitzen kleine Dornen – beim Hantieren aufpassen"
+  ],
+  "diseases": [
+   "Gelbe Triebe = zu viel Wasser oder zu kalt",
+   "Braune Spitzen = niedrige Luftfeuchtigkeit",
+   "Kahle Mitte = zu wenig Licht",
+   "Spinnmilben bei trockener Luft",
+   "Kleine Blattläuse an jungen Trieben"
+  ],
+  "propagation": "Beim Umtopfen teilen oder aus Samen ziehen (langsam)."
+ },
+ "philodendron_brasil": {
+  "name": "Philodendron 'Brasil'",
+  "origin": "Zuchtform (Sorte)",
+  "toxic": "Ja – Oxalatkristalle",
+  "maxHeight": "Triebe bis 3 m",
+  "care": {
+   "water": "Alle 5–7 Tage",
+   "light": "Halbschatten bis hell indirekt"
+  },
+  "description": "Ein panaschierter herzblättriger Philodendron – die Blätter haben limettengrüne und cremegelbe Streifen. Genauso pflegeleicht wie die normale Form, doppelt so hübsch.",
+  "funFacts": [
+   "Benannt nach den Farben der brasilianischen Flagge – Grün und Gelb",
+   "Jedes Blatt ist anders – die Panaschierung ist zufällig",
+   "Manchmal bildet er ein ganz grünes oder ganz gelbes Blatt",
+   "Je heller (ohne grelle Sonne), desto mehr Gelb",
+   "Sehr leicht zu vermehren – wie die Efeutute",
+   "Er kann an einer Stütze wachsen (die Blätter werden größer) oder hängen"
+  ],
+  "diseases": [
+   "Weniger Panaschierung = zu wenig Licht",
+   "Ganz gelbe Blätter ohne Grün haben zu wenig Chlorophyll und können absterben",
+   "Gelbe Blätter = zu viel Wasser",
+   "Braune Spitzen = niedrige Luftfeuchtigkeit",
+   "Langsames Wachstum im Winter"
+  ],
+  "propagation": "Stängelstecklinge – wie beim normalen Philodendron. Einen Trieb mit viel Panaschierung wählen."
+ },
+ "begonia_maculata_alba": {
+  "name": "Engelsflügel-Begonie (B. maculata 'Alba')",
+  "origin": "Brasilien",
+  "toxic": "Ja – Oxalatkristalle",
+  "maxHeight": "60–120 cm",
+  "care": {
+   "water": "Alle 4–6 Tage, wenn die Erdoberfläche trocken ist",
+   "light": "Hell und indirekt"
+  },
+  "description": "Eine spektakuläre Begonie mit gepunkteten Blättern – dunkelgrün mit weißen Punkten und roter Unterseite. Sie blüht in Kaskaden weißer oder rosa Blüten.",
+  "funFacts": [
+   "Sie inspirierte Polka-Dot-Designs",
+   "Die Blattunterseite ist dunkelrot – ein Kontrast zur grünen Oberseite",
+   "Sie bildet Kaskaden weißer Blüten, die wie Korallen hängen",
+   "Ihre Stängel sind bambusartig – daher „Engelsflügel-Begonie“",
+   "Leicht aus Stecklingen zu vermehren",
+   "In der Natur wächst sie in Brasiliens Wäldern im feuchten Unterholz"
+  ],
+  "diseases": [
+   "Verblassende Punkte = zu viel Licht",
+   "Keine Blüten = zu dunkel oder Nährstoffmangel",
+   "Echter Mehltau – eine häufige Begonienkrankheit",
+   "Gelbe Blätter = zu viel Wasser",
+   "Blattabwurf = plötzlich veränderte Bedingungen"
+  ],
+  "propagation": "Stängelstecklinge mit 1 Knoten – bewurzeln in Wasser in 2 Wochen."
+ },
+ "musa_dwarf": {
+  "name": "Zwergbanane",
+  "origin": "Südostasien",
+  "toxic": "Nein",
+  "maxHeight": "1–1,5 m im Topf",
+  "care": {
+   "water": "Alle 3–5 Tage, mag Feuchtigkeit",
+   "light": "Sehr hell, sanfte Sonne",
+   "temperature": "20–28°C, nie unter 15°C"
+  },
+  "description": "Eine Zwergbanane, die man zu Hause ziehen kann. Nach 2–3 Jahren kann sie echte Bananen bilden – klein, aber essbar.",
+  "funFacts": [
+   "Die Banane ist kein Baum, sondern eine Staude – der „Stamm“ besteht aus eingerollten Blättern",
+   "Nach dem Fruchten stirbt die Pflanze ab, hinterlässt aber Kindel",
+   "Die Zwergsorte ‚Super Dwarf Cavendish‘ wird höchstens 1,5 m hoch",
+   "Ihre Blätter können einen Meter lang werden",
+   "Sie braucht sehr viel Wasser und Licht",
+   "Sie wächst schnell – in der Saison kann sie jede Woche ein neues Blatt bilden"
+  ],
+  "diseases": [
+   "Eingerissene Blätter = natürlich, das ist bei Bananen so",
+   "Braune Spitzen = niedrige Luftfeuchtigkeit",
+   "Gelbe Blätter = zu viel Wasser oder Nährstoffmangel",
+   "Keine Blüte = zu jung oder zu kalt",
+   "Spinnmilben bei trockener Luft"
+  ],
+  "propagation": "Über Kindel, die aus dem Rhizom wachsen. Aus Samen sehr schwierig – die meisten Sorten sind steril."
+ },
+ "rosmarinus": {
+  "name": "Rosmarin",
+  "origin": "Mittelmeerraum",
+  "toxic": "Nein",
+  "maxHeight": "60–150 cm",
+  "care": {
+   "water": "Alle 5–7 Tage, die Erde muss zwischen den Wassergaben abtrocknen",
+   "light": "Volle Sonne, mind. 6 Stunden am Tag",
+   "humidity": "40–50% (niedrig)",
+   "temperature": "15–25°C im Sommer, im Winter 5–10°C"
+  },
+  "description": "Ein klassisches Kraut der Mittelmeerküche. Die aromatischen, nadelartigen Blätter duften nach Kiefer und Zitrus. Er braucht Sonne und gute Drainage.",
+  "funFacts": [
+   "Botanisch gehört er zur Gattung Salbei (seit 2017)",
+   "In vielen Kulturen ein Symbol der Erinnerung",
+   "Er kann Jahrzehnte alt werden und verholzen",
+   "Er blüht mit blauen Blüten, die Bienen lieben",
+   "Rosmarinöl wirkt entzündungshemmend",
+   "Im alten Rom pflanzte man ihn als Glücksbringer ans Haus"
+  ],
+  "diseases": [
+   "Verholzt, wenige grüne Nadeln = im Frühling zurückschneiden",
+   "Schimmel am Fuß = zu feucht, schlechte Drainage",
+   "Blasse Nadeln = Eisenmangel",
+   "Mehltau bei heißer, feuchter Luft",
+   "Langsames Wachstum im Winter – normal"
+  ],
+  "propagation": "Halbverholzte Stecklinge im Sommer – 10 cm Trieb abschneiden, untere Nadeln entfernen, in Sand stecken."
+ },
+ "stromanthe_triostar": {
+  "name": "Stromanthe 'Triostar'",
+  "origin": "Brasilien",
+  "toxic": "Nein",
+  "maxHeight": "60–80 cm",
+  "care": {
+   "water": "Alle 4–6 Tage, Erde leicht feucht",
+   "light": "Hell und indirekt",
+   "temperature": "18–25°C, gleichbleibend"
+  },
+  "description": "Ein spektakuläres Mitglied der Pfeilwurzgewächse – die Blätter sind grün, cremefarben und rosa, manche sogar gestreift. Abends faltet sie die Blätter wie betende Hände.",
+  "funFacts": [
+   "Die Blattunterseite ist leuchtend rosa",
+   "Abends stellt sie die Blätter auf – eine „Gebetspflanze“",
+   "Jedes Blatt hat ein einzigartiges Panaschierungsmuster",
+   "Ungiftig für Haustiere",
+   "Sie braucht weiches Wasser – abgestanden oder Regenwasser",
+   "Empfindlich gegenüber Veränderungen – sie mag keinen Umzug"
+  ],
+  "diseases": [
+   "Braune Spitzen = hartes Wasser oder niedrige Luftfeuchtigkeit",
+   "Verbrannte weiße Partien = zu helles Licht",
+   "Eingerollte Blätter = Wassermangel oder Zugluft",
+   "Verblassendes Rosa = zu wenig Licht",
+   "Spinnmilben bei trockener Luft"
+  ],
+  "propagation": "Nur durch Teilung beim Umtopfen – Stängelstecklinge bewurzeln nicht."
+ },
+ "kalanchoe_thyrsiflora": {
+  "name": "Wüstenkohl (Kalanchoe thyrsiflora)",
+  "origin": "Südafrika",
+  "toxic": "Ja – für Haustiere",
+  "maxHeight": "30–60 cm",
+  "care": {
+   "water": "Alle 10–14 Tage, die Erde muss abtrocknen",
+   "light": "Volle Sonne – je mehr, desto röter die Ränder",
+   "temperature": "18–25°C, im Winter 10–15°C"
+  },
+  "description": "Ein Sukkulent mit flachen, runden Blättern, die wie ein Stapel Pfannkuchen aussehen. Die Blattränder färben sich in der Sonne rot.",
+  "funFacts": [
+   "Im Englischen „Paddle plant“ oder „Flapjacks“ genannt",
+   "Ihre Blätter sind rund und flach, wie zu einer Säule gestapelt",
+   "Je mehr Sonne, desto kräftiger die roten Ränder",
+   "Nach vielen Jahren blüht sie gelb und stirbt dann ab – hinterlässt aber Kindel",
+   "Der mehlige Belag auf den Blättern ist ein natürlicher Schutz",
+   "Giftig für Katzen und Hunde – Vorsicht!"
+  ],
+  "diseases": [
+   "Streckung und Formverlust = zu wenig Licht",
+   "Gelbe Blätter = zu viel Wasser",
+   "Kein Rot = zu wenig Sonne",
+   "Runzlige Blätter = Wassermangel (selten)",
+   "Mehltau bei zu feuchter Luft"
+  ],
+  "propagation": "Aus einem Blatt – ein unteres Blatt abbrechen, 2 Tage antrocknen lassen, auf die Erde legen. Oder über Kindel."
+ }
+}

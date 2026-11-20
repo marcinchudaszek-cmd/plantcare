@@ -8,7 +8,7 @@ import {
   waterState,
   effectiveInterval
 } from '../lib/plantUtils.js';
-import plantsDB from '../data/plants.json';
+import { usePlantsDB } from '../lib/plantsI18n.js';
 import PlantImage from '../components/PlantImage.jsx';
 import PhotoUploader from '../components/PhotoUploader.jsx';
 import GrowthTimeline from '../components/GrowthTimeline.jsx';
@@ -20,6 +20,7 @@ export default function PlantDetailPage() {
   const t = useT();
   const { id } = useParams();
   const navigate = useNavigate();
+  const plantsDB = usePlantsDB();
 
   const plant = useAppStore((s) => s.plants.find((p) => p.id === id));
   const waterPlant = useAppStore((s) => s.waterPlant);

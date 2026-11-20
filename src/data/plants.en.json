@@ -1,0 +1,2882 @@
+{
+ "monstera": {
+  "name": "Monstera (Swiss cheese plant)",
+  "origin": "Mexico, Panama",
+  "toxic": "Yes – oxalate crystals",
+  "maxHeight": "2–3 m indoors",
+  "care": {
+   "water": "Every 7–10 days, once the top 2 cm of soil is dry",
+   "light": "Bright indirect light, avoid direct sun"
+  },
+  "description": "The queen of houseplants! The characteristic holes in its leaves (fenestration) help it withstand tropical storms and let more light through to the lower layers.",
+  "funFacts": [
+   "In the wild it climbs trees up to 20 m high",
+   "The fruit, once ripe (it takes a year!), tastes like a mix of banana and pineapple",
+   "Leaf holes (fenestration) only appear after 2–3 years",
+   "Aerial roots can be guided into the soil – they take up water and nutrients",
+   "The name “deliciosa” comes from its edible fruit",
+   "In rainforests it grows in the shade, climbing towards the light"
+  ],
+  "diseases": [
+   "Yellow leaves = overwatering or a lack of minerals",
+   "Brown spots = sunburn or calcium deficiency",
+   "Black spots = fungus from too much water – water less",
+   "No holes in the leaves = too little light or the plant is too young",
+   "Curling leaves = too dry or too cold"
+  ],
+  "propagation": "Stem cuttings with at least 1 node and an aerial root. Root in water or perlite – roots appear after 2–4 weeks."
+ },
+ "pothos": {
+  "name": "Pothos (Devil's ivy)",
+  "origin": "French Polynesia",
+  "toxic": "Yes – irritant",
+  "maxHeight": "10 m as a climber",
+  "care": {
+   "water": "Every 7–14 days, very tolerant of drying out",
+   "light": "From deep shade to bright – exceptionally tolerant"
+  },
+  "description": "Practically indestructible! It grows even in dark offices and tolerates weeks without water. It filters formaldehyde and benzene from the air.",
+  "funFacts": [
+   "NASA placed pothos in its TOP 10 air-purifying plants",
+   "In the wild its leaves grow up to 1 metre wide!",
+   "It can grow in plain water for many years",
+   "It rarely flowers indoors – in the wild it flowers after 10+ years",
+   "It absorbs carbon monoxide – a natural air detox",
+   "There are 15+ coloured varieties: Golden, Marble Queen, Neon, Manjula…"
+  ],
+  "diseases": [
+   "Yellow leaves = overwatering (the most common mistake!)",
+   "Pale or all-green leaves on a variegated form = too little light",
+   "Brown tips = dry air or salts in the water – use boiled water",
+   "Rotting stem = cold + excess moisture"
+  ],
+  "propagation": "The easiest plant to propagate! Cut a stem with 2–3 nodes and put it in water. Roots appear after 1–2 weeks."
+ },
+ "sansevieria": {
+  "name": "Snake plant (Sansevieria)",
+  "origin": "West Africa",
+  "toxic": "Mildly toxic to pets",
+  "maxHeight": "1.2 m",
+  "care": {
+   "water": "Every 2–4 weeks, in winter once every 2 months",
+   "light": "From deep shade to full sun"
+  },
+  "description": "An indestructible icon! The only popular plant that produces oxygen AT NIGHT (CAM photosynthesis). Ideal for the bedroom. Survives months of neglect.",
+  "funFacts": [
+   "The only popular houseplant that releases oxygen at night (CAM cycle)",
+   "In Africa its leaf fibres were used to make bowstrings, ropes and fabric",
+   "It can survive 2–3 months completely without water",
+   "NASA recommends it as an air filter for space stations",
+   "The Moonshine variety has almost silver leaves – a rare look",
+   "It can grow in one pot for decades without repotting"
+  ],
+  "diseases": [
+   "Soft, rotting leaves = overwatering – the main killer! Water less",
+   "Wrinkled leaves = it needs water (rare)",
+   "Brown tips = sunburn or cold",
+   "Pale stripes fading = too little light on variegated forms"
+  ],
+  "propagation": "Division (fastest) or leaf cuttings: cut a leaf into 5 cm pieces, let them dry for 2 days and plant in sand. Roots appear after 1–2 months."
+ },
+ "ficus-lyrata": {
+  "name": "Fiddle-leaf fig",
+  "origin": "West Africa",
+  "toxic": "Yes – irritant sap",
+  "maxHeight": "3 m indoors",
+  "care": {
+   "water": "Every 7–10 days, once the top 2–3 cm is dry",
+   "light": "Bright indirect, AVOID harsh sun and draughts",
+   "temperature": "18–25°C, kept constant!"
+  },
+  "description": "The star of Instagram and interior magazines! Huge violin-shaped leaves. Very fussy – it dislikes being moved and may drop leaves because of a draught.",
+  "funFacts": [
+   "In the wild it grows to 15 m and strangles other trees (strangler fig)",
+   "A single leaf can be 45 cm long and 30 cm wide",
+   "After being moved it may drop half its leaves from stress – that is normal",
+   "It needs a fixed spot – mark the direction of the light and don't turn the pot",
+   "Around 1900 it was a symbol of luxury in European drawing rooms"
+  ],
+  "diseases": [
+   "Brown spots with a yellow halo = bacterial infection from irregular watering",
+   "Dropping leaves = stress (new spot, temperature, draught) – don't panic",
+   "Yellow lower leaves = natural ageing or overwatering",
+   "Red specks = oedema from too much water",
+   "White dots = scale insects or whitefly – wipe with alcohol"
+  ],
+  "propagation": "Tip cuttings (15 cm) or air layering. Rooting hormone is essential. Harder than other figs."
+ },
+ "spathiphyllum": {
+  "name": "Peace lily",
+  "origin": "Central America and Colombia",
+  "toxic": "Yes – oxalate crystals",
+  "maxHeight": "1 m",
+  "care": {
+   "water": "Every 5–7 days, likes evenly moist soil",
+   "light": "From deep shade to bright indirect"
+  },
+  "description": "The peace lily! It droops dramatically when thirsty but bounces back immediately after watering. It can flower all year round. A great air filter.",
+  "funFacts": [
+   "One of NASA's TOP 10 air-purifying plants",
+   "The white “flower” is a modified leaf (spathe); the real flowers are tiny",
+   "It can flower all year round in good light",
+   "One of the best natural filters for ammonia and acetone",
+   "Flat drooping is an alarm signal – it recovers within 30 minutes of watering",
+   "In the wild it flowers only once a year – indoors it can bloom more often"
+  ],
+  "diseases": [
+   "Drooping = it needs water – water at once, it recovers in 30 min",
+   "Yellow leaves = overwatering or an old leaf (natural)",
+   "Brown tips = chlorine/fluoride in the water – use boiled water",
+   "No flowers = too little light or too low a temperature"
+  ],
+  "propagation": "Divide clumps when repotting. Each part must have roots and at least 2–3 leaves. Best done in spring."
+ },
+ "philodendron": {
+  "name": "Heartleaf philodendron",
+  "origin": "Central and South America",
+  "toxic": "Yes – oxalate crystals",
+  "maxHeight": "6 m as a climber",
+  "care": {
+   "water": "Every 7–10 days, once the top is dry",
+   "light": "Medium to bright indirect"
+  },
+  "description": "A classic climber with charming heart-shaped leaves. It grows fast, propagates easily and is exceptionally forgiving. Very similar to pothos, but with matte leaves.",
+  "funFacts": [
+   "The genus Philodendron has over 450 described species!",
+   "The name means “tree lover” – in the wild it climbs trees",
+   "The Brasil variety has yellow-green streaks like the Brazilian flag",
+   "Aerial roots help it climb and take moisture from the air",
+   "New leaves emerge rolled up and brownish-pink – that is normal!"
+  ],
+  "diseases": [
+   "Yellow leaves = overwatering",
+   "Small leaves = too little light or fertiliser",
+   "Brown tips = dry air – mist more often",
+   "Long bare stretches of stem between leaves = too little light"
+  ],
+  "propagation": "Very easy! Cuttings with a node in water or soil. Roots appear after 2–3 weeks."
+ },
+ "pilea": {
+  "name": "Chinese money plant (Pilea)",
+  "origin": "Southern China",
+  "toxic": "No – safe",
+  "maxHeight": "40 cm",
+  "care": {
+   "water": "Every 7–10 days, once the top is dry",
+   "light": "Bright indirect, turn it weekly"
+  },
+  "description": "The friendship plant! It produces lots of “babies” (offsets) you can give to friends. Round leaves on long stalks look like coins.",
+  "funFacts": [
+   "For decades it was passed on only as cuttings – almost impossible to buy",
+   "It was only formally described by botanists in 1984!",
+   "Also called the “UFO plant” because of its leaf shape",
+   "Turn it every week – it quickly leans towards the light",
+   "It produces dozens of “babies” a year – the perfect gift",
+   "It comes from Yunnan province in China, where it grows in damp forests"
+  ],
+  "diseases": [
+   "Curling leaves = too much sun or it needs water",
+   "Yellow lower leaves = natural ageing or overwatering",
+   "Dropping leaves = draught or cold",
+   "Pale leaves = too little light"
+  ],
+  "propagation": "It makes babies on its own! Cut off offsets when they are 5–7 cm tall with their own roots. Stems can also be rooted in water."
+ },
+ "ficus-elastica": {
+  "name": "Rubber plant",
+  "origin": "India, Indonesia",
+  "toxic": "Yes – irritant milky sap",
+  "maxHeight": "3 m indoors",
+  "care": {
+   "water": "Every 7–10 days",
+   "light": "Bright indirect to medium"
+  },
+  "description": "A small tree with spectacular glossy leaves. Once the main source of natural rubber. The Burgundy variety has almost black leaves – very stylish.",
+  "funFacts": [
+   "In the 19th century it was a major source of rubber – hence the name “rubber plant”",
+   "In the wild it grows up to 30 m tall!",
+   "In India its roots are trained into living root bridges",
+   "The Tineke variety has pink and cream variegation",
+   "The milky sap from a cut is strongly irritating – wear gloves"
+  ],
+  "diseases": [
+   "Dropping leaves = stress (cold, draught, new spot)",
+   "Yellow leaves = overwatering",
+   "Brown spots = sunburn",
+   "Dusty leaves = wipe regularly with a damp cloth (dust blocks photosynthesis)"
+  ],
+  "propagation": "Tip cuttings or air layering. Milky sap – wear gloves! Rooting hormone speeds things up."
+ },
+ "dracaena": {
+  "name": "Dragon tree (Dracaena marginata)",
+  "origin": "Madagascar",
+  "toxic": "Yes – for dogs and cats!",
+  "maxHeight": "3 m indoors",
+  "care": {
+   "water": "Every 10–14 days, likes to dry out",
+   "light": "Medium to bright"
+  },
+  "description": "An elegant slender tree with red-edged leaves. Very tolerant of neglect and poor light. Cleans toxins from the air.",
+  "funFacts": [
+   "The name “dracaena” means “female dragon” – its resin is red (dragon's blood)",
+   "NASA recommends it for removing formaldehyde indoors",
+   "It can live over 100 years – a true heirloom",
+   "The Tricolor variety has pink, cream and green stripes",
+   "Its stem can form natural spirals and arches – very decorative"
+  ],
+  "diseases": [
+   "Brown tips = chlorine/fluoride in the water – use rainwater",
+   "Yellow lower leaves = natural ageing (1–2 leaves a month is normal)",
+   "Soft stem = overwatering and root rot – rescue by repotting",
+   "Pale leaves = too little light on coloured varieties"
+  ],
+  "propagation": "Tip cuttings or stem sections (5–10 cm). They root in water. A cut trunk will sprout new shoots from the side."
+ },
+ "zamioculcas": {
+  "name": "ZZ plant (Zamioculcas)",
+  "origin": "East Africa",
+  "toxic": "Yes – oxalate crystals",
+  "maxHeight": "1 m",
+  "care": {
+   "water": "Every 2–4 weeks or even less often!",
+   "light": "From deep shade to bright"
+  },
+  "description": "ZZ plant – the king of neglect! It survives months without water thanks to its thick rhizomes. Its glossy leaves reflect light like plastic – but they're real!",
+  "funFacts": [
+   "It was only introduced to cultivation in 1996!",
+   "It can survive 4–6 months without a single drop of water",
+   "It grows even in windowless offices – though very slowly",
+   "The Raven variety has almost black leaves – striking on Instagram",
+   "Its rhizomes store water like potatoes – the secret of its survival",
+   "A single leaf rooted in soil can give a new plant after 6–12 months"
+  ],
+  "diseases": [
+   "Yellow leaves = OVERWATERING (the main and almost only killer!)",
+   "Wrinkled stems = it needs water (rare, but real)",
+   "Brown spots = sunburn",
+   "No growth in winter = normal dormancy"
+  ],
+  "propagation": "Divide the rhizomes when repotting. Leaf cuttings work, but very slowly (6–12 months). Best divided in spring."
+ },
+ "orchid": {
+  "name": "Moth orchid (Phalaenopsis)",
+  "origin": "Southeast Asia",
+  "toxic": "No – safe",
+  "maxHeight": "60 cm",
+  "care": {
+   "water": "Every 7–10 days by soaking for 15 min",
+   "light": "Bright indirect, no direct sun",
+   "temperature": "18–28°C, cool nights trigger flowering"
+  },
+  "description": "The queen of flowering houseplants! It blooms for 3–6 months. It needs bright but not direct light. The secret to reblooming is cool nights (15°C).",
+  "funFacts": [
+   "It blooms for 3–6 months in a row – one of the longest-flowering plants",
+   "Cool nights (15°C) for 2 weeks trigger a new flower spike",
+   "In the wild it grows on trees (an epiphyte) – its roots need air",
+   "Clear pots are standard – the roots photosynthesise!",
+   "The same spike can rebloom 2–3 times if you don't cut it off",
+   "There are over 70 Phalaenopsis species and thousands of hybrids"
+  ],
+  "diseases": [
+   "Yellowing lower leaves = natural (1–2 leaves a year is normal)",
+   "Rotting roots (brown, soft) = too much water",
+   "Shrivelled, wrinkled leaves = too little water or diseased roots",
+   "No flowers = nights too warm – move it to a cooler windowsill",
+   "Sticky leaves = mealybugs or aphids – wipe with alcohol"
+  ],
+  "propagation": "Keikis (baby plants on the flower spike) – cut them off once they have their own roots of 3+ cm. Dividing mature plants is also possible."
+ },
+ "anthurium": {
+  "name": "Flamingo flower (Anthurium)",
+  "origin": "Colombia, Ecuador",
+  "toxic": "Yes – oxalate crystals",
+  "maxHeight": "60 cm",
+  "care": {
+   "water": "Every 7–10 days, likes evenly moist soil",
+   "light": "Bright indirect – no sun!"
+  },
+  "description": "The glossy, lacquered “flowers” are actually coloured leaves (spathes). In good conditions it blooms almost non-stop all year round.",
+  "funFacts": [
+   "The red “flower” is a spathe – a modified leaf, not a petal",
+   "The real flower is the small spike (spadix) in the middle",
+   "It blooms almost non-stop – one of the longest “flowering” plants",
+   "Available in red, pink, white, purple, black and green",
+   "In the wild it grows as an epiphyte on rainforest trees"
+  ],
+  "diseases": [
+   "Yellow leaves = overwatering or too much direct light",
+   "Brown tips = dry air or fluoride in the water",
+   "No flowers = too little light or too low a temperature",
+   "Black spots = fungus from excess moisture on the leaves"
+  ],
+  "propagation": "Division or side offsets. Each part must have roots. Root in sphagnum moss."
+ },
+ "kalanchoe": {
+  "name": "Kalanchoe (Flaming Katy)",
+  "origin": "Madagascar",
+  "toxic": "Yes – toxic to pets",
+  "maxHeight": "30 cm",
+  "care": {
+   "water": "Every 10–14 days, a typical succulent",
+   "light": "Bright, a few hours of direct sun"
+  },
+  "description": "A popular flowering succulent! Small flowers in red, pink, yellow, orange or white last 4–6 weeks. Very easy to care for.",
+  "funFacts": [
+   "You can force it to rebloom with 6 weeks of darkness (12 h a day)",
+   "It comes from Madagascar – an island with a unique flora",
+   "Short days (photoperiodism) trigger flower buds",
+   "Available in over 100 colours and varieties!",
+   "Its leaves store water – it shrugs off weeks of neglect"
+  ],
+  "diseases": [
+   "Rotting leaves = overwatering – the most common mistake",
+   "No flowers = too little light or no dark period",
+   "Grey spots on leaves = powdery mildew – improve ventilation",
+   "Long, pale shoots = too little sun (etiolation)"
+  ],
+  "propagation": "Leaf or stem cuttings. Let them dry for 2 days and plant in dry sand. Roots appear after 3–4 weeks."
+ },
+ "begonia": {
+  "name": "Rex begonia",
+  "origin": "India, China",
+  "toxic": "Yes – rhizomes especially toxic",
+  "maxHeight": "50 cm",
+  "care": {
+   "water": "Every 7–10 days, keep water off the leaves",
+   "light": "Bright indirect, no direct sun"
+  },
+  "description": "The most beautiful begonia! Grown for its spectacular metallic leaves – silver, pink, burgundy and purple with fanciful patterns.",
+  "funFacts": [
+   "Grown mainly for its leaves, not its flowers",
+   "The Escargot variety has leaves coiled into a spiral like a snail shell",
+   "The metallic sheen comes from special light-reflecting skin cells",
+   "There are several thousand (!) begonia varieties and hybrids",
+   "It comes from tropical areas where it grows in the shade of rocky cliffs"
+  ],
+  "diseases": [
+   "Powdery mildew (white fuzz) = poor air circulation + excess moisture",
+   "Stem rot = standing water + cold",
+   "Brown spots = water on the leaves or sunburn",
+   "Dropping leaves = draught or a sudden change in temperature"
+  ],
+  "propagation": "Leaf cuttings – cut a leaf, lay it on damp perlite and press the pieces into the substrate. Roots appear after 4–6 weeks."
+ },
+ "african-violet": {
+  "name": "African violet",
+  "origin": "Tanzania and Kenya",
+  "toxic": "No – safe",
+  "maxHeight": "15 cm",
+  "care": {
+   "water": "Water from below (saucer) every 7 days",
+   "light": "Bright, but no direct sun"
+  },
+  "description": "A miniature legend! It flowers practically all year round. The key to success is watering from below – water on the leaves leaves spots. Ideal for a windowsill.",
+  "funFacts": [
+   "Discovered in 1892 by Baron von Saint Paul – hence its Latin name",
+   "Watering from below (a saucer) is the best method – the leaves dislike water",
+   "It blooms almost non-stop all year in the right light",
+   "Cold water leaves white spots on the leaves – use lukewarm water",
+   "Miniature varieties grow in pots just 5 cm wide! There are 16,000+ varieties"
+  ],
+  "diseases": [
+   "White spots on leaves = cold water or water poured onto the leaves",
+   "Rotting crown = standing water + cold",
+   "No flowers = too little light or too large a pot",
+   "Greyish-brown leaves = powdery mildew – improve air circulation"
+  ],
+  "propagation": "Leaf cuttings – cut a healthy leaf with its stalk and put it in water or perlite. Small plantlets appear after 4–6 weeks."
+ },
+ "hibiscus": {
+  "name": "Chinese hibiscus",
+  "origin": "East Asia",
+  "toxic": "No – the flowers are edible!",
+  "maxHeight": "2 m indoors",
+  "care": {
+   "water": "Every 5–7 days in season, less in winter",
+   "light": "Full sun for at least 4–6 h a day"
+  },
+  "description": "A tropical shrub with huge flowers up to 20 cm across! Each flower lasts only a day, but the plant produces lots of them. The flowers are edible.",
+  "funFacts": [
+   "Each flower lives only 24 hours – but new ones open every day",
+   "The flowers are edible – used in teas, salads and liqueurs",
+   "A symbol of Malaysia and Hawaii, where it blooms outdoors all year",
+   "It needs 4–6 hours of direct sun a day – loves a south-facing window",
+   "Reduce water and temperature in winter – the key to spring flowering"
+  ],
+  "diseases": [
+   "Bud drop = a sudden change of spot or too dry",
+   "Yellow leaves = iron or magnesium deficiency, or overwatering",
+   "Aphids on new shoots = common – spray with water or soapy water",
+   "No flowers = too little sun or too cold"
+  ],
+  "propagation": "Semi-ripe cuttings (15 cm) with rooting hormone. Roots appear after 4–6 weeks. It can also be grown from seed."
+ },
+ "hoya": {
+  "name": "Wax plant (Hoya)",
+  "origin": "East Asia and Australia",
+  "toxic": "No – safe",
+  "maxHeight": "4 m as a climber",
+  "care": {
+   "water": "Every 10–14 days, a typical trailing succulent",
+   "light": "Bright indirect, a little direct morning sun"
+  },
+  "description": "The waxy leaves gave this plant the name “wax plant”. Star-shaped flowers gathered in round clusters give off an intense sweet scent – especially at night.",
+  "funFacts": [
+   "The flowers are most fragrant at night – an adaptation to night-time pollinators",
+   "Don't cut off the flower stalks after blooming – they will flower again in the same place!",
+   "There are 200–500 Hoya species with differently shaped leaves",
+   "It likes to be “pot-bound” – too big a pot delays flowering",
+   "The Kerrii variety has heart-shaped leaves – a popular symbol of love"
+  ],
+  "diseases": [
+   "No flowers = too little light or too big a pot",
+   "Yellow leaves = overwatering or too few nutrients",
+   "Wrinkled leaves = it needs water (rare)",
+   "Mealybugs = white fluff in the leaf axils – wipe with alcohol"
+  ],
+  "propagation": "Stem cuttings with 2–3 nodes in water or sphagnum. Roots appear after 3–5 weeks."
+ },
+ "begonia-maculata": {
+  "name": "Polka dot begonia",
+  "origin": "Brazil",
+  "toxic": "Yes – toxic to pets",
+  "maxHeight": "1.5 m",
+  "care": {
+   "water": "Every 7 days, once the top 2 cm is dry",
+   "light": "Bright indirect"
+  },
+  "description": "The most Instagrammable plant of recent years! Dark green leaves with silver dots like trout skin, and burgundy undersides. It produces pretty white flowers.",
+  "funFacts": [
+   "Discovered in Brazil in 1820 by the Italian botanist Giuseppe Raddi",
+   "The silver dots are a waxy skin finish that reflects excess light",
+   "It blooms with small white flowers – a striking contrast with the dark leaves",
+   "One of the most fashionable houseplants on social media",
+   "It grows fast – it can put on 30 cm in one growing season"
+  ],
+  "diseases": [
+   "Powdery mildew (white fuzz on leaves) = humid, still air",
+   "Dropping leaves = cold or draught",
+   "Stem rot = too wet at the base",
+   "Brown edges = dry air or fluoride in the water"
+  ],
+  "propagation": "Stem cuttings of 10–15 cm in water. Very easy – roots appear after 1–2 weeks."
+ },
+ "echeveria": {
+  "name": "Echeveria",
+  "origin": "Mexico",
+  "toxic": "No – safe",
+  "maxHeight": "15 cm",
+  "care": {
+   "water": "Every 14–21 days, let it dry out completely between waterings",
+   "light": "Full sun for 4–6 h a day"
+  },
+  "description": "A juicy rosette that looks like a flower! The leaves are covered with a natural waxy bloom (farina) that protects them from the sun. Dozens of colours and shapes.",
+  "funFacts": [
+   "The wax on the leaves (farina) protects against sun and water loss – don't rub it off!",
+   "In season it sends up long stalks with small bell-shaped flowers",
+   "Water and sun stress bring out red and purple tints in the leaves",
+   "There are over 150 species and hundreds of echeveria hybrids",
+   "Ideal for succulent arrangements and terrariums"
+  ],
+  "diseases": [
+   "Stretched, pale shoots = too little sun (etiolation)",
+   "Rotting lower leaves = too much water or poor drainage",
+   "Wrinkled leaves = it needs water (rare)",
+   "Loss of the waxy bloom = damaged skin – don't touch, it grows back"
+  ],
+  "propagation": "Leaf cuttings (twist off a whole leaf cleanly) or offsets. Lay the leaf on dry sand, don't bury it – the roots will appear on their own."
+ },
+ "aloe": {
+  "name": "Aloe vera",
+  "origin": "Arabian Peninsula",
+  "toxic": "Yes – the latex under the skin",
+  "maxHeight": "60 cm",
+  "care": {
+   "water": "Every 2–3 weeks, less often in winter",
+   "light": "Bright to full sun"
+  },
+  "description": "A first-aid kit in a pot! The gel from its fleshy leaves soothes burns, bites and skin irritation. One of the most widely used medicinal plants in the world.",
+  "funFacts": [
+   "Known for over 3,500 years – mentioned in Egyptian papyri from 1552 BC",
+   "Cleopatra reputedly used aloe gel as a daily face cream",
+   "The leaf gel contains 200+ biologically active substances",
+   "NASA included it among plants that improve air quality",
+   "The latex (yellow liquid under the skin) is toxic – only the clear gel is safe"
+  ],
+  "diseases": [
+   "Brown, soft leaves = overwatering – unpot it and dry the roots",
+   "Red or brown leaves = too much sun or cold",
+   "Wrinkled leaves = it needs water or the roots are diseased",
+   "White spots = sunburn after sudden exposure to the sun"
+  ],
+  "propagation": "Cut off the offsets (pups) once they are 7–10 cm. Let them dry for 2 days and plant in sand or perlite."
+ },
+ "crassula": {
+  "name": "Jade plant (Money tree)",
+  "origin": "South Africa",
+  "toxic": "Yes – toxic to pets",
+  "maxHeight": "1.5 m (slowly!)",
+  "care": {
+   "water": "Every 14–21 days, tolerates drying out",
+   "light": "Bright to full sun"
+  },
+  "description": "A symbol of luck and prosperity in feng shui and Asian cultures. It grows very slowly but lives for decades. It can be shaped into a miniature bonsai.",
+  "funFacts": [
+   "In feng shui it brings wealth – hence the name “money tree”",
+   "It can live for decades – even 70–100 years!",
+   "After a few years it starts to bloom with small white stars in winter",
+   "The trunk turns woody with age and looks like a miniature tree",
+   "Cold stress (8–10°C) in autumn triggers exceptional pink flowering"
+  ],
+  "diseases": [
+   "Soft, drooping leaves = overwatering (the main cause of death!)",
+   "Wrinkled leaves = too dry",
+   "Brown spots = sunburn after sudden exposure",
+   "White crystals on the leaves = natural salt excretion – normal"
+  ],
+  "propagation": "Leaf or stem cuttings. Let them dry for 2–3 days and plant in dry sand. Very easy."
+ },
+ "haworthia": {
+  "name": "Zebra plant (Haworthia)",
+  "origin": "South Africa",
+  "toxic": "No – safe",
+  "maxHeight": "15 cm",
+  "care": {
+   "water": "Every 14–21 days",
+   "light": "Bright indirect, tolerates shade (an exception among succulents)"
+  },
+  "description": "An exception among succulents – it doesn't need full sun! The white stripes are rows of raised bumps. Ideal for homes with less sunny windows.",
+  "funFacts": [
+   "One of the few succulents that tolerate partial shade",
+   "The white bumps on the leaves are tough tissue that reflects excess light",
+   "It forms characteristic “clusters” – offset rosettes around the mother plant",
+   "In the wild it grows buried in the soil – only the tips show above ground",
+   "Prized in Japan as a collector's plant – rare varieties cost a fortune"
+  ],
+  "diseases": [
+   "Rotting roots = overwatering",
+   "Red leaves = too much direct sun",
+   "Pale and stretched = too little light",
+   "Shrinking = time to water"
+  ],
+  "propagation": "Cut off offset rosettes with their roots. Let them dry for 2 days and plant."
+ },
+ "lithops": {
+  "name": "Living stones (Lithops)",
+  "origin": "South Africa",
+  "toxic": "No – safe",
+  "maxHeight": "3 cm",
+  "care": {
+   "water": "ONLY in summer and autumn; NO water in winter and spring!",
+   "light": "Full sun for 4–6 h a day"
+  },
+  "description": "Perfect camouflage! They look like pebbles – an evolutionary trick to avoid plant-eaters. The strangest houseplant in the world.",
+  "funFacts": [
+   "They evolved to look like pebbles – in the wild they are almost invisible among the gravel",
+   "Watering in the wrong season = death! No water in winter and spring (while they shed)",
+   "Every year they shed – the old leaves split and a new pair emerges",
+   "The flowers are bigger than the plant itself and smell lovely",
+   "They live for decades if not overwatered",
+   "Translucent windows on top let light into the plant"
+  ],
+  "diseases": [
+   "Splitting or rotting = OVERWATERING in the wrong season (the most common mistake!)",
+   "No flowers = too little sun or the wrong watering cycle",
+   "Pale colour = too little sun"
+  ],
+  "propagation": "From seed (slow) or by dividing the clump while it sheds."
+ },
+ "string-of-pearls": {
+  "name": "String of pearls",
+  "origin": "Namibia, South Africa",
+  "toxic": "Yes – toxic",
+  "maxHeight": "90 cm (trailing)",
+  "care": {
+   "water": "Every 14–21 days, likes to dry out",
+   "light": "Bright with a few hours of sun"
+  },
+  "description": "A string of shiny round leaves like beads! Each bead is a reduced leaf that stores water. Stunning trailing from a shelf or hanging basket.",
+  "funFacts": [
+   "The round leaves minimise water loss – an evolutionary marvel",
+   "In the wild it trails over rocky cliffs in South Africa and Namibia",
+   "It blooms with small white flowers that smell of cinnamon or vanilla!",
+   "The translucent stripe on each bead is a “light window” that lets light in",
+   "Cut stem tips can be rooted in water – a fun project for children"
+  ],
+  "diseases": [
+   "Deflating, shrivelling pearls = too little water or diseased roots",
+   "Soft, rotting pearls = overwatering",
+   "Pale, yellow pearls = too little sun",
+   "Pearls falling off = a normal process; new ones will grow"
+  ],
+  "propagation": "Lay a stem on moist soil and wait – the nodes root by themselves."
+ },
+ "string-of-hearts": {
+  "name": "String of hearts",
+  "origin": "South Africa",
+  "toxic": "No – safe",
+  "maxHeight": "2 m (trailing)",
+  "care": {
+   "water": "Every 14–21 days, keep it on the dry side like a succulent",
+   "light": "Bright indirect to medium"
+  },
+  "description": "Delicate heart-shaped leaves hanging on thread-like stems! Perfect for trailing from shelves. A very fashionable and photogenic plant.",
+  "funFacts": [
+   "One of the most popular “boho” houseplants of recent years",
+   "The heart-shaped leaves have purple undersides and green patterns on top",
+   "It forms small tubers (bulbils) on its stems – water storage!",
+   "It blooms with odd tube-shaped flowers that lure flies to pollinate them",
+   "The Silver Glory variety has silvery-grey leaves"
+  ],
+  "diseases": [
+   "Yellow leaves = overwatering – rare, but deadly",
+   "Wrinkled leaves = time to water",
+   "Pale leaves = too little light",
+   "Dropping leaves = cold or stress"
+  ],
+  "propagation": "Lay a stem on moist soil – it roots at the nodes. Or root cuttings in water."
+ },
+ "aeonium": {
+  "name": "Black rose aeonium",
+  "origin": "Canary Islands",
+  "toxic": "No – safe",
+  "maxHeight": "1 m",
+  "care": {
+   "water": "Every 14–21 days, dry in summer",
+   "light": "Full sun – the more, the darker the leaves"
+  },
+  "description": "A dramatic rosette of dark purple to black leaves. The more sun, the darker the colour! In summer it goes dormant and may drop leaves.",
+  "funFacts": [
+   "The more sun, the blacker the leaves – it's UV protection (anthocyanins)",
+   "It goes dormant in summer (aestivation) – the opposite of other succulents",
+   "In the wild it grows on sunny volcanic cliffs in the Canary Islands",
+   "It may bloom with a tall yellow flower head – after which that rosette dies",
+   "Monocarpic – each rosette flowers once in its life"
+  ],
+  "diseases": [
+   "Leaves fading and turning green = too little sun",
+   "Leaf drop in summer = normal summer dormancy",
+   "Rot = overwatering in winter"
+  ],
+  "propagation": "Rosette cuttings – cut off, let dry for 2 days and plant in sand."
+ },
+ "calathea": {
+  "name": "Calathea",
+  "origin": "Brazil, South America",
+  "toxic": "No – safe",
+  "maxHeight": "80 cm",
+  "care": {
+   "water": "Every 5–7 days, likes evenly moist soil",
+   "light": "Partial shade to bright indirect – no sun!",
+   "humidity": "60–80% – ESSENTIAL"
+  },
+  "description": "The diva of houseplants! Painted leaves with pink stripes and purple undersides. It folds its leaves up at night (nyctinasty). It needs high humidity.",
+  "funFacts": [
+   "It folds its leaves at night as if in prayer – which is why it's called a “prayer plant”",
+   "The leaves move thanks to water-filled motor cells (the pulvinus)",
+   "The purple undersides help capture light reflected from the forest floor",
+   "Very sensitive to chlorine and fluoride in tap water – use rainwater!",
+   "It rustles softly as it moves its leaves – you can hear it at night"
+  ],
+  "diseases": [
+   "Brown edges = dry air (the most common problem indoors)",
+   "Yellowing leaves = overwatering or hard tap water",
+   "Fading patterns = too much direct sun",
+   "Curled leaves = too cold or too dry"
+  ],
+  "propagation": "Divide the clump in spring. Each part must have roots and at least 2–3 leaves."
+ },
+ "maranta": {
+  "name": "Prayer plant (Maranta)",
+  "origin": "Brazil",
+  "toxic": "No – safe",
+  "maxHeight": "30 cm",
+  "care": {
+   "water": "Every 5–7 days, keep it lightly moist",
+   "light": "Partial shade to bright indirect"
+  },
+  "description": "The praying plant! It folds its leaves upright at night. Ornamental leaf patterns in green, burgundy and white. A cousin of calathea, but easier to care for.",
+  "funFacts": [
+   "It folds its leaves upright at night – hence the name “prayer plant”",
+   "The leaf patterns are as unique as fingerprints – no two are the same",
+   "Easier to care for than calathea – more forgiving of mistakes",
+   "It blooms with tiny white flowers, but is grown mainly for its leaves",
+   "The Erythroneura variety has scarlet veins"
+  ],
+  "diseases": [
+   "Brown edges = dry air or fluoride in the water",
+   "Pale leaves = too much sun",
+   "Yellowing leaves = overwatering",
+   "Spider mites = webbing under the leaves from dry air – mist regularly"
+  ],
+  "propagation": "Divide the clump when repotting, or root stem cuttings in water."
+ },
+ "alocasia": {
+  "name": "Elephant ear (Alocasia)",
+  "origin": "Southeast Asia",
+  "toxic": "Yes – oxalate crystals",
+  "maxHeight": "1.5 m",
+  "care": {
+   "water": "Every 7–10 days, likes moisture but not soggy soil",
+   "light": "Bright indirect, AVOID direct sun",
+   "humidity": "60–80% – essential"
+  },
+  "description": "Dramatic arrow-shaped leaves with contrasting white veins on a dark background. It needs high humidity, but the visual effect is worth the effort.",
+  "funFacts": [
+   "Leaves can reach 60 cm long in the right conditions",
+   "New leaves emerge rolled up like parchment and unfurl within days",
+   "Under stress it goes dormant and loses its leaves – that's survival, not death",
+   "In the wild it grows in the shade of tropical forests along Asian rivers",
+   "The Polly variety is compact – ideal for small flats"
+  ],
+  "diseases": [
+   "Yellowing leaves = overwatering or too low a temperature",
+   "Brown edges = dry air or magnesium deficiency",
+   "Losing all its leaves = stress or winter – leave it alone, it will grow back!",
+   "Spider mites = dry air – mist and raise the humidity"
+  ],
+  "propagation": "Divide the bulbs (offsets) when repotting. Each bulb with roots will give a new plant."
+ },
+ "dieffenbachia": {
+  "name": "Dumb cane (Dieffenbachia)",
+  "origin": "Tropical America",
+  "toxic": "Highly toxic – can cause loss of speech!",
+  "maxHeight": "1.5 m",
+  "care": {
+   "water": "Every 7–10 days",
+   "light": "Medium to bright indirect"
+  },
+  "description": "Large leaves with yellow-green patterns make it a striking office plant. WARNING: its sap contains calcium oxalate crystals that can paralyse the muscles of the mouth!",
+  "funFacts": [
+   "Historically used as a punishment – people were forced to chew it and lost their speech (hence “dumb cane”)",
+   "It contains oxalate crystals that cause pain and swelling in the mouth",
+   "One of the best office plants – it tolerates poor light",
+   "It grows fast – several cm a week in good conditions",
+   "The stem can be cut at any height – it will send out new shoots"
+  ],
+  "diseases": [
+   "Yellow lower leaves = natural ageing or overwatering",
+   "Pale leaves = too little light",
+   "Brown spots = sunburn or cold",
+   "Stem rot = soil too wet"
+  ],
+  "propagation": "Stem cuttings or rooting pieces of the cane. Wear gloves!"
+ },
+ "strelitzia": {
+  "name": "Bird of paradise (Strelitzia)",
+  "origin": "South Africa",
+  "toxic": "Yes – for pets",
+  "maxHeight": "1.5 m indoors",
+  "care": {
+   "water": "Every 7–10 days in season, less in winter",
+   "light": "Full sun for at least 4–6 h"
+  },
+  "description": "An exotic flower that looks like the head of a bird of paradise! It takes years to flower indoors (5–7 years), but the sight is amazing.",
+  "funFacts": [
+   "The flower looks like the head of an exotic bird with an orange crest and blue beak",
+   "Indoors it flowers after 5–7 years – it takes patience, but it's worth it",
+   "A symbol of Cape Town and South Africa",
+   "In Africa the flowers are pollinated by sunbirds that perch on the “saddle”",
+   "Its roots tolerate light drought – it dislikes soggy soil"
+  ],
+  "diseases": [
+   "Brown leaves = too much direct sun in a heatwave",
+   "No flowers = too little sun, too small a pot or the plant is too young",
+   "Yellowing leaves = overwatering or a nutrient deficiency",
+   "Split leaves = normal – in the wild the wind splits them so they offer less resistance"
+  ],
+  "propagation": "Division or seed (it takes months to germinate). Division is fastest but damages the roots."
+ },
+ "caladium": {
+  "name": "Caladium (Angel wings)",
+  "origin": "South America",
+  "toxic": "Yes – oxalate crystals",
+  "maxHeight": "70 cm",
+  "care": {
+   "water": "Every 5–7 days, keep moist",
+   "light": "Bright indirect, no sun",
+   "temperature": "20–30°C – they DISLIKE cold!"
+  },
+  "description": "Painted leaves in pinks, whites and greens! A seasonal plant – it goes dormant in winter and drops its leaves. The tuber survives and regrows in spring.",
+  "funFacts": [
+   "The leaves are so thin that they glow in the sun like stained glass",
+   "In winter it loses all its leaves and rests – that's not death, it's the life cycle",
+   "There are over 1,000 varieties with different patterns and colours",
+   "It comes from the banks of the Amazon, where it grows in the shade of trees",
+   "In Vietnam and tropical Asia it's planted outdoors all year round"
+  ],
+  "diseases": [
+   "Wilting and dropping leaves in autumn = natural dormancy – don't throw it away!",
+   "Rotting tubers = too wet during dormancy or too cold",
+   "Brown edges = dry air or sun",
+   "No leaves appearing = tubers too cold – move to a warm spot"
+  ],
+  "propagation": "Divide the tubers before the season. Each tuber with an “eye” will give a new plant."
+ },
+ "spider-plant": {
+  "name": "Spider plant",
+  "origin": "Tropical and Southern Africa",
+  "toxic": "No – safe",
+  "maxHeight": "60 cm",
+  "care": {
+   "water": "Every 7–10 days, tolerates neglect",
+   "light": "From partial shade to bright"
+  },
+  "description": "An unspoilt classic! Long, arching leaves and “babies” dangling on long runners. NASA TOP 10 – removes formaldehyde, carbon monoxide and benzene from the air.",
+  "funFacts": [
+   "One of NASA's TOP 10 air-purifying plants",
+   "It produces baby plants (spiderettes) on long runners – perfect for giving away",
+   "Thick, fleshy roots store water – it tolerates weeks without watering",
+   "It can be kept in cultivation for over 100 years – a true heirloom",
+   "The plain green form (no stripe) is even easier than the variegated one"
+  ],
+  "diseases": [
+   "Brown tips = fluoride in the water or dry air",
+   "Pale leaves = too little light",
+   "Rotting roots = overwatering in cold conditions",
+   "No babies = pot too big or too little light"
+  ],
+  "propagation": "Cut off the baby plants once they have a few roots and plant them in a new pot."
+ },
+ "tradescantia": {
+  "name": "Wandering dude (Tradescantia)",
+  "origin": "Mexico, Central America",
+  "toxic": "Mildly irritant",
+  "maxHeight": "2 m as a trailer",
+  "care": {
+   "water": "Every 7–10 days",
+   "light": "Bright to very bright – the colours fade in shade"
+  },
+  "description": "The zebra of plants! Purple-silver stripes on the leaves and deep purple undersides. Grows fast and propagates easily. The more light, the more intense the colours.",
+  "funFacts": [
+   "The more light, the more intense the purple of the leaves",
+   "It grows literally like crazy – several cm a week in season",
+   "The leaves are eaten in some cultures (Mexico)",
+   "The sap can cause mild skin irritation in sensitive people",
+   "One of the easiest plants to root – any sprig in water will do"
+  ],
+  "diseases": [
+   "Loss of purple colour = too little light",
+   "Rotting stems = overwatering",
+   "Brown leaves = frost or sunburn"
+  ],
+  "propagation": "Cuttings in water – roots within a week. One of the easiest!"
+ },
+ "peperomia": {
+  "name": "Peperomia (Radiator plant)",
+  "origin": "Tropical America",
+  "toxic": "No – safe",
+  "maxHeight": "30 cm",
+  "care": {
+   "water": "Every 10–14 days, tolerates drying out",
+   "light": "Bright indirect to medium"
+  },
+  "description": "The perfect miniature! Glossy, thick leaves store water. There are 1,000+ peperomia species with all kinds of leaf shapes – from round to lance-shaped.",
+  "funFacts": [
+   "The genus Peperomia has over 1,000 described species – one of the largest!",
+   "Thick leaves store water like a succulent – it tolerates neglect",
+   "It blooms with long, spiky flower spikes – an exotic look",
+   "Ideal for allergy sufferers – it produces little pollen",
+   "The Watermelon variety has leaves like watermelon rind – one of the prettiest patterns"
+  ],
+  "diseases": [
+   "Soft, watery leaves = overwatering",
+   "Wrinkled leaves = too dry or too warm",
+   "Yellow leaves = overwatering or too large a pot",
+   "Brown spots = sunburn or bacteria"
+  ],
+  "propagation": "Leaf or stem cuttings. Very easy in water or damp perlite."
+ },
+ "ivy": {
+  "name": "English ivy",
+  "origin": "Europe, Western Asia",
+  "toxic": "Yes – moderately toxic",
+  "maxHeight": "Unlimited (climber)",
+  "care": {
+   "water": "Every 7–10 days",
+   "light": "From shade to bright",
+   "temperature": "10–21°C – it DISLIKES warmth!"
+  },
+  "description": "The classic European climber! It can trail, climb or sprawl. Surprisingly, it grows better in cooler rooms. One of the best air filters.",
+  "funFacts": [
+   "NASA TOP 10 – one of the most effective filters of benzene and formaldehyde",
+   "In the wild it can live 400–500 years and grow a trunk as thick as a tree!",
+   "It loves COOL conditions – a warm flat is stressful for it; ideal for an unheated room",
+   "Clinging rootlets on the stem stick to walls without any support",
+   "Used since antiquity as a symbol of eternity, in victory wreaths"
+  ],
+  "diseases": [
+   "Spider mites = dry, warm air – move it somewhere cooler",
+   "Yellow leaves = too warm or overwatering",
+   "Greyish spots = powdery mildew from poor air circulation",
+   "Dropping leaves = warmth + dry air, or overwatering"
+  ],
+  "propagation": "Cuttings in water – roots within 2–3 weeks. One of the easiest."
+ },
+ "aglaonema": {
+  "name": "Chinese evergreen (Aglaonema)",
+  "origin": "Southeast Asia",
+  "toxic": "Yes – oxalate crystals",
+  "maxHeight": "1 m",
+  "care": {
+   "water": "Every 7–10 days",
+   "light": "Tolerates deep shade – but the colours fade"
+  },
+  "description": "A survival champion! It tolerates deep shade, poor water and forgotten waterings. Coloured varieties (red, pink, silver) look as if they were painted.",
+  "funFacts": [
+   "It can grow with barely 10% of natural daylight",
+   "In Asia it's believed to bring luck and prosperity",
+   "Red and pink varieties need more light to keep their colours",
+   "One of NASA's TOP 10 air-purifying plants",
+   "It copes with office air conditioning – hence “queen of office plants”"
+  ],
+  "diseases": [
+   "Yellow leaves = overwatering or draught",
+   "Faded colours = too little light (especially in coloured varieties)",
+   "Brown tips = dry air or fluoride in the water",
+   "Spider mites or mealybugs = check the undersides of the leaves"
+  ],
+  "propagation": "Divide when repotting or root stem cuttings in water."
+ },
+ "monstera-adansonii": {
+  "name": "Monkey mask monstera (M. adansonii)",
+  "origin": "Central and South America",
+  "toxic": "Yes",
+  "maxHeight": "4 m as a climber",
+  "care": {
+   "water": "Every 7–10 days",
+   "light": "Bright indirect"
+  },
+  "description": "The smaller cousin of Monstera deliciosa, with leaves full of oval holes from a young age. It grows fast and looks lovely trailing or climbing a moss pole.",
+  "funFacts": [
+   "Holes appear from the very first leaves – unlike M. deliciosa",
+   "It can grow up to 30 cm a month in good conditions!",
+   "In the wild it climbs trees in the tropical forests of the Americas",
+   "It roots in no time – even in a jar on the windowsill",
+   "There is also Monstera obliqua – a rare species with extremely large holes"
+  ],
+  "diseases": [
+   "Yellow leaves = overwatering",
+   "No holes = too little light – move it closer to the window",
+   "Brown edges = dry air",
+   "Small leaves = it needs a support to climb"
+  ],
+  "propagation": "Cuttings with a node in water or sphagnum. Roots appear after 2–3 weeks."
+ },
+ "palm-areca": {
+  "name": "Areca palm (Butterfly palm)",
+  "origin": "Madagascar",
+  "toxic": "No – safe",
+  "maxHeight": "2.5 m indoors",
+  "care": {
+   "water": "Every 5–7 days, likes slightly moist soil",
+   "light": "Bright indirect"
+  },
+  "description": "The most popular indoor palm! Elegant, feathery fronds bring a tropical feel. A natural humidifier – it transpires up to 1 litre of water a day!",
+  "funFacts": [
+   "It transpires up to 1 litre of water a day – a natural air humidifier",
+   "NASA TOP 10 – the best palm for purifying the air",
+   "In Madagascar (where it comes from) it is endangered!",
+   "Yellowish stems are a trait of the species, not a disease – don't worry",
+   "In the wild it grows in dense tropical forests, in light shade"
+  ],
+  "diseases": [
+   "Brown tips = dry air or mineral salts – repot or flush the soil",
+   "Yellow leaves = overwatering or iron deficiency",
+   "Spider mites = dry air – mist daily",
+   "Brown spots = sunburn or cold"
+  ],
+  "propagation": "Division (if it has several stems) or seed (germinates in 2–3 months)."
+ },
+ "boston-fern": {
+  "name": "Boston fern",
+  "origin": "Tropical Americas",
+  "toxic": "No – safe",
+  "maxHeight": "1 m",
+  "care": {
+   "water": "Every 5–7 days, keep moist",
+   "light": "Bright indirect to partial shade",
+   "humidity": "60–80% – essential!"
+  },
+  "description": "The classic lush trailing fern. Perfect for the bathroom! It needs high humidity and regular watering, but rewards you with a lush, green look.",
+  "funFacts": [
+   "One of the most effective air-purifying plants",
+   "Perfect for the bathroom – the naturally humid environment suits it",
+   "It can trail over a metre from a basket – striking as a hanging plant",
+   "In the wild it grows in humid tropical forests all over the world",
+   "Easy to multiply by division – after a few years it forms huge clumps"
+  ],
+  "diseases": [
+   "Brown, drying fronds = dry air or overwatering",
+   "Dropping fronds = draught or a sudden change in conditions",
+   "Yellowing fronds = overwatering or water that's too hard",
+   "Scale insects = brown bumps on the fronds – wipe with alcohol"
+  ],
+  "propagation": "Division or rooting the runners (stolons) – a bit like strawberries."
+ },
+ "venus": {
+  "name": "Venus flytrap",
+  "origin": "North and South Carolina, USA",
+  "toxic": "No",
+  "maxHeight": "30 cm",
+  "care": {
+   "water": "ONLY rainwater or distilled water, keep constantly wet",
+   "light": "Full sun for at least 4–6 h",
+   "temperature": "5–30°C (it NEEDS winter dormancy!)"
+  },
+  "description": "The legend of carnivorous plants! Its traps snap shut in a fraction of a second after the trigger hairs are touched twice. In the wild it grows in only one place on Earth.",
+  "funFacts": [
+   "It grows naturally ONLY within 160 km of Wilmington in the Carolinas – nowhere else!",
+   "A trap closes in 0.1–0.3 seconds – one of the fastest movements in the plant kingdom",
+   "Each trap lasts only ~10 catches, then turns black and falls off",
+   "It NEEDS a winter rest at about 5°C for 3–4 months – otherwise it dies within a few years",
+   "Use ONLY rainwater or distilled water – the minerals in tap water are deadly",
+   "In the wild it grows in nitrogen-poor soil – insects are its fertiliser"
+  ],
+  "diseases": [
+   "Blackening traps = normal (each lasts ~10 catches) or overwatering",
+   "Traps not moving = the plant is saving energy – don't trigger them for no reason",
+   "The whole plant turns black = mineral-rich water or no winter dormancy",
+   "No growth = it needs a winter rest or more sun"
+  ],
+  "propagation": "Division of the rhizome or leaf cuttings (slow, 3–6 months). Division is easiest."
+ },
+ "bonsai": {
+  "name": "Ficus bonsai",
+  "origin": "East Asia (the art), Asia-Pacific (the plant)",
+  "toxic": "Yes – irritant sap",
+  "maxHeight": "Controlled by pruning",
+  "care": {
+   "water": "Every 5–7 days, evenly",
+   "light": "Bright, at least a few hours of sun"
+  },
+  "description": "A miniature tree – living art! It needs regular pruning, wiring and repotting. Ficus microcarpa is one of the easiest species for bonsai.",
+  "funFacts": [
+   "The art of bonsai comes from China (penjing) and reached Japan in the 8th century",
+   "Record bonsai are over 800 years old – handed down through generations",
+   "Root pruning when repotting is the key to keeping it small",
+   "Wiring the branches lets you create any shape – like sculpting living material",
+   "In Japan bonsai symbolises harmony, patience and transience"
+  ],
+  "diseases": [
+   "Dropping leaves = stress (new spot, draught, cold)",
+   "Yellow leaves = overwatering or too large a pot",
+   "Curled leaves = drying out or pests",
+   "Rot = poor drainage or too large a pot"
+  ],
+  "propagation": "Semi-ripe cuttings with rooting hormone, or air layering."
+ },
+ "tillandsia": {
+  "name": "Air plant (Tillandsia)",
+  "origin": "Central and South America",
+  "toxic": "No – safe",
+  "maxHeight": "10 cm",
+  "care": {
+   "water": "Soak in water for 20 min once a week",
+   "light": "Bright indirect"
+  },
+  "description": "A plant without soil! It takes up water and nutrients through its leaves (trichomes). Place it on a stone, driftwood or a shell – anywhere. The most free-spirited houseplant.",
+  "funFacts": [
+   "It doesn't need soil – its roots only anchor it, they don't take up water",
+   "It absorbs water and nutrients through special scales on its leaves (trichomes)",
+   "Before flowering it turns bright red or pink – a signal for hummingbirds",
+   "After flowering the mother plant dies, but leaves offsets behind",
+   "You can glue it to wood, stone or glass – complete creative freedom"
+  ],
+  "diseases": [
+   "Brown, dry leaves = too little water or air too dry",
+   "Rotting centre = too much water or not drying out after soaking",
+   "Curled leaves = too dry"
+  ],
+  "propagation": "Separate the offsets (pups) once they reach half the size of the mother plant."
+ },
+ "coffee": {
+  "name": "Arabian coffee plant",
+  "origin": "Ethiopia",
+  "toxic": "Seeds and leaves mildly toxic to pets",
+  "maxHeight": "1.5 m indoors",
+  "care": {
+   "water": "Every 7–10 days",
+   "light": "Bright indirect – no direct sun!"
+  },
+  "description": "Grow your own coffee! After a few years it blooms with white, jasmine-scented flowers, then produces red cherries with coffee beans inside.",
+  "funFacts": [
+   "It comes from Ethiopia – legend tells of Kaldi's goats dancing after eating the berries",
+   "It blooms with small white flowers with an intense jasmine scent",
+   "The red cherries take 9 months to ripen – each contains 2 coffee beans",
+   "One houseplant may produce a handful of coffee a year – but the satisfaction is priceless",
+   "Arabica is the finer species – grown on 60% of the world's plantations"
+  ],
+  "diseases": [
+   "Yellowing leaves = too much sun or iron deficiency",
+   "Dropping leaves = stress, draught or too dry",
+   "Brown spots = sunburn",
+   "No growth = winter rest – normal"
+  ],
+  "propagation": "From seed (fresh beans taken from the cherry) or stem cuttings. Seeds take 1–2 months to germinate."
+ },
+ "mimosa": {
+  "name": "Sensitive plant (Mimosa pudica)",
+  "origin": "South and Central America",
+  "toxic": "Mildly toxic",
+  "maxHeight": "60 cm",
+  "care": {
+   "water": "Every 5–7 days, keep lightly moist",
+   "light": "Full sun or very bright"
+  },
+  "description": "The touchy plant! It folds its leaflets the moment you touch it and opens them again after a few minutes. It's an evolutionary way to deter plant-eaters.",
+  "funFacts": [
+   "The touch signal travels through the plant at about 4 cm per second – faster than you'd think",
+   "It opens its leaves in the morning and folds them by itself in the evening (nyctinasty)",
+   "Studies show it can “learn” – after many harmless touches it stops reacting",
+   "Charles Darwin studied it as one of the first plants showing sense-like behaviour",
+   "It blooms with pink pompoms that look like tiny hedgehogs"
+  ],
+  "diseases": [
+   "Leaves not folding when touched = the plant is saving energy or is unwell",
+   "Yellow leaves = overwatering or lack of nutrients",
+   "Dropping leaves = cold or stress"
+  ],
+  "propagation": "From seed. Soak overnight in warm water and sow in a warm spot."
+ },
+ "oxalis": {
+  "name": "Purple shamrock (Oxalis)",
+  "origin": "Brazil",
+  "toxic": "Mildly toxic – oxalates",
+  "maxHeight": "25 cm",
+  "care": {
+   "water": "Every 7–10 days",
+   "light": "Bright to medium"
+  },
+  "description": "Triangular purple leaflets fold and open in a daily rhythm. It goes dormant in summer and regrows from its bulbs. One of the prettiest easy plants.",
+  "funFacts": [
+   "It folds its leaves at night and on cloudy days – it has its own body clock",
+   "Delicate pink flowers contrast with the dark purple leaves",
+   "It comes from Brazil, where it grows in shady places",
+   "It goes dormant in summer – don't throw it away when it loses its leaves, it will regrow!",
+   "The purple colour comes from anthocyanins – the same as in blueberries"
+  ],
+  "diseases": [
+   "Losing leaves in summer = normal summer dormancy",
+   "Stretched shoots = too little light",
+   "Rotting bulbs = too wet during dormancy"
+  ],
+  "propagation": "Divide the bulbs. Each bulb will give a new plant within a few weeks."
+ },
+ "citrus": {
+  "name": "Meyer lemon",
+  "origin": "China",
+  "toxic": "No (the fruit is edible!)",
+  "maxHeight": "1.5 m indoors",
+  "care": {
+   "water": "Every 5–7 days, evenly",
+   "light": "Full sun – at least 8 h a day or a grow light",
+   "temperature": "18–30°C, overwinter at 10–15°C"
+  },
+  "description": "A lemon in a pot! The Meyer variety is sweeter and hardier than an ordinary lemon. It flowers fragrantly and bears edible fruit after 1–3 years.",
+  "funFacts": [
+   "The Meyer lemon is a cross between a lemon and a mandarin – which is why it's sweeter",
+   "In good conditions it flowers and fruits all year round",
+   "The flowers have an intense, exotic scent – notes of orange and jasmine",
+   "In China it has been grown for centuries in pots by entrances as a symbol of luck",
+   "One of the best fruits to grow at home – a real harvest in a flat"
+  ],
+  "diseases": [
+   "Dropping leaves = stress (new spot, cold, draught)",
+   "Yellowing leaves = iron deficiency or water too hard",
+   "No fruit = too little sun or no pollination (shake the branches)",
+   "Aphids on new shoots = common – a jet of water or soapy water"
+  ],
+  "propagation": "Semi-ripe cuttings or grafting onto a rootstock."
+ },
+ "venus-flytrapper": {
+  "name": "Sundew (Drosera)",
+  "origin": "South Africa",
+  "toxic": "No – safe",
+  "maxHeight": "20 cm",
+  "care": {
+   "water": "ONLY rainwater or distilled water; keep it in a tray that's always wet",
+   "light": "Full sun for at least 4 h"
+  },
+  "description": "Carnivorous elegance! Red tentacles covered with sticky dew catch insects. One of the easiest carnivorous plants – perfect for beginners.",
+  "funFacts": [
+   "The red droplets aren't dew – they're sticky mucilage that lures insects",
+   "The leaf slowly curls around its prey over several days",
+   "One of the easiest carnivorous plants – a good start in carnivores",
+   "It tolerates low temperatures – you can put it on the balcony for the summer",
+   "Use ONLY rainwater – the minerals in tap water kill it within months"
+  ],
+  "diseases": [
+   "Blackening leaves = normal ageing or minerals in the water",
+   "No sticky droplets = too little sun or air too dry",
+   "Rot = the wrong substrate (use peat and perlite)"
+  ],
+  "propagation": "Leaf cuttings on a peat–perlite mix. Seeds."
+ },
+ "pothos-neon": {
+  "name": "Neon pothos",
+  "origin": "Cultivar (species from Polynesia)",
+  "toxic": "Yes – irritant",
+  "maxHeight": "5 m as a climber",
+  "care": {
+   "water": "Every 7–14 days",
+   "light": "Bright – the more light, the more neon the colour!"
+  },
+  "description": "A fluorescent pothos variety with intensely lime, almost glowing leaves. The colour intensifies in strong light.",
+  "funFacts": [
+   "The more bright light, the more intense the neon colour of the leaves",
+   "In shade the leaves turn greener and lose their neon tone – it needs more light than ordinary pothos",
+   "It's a sport of the same species as Golden pothos – the difference is in its pigments",
+   "One of the trendiest Instagram plants – it looks like it's from another planet"
+  ],
+  "diseases": [
+   "Fading colour = too little light – move it to a brighter window",
+   "Yellow leaves = overwatering",
+   "Brown tips = dry air"
+  ],
+  "propagation": "Just like Golden pothos – cuttings with nodes in water."
+ },
+ "rhipsalis": {
+  "name": "Mistletoe cactus (Rhipsalis)",
+  "origin": "Tropical Americas (the only cactus also found wild in Africa!)",
+  "toxic": "No – safe",
+  "maxHeight": "1 m (trailing)",
+  "care": {
+   "water": "Every 7–14 days, keep lightly moist",
+   "light": "Bright indirect to partial shade – NOT full sun (it's a forest cactus!)"
+  },
+  "description": "A forest cactus without spines! Its trailing, thread-like stems look like underwater coral. The only member of the cactus family that grows wild outside the Americas.",
+  "funFacts": [
+   "The only cactus that grows wild outside the Americas – also found in Africa and Sri Lanka",
+   "A forest cactus – unlike other cacti it does NOT need full sun, it likes shade!",
+   "It blooms with tiny white flowers followed by pearly berries",
+   "The berries have sticky juice – birds eat them and spread the seeds",
+   "Perfect as a hanging plant – its stems trail a metre or more"
+  ],
+  "diseases": [
+   "Red or orange stems = sunburn or water stress",
+   "Segments falling off = stress (too dry or too wet)",
+   "Shrivelling stems = too dry"
+  ],
+  "propagation": "Stem cuttings – cut a segment, let it dry for a day and insert it into moist peat."
+ },
+ "fittonia": {
+  "name": "Nerve plant (Fittonia)",
+  "origin": "South America (Peru)",
+  "toxic": "No – safe",
+  "maxHeight": "20 cm",
+  "care": {
+   "water": "Every 5–7 days, keep moist – NOT wet",
+   "light": "Partial shade to bright indirect"
+  },
+  "description": "A network of veins on miniature leaves – green leaves with white, pink or red veins. It droops dramatically without water but bounces back after watering.",
+  "funFacts": [
+   "The leaf veins can be white, pink or red – a natural work of art",
+   "It droops dramatically when thirsty – even more of a drama queen than the peace lily!",
+   "Perfect for terrariums – it loves a humid, enclosed environment",
+   "In a terrarium it can go months without watering!",
+   "It comes from the humid forests of the Amazon, beside rain-fed streams"
+  ],
+  "diseases": [
+   "Drooping = it needs water – water it and it recovers quickly",
+   "Rotting stems = too much water",
+   "Brown spots = water too hard or sun",
+   "Pale leaves = too much sun"
+  ],
+  "propagation": "Stem cuttings in water – roots appear after 1–2 weeks."
+ },
+ "syngonium": {
+  "name": "Arrowhead plant (Syngonium)",
+  "origin": "Mexico, Central America",
+  "toxic": "Yes – oxalate crystals",
+  "maxHeight": "2 m as a climber",
+  "care": {
+   "water": "Every 7–10 days",
+   "light": "Bright indirect to medium"
+  },
+  "description": "Its arrow-shaped leaves change shape with age! Young ones are compact, older ones split into “fingers”. Dozens of coloured varieties.",
+  "funFacts": [
+   "The leaf shape changes dramatically with age – young ones are arrows, old ones have “fingers”",
+   "There are 30+ colour varieties – pink, white, green, mint",
+   "It can be grown trailing or climbing",
+   "The Albo-Variegatum variety has white and green patches – every leaf looks different"
+  ],
+  "diseases": [
+   "Yellow lower leaves = natural ageing or overwatering",
+   "Brown spots = sunburn or water too hard",
+   "Pale colours = too little light"
+  ],
+  "propagation": "Stem cuttings with a node in water – roots within 1–2 weeks."
+ },
+ "polka-dot": {
+  "name": "Polka dot plant (Hypoestes)",
+  "origin": "Madagascar, South Africa",
+  "toxic": "No – safe",
+  "maxHeight": "30 cm",
+  "care": {
+   "water": "Every 5–7 days, keep lightly moist",
+   "light": "Bright – no sun"
+  },
+  "description": "Leaves speckled like a ladybird! Pink, white or red dots on a green background. It grows fast and fills out plant arrangements beautifully.",
+  "funFacts": [
+   "The more bright light, the more intense and distinct the dots",
+   "It produces small lavender flowers – a pretty accent",
+   "It comes from Madagascar – one of the islands richest in endemic species",
+   "Ideal for mixed arrangements and terrariums"
+  ],
+  "diseases": [
+   "Pale, fading dots = too little light",
+   "Rotting stems = overwatering",
+   "Dropping leaves = cold or draught"
+  ],
+  "propagation": "Stem cuttings in water – very easy."
+ },
+ "zz-raven": {
+  "name": "ZZ Raven (Black ZZ plant)",
+  "origin": "Cultivar of an East African plant",
+  "toxic": "Yes – oxalate crystals",
+  "maxHeight": "1 m",
+  "care": {
+   "water": "Every 2–4 weeks",
+   "light": "From deep shade to bright"
+  },
+  "description": "The gothic version of the classic ZZ plant! New leaves emerge bright green, then darken to an almost black purple. A striking live transformation.",
+  "funFacts": [
+   "New leaves come out bright green and gradually darken to almost black!",
+   "The colour changes over several weeks – you can watch the transformation",
+   "It only reached the market around 2019 – one of the “new” black plants",
+   "The same survival skills as the ordinary ZZ – indestructible"
+  ],
+  "diseases": [
+   "Yellow leaves = overwatering (just like the ordinary ZZ)",
+   "Leaves staying green instead of turning black = too little light"
+  ],
+  "propagation": "Rhizome division or leaf cuttings (6–12 months)."
+ },
+ "bromeliad": {
+  "name": "Bromeliad (Guzmania)",
+  "origin": "Central and South America",
+  "toxic": "No – safe",
+  "maxHeight": "50 cm",
+  "care": {
+   "water": "Water into the rosette (cup) once a week, keep the soil almost dry",
+   "light": "Bright indirect"
+  },
+  "description": "A spectacular bloom that lasts for months! The “flower” is actually coloured leaves surrounding tiny flowers. After flowering the mother plant dies but leaves “babies”.",
+  "funFacts": [
+   "The pineapple is a bromeliad too – it belongs to the same family!",
+   "The flower head is made of coloured leaves (bracts), not petals",
+   "Pour water into the “cup” in the centre of the rosette – that's how rain waters it in the wild",
+   "The mother plant dies after flowering – a normal cycle, not a care mistake",
+   "Offset rosettes can be separated and grown into new plants – they flower after 2–3 years"
+  ],
+  "diseases": [
+   "Rotting base = soil too wet or water left standing too long",
+   "Browning flower head = the natural end of flowering after 2–6 months",
+   "Pale colours = too little bright light"
+  ],
+  "propagation": "Separate the offsets (pups) once they reach 1/3 of the mother plant's size."
+ },
+ "bird-nest-fern": {
+  "name": "Bird's nest fern",
+  "origin": "Asia, Australia, Hawaii",
+  "toxic": "No – safe",
+  "maxHeight": "1 m",
+  "care": {
+   "water": "Every 5–7 days, keep lightly moist",
+   "light": "Shade to bright indirect"
+  },
+  "description": "Glossy, wavy fronds grow from a central rosette like a bird's nest. One of the most beautiful ferns for interiors – it looks like a sculpture.",
+  "funFacts": [
+   "In the wild it grows on trees as an epiphyte – its “nest” collects fallen leaves as fertiliser",
+   "Young fronds are coiled like fiddleheads – delicate and beautiful",
+   "Never pour water straight into the centre of the rosette – it causes rot",
+   "Resistant to insects – in the wild few things attack it",
+   "Available in varieties with very wavy or crinkled frond edges"
+  ],
+  "diseases": [
+   "Brown edges = air too dry – mist the fronds",
+   "Yellow fronds = overwatering or too much sun",
+   "Black spots = water in the rosette and rot – water the soil only"
+  ],
+  "propagation": "Only from spores – slow and difficult. Easiest to buy a new plant."
+ },
+ "schefflera": {
+  "name": "Umbrella tree (Schefflera)",
+  "origin": "Taiwan, China",
+  "toxic": "Yes – for pets",
+  "maxHeight": "3 m indoors",
+  "care": {
+   "water": "Every 7–10 days, once the top is dry",
+   "light": "Bright to medium"
+  },
+  "description": "Elegant hand-shaped leaves arranged like an umbrella. It grows quickly into a small tree. It tolerates neglect but likes regular watering and a bright spot.",
+  "funFacts": [
+   "Its compound leaves have 7–9 leaflets fanned out – hence the umbrella name",
+   "In the wild it reaches 4 m and grows as a hedge or small tree",
+   "It can be trained as a bonsai – its flexible stems are easy to braid",
+   "The variegated form has yellow-green leaves – more striking"
+  ],
+  "diseases": [
+   "Dropping leaves = stress (moving house, draught)",
+   "Yellow leaves = overwatering or too little light",
+   "Brown tips = dry air"
+  ],
+  "propagation": "Stem cuttings or air layering."
+ },
+ "palm-kentia": {
+  "name": "Kentia palm",
+  "origin": "Lord Howe Island (Australia)",
+  "toxic": "No – safe",
+  "maxHeight": "3 m indoors",
+  "care": {
+   "water": "Every 7–10 days",
+   "light": "From partial shade to bright – one of the few palms that tolerate shade"
+  },
+  "description": "The regal palm of offices and hotels. One of the few palms that tolerate shade and central heating. It grows slowly but lives for decades.",
+  "funFacts": [
+   "It grows naturally only on tiny Lord Howe Island in the Pacific – an endemic!",
+   "Found in Europe's hotels and palaces since the 19th century – a symbol of elegance",
+   "One of the few palms that tolerate deep shade and dry air",
+   "Slow growth – 30–60 cm a year, but it lives for decades",
+   "In the wild it reaches 18 m – indoors it stays small"
+  ],
+  "diseases": [
+   "Brown tips = dry air or salt in the soil",
+   "Yellowing lower fronds = natural ageing (1–2 a year is normal)",
+   "Spider mites = dry environment – mist regularly"
+  ],
+  "propagation": "Seeds take 2–3 months to germinate. Division isn't possible – it has a single trunk."
+ },
+ "basil": {
+  "name": "Basil",
+  "origin": "South Asia, Africa",
+  "toxic": "No – edible!",
+  "maxHeight": "60 cm",
+  "care": {
+   "water": "Every 2–3 days, dislikes drying out",
+   "light": "Full sun for at least 6 h"
+  },
+  "description": "The king of Mediterranean cooking! Fresh leaves are most aromatic in the morning, before the heat. Pinch out the tips regularly to make it bushy and delay flowering.",
+  "funFacts": [
+   "The word “basil” comes from the Greek “basilikos” – royal",
+   "Flowering = the end of the aroma – right after flowering the leaves turn bitter",
+   "There are 60+ varieties: Thai, lemon, chocolate, purple...",
+   "It releases compounds that repel flies and mosquitoes – a natural repellent",
+   "In ancient Egypt it was used in mummification",
+   "It tastes best fresh – cooking destroys the essential oils"
+  ],
+  "diseases": [
+   "Black spots on leaves = downy mildew or a chill",
+   "Wilting = too dry or too hot",
+   "Yellow leaves = overwatering or too large a pot",
+   "Brown edges = cold air or a draught"
+  ],
+  "propagation": "Cuttings in water – roots after 1–2 weeks. Or seeds – they germinate in 5–7 days in the warmth."
+ },
+ "mint": {
+  "name": "Peppermint",
+  "origin": "European hybrid",
+  "toxic": "No – edible (take care with cats)",
+  "maxHeight": "60 cm",
+  "care": {
+   "water": "Every 2–3 days, likes moisture",
+   "light": "Partial sun to bright"
+  },
+  "description": "Unstoppable! It spreads by rhizomes in every direction. Plant it in a pot even in the garden. Ideal for teas, cocktails and cooking.",
+  "funFacts": [
+   "The menthol in its leaves activates cold receptors – hence the cooling feeling",
+   "It spreads so aggressively it can take over a whole garden in 2 seasons",
+   "A natural repellent – mosquitoes and mice dislike the smell of mint",
+   "Peppermint is a hybrid – it doesn't exist in the wild, only as a cultivated plant",
+   "Mint tea has an antispasmodic effect on the digestive system",
+   "There are about 25 mint species, plus apple, chocolate and pineapple mints..."
+  ],
+  "diseases": [
+   "Rust on the leaves = fungus – remove the affected leaves, improve air flow",
+   "Aphids = on young shoots – blast them off with water",
+   "Rotting roots = overwatering",
+   "Bleached leaves = too much direct sun"
+  ],
+  "propagation": "Cuttings in water – roots after a week. Division of the rhizomes. One of the easiest."
+ },
+ "rosemary": {
+  "name": "Rosemary",
+  "origin": "Mediterranean",
+  "toxic": "No – edible",
+  "maxHeight": "1 m",
+  "care": {
+   "water": "Every 7–14 days, drought-tolerant like a succulent",
+   "light": "Full sun for at least 6 h"
+  },
+  "description": "A herb that becomes a shrub! It turns woody with age and tolerates drought like a succulent. Aromatic needle-like leaves all year round. Its lavender-blue flowers are loved by pollinators.",
+  "funFacts": [
+   "The name comes from the Latin “ros marinus” – dew of the sea",
+   "In antiquity it was a symbol of memory – students wore garlands of it to exams",
+   "Rosemary oil improves blood circulation in the scalp",
+   "It tolerates frost down to -10°C – hardy outdoors in winter",
+   "It can live 30+ years and turn into a decorative little tree",
+   "The flowers are edible – great for decorating salads"
+  ],
+  "diseases": [
+   "Powdery mildew = air too humid – improve air flow",
+   "Rotting roots = overwatering (the main killer!)",
+   "Yellowing leaves = soil too wet",
+   "Dry tips = normal in winter, it grows slowly"
+  ],
+  "propagation": "Semi-ripe cuttings (10 cm) in sand. Roots after 3–4 weeks."
+ },
+ "lavender": {
+  "name": "Lavender",
+  "origin": "Mediterranean",
+  "toxic": "No – edible and aromatic",
+  "maxHeight": "60 cm",
+  "care": {
+   "water": "Every 10–14 days, keep it dry",
+   "light": "Full sun all day"
+  },
+  "description": "The scent of Provence in a pot! Purple flower spikes in summer. Dried, they keep their aroma for years. A natural moth and mosquito repellent.",
+  "funFacts": [
+   "Known for 2,500 years – the Romans used it in their baths (Latin lavare = to wash)",
+   "Dried flowers keep their scent for 2–3 years",
+   "Lavender is one of the most popular aromatherapy plants in the world",
+   "A natural moth repellent – lavender sachets in the wardrobe",
+   "Lavender honey is among the most prized honeys in the world",
+   "Lavender oil is calming – used in aromatherapy for insomnia"
+  ],
+  "diseases": [
+   "Grey mould = too damp, too little air",
+   "Rotting roots = soil too wet – overwatering",
+   "Woody stems without leaves = pot too small or old plant – prune it",
+   "No flowers = too little sun"
+  ],
+  "propagation": "Tip cuttings of 8 cm without a flower. Roots after 3–4 weeks."
+ },
+ "chives": {
+  "name": "Chives",
+  "origin": "Europe, Asia, North America",
+  "toxic": "Toxic to dogs and cats!",
+  "maxHeight": "40 cm",
+  "care": {
+   "water": "Every 3–5 days, evenly moist",
+   "light": "Full sun to bright"
+  },
+  "description": "The fastest kitchen herb! After cutting it grows back within a week. Never cut more than 1/3 at a time. The purple flowers are edible too.",
+  "funFacts": [
+   "It regrows in no time – you can cut it every 2–3 weeks all year round",
+   "The flowers are edible – a pretty salad decoration with a mild onion taste",
+   "One of the classic “fines herbes” of French cuisine",
+   "Used for over 5,000 years – one of the oldest cultivated herbs",
+   "It deters aphids – a great companion plant"
+  ],
+  "diseases": [
+   "Rust = brown spots on the leaves – remove the affected ones, improve air flow",
+   "Powdery mildew = white fuzz – too damp",
+   "Yellowing leaves = too little nitrogen or too large a pot"
+  ],
+  "propagation": "Divide the clump every 2–3 years. Seeds – they germinate after 10–14 days."
+ },
+ "aloe-arborescens": {
+  "name": "Candelabra aloe",
+  "origin": "South Africa",
+  "toxic": "Yes – latex",
+  "maxHeight": "2 m",
+  "care": {
+   "water": "Every 2–3 weeks",
+   "light": "Full sun"
+  },
+  "description": "The bigger and tougher sibling of aloe vera! In Japan it's called “Kidachi aloe” (tree aloe). Similar medicinal properties, but much hardier and more impressive.",
+  "funFacts": [
+   "In Japan it's called “isha-irazu” – “no need for a doctor”",
+   "Studied for its potential anti-cancer properties since the 1980s",
+   "It blooms with striking orange flower spikes in winter",
+   "Frost-hardy down to -5°C – it can go outdoors in summer",
+   "It produces more gel than aloe vera relative to its size"
+  ],
+  "diseases": [
+   "Brown, soft leaves = overwatering",
+   "Red leaves = sun or water stress – normal",
+   "Wrinkled leaves = time to water"
+  ],
+  "propagation": "Separate the side rosettes. Let them dry for 2 days and plant."
+ },
+ "cactus-opuntia": {
+  "name": "Prickly pear (Opuntia)",
+  "origin": "Mexico",
+  "toxic": "No – edible! (fruit and pads)",
+  "maxHeight": "1.5 m indoors",
+  "care": {
+   "water": "Every 3–4 weeks, more often in summer",
+   "light": "Full sun"
+  },
+  "description": "A cactus with edible fruit and pads! The fruit (tuna) is sweet, and the pads (nopales) are edible once the spines are removed. A symbol of Mexico – it's on the flag!",
+  "funFacts": [
+   "It has been on Mexico's coat of arms and flag for 700 years",
+   "The pads (nopales) are a popular vegetable in Mexican cuisine",
+   "The fruit (cactus pear) is rich in vitamin C",
+   "The cochineal insect lives on opuntia – it's the source of carmine (E120)",
+   "It tolerates temperatures from -10°C to +50°C – exceptional hardiness",
+   "In the wild it forms impenetrable thickets – a natural “fence”"
+  ],
+  "diseases": [
+   "Brown, soft pads = overwatering",
+   "Yellow, shrivelling pads = too little water or too cold",
+   "White waxy coating = normal (protective wax) or mealybugs"
+  ],
+  "propagation": "Cut off a pad, let it dry for 5–7 days until the wound seals, then plant in sand."
+ },
+ "cactus-cereus": {
+  "name": "Column cactus (Cereus)",
+  "origin": "South America",
+  "toxic": "No – safe",
+  "maxHeight": "2 m indoors",
+  "care": {
+   "water": "Every 3–4 weeks, not at all in winter",
+   "light": "Full sun"
+  },
+  "description": "The classic column cactus – it grows straight up like a green pillar. One of the fastest-growing cacti. After many years it blooms with huge white flowers at night.",
+  "funFacts": [
+   "It blooms only at night – the flowers open after dark and wilt before sunrise",
+   "Each flower lives for just one night – but it's huge (15–20 cm)",
+   "In the wild it reaches 10 m and lives 200+ years",
+   "One of the fastest-growing cacti – up to 30 cm a year in the sun",
+   "The fruit (pitaya) is edible – sweet and pinkish-red"
+  ],
+  "diseases": [
+   "Browning base = rot from overwatering – critical!",
+   "Wrinkling = too little water in summer",
+   "Yellowing = too little sun or too cold"
+  ],
+  "propagation": "Cut off a 10 cm tip, let it dry for a week, then plant in sand."
+ },
+ "cactus-mammillaria": {
+  "name": "Pincushion cactus (Mammillaria)",
+  "origin": "Mexico",
+  "toxic": "No – safe",
+  "maxHeight": "15 cm",
+  "care": {
+   "water": "Every 2–3 weeks, not at all in winter",
+   "light": "Full sun"
+  },
+  "description": "A cactus with a crown of flowers! Every spring it forms a ring of small pink or yellow flowers around its top. One of the easiest cacti to bring into bloom.",
+  "funFacts": [
+   "It blooms every year with a ring of flowers around the top – like a tiara",
+   "The genus Mammillaria has 200+ species – one of the largest in the cactus family",
+   "Its spines are arranged in Fibonacci spirals – mathematics in nature",
+   "Frost-hardy down to -5°C – it can go outside in summer",
+   "After flowering it forms red berries – edible!"
+  ],
+  "diseases": [
+   "Rotting base = overwatering – the main cause of death",
+   "No flowers = too little sun or too warm a winter",
+   "Mealybugs = white fluff between the spines – wipe with alcohol"
+  ],
+  "propagation": "Separate the side offsets, let them dry for 2 days and plant."
+ },
+ "cactus-gymnocalycium": {
+  "name": "Moon cactus (Gymnocalycium)",
+  "origin": "South America",
+  "toxic": "No – safe",
+  "maxHeight": "8 cm",
+  "care": {
+   "water": "Every 2–3 weeks",
+   "light": "Bright indirect – an exception among cacti!"
+  },
+  "description": "A cactus without chlorophyll! The “moon cactus” is a red or yellow ball grafted onto a green rootstock. With no chlorophyll, it lives off the rootstock's photosynthesis.",
+  "funFacts": [
+   "The moon cactus has no chlorophyll and is grafted onto Hylocereus – it lives on its rootstock's “blood”",
+   "The red, yellow and orange colours are pigments no longer masked by chlorophyll",
+   "One of the most popular plants in Japanese garden shops",
+   "The rootstock can outlive the grafted top – you can graft a new one",
+   "It tolerates partial shade – an exception among sun-loving cacti"
+  ],
+  "diseases": [
+   "Fading colour = too little or too much sun",
+   "Rotting rootstock = overwatering",
+   "Shrinking = too dry or a failing graft"
+  ],
+  "propagation": "Graft offset balls onto a new Hylocereus rootstock."
+ },
+ "monstera-thai": {
+  "name": "Monstera Thai Constellation",
+  "origin": "Cultivar (lab-bred in Thailand)",
+  "toxic": "Yes – oxalate crystals",
+  "maxHeight": "2 m",
+  "care": {
+   "water": "Every 7–10 days",
+   "light": "Bright indirect – key for the patterns!"
+  },
+  "description": "The world's most expensive monstera! Creamy-white speckles and streaks on its leaves like a constellation. A genetic mutation that arose in a Thai laboratory – it doesn't exist in the wild.",
+  "funFacts": [
+   "It arose as a chance mutation in a Thai tissue-culture lab in the 1990s",
+   "At the peak of the craze (2021) a single plant cost USD 5,000–20,000!",
+   "The pattern on each leaf is unique – no two leaves look alike",
+   "It grows slowly because the white areas have little chlorophyll",
+   "The white/cream areas can't photosynthesise – the green parts have to “feed” the whole plant",
+   "Prices have returned to normal – it's now affordable"
+  ],
+  "diseases": [
+   "Changing patterns = normal variation – every leaf is different",
+   "Yellow leaves = overwatering",
+   "Brown spots = dry air or sunburn",
+   "Slow growth = normal with low chlorophyll"
+  ],
+  "propagation": "Cuttings with a node – just like an ordinary monstera. The patterns aren't always passed on."
+ },
+ "philodendron-pink": {
+  "name": "Philodendron Pink Princess",
+  "origin": "Cultivar (species from Colombia)",
+  "toxic": "Yes – oxalate crystals",
+  "maxHeight": "1.5 m",
+  "care": {
+   "water": "Every 7–10 days",
+   "light": "Bright indirect – needed for the pink!"
+  },
+  "description": "The pink princess! Dark green leaves with pink or cream patches. The patterns are genetically unstable – every leaf is a surprise.",
+  "funFacts": [
+   "The pink colour comes from a lack of chlorophyll in those areas (like Thai Constellation)",
+   "In 2020–2021 it sold for USD 1,000–5,000 per plant!",
+   "The patterns are genetically unstable – it can “revert” to plain green",
+   "Strong light helps keep the pink and produce more variegated leaves",
+   "The “Dark Lord” variety has almost black leaves with no pattern – a moody alternative"
+  ],
+  "diseases": [
+   "Fading pink patterns = too little light or reversion – give it more light",
+   "Yellow leaves = overwatering",
+   "Brown tips = dry air"
+  ],
+  "propagation": "Cuttings with a node in water or sphagnum. The patterns are partly passed on."
+ },
+ "anthurium-warocqueanum": {
+  "name": "Queen anthurium",
+  "origin": "Colombia",
+  "toxic": "Yes – oxalate crystals",
+  "maxHeight": "1 m",
+  "care": {
+   "water": "Every 5–7 days, lightly moist",
+   "light": "Bright indirect",
+   "humidity": "70–90% – absolutely essential!"
+  },
+  "description": "The queen of anthuriums! Huge velvety leaves up to 1 m long with distinct silvery veins. It needs very high humidity – a typical greenhouse plant.",
+  "funFacts": [
+   "Its leaves can reach 100 cm long in ideal conditions",
+   "The velvety texture comes from microscopic projections on the leaf surface",
+   "Considered one of the most difficult houseplants – a real challenge",
+   "In Colombia it grows in cloud forests at 80–90% humidity",
+   "A rare collector's plant – prices from hundreds to thousands"
+  ],
+  "diseases": [
+   "Brown edges and tips = air too dry (the most common problem!)",
+   "Yellowing leaves = overwatering or too low a temperature",
+   "Slow growth = conditions too dry or too cold"
+  ],
+  "propagation": "Division or side offsets. Needs a terrarium or greenhouse while propagating."
+ },
+ "scindapsus-pictus": {
+  "name": "Satin pothos (Scindapsus pictus)",
+  "origin": "Southeast Asia",
+  "toxic": "Yes – irritant",
+  "maxHeight": "3 m as a climber",
+  "care": {
+   "water": "Every 7–10 days",
+   "light": "Bright to medium indirect"
+  },
+  "description": "The silver pothos! Matte, dark green leaves with silvery splashes like spilt silver. As easy as pothos but more striking. Very fashionable in interior design.",
+  "funFacts": [
+   "Often confused with pothos, but it belongs to a different genus",
+   "The silver patches are air pockets in the leaf that reflect light",
+   "The Argyraeus variety has smaller, more densely speckled leaves",
+   "The Exotica variety has larger, more contrasting silver patterns",
+   "One of the trendiest plants on Instagram since 2022"
+  ],
+  "diseases": [
+   "Yellow leaves = overwatering",
+   "Fading patterns = too little light",
+   "Brown tips = dry air"
+  ],
+  "propagation": "Cuttings with a node in water. Roots appear after 2–3 weeks."
+ },
+ "dischidia": {
+  "name": "Ant plant (Dischidia)",
+  "origin": "Southeast Asia, Australia",
+  "toxic": "Yes – irritant sap",
+  "maxHeight": "60 cm (trailing)",
+  "care": {
+   "water": "Every 7–14 days",
+   "light": "Bright indirect"
+  },
+  "description": "The ant plant! In the wild it forms special hollow leaves – little “houses” where ants live. Trailing chains of small round leaves like coins.",
+  "funFacts": [
+   "In the wild it forms hollow pouch leaves where ants live – mutualism!",
+   "The ants protect the plant and fertilise the special leaves with their waste",
+   "Related to hoya – similar needs and looks",
+   "The Million Hearts variety has densely packed heart-shaped leaves",
+   "An epiphyte – in the wild it grows on trees, not in soil"
+  ],
+  "diseases": [
+   "Wrinkled leaves = too dry",
+   "Rotting stems = overwatering",
+   "Brown tips = dry air"
+  ],
+  "propagation": "Stem cuttings in water or sphagnum."
+ },
+ "burros-tail": {
+  "name": "Burro's tail (Donkey's tail)",
+  "origin": "Mexico, Honduras",
+  "toxic": "No – safe",
+  "maxHeight": "60 cm (trailing)",
+  "care": {
+   "water": "Every 14–21 days",
+   "light": "Bright with a few hours of sun"
+  },
+  "description": "A thick, trailing “tail” made of hundreds of small fleshy leaves. It looks like a braid of juicy pearls. Very decorative in a hanging basket or on a shelf.",
+  "funFacts": [
+   "The leaves are attached so loosely that they fall off at the slightest touch",
+   "Every fallen leaf can grow into a new plant – lay it on sand and wait",
+   "A fully grown stem can trail 60–90 cm",
+   "It blooms with small pink flowers at the stem tips",
+   "One of the most striking succulents for hanging baskets"
+  ],
+  "diseases": [
+   "Leaves dropping when touched = normal! Avoid handling",
+   "Wrinkled leaves = too little water",
+   "Rotting base = overwatering"
+  ],
+  "propagation": "Lay fallen leaves on dry sand – new rosettes appear after 2–4 weeks."
+ },
+ "columnea": {
+  "name": "Goldfish plant (Columnea)",
+  "origin": "Central and South America",
+  "toxic": "No – safe",
+  "maxHeight": "1 m (trailing)",
+  "care": {
+   "water": "Every 5–7 days",
+   "light": "Bright to medium indirect"
+  },
+  "description": "A goldfish in a pot! Trailing stems covered with small fleshy leaves and striking tubular flowers shaped like a goldfish's mouth.",
+  "funFacts": [
+   "The flowers look like goldfish mouths – hence the name “goldfish plant”",
+   "It flowers for many months in the right light",
+   "In the wild it grows on rainforest trees as an epiphyte",
+   "There are 200+ Columnea species with different flower colours",
+   "Related to African violets and episcias – the same family (Gesneriaceae)"
+  ],
+  "diseases": [
+   "No flowers = too little light or too warm",
+   "Dropping leaves = draught or a sudden temperature change",
+   "Rotting stems = overwatering"
+  ],
+  "propagation": "Stem cuttings of 10 cm in damp perlite."
+ },
+ "lipstick-plant": {
+  "name": "Lipstick plant",
+  "origin": "Malaysia, Indonesia",
+  "toxic": "No – safe",
+  "maxHeight": "60 cm (trailing)",
+  "care": {
+   "water": "Every 7–10 days",
+   "light": "Bright indirect"
+  },
+  "description": "Flowers emerging from dark sheaths like lipstick from a tube! The bright red flowers are exceptionally striking. Its trailing stems are perfect for hanging baskets.",
+  "funFacts": [
+   "The flowers emerge from dark tubes like lipstick from its case – hence the name",
+   "In the wild it's pollinated by sunbirds that push their beaks into the tube",
+   "It flowers profusely in bright light with cooler nights",
+   "Related to episcias and columneas – the Gesneriaceae family",
+   "There is a variety with curly, twisted leaves – Twister"
+  ],
+  "diseases": [
+   "No flowers = too little light or nights too warm",
+   "Bud drop = a sudden change in conditions",
+   "Yellow leaves = overwatering"
+  ],
+  "propagation": "Stem cuttings of 10 cm in damp perlite."
+ },
+ "olive-tree": {
+  "name": "Olive tree",
+  "origin": "Mediterranean",
+  "toxic": "No – the fruit is edible",
+  "maxHeight": "1.5 m indoors",
+  "care": {
+   "water": "Every 7–14 days, drought-tolerant",
+   "light": "Full sun for at least 6 h – a must!",
+   "temperature": "10–30°C, overwinter at 5–10°C"
+  },
+  "description": "The tree of the Mediterranean in a pot! Silvery-grey leaves and a gnarled trunk with age. It may fruit after a few years. A symbol of peace and longevity.",
+  "funFacts": [
+   "Olive trees live for thousands of years – the oldest are over 3,000 years old!",
+   "A symbol of peace, wisdom and victory since antiquity",
+   "It needs a cool winter rest (5–10°C) to set fruit",
+   "Indoors it can fruit 3–5 years after planting",
+   "The silvery colour of the leaves comes from tiny scales that reflect excess sun",
+   "Traditionally used for bonsai because of its trunk texture"
+  ],
+  "diseases": [
+   "Yellowing leaves = soil too wet or too little sun",
+   "Dropping leaves = stress (moving, cold)",
+   "No fruit = no winter rest or no pollinator"
+  ],
+  "propagation": "Semi-ripe cuttings in summer with rooting hormone."
+ },
+ "adenium": {
+  "name": "Desert rose (Adenium)",
+  "origin": "Africa, Arabian Peninsula",
+  "toxic": "Highly toxic – all parts!",
+  "maxHeight": "1 m",
+  "care": {
+   "water": "Every 14–21 days, not at all in winter",
+   "light": "Full sun",
+   "temperature": "20–35°C, min. 15°C"
+  },
+  "description": "The beauty of the desert! Its thick, bottle-shaped trunk stores water. It blooms spectacularly with pink or red flowers like an oleander. A popular bonsai in Asia.",
+  "funFacts": [
+   "Its thick trunk (caudex) can store water through months of drought",
+   "In Asia (Thailand, China) it has been grown as a lucky bonsai for centuries",
+   "The poison in its milky sap was traditionally used on arrow tips",
+   "It blooms heavily during drought – stress triggers flowering",
+   "It can live for centuries – some specimens are over 300 years old",
+   "There are thousands of hybrids with different flower colours and shapes"
+  ],
+  "diseases": [
+   "Rotting trunk = overwatering in winter (a fatal mistake!)",
+   "Leaf drop in winter = normal dormancy",
+   "No flowers = too little sun or too cool"
+  ],
+  "propagation": "Seeds (germinate in 1–2 weeks) or cuttings (harder)."
+ },
+ "ficus-ginseng": {
+  "name": "Ginseng ficus",
+  "origin": "East Asian cultivar",
+  "toxic": "Yes – irritant sap",
+  "maxHeight": "60 cm",
+  "care": {
+   "water": "Every 7–10 days",
+   "light": "Bright indirect"
+  },
+  "description": "A bonsai with bulbous roots like a fairy-tale character! Its thick, bulbous trunk (actually a root) is a striking feature. Popular in shops as a ready-made bonsai.",
+  "funFacts": [
+   "The thick trunk is a modified root grown especially for decoration",
+   "In Asia it's a symbol of longevity and wisdom – a gift for important occasions",
+   "Small leaves and balanced proportions make it ideal for bonsai",
+   "Mass-produced in China and Thailand – hence the low price",
+   "It can be shaped freely by pruning and wiring"
+  ],
+  "diseases": [
+   "Dropping leaves = stress (new spot, draught, cold)",
+   "Yellow leaves = overwatering or air too dry",
+   "Small leaves and no growth = too few nutrients or too small a pot"
+  ],
+  "propagation": "Cuttings or air layering."
+ },
+ "staghorn-fern": {
+  "name": "Staghorn fern",
+  "origin": "Australia, Asia",
+  "toxic": "No – safe",
+  "maxHeight": "60 cm",
+  "care": {
+   "water": "Soak for 15 min every 1–2 weeks",
+   "light": "Bright to medium indirect"
+  },
+  "description": "An epiphyte that grows on a wall! It has two types of fronds: brown shields (for clinging) and green antlers (for show). Mounted on a board or bark like a living picture on the wall.",
+  "funFacts": [
+   "It doesn't grow in soil – it's mounted on a board or bark like a picture",
+   "It has two types of fronds: shields (brown, clinging) and antlers (green, decorative)",
+   "The brown shields collect fallen leaves and humus as fertiliser – don't remove them!",
+   "You water it by soaking the whole board in water for 15–20 minutes",
+   "In the wild it grows on trees in Australia's rainforests"
+  ],
+  "diseases": [
+   "Browning shields = normal – part of the life cycle, don't remove them!",
+   "Black spots on the antlers = fungus from too much water",
+   "Pale, limp antlers = too little light"
+  ],
+  "propagation": "Separate offset plants with a shield when remounting."
+ },
+ "selaginella": {
+  "name": "Peacock spikemoss (Selaginella)",
+  "origin": "China",
+  "toxic": "No – safe",
+  "maxHeight": "20 cm",
+  "care": {
+   "water": "Keep constantly moist – a deep tray of water",
+   "light": "Partial shade to bright indirect"
+  },
+  "description": "Rainbow moss! Its leaves shimmer with a metallic blue-green sheen like an oil slick on water. Perfect for a terrarium – that's where it looks its best.",
+  "funFacts": [
+   "The metallic sheen comes from nanostructures in its cells that refract light – like butterfly wings",
+   "It's a living fossil – its relatives grew 400 million years ago",
+   "In a closed terrarium it can go months without watering",
+   "It comes from the humid forests of China and Vietnam",
+   "In a fully sealed terrarium it forms a fairy-tale miniature forest"
+  ],
+  "diseases": [
+   "Browning = air too dry or too much sun",
+   "Rot = standing water at the base",
+   "Loss of sheen = conditions too dry"
+  ],
+  "propagation": "Stem cuttings in damp moss or a terrarium."
+ },
+ "nerve-plant-red": {
+  "name": "Red nerve plant (Fittonia)",
+  "origin": "Peru",
+  "toxic": "No – safe",
+  "maxHeight": "15 cm",
+  "care": {
+   "water": "Every 5–7 days",
+   "light": "Partial shade"
+  },
+  "description": "A network of red veins on dark green leaves – it looks like blood vessels under a microscope. A variety with a vivid red vein pattern.",
+  "funFacts": [
+   "The leaf veins can be white, pink or scarlet – bred for colour",
+   "The perfect partner for green fittonia – together they make a contrasting display",
+   "In a terrarium it grows lushly with almost no care",
+   "It droops dramatically when thirsty – but bounces back 15 minutes after watering",
+   "Miniature varieties have leaves the size of a fingernail – ideal for nano terrariums"
+  ],
+  "diseases": [
+   "Drooping = it needs water – water it quickly",
+   "Rotting stems = too wet",
+   "Pale leaves = too much sun"
+  ],
+  "propagation": "Stem cuttings in water – very easy."
+ },
+ "pachira": {
+  "name": "Money tree (Pachira)",
+  "origin": "Central and South America",
+  "toxic": "No – the seeds are edible",
+  "maxHeight": "2 m indoors",
+  "care": {
+   "water": "Every 7–10 days",
+   "light": "Bright to medium"
+  },
+  "description": "The braided money tree! Five stems are woven into a characteristic braid. In feng shui a symbol of wealth and good fortune. Its seeds are edible – they taste like nuts.",
+  "funFacts": [
+   "The braided trunk is 3–5 young stems artificially woven together",
+   "Legend: a Taiwanese farmer braided 5 plants and grew rich – a myth that conquered Asia",
+   "The seeds are edible and taste like chestnuts or peanuts – they can be roasted",
+   "In the wild it grows in tropical swamp forests",
+   "A symbol of luck, wealth and success in Asian cultures",
+   "It tolerates waterlogged roots – a popular houseplant with a swampy homeland"
+  ],
+  "diseases": [
+   "Yellow leaves = overwatering or too cold",
+   "Dropping leaves = stress (new spot)",
+   "Brown tips = dry air or salt in the soil"
+  ],
+  "propagation": "Cuttings or seeds. The stems are braided by hand when they are about 1 cm thick."
+ },
+ "nepenthes": {
+  "name": "Tropical pitcher plant (Nepenthes)",
+  "origin": "Philippines",
+  "toxic": "No – safe",
+  "maxHeight": "1 m",
+  "care": {
+   "water": "ONLY rainwater; keep moist; never fill the pitchers yourself!",
+   "light": "Bright indirect to medium"
+  },
+  "description": "A carnivore with pitchers! Modified leaves form pitcher traps filled with digestive fluid. It catches insects – and in the wild even small mammals!",
+  "funFacts": [
+   "The pitchers are modified leaf tips filled with digestive enzymes",
+   "Large species can digest rats, frogs and even small birds!",
+   "Special spiders and fly larvae that resist the enzymes live inside the pitchers",
+   "The pitcher produces its own wax and enzymes – self-sufficient",
+   "N. × ventrata is a hybrid of two species – easier to grow than pure species",
+   "Use ONLY rainwater or distilled water – just like the Venus flytrap"
+  ],
+  "diseases": [
+   "Drying pitchers = air too dry or stress",
+   "Blackening leaves = too cold or overwatering",
+   "No pitchers = too little light or conditions too dry"
+  ],
+  "propagation": "Tip cuttings in sphagnum under plastic. Slow to root."
+ },
+ "yucca": {
+  "name": "Spineless yucca (Yucca elephantipes)",
+  "origin": "Mexico, Central America",
+  "toxic": "Yes – for dogs and cats",
+  "maxHeight": "2 m indoors",
+  "care": {
+   "water": "Every 10–14 days, drought-tolerant",
+   "light": "Bright to full sun"
+  },
+  "description": "A desert tree in your living room! Tough, pointed leaves grow from a thick trunk. Almost indestructible – it tolerates neglect, dry air and infrequent watering.",
+  "funFacts": [
+   "In the wild yuccas are pollinated only by yucca moths (coevolution!)",
+   "It can bloom with spikes of white flowers in the right light",
+   "A cut trunk will sprout new shoots from the side – it can be pruned",
+   "Native Americans used yucca leaves to make ropes, baskets and fabric",
+   "The root contains saponins – it was used as a natural shampoo"
+  ],
+  "diseases": [
+   "Brown tips = normal or dry air",
+   "Soft stem at the base = overwatering and root rot",
+   "Yellow lower leaves = natural ageing"
+  ],
+  "propagation": "Cut off a 15 cm top, let it dry for 2 days and plant. Or separate the side shoots."
+ },
+ "bromeliaceae-neoregelia": {
+  "name": "Blushing bromeliad (Neoregelia)",
+  "origin": "Brazil",
+  "toxic": "No – safe",
+  "maxHeight": "40 cm",
+  "care": {
+   "water": "Water into the rosette (cup) + keep the substrate lightly moist",
+   "light": "Bright to very bright – brings out intense colours"
+  },
+  "description": "A bromeliad in colour! The centre of the rosette turns intense red or pink before flowering. Decorative for a long time – the coloured centre lasts for months.",
+  "funFacts": [
+   "The centre of the rosette turns red a few months before flowering",
+   "The more sun, the more intense the colours of the leaves and centre",
+   "Pour water into the “cup” in the middle – that's how bromeliads take up moisture in the wild",
+   "The stripes on the leaves can be yellow, pink or cream in some varieties",
+   "The mother plant dies after flowering, but leaves many offsets"
+  ],
+  "diseases": [
+   "Rotting centre = water left standing too long – change it weekly",
+   "Pale colours = too little light",
+   "Brown tips = dry air"
+  ],
+  "propagation": "Separate the offsets once they reach 1/3 of the mother plant's size."
+ },
+ "hoya-kerrii": {
+  "name": "Sweetheart hoya (Hoya kerrii)",
+  "origin": "Southeast Asia",
+  "toxic": "No – safe",
+  "maxHeight": "4 m as a climber",
+  "care": {
+   "water": "Every 14–21 days",
+   "light": "Bright indirect"
+  },
+  "description": "The love plant! Its fleshy heart-shaped leaves are a natural symbol of love. Sold as a single leaf it makes a cute decoration – but it will never grow into a full plant.",
+  "funFacts": [
+   "A single leaf without a node will NEVER grow into a full plant – it's a botanical curiosity",
+   "To get a full plant you need a cutting with a piece of stem and a node",
+   "After a few years it blooms beautifully with flower clusters – they smell of chocolate!",
+   "One of the most popular Valentine's Day plants in the world",
+   "As a climber it can live for decades and reach several metres"
+  ],
+  "diseases": [
+   "Wrinkled leaves = too dry",
+   "Yellow leaves = overwatering",
+   "No growth = normal for a single leaf without a node"
+  ],
+  "propagation": "Only cuttings with a node give a full plant. A single leaf will root but won't grow."
+ },
+ "begonia-boliviensis": {
+  "name": "Bolivian begonia",
+  "origin": "Bolivia, Argentina",
+  "toxic": "Yes – toxic to pets",
+  "maxHeight": "50 cm (trailing)",
+  "care": {
+   "water": "Every 5–7 days",
+   "light": "Bright indirect to diffused"
+  },
+  "description": "A cascade of orange flowers! Trailing stems covered with dozens of narrow, tubular flowers all summer long. Ideal for hanging baskets on the balcony.",
+  "funFacts": [
+   "It blooms from spring to late autumn – one of the longest-flowering begonias",
+   "In the wild it grows on rocky Andean cliffs at 1,000–2,000 m",
+   "Its tubular flowers are adapted to pollination by hummingbirds",
+   "A hanging-basket plant that loves temperate summers",
+   "It goes dormant in winter – store the tuber somewhere cool and dry"
+  ],
+  "diseases": [
+   "Flower drop = too dry or too hot",
+   "Powdery mildew = humid air with no circulation",
+   "Yellow leaves = overwatering"
+  ],
+  "propagation": "Stem cuttings or dividing the tubers in spring."
+ },
+ "pilea_cadierei": {
+  "name": "Aluminium plant (Pilea cadierei)",
+  "origin": "Vietnam",
+  "toxic": "No",
+  "maxHeight": "30 cm",
+  "care": {
+   "water": "Every 5–7 days, once the top of the soil is dry",
+   "light": "Bright indirect, no direct sun"
+  },
+  "description": "An attractive plant with dark green leaves and metallic silver patches. Ideal for beginners – easy and rewarding.",
+  "funFacts": [
+   "Also known as the aluminium plant or watermelon pilea",
+   "The patches on the leaves are a special structure that reflects light",
+   "It propagates easily – cuttings root in water",
+   "After a few years it loses its looks – worth propagating and renewing",
+   "Safe for cats and dogs",
+   "In Vietnam it grows wild in damp forests"
+  ],
+  "diseases": [
+   "Drooping leaves = too dry or overwatered (check the soil)",
+   "Fading patches = too little light",
+   "Brown edges = low air humidity",
+   "Long stems = too little light, the plant is stretching",
+   "Yellow lower leaves = natural ageing or overwatering"
+  ],
+  "propagation": "Tip cuttings of 10 cm – root them in water or straight into soil under plastic."
+ },
+ "calathea_orbifolia": {
+  "name": "Calathea orbifolia",
+  "origin": "Bolivia",
+  "toxic": "No",
+  "maxHeight": "60–90 cm",
+  "care": {
+   "water": "Every 4–6 days, soil lightly moist",
+   "light": "Partial shade, bright indirect",
+   "temperature": "18–25°C, stable"
+  },
+  "description": "The most spectacular calathea – huge round leaves with distinct silver stripes. Demanding, but unforgettable.",
+  "funFacts": [
+   "Its leaves can be 30 cm across",
+   "One of the “prayer plants” – in the evening it raises its leaves",
+   "Safe for cats and dogs",
+   "Very sensitive to chlorine – use water left to stand, or rainwater",
+   "In the wild it grows on the shady floor of the rainforest",
+   "It needs stable conditions – changes don't suit it"
+  ],
+  "diseases": [
+   "Brown tips = hard water or low humidity",
+   "Curling leaves = too little water or a draught",
+   "Yellow leaves = overwatering",
+   "Leaves permanently drooping = a root problem",
+   "Faded patterns = too much light"
+  ],
+  "propagation": "Only by dividing the clump when repotting – stem cuttings don't root."
+ },
+ "petroselinum": {
+  "name": "Parsley",
+  "origin": "Mediterranean region",
+  "toxic": "No",
+  "maxHeight": "30–60 cm",
+  "care": {
+   "water": "Every 2–3 days, soil lightly moist",
+   "light": "Bright, a few hours of sun a day"
+  },
+  "description": "A classic kitchen herb grown for its leaves or root. In a pot on the kitchen windowsill it gives you a fresh addition to meals all year round.",
+  "funFacts": [
+   "A biennial – in its second year it flowers and dies",
+   "Rich in vitamin C – more than lemon per 100 g",
+   "In ancient Greece it symbolised death – it was planted on graves",
+   "A natural breath freshener after eating garlic",
+   "It grows best in a kitchen that's cooler than the living room",
+   "Freshly cut, it lasts 1–2 weeks in water"
+  ],
+  "diseases": [
+   "Yellow leaves = lack of nutrients (nitrogen)",
+   "Limp leaves = lack of water",
+   "Whitish coating = powdery mildew – ventilate",
+   "Flower stalk = second year of life, natural",
+   "Aphids – rinse off with soapy water"
+  ],
+  "propagation": "From seed – germinates slowly (3–4 weeks). Better to buy a potted plant or sow several times a season."
+ },
+ "thymus_vulgaris": {
+  "name": "Thyme",
+  "origin": "Mediterranean region",
+  "toxic": "No",
+  "maxHeight": "20–40 cm",
+  "care": {
+   "water": "Every 5–7 days, let the soil dry out between waterings",
+   "light": "Full sun, at least 6 hours a day",
+   "humidity": "30–50% (low)",
+   "temperature": "15–25°C, tolerates cold"
+  },
+  "description": "An aromatic sub-shrub with tiny leaves and an intense scent. Essential in Mediterranean cooking and great in a pot on the windowsill.",
+  "funFacts": [
+   "In ancient Egypt it was used for embalming",
+   "Thymol from thyme has strong antibacterial properties",
+   "The more sun, the stronger the scent",
+   "It attracts bees – a great honey plant",
+   "A symbol of courage in the Middle Ages – knights carried it into battle",
+   "It can live for 5–10 years"
+  ],
+  "diseases": [
+   "Woody, sparse shoots = too little light",
+   "Yellow leaves = overwatering",
+   "Mould at the base = too damp, too cold",
+   "Brown tips = too little water after all",
+   "Bland taste = lack of sun"
+  ],
+  "propagation": "Semi-ripe cuttings in summer – cut a 10 cm shoot, strip the lower leaves and insert into sand mixed with peat."
+ },
+ "ocimum_basilicum_thai": {
+  "name": "Thai basil",
+  "origin": "Southeast Asia",
+  "toxic": "No",
+  "maxHeight": "30–50 cm",
+  "care": {
+   "water": "Every 2–3 days, likes moisture",
+   "light": "Bright, 4–6 hours of sun"
+  },
+  "description": "A basil variety with darker stems and purple flower heads. It tastes of anise and liquorice – essential in Thai and Vietnamese cooking.",
+  "funFacts": [
+   "Its taste differs from European basil – notes of anise and liquorice",
+   "The leaves are narrower and darker than those of ‘Genovese’",
+   "The stems and flowers have a purple tint",
+   "An ingredient of traditional dishes such as pho and pad krapow",
+   "It tolerates higher temperatures than European basil",
+   "After flowering the leaves lose their flavour – pinch off the flower heads"
+  ],
+  "diseases": [
+   "Flower heads = trim regularly so it doesn't bloom",
+   "Blackening leaves = too cold, below 15°C",
+   "Faded leaves = lack of nutrients",
+   "White mould = powdery mildew – ventilate better",
+   "Yellow lower leaves = natural or overwatering"
+  ],
+  "propagation": "From seed or water cuttings – a 10 cm shoot in water roots within a week."
+ },
+ "coriandrum_sativum": {
+  "name": "Coriander (Cilantro)",
+  "origin": "Mediterranean region, Asia Minor",
+  "toxic": "No",
+  "maxHeight": "20–60 cm",
+  "care": {
+   "water": "Every 2–3 days, keep the soil lightly moist",
+   "light": "Bright, 4–5 hours of sun, but not scorching",
+   "temperature": "15–22°C – it dislikes heat!"
+  },
+  "description": "An aromatic annual with a distinctive flavour that people either love or hate. Fresh, it's indispensable in Mexican, Indian and Thai cooking.",
+  "funFacts": [
+   "Some people have a gene that makes coriander taste like soap",
+   "The leaves and seeds are two completely different flavours in cooking",
+   "It bolts very quickly in heat – and then turns bitter",
+   "The seeds are a classic warm spice",
+   "Rich in vitamins A, C and K",
+   "It grows best in spring and autumn and struggles in summer"
+  ],
+  "diseases": [
+   "Bolting quickly = too hot, it goes to seed",
+   "Yellow leaves = overwatering or exhausted soil",
+   "Aphids on the flower stalks",
+   "Mould with excess moisture",
+   "Weak growth = lack of light"
+  ],
+  "propagation": "Only from seed – it doesn't root from cuttings. Sow every 3–4 weeks for a continuous harvest."
+ },
+ "origanum_vulgare": {
+  "name": "Oregano",
+  "origin": "Mediterranean region",
+  "toxic": "No",
+  "maxHeight": "30–80 cm",
+  "care": {
+   "water": "Every 5–7 days, let it dry out between waterings",
+   "light": "Full sun, at least 6 hours"
+  },
+  "description": "A classic herb of Italian and Greek cooking. Its small, intensely aromatic leaves go with pizza, tomato sauces and barbecues.",
+  "funFacts": [
+   "The name comes from Greek: ‘oros’ (mountain) and ‘ganos’ (joy) = ‘joy of the mountains’",
+   "In ancient Greece a symbol of love and happiness",
+   "Dried, it's more aromatic than fresh – one of the few herbs like that",
+   "A perennial – one plant can give you herbs for years",
+   "Bees love its purple flowers",
+   "Oregano oil has strong antibacterial properties"
+  ],
+  "diseases": [
+   "Woody stems = prune in spring to rejuvenate",
+   "Brown tips = too little water, even though it likes drying out",
+   "Mould = too damp, poor air flow",
+   "Pale colour = lack of sun",
+   "Powdery mildew in damp conditions"
+  ],
+  "propagation": "Stem cuttings in spring, division or seed. Very easy."
+ },
+ "citrus_limon": {
+  "name": "Lemon tree",
+  "origin": "Southeast Asia",
+  "toxic": "No",
+  "maxHeight": "1–2 m in a pot",
+  "care": {
+   "water": "Every 4–6 days in summer, less often in winter",
+   "light": "Full sun, at least 6 hours",
+   "temperature": "18–25°C in summer, 8–12°C in winter"
+  },
+  "description": "A lemon tree in a pot – the dream of many growers. It needs attention, but rewards you with fragrant flowers and real lemons.",
+  "funFacts": [
+   "It can flower and fruit at the same time – flowers next to ripe fruit",
+   "The fruit takes 6–9 months to ripen",
+   "It needs a cool rest period in winter in order to flower",
+   "The buds are white outside and pinkish inside, and intensely fragrant",
+   "It needs special citrus fertiliser",
+   "In winter move it to an unheated room, e.g. a stairwell"
+  ],
+  "diseases": [
+   "Bud drop = stress, a change of spot or a draught",
+   "Yellow leaves with green veins = chlorosis, lack of iron",
+   "No fruit = too little sun or no cool rest",
+   "Mealybugs and scale insects – common on citrus",
+   "Sticky leaves = aphids"
+  ],
+  "propagation": "Usually grafted onto rootstocks. From seed it grows slowly and doesn't always fruit. Cuttings are easier."
+ },
+ "punica_granatum": {
+  "name": "Dwarf pomegranate",
+  "origin": "Iran, Afghanistan",
+  "toxic": "No",
+  "maxHeight": "60–120 cm",
+  "care": {
+   "water": "Every 4–5 days in summer, rarely in winter",
+   "light": "Full sun",
+   "temperature": "18–25°C in summer, 5–10°C in winter"
+  },
+  "description": "A dwarf pomegranate, ideal for a pot. Its red-orange trumpet-shaped flowers and miniature fruit are impressive despite its small size.",
+  "funFacts": [
+   "The dwarf variety ‘Nana’ stays small but flowers profusely",
+   "The flowers are bright orange-red and bell-shaped",
+   "The fruit is small and mostly ornamental (bitter)",
+   "The leaves turn yellow and fall in autumn – it's deciduous",
+   "It needs a cool rest period in winter",
+   "A symbol of abundance in many Mediterranean cultures"
+  ],
+  "diseases": [
+   "Flower drop = too dry or too hot while flowering",
+   "No flowers = no winter rest",
+   "Yellow leaves in autumn = natural",
+   "Aphids on new shoots",
+   "Spider mites in dry air"
+  ],
+  "propagation": "Semi-ripe cuttings in summer or rooted suckers from the roots."
+ },
+ "coffea_arabica_dwarf": {
+  "name": "Dwarf Arabica coffee",
+  "origin": "Ethiopia",
+  "toxic": "Yes – fruit and seeds",
+  "maxHeight": "1–1.5 m in a pot",
+  "care": {
+   "water": "Every 4–5 days, soil lightly moist",
+   "light": "Bright indirect, no harsh sun",
+   "temperature": "18–24°C, not below 15°C"
+  },
+  "description": "A real coffee plant in a pot. After 3–4 years it may bloom with fragrant white flowers and then produce red cherries with coffee beans inside.",
+  "funFacts": [
+   "After 3–4 years of growing it flowers and fruits",
+   "Its white flowers smell like jasmine",
+   "Each red ‘cherry’ holds two coffee beans",
+   "The leaves contain a little caffeine – not for pets!",
+   "It comes from the mountain forests of Ethiopia",
+   "The most popular dwarf variety is ‘Nana’"
+  ],
+  "diseases": [
+   "Brown tips = low humidity",
+   "Yellow leaves = overwatering or exhausted soil",
+   "Scorched leaves = harsh sun",
+   "No flowers = too young or too dark",
+   "Blackening shoots = too cold"
+  ],
+  "propagation": "From seed (fresh beans) or semi-ripe cuttings. Slow-growing."
+ },
+ "stephanotis": {
+  "name": "Madagascar jasmine (Stephanotis)",
+  "origin": "Madagascar",
+  "toxic": "Yes – milky sap",
+  "maxHeight": "Climber 2–4 m",
+  "care": {
+   "water": "Every 4–6 days in summer, less often in winter",
+   "light": "Very bright, but no direct sun",
+   "temperature": "18–24°C, 12–15°C in winter"
+  },
+  "description": "A climber with intensely fragrant, waxy white flowers. A favourite for wedding bouquets thanks to its scent and looks.",
+  "funFacts": [
+   "Also known as Madagascar jasmine or bridal wreath",
+   "Its flowers are used in wedding bouquets in many cultures",
+   "The scent is strongest in the evening – it attracts night-flying pollinators",
+   "It can live for decades in the right conditions",
+   "It needs a cool winter to flower in summer",
+   "A symbol of marital happiness"
+  ],
+  "diseases": [
+   "No flowers = no cool winter",
+   "Bud drop = draught or stress",
+   "Yellow leaves = overwatering",
+   "Mealybugs and scale insects",
+   "Sticky leaves = aphids"
+  ],
+  "propagation": "Semi-ripe cuttings in spring – rooting is difficult and needs bottom heat."
+ },
+ "schlumbergera": {
+  "name": "Christmas cactus (Schlumbergera)",
+  "origin": "Brazil (rainforests)",
+  "toxic": "No",
+  "maxHeight": "30–40 cm",
+  "care": {
+   "water": "Every 7–10 days, more while flowering",
+   "light": "Bright indirect",
+   "temperature": "18–22°C, 10–13°C to trigger flowering"
+  },
+  "description": "Despite the name “cactus”, it's a plant of tropical forests, not the desert. It flowers profusely in winter – hence the name “Christmas cactus”.",
+  "funFacts": [
+   "In the wild it grows on trees as an epiphyte",
+   "Flowering depends on day length – shorter days trigger buds",
+   "It can live 30–50 years",
+   "Easy to propagate – break off a segment, leave it for a day, plant it",
+   "Varieties in pink, red, white, orange and purple",
+   "Safe for pets"
+  ],
+  "diseases": [
+   "Bud drop = a change of spot or sudden temperature swings",
+   "No flowers = no cool autumn with short days",
+   "Limp segments = overwatering and rotting roots",
+   "Orange segments = too much sun",
+   "Cracked segments = excessive watering"
+  ],
+  "propagation": "The easiest – break off 2–3 segments, leave them for a day, plant in a light mix. Roots form within 2 weeks."
+ },
+ "spathiphyllum_picasso": {
+  "name": "Peace lily ‘Picasso’",
+  "origin": "Central and South America",
+  "toxic": "Yes – oxalate crystals",
+  "maxHeight": "40–60 cm",
+  "care": {
+   "water": "Every 5–7 days, likes moisture",
+   "light": "Partial shade to bright indirect"
+  },
+  "description": "A variegated peace lily – its leaves are covered with white patches and stripes. All the advantages of the ordinary peace lily plus a dramatic look.",
+  "funFacts": [
+   "Every leaf has a unique white pattern – like a Picasso painting",
+   "It needs more light than the ordinary form to keep its patterns",
+   "Like the ordinary one, it blooms with white “sails”",
+   "A great water indicator – it droops when it needs a drink",
+   "It purifies the air – removes formaldehyde and benzene",
+   "Less vigorous than the classic – the patterns cost energy"
+  ],
+  "diseases": [
+   "Fading patterns = too little light",
+   "Brown tips = hard water or low humidity",
+   "Drooping leaves = lack of water (they lift after watering)",
+   "Scorched leaves = direct sun",
+   "No flowers = too young or too dark"
+  ],
+  "propagation": "Only by dividing the clump when repotting."
+ },
+ "anthurium_clarinervium": {
+  "name": "Velvet cardboard anthurium (A. clarinervium)",
+  "origin": "Mexico (Chiapas)",
+  "toxic": "Yes – oxalate crystals",
+  "maxHeight": "40–60 cm",
+  "care": {
+   "water": "Every 5–7 days, soft water",
+   "light": "Bright indirect, never direct",
+   "humidity": "70–80% (very high)",
+   "temperature": "20–26°C, stable"
+  },
+  "description": "A foliage anthurium rather than a flowering one – heart-shaped leaves with dramatic silver veins like lace. A fashionable species among collectors.",
+  "funFacts": [
+   "The leaves are velvety to the touch",
+   "Young leaves are light brown and mature to dark green",
+   "The silver veins are more distinct in shade than in sun",
+   "A pricey species – the price rises with size",
+   "In the wild it grows in limestone forests – it prefers a mineral substrate",
+   "Its flowers are modest – it's grown for its leaves"
+  ],
+  "diseases": [
+   "Brown tips = hard water or low humidity",
+   "Fading veins = too much sun",
+   "Yellow leaves = overwatering",
+   "Black spots = fungus from excess moisture",
+   "Slow growth is normal – it's a slow-growing species"
+  ],
+  "propagation": "Division or root cuttings. Difficult – not for beginners."
+ },
+ "tradescantia_nanouk": {
+  "name": "Tradescantia ‘Nanouk’",
+  "origin": "Cultivated (Netherlands)",
+  "toxic": "Yes – the sap irritates skin",
+  "maxHeight": "Stems up to 60 cm",
+  "care": {
+   "water": "Every 5–7 days, once the top of the soil is dry",
+   "light": "Bright, a few hours of sun to keep the colour"
+  },
+  "description": "A trendy tradescantia with striped leaves in pink, green and cream. Very easy, fast-growing and ideal for hanging pots.",
+  "funFacts": [
+   "Bred in the Netherlands in 2012",
+   "The more light, the more intense the pink stripes",
+   "The leaves are fleshy and slightly fuzzy",
+   "It breaks easily when repotting – handle it gently",
+   "It blooms with small pink flowers",
+   "The sap can irritate skin and may be toxic to pets"
+  ],
+  "diseases": [
+   "Fading pink stripes = too little light",
+   "Long, bare stems = too little light",
+   "Yellow lower leaves = natural or overwatering",
+   "Brown tips = air too dry",
+   "Limp leaves = lack of water"
+  ],
+  "propagation": "The easiest – cut a 10 cm stem, put it in water or soil, it roots within a week."
+ },
+ "alocasia_polly": {
+  "name": "Alocasia ‘Polly’ (African mask)",
+  "origin": "Cultivated (cross of Asian species)",
+  "toxic": "Yes – oxalate crystals",
+  "maxHeight": "40–60 cm",
+  "care": {
+   "water": "Every 4–6 days, soil lightly moist",
+   "light": "Bright indirect",
+   "temperature": "18–25°C, stable"
+  },
+  "description": "A small but striking alocasia with dark, glossy leaves and white veins. Known for its dramatic looks and demanding nature.",
+  "funFacts": [
+   "A cross between A. longiloba and A. sanderiana",
+   "Its leaves are almost black with white veins",
+   "Each leaf lasts a few months, then turns yellow and drops",
+   "It forms a corm – after stress it can die back and regrow from it",
+   "It likes stable conditions – every change is stressful",
+   "In winter it may go dormant and lose all its leaves"
+  ],
+  "diseases": [
+   "Yellow, dropping leaves = overwatering or the natural cycle",
+   "Brown tips = low humidity",
+   "Faded veins = too little light",
+   "Spider mites in dry air",
+   "Scorched leaves = harsh sun"
+  ],
+  "propagation": "Dividing the corm or offsets from the corm. Difficult, for experienced growers."
+ },
+ "ficus_audrey": {
+  "name": "Ficus ‘Audrey’ (Banyan fig)",
+  "origin": "India (banyan fig)",
+  "toxic": "Yes – irritant milky sap",
+  "maxHeight": "1.5–2 m in a pot",
+  "care": {
+   "water": "Every 7–10 days, once the top of the soil is dry",
+   "light": "Bright indirect, gentle morning sun"
+  },
+  "description": "A fashionable alternative to the fiddle-leaf fig – velvety, oval leaves with distinct pale veins. Less fussy than the fiddle-leaf, but just as decorative.",
+  "funFacts": [
+   "In India it's a sacred tree – the banyan fig",
+   "The leaves are slightly velvety to the touch",
+   "Less demanding than the fiddle-leaf fig, with a similar look",
+   "It can grow into a giant tree – up to 30 m in the wild",
+   "It produces aerial roots",
+   "The milky sap can irritate skin"
+  ],
+  "diseases": [
+   "Dropping leaves = overwatering or stress from changes",
+   "Brown edges = low humidity",
+   "Lower leaves yellowing and dropping = natural or overwatering",
+   "Limp leaves = lack of water",
+   "Scale insects and mealybugs"
+  ],
+  "propagation": "Semi-ripe cuttings – cut a 15 cm shoot and root it in water or straight into soil under plastic."
+ },
+ "sansevieria_cylindrica": {
+  "name": "Cylindrical snake plant",
+  "origin": "Angola",
+  "toxic": "Yes – for pets",
+  "maxHeight": "60–120 cm",
+  "care": {
+   "water": "Every 14–21 days, the soil must be dry",
+   "light": "Tolerates everything – from sun to partial shade",
+   "humidity": "30–50% (low)"
+  },
+  "description": "A snake plant with cylindrical, stiff leaves that look like spears. Sellers often braid them. Extremely tough.",
+  "funFacts": [
+   "Its leaves are round in cross-section, not flat like the ordinary one",
+   "Often sold “braided” – with the leaves woven together",
+   "It stores water in its leaves like a succulent",
+   "It produces oxygen at night – great for the bedroom",
+   "One of the most durable houseplants",
+   "It can live for decades with little care"
+  ],
+  "diseases": [
+   "Wrinkled leaves = lack of water (rare)",
+   "Limp, brown leaves = overwatering and rot",
+   "Black spots at the base = excess moisture",
+   "Slow growth = normal",
+   "No new shoots = too little light"
+  ],
+  "propagation": "From offsets – cut a young shoot with a piece of root. Leaf cuttings also root, but slowly."
+ },
+ "asparagus_setaceus": {
+  "name": "Asparagus fern",
+  "origin": "South Africa",
+  "toxic": "Yes – the berries, for pets",
+  "maxHeight": "60–100 cm",
+  "care": {
+   "water": "Every 4–5 days, soil lightly moist",
+   "light": "Bright indirect, light partial shade"
+  },
+  "description": "Not a true fern, although it looks like one – delicate, lacy sprays that create a green mist. A favourite filler in flower bouquets.",
+  "funFacts": [
+   "Despite looking like a fern, it's a flowering plant of the asparagus family",
+   "Related to the edible vegetable asparagus",
+   "Red berries appear after inconspicuous white flowers",
+   "Used in bouquets as background greenery",
+   "The stems are very delicate – easily damaged",
+   "There are small thorns on the stems – take care when handling"
+  ],
+  "diseases": [
+   "Yellowing stems = overwatering or too cold",
+   "Brown tips = low humidity",
+   "Bare centre = too little light",
+   "Spider mites in dry air",
+   "Small aphids on new shoots"
+  ],
+  "propagation": "Divide the clump when repotting or grow from seed (slow)."
+ },
+ "philodendron_brasil": {
+  "name": "Philodendron ‘Brasil’",
+  "origin": "Cultivated (cultivar)",
+  "toxic": "Yes – oxalate crystals",
+  "maxHeight": "Stems up to 3 m",
+  "care": {
+   "water": "Every 5–7 days",
+   "light": "Partial shade to bright indirect"
+  },
+  "description": "A variegated heartleaf philodendron – its leaves have lime-green and creamy-yellow stripes. Just as easy as the ordinary form, twice as pretty.",
+  "funFacts": [
+   "Named after the colours of the Brazilian flag – green and yellow",
+   "Every leaf is different – the variegation is random",
+   "Sometimes it produces an all-green or all-yellow leaf",
+   "The brighter the light (without harsh sun), the more yellow",
+   "Very easy to propagate – like pothos",
+   "It can grow on a support (the leaves get bigger) or trail"
+  ],
+  "diseases": [
+   "Less variegation = too little light",
+   "All-yellow leaves lacking green have too little chlorophyll and may die",
+   "Yellowing leaves = overwatering",
+   "Brown tips = low humidity",
+   "Slow growth in winter"
+  ],
+  "propagation": "Stem cuttings – like an ordinary philodendron. Choose a stem with lots of variegation."
+ },
+ "begonia_maculata_alba": {
+  "name": "Angel wing begonia (B. maculata ‘Alba’)",
+  "origin": "Brazil",
+  "toxic": "Yes – oxalate crystals",
+  "maxHeight": "60–120 cm",
+  "care": {
+   "water": "Every 4–6 days, once the top of the soil is dry",
+   "light": "Bright indirect"
+  },
+  "description": "A spectacular begonia with polka-dot leaves – dark green with white dots and red undersides. It blooms with cascades of white or pink flowers.",
+  "funFacts": [
+   "It inspired polka-dot designs",
+   "The underside of the leaf is dark red – a contrast with the green top",
+   "It forms cascades of white flowers that hang like coral",
+   "Its stems are bamboo-like – hence the name “angel wing begonia”",
+   "Easy to propagate from cuttings",
+   "In the wild it grows in Brazil's forests, in damp undergrowth"
+  ],
+  "diseases": [
+   "Fading dots = too much light",
+   "No flowers = too dark or lack of nutrients",
+   "Powdery mildew – a common begonia disease",
+   "Yellow leaves = overwatering",
+   "Dropping leaves = a sudden change in conditions"
+  ],
+  "propagation": "Stem cuttings with 1 node – they root in water within 2 weeks."
+ },
+ "musa_dwarf": {
+  "name": "Dwarf banana",
+  "origin": "Southeast Asia",
+  "toxic": "No",
+  "maxHeight": "1–1.5 m in a pot",
+  "care": {
+   "water": "Every 3–5 days, likes moisture",
+   "light": "Very bright, gentle sun",
+   "temperature": "20–28°C, never below 15°C"
+  },
+  "description": "A dwarf banana you can grow at home. After 2–3 years it may produce real bananas – small, but edible.",
+  "funFacts": [
+   "A banana isn't a tree but a perennial herb – the “trunk” is rolled-up leaves",
+   "After fruiting the plant dies, but leaves offsets",
+   "The dwarf variety ‘Super Dwarf Cavendish’ reaches 1.5 m at most",
+   "Its leaves can be a metre long",
+   "It needs lots of water and light",
+   "It grows fast – in season it can put out a new leaf every week"
+  ],
+  "diseases": [
+   "Split leaves = natural, bananas just do that",
+   "Brown tips = low humidity",
+   "Yellow leaves = overwatering or lack of nutrients",
+   "No flowers = too young or too cold",
+   "Spider mites in dry air"
+  ],
+  "propagation": "From suckers growing from the rhizome. Very hard from seed – most varieties are sterile."
+ },
+ "rosmarinus": {
+  "name": "Rosemary",
+  "origin": "Mediterranean region",
+  "toxic": "No",
+  "maxHeight": "60–150 cm",
+  "care": {
+   "water": "Every 5–7 days, the soil must dry out between waterings",
+   "light": "Full sun, at least 6 hours a day",
+   "humidity": "40–50% (low)",
+   "temperature": "15–25°C in summer, 5–10°C in winter"
+  },
+  "description": "A classic herb of Mediterranean cooking. Its aromatic, needle-like leaves smell of pine and citrus. It needs sun and good drainage.",
+  "funFacts": [
+   "Botanically it belongs to the sage genus (since 2017)",
+   "A symbol of remembrance in many cultures",
+   "It can live for decades and turn woody",
+   "It blooms with blue flowers that bees love",
+   "Rosemary oil has anti-inflammatory properties",
+   "In ancient Rome it was planted near houses for luck"
+  ],
+  "diseases": [
+   "Woody with few green needles = prune in spring",
+   "Mould at the base = too damp, poor drainage",
+   "Pale needles = lack of iron",
+   "Powdery mildew in hot, humid air",
+   "Slow growth in winter – normal"
+  ],
+  "propagation": "Semi-ripe cuttings in summer – cut a 10 cm shoot, strip the lower needles and insert into sand."
+ },
+ "stromanthe_triostar": {
+  "name": "Stromanthe ‘Triostar’",
+  "origin": "Brazil",
+  "toxic": "No",
+  "maxHeight": "60–80 cm",
+  "care": {
+   "water": "Every 4–6 days, soil lightly moist",
+   "light": "Bright indirect",
+   "temperature": "18–25°C, stable"
+  },
+  "description": "A spectacular member of the Marantaceae family – its leaves are green, cream and pink, some even striped. In the evening it folds its leaves up like praying hands.",
+  "funFacts": [
+   "The underside of the leaf is bright pink",
+   "In the evening it raises its leaves – a “prayer plant”",
+   "Every leaf has a unique variegation pattern",
+   "Safe for pets",
+   "It needs soft water – left to stand, or rainwater",
+   "Sensitive to change – it dislikes being moved"
+  ],
+  "diseases": [
+   "Brown tips = hard water or low humidity",
+   "Scorched white parts = light too bright",
+   "Curled leaves = lack of water or a draught",
+   "Fading pink = too little light",
+   "Spider mites in dry air"
+  ],
+  "propagation": "Only by dividing the clump when repotting – stem cuttings don't root."
+ },
+ "kalanchoe_thyrsiflora": {
+  "name": "Paddle plant (Flapjacks)",
+  "origin": "South Africa",
+  "toxic": "Yes – for pets",
+  "maxHeight": "30–60 cm",
+  "care": {
+   "water": "Every 10–14 days, the soil must dry out",
+   "light": "Full sun – the more, the redder the edges",
+   "temperature": "18–25°C, 10–15°C in winter"
+  },
+  "description": "A succulent with flat, round leaves that look like a stack of pancakes. The leaf edges turn red in the sun.",
+  "funFacts": [
+   "Also called “paddle plant” or “flapjacks”",
+   "Its leaves are round and flat, as if stacked in a column",
+   "The more sun, the more intense the red edges",
+   "After many years it blooms with yellow flowers and then dies – but leaves offsets",
+   "The powdery coating on the leaves is natural protection",
+   "Toxic to cats and dogs – be careful!"
+  ],
+  "diseases": [
+   "Stretching and losing shape = too little light",
+   "Yellowing leaves = overwatering",
+   "No red = too little sun",
+   "Wrinkled leaves = lack of water (rare)",
+   "Powdery mildew in air that's too humid"
+  ],
+  "propagation": "From a leaf – break off a lower leaf, let it dry for 2 days and lay it on soil. Or from offsets."
+ }
+}

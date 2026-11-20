@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { useT } from '../lib/i18n.js';
 import PlantImage from '../components/PlantImage.jsx';
 import { useSettingsStore } from '../store/useSettingsStore.js';
-import plants from '../data/plants.json';
+import { usePlantsDB } from '../lib/plantsI18n.js';
 import { CATEGORY_LIST } from '../data/categories.js';
 import { useAppStore } from '../store/useAppStore.js';
 
@@ -12,6 +12,7 @@ export default function EncyclopediaPage() {
   const [search, setSearch] = useState('');
   const [filter, setFilter] = useState('all');
   const userPlants = useAppStore((s) => s.plants);
+  const plants = usePlantsDB();
 
   // Mapa: ile każdego gatunku mam w kolekcji
   const ownedMap = useMemo(() => {
@@ -30,11 +31,14 @@ export default function EncyclopediaPage() {
     if (search.trim()) {
       const q = search.toLowerCase();
       list = list.filter(
-        (p) => p.name.toLowerCase().includes(q) || p.species.toLowerCase().includes(q)
+        (p) =>
+          p.name.toLowerCase().includes(q) ||
+          p.species.toLowerCase().includes(q) ||
+          (p.namePl || '').toLowerCase().includes(q)
       );
     }
     return list;
-  }, [search, filter]);
+  }, [search, filter, plants]);
 
   return (
     <div className="px-5 pt-6">

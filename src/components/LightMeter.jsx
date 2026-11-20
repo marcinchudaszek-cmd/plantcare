@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import plantsDB from '../data/plants.json';
+import { usePlantsDB } from '../lib/plantsI18n.js';
 import { useT, locale } from '../lib/i18n.js';
 import {
   openCameraStream,
@@ -14,6 +14,7 @@ const SAMPLE_INTERVAL = 300; // ms
 
 export default function LightMeter() {
   const t = useT();
+  const plantsDB = usePlantsDB();
   const videoRef = useRef(null);
   const canvasRef = useRef(null);
   const streamRef = useRef(null);

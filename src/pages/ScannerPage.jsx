@@ -1,10 +1,11 @@
 import { useRef, useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { useT, locale } from '../lib/i18n.js';
+import { useT, locale, currentLang } from '../lib/i18n.js';
 import { useSettingsStore } from '../store/useSettingsStore.js';
 import { useAppStore } from '../store/useAppStore.js';
 import { recognizePlant, fileToBase64, aiAvailable, AiError } from '../lib/gemini.js';
 import plantsDB from '../data/plants.json';
+import { localizePlant, plantNameVariants } from '../lib/plantsI18n.js';
 import LightMeter from '../components/LightMeter.jsx';
 import CameraCapture from '../components/CameraCapture.jsx';
 
@@ -319,6 +320,12 @@ function PlantScanner({ canUseAi, loading, previewUrl, previewBlob, result, erro
 // === Helpers ===
 
 function findInDB(name, species) {
+  const found = findInDBRaw(name, species);
+  return found ? localizePlant(found, currentLang()) : null;
+}
+
+// Dopasowanie po łacinie i po nazwie w każdym z trzech języków (PL/EN/DE)
+function findInDBRaw(name, species) {
   if (!name && !species) return null;
   const norm = (s) => (s || '').toLowerCase().trim();
   const n = norm(name);
@@ -329,14 +336,16 @@ function findInDB(name, species) {
     const found = plantsDB.find((p) => norm(p.species) === sp);
     if (found) return found;
   }
-  // 2. Match po polskiej nazwie (dokładny)
+  // 2. Match po nazwie (dokładny) — PL, EN, DE, także część w nawiasie
   if (n) {
-    const found = plantsDB.find((p) => norm(p.name) === n);
+    const found = plantsDB.find((p) => plantNameVariants(p.id).includes(n));
     if (found) return found;
   }
-  // 3. Match częściowy po nazwie polskiej
+  // 3. Match częściowy po nazwie w dowolnym języku
   if (n) {
-    const found = plantsDB.find((p) => norm(p.name).includes(n) || n.includes(norm(p.name)));
+    const found = plantsDB.find((p) =>
+      plantNameVariants(p.id).some((v) => v.includes(n) || n.includes(v))
+    );
     if (found) return found;
   }
   // 4. Match częściowy po łacinie

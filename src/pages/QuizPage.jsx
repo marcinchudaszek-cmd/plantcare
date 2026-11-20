@@ -1,6 +1,6 @@
 import { useState, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
-import plantsDB from '../data/plants.json';
+import { usePlantsDB } from '../lib/plantsI18n.js';
 import { generateQuiz } from '../lib/quiz.js';
 import PlantImage from '../components/PlantImage.jsx';
 import { useT } from '../lib/i18n.js';
@@ -10,12 +10,15 @@ const QUIZ_LENGTH = 10;
 export default function QuizPage() {
   const navigate = useNavigate();
   const t = useT();
+  const plantsDB = usePlantsDB();
   const [quiz, setQuiz] = useState(() => generateQuiz(plantsDB, QUIZ_LENGTH));
   const [currentIdx, setCurrentIdx] = useState(0);
   const [score, setScore] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState(null);
   const [showResult, setShowResult] = useState(false);
 
+  // Pytania trzymają obiekty roślin — przy zmianie języka bierzemy bieżące tłumaczenie po id
+  const loc = (p) => plantsDB.find((x) => x.id === p.id) || p;
   const current = quiz[currentIdx];
   const finished = currentIdx >= quiz.length;
 
@@ -138,7 +141,7 @@ export default function QuizPage() {
                     : undefined
               }
             >
-              <p className="font-serif text-base m-0">{opt.name}</p>
+              <p className="font-serif text-base m-0">{loc(opt).name}</p>
               <p className="text-xs italic m-0 opacity-75">{opt.species}</p>
             </button>
           );
@@ -155,7 +158,7 @@ export default function QuizPage() {
           ) : (
             <div className="card mb-3" style={{ borderLeftWidth: 4, borderLeftStyle: 'solid', borderLeftColor: 'var(--danger)' }}>
               <p className="text-sm text-danger font-medium m-0 mb-1">✗ Niestety</p>
-              <p className="text-xs text-secondary m-0">{t('quiz.correctWas')} <strong>{current.options[current.correctIndex].name}</strong></p>
+              <p className="text-xs text-secondary m-0">{t('quiz.correctWas')} <strong>{loc(current.options[current.correctIndex]).name}</strong></p>
             </div>
           )}
 

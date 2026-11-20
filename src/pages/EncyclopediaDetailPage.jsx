@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { useT } from '../lib/i18n.js';
-import plantsDB from '../data/plants.json';
+import { usePlantsDB } from '../lib/plantsI18n.js';
 import { useAppStore } from '../store/useAppStore.js';
 import { defaultIntervalDays } from '../lib/plantUtils.js';
 import { CATEGORIES } from '../data/categories.js';
@@ -16,6 +16,7 @@ export default function EncyclopediaDetailPage() {
   const t = useT();
   const { id } = useParams();
   const navigate = useNavigate();
+  const plantsDB = usePlantsDB();
   const plant = plantsDB.find((p) => p.id === id);
 
   const userPlants = useAppStore((s) => s.plants);
@@ -80,7 +81,7 @@ export default function EncyclopediaDetailPage() {
 
   const diffLabel = plant.difficulty ? t(`difficulty.${plant.difficulty}`) : '';
   const diffColor = { easy: 'text-accent', medium: 'text-warning', hard: 'text-danger' }[plant.difficulty];
-  const intervalDays = defaultIntervalDays(plant.care);
+  const intervalDays = defaultIntervalDays(plant.carePl || plant.care);
 
   return (
     <div className="px-5 pt-6 pb-4">

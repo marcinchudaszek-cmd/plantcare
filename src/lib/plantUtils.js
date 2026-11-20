@@ -65,7 +65,7 @@ export function createUserPlant({ encycPlant, nickname, location, tags = [] }) {
     emoji: encycPlant.emoji,
     location: location || '',          // np. "salon", "okno kuchenne"
     tags,                              // lista stringów
-    interval: defaultIntervalDays(encycPlant.care),
+    interval: defaultIntervalDays(encycPlant.carePl || encycPlant.care), // zawsze polski oryginał
     lastWatered: null,
     addedAt: new Date().toISOString(),
     journal: [],                       // wpisy dziennika [{ date, text, photoId? }]
