@@ -246,6 +246,10 @@ export default function SettingsPage() {
           </button>
         </div>
       )}
+
+      <p className="text-xs text-muted text-center mt-4 mb-2">
+        <a href="/privacy.html" target="_blank" rel="noreferrer" className="underline">{t('settings.privacy')}</a>
+      </p>
     </div>
   );
 }

@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PlantCare — polityka prywatności / Privacy policy / Datenschutz</title>
+<link rel="icon" href="/favicon.ico">
+<style>
+  :root { --bg: #f6f1e4; --fg: #1f2a1f; --muted: #5f6b5c; --accent: #2f7a2a; --card: #ffffff; --line: #e3dccb; }
+  @media (prefers-color-scheme: dark) { :root { --bg: #0b2218; --fg: #e8efe4; --muted: #a8b5a0; --accent: #7dd66f; --card: #12301f; --line: #24452f; } }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--fg); font-family: -apple-system, "Segoe UI", Roboto, Arial, sans-serif; line-height: 1.6; }
+  main { max-width: 760px; margin: 0 auto; padding: 24px 16px 64px; }
+  h1 { color: var(--accent); font-size: 1.7rem; margin: .2rem 0; }
+  h2 { color: var(--accent); font-size: 1.12rem; margin-top: 2rem; }
+  .meta { color: var(--muted); font-size: .9rem; }
+  nav { display: flex; gap: 8px; margin: 12px 0 8px; }
+  nav a { padding: 6px 14px; border: 1px solid var(--line); border-radius: 999px; color: var(--fg); text-decoration: none; background: var(--card); }
+  nav a:hover { border-color: var(--accent); }
+  section.lang { border-top: 1px solid var(--line); margin-top: 24px; padding-top: 8px; }
+  a { color: var(--accent); }
+  ul { padding-left: 1.2rem; }
+</style>
+</head>
+<body>
+<main>
+<nav aria-label="Język / Language / Sprache"><a href="#pl">PL</a><a href="#en">EN</a><a href="#de">DE</a></nav>
+
+<section class="lang" id="pl" lang="pl">
+<h1>PlantCare — polityka prywatności</h1>
+<p class="meta">Aplikacja: PlantCare (plantcare.beagleapps.pl, Android: com.beagleappsstudio.plantcare) · Wydawca: Beagleapps · Obowiązuje od 21 listopada 2026</p>
+
+<h2>W skrócie</h2>
+<p>PlantCare działa bez konta, nie wyświetla reklam i nie używa narzędzi analitycznych ani śledzących. Twoja kolekcja roślin, dziennik i zdjęcia zostają na urządzeniu. Dane opuszczają urządzenie tylko wtedy, gdy sam użyjesz funkcji AI albo założysz opcjonalne konto do synchronizacji.</p>
+
+<h2>Dane na urządzeniu</h2>
+<p>Rośliny, wpisy dziennika, zdjęcia, historia skanów, ustawienia i ewentualny własny klucz Gemini są zapisywane w pamięci przeglądarki lub aplikacji na Twoim urządzeniu (IndexedDB / localStorage). Nie wysyłamy ich na nasz serwer. Usunięcie aplikacji lub danych przeglądarki usuwa je bezpowrotnie — dlatego w Ustawieniach jest eksport kopii zapasowej do pliku JSON, który zapisujesz sam.</p>
+
+<h2>Funkcje AI (rozpoznawanie, diagnoza, asystent)</h2>
+<p>Gdy samodzielnie uruchomisz rozpoznawanie rośliny, diagnozę choroby albo zadasz pytanie asystentowi, przesyłane jest: wybrane zdjęcie (zmniejszone do ok. 1280 px) lub treść rozmowy, a przy asystencie także lista nazw roślin z Twojej kolekcji (nazwa i gatunek), żeby odpowiedź pasowała do Twoich roślin.</p>
+<ul>
+  <li><strong>Bez własnego klucza</strong> — zapytanie idzie przez serwer Beagleapps (Cloudflare Workers) do Google Gemini. Serwer niczego nie zapisuje poza licznikiem dziennego limitu, przy którym przechowuje skrót (hash) adresu IP przez maksymalnie 48 godzin.</li>
+  <li><strong>Z własnym kluczem</strong> (Ustawienia) — zapytanie idzie bezpośrednio z Twojego urządzenia do Google; klucz nie opuszcza urządzenia w inny sposób.</li>
+</ul>
+<p>Treści przetwarza Google zgodnie z warunkami Gemini API; w darmowym progu Google może je wykorzystywać do ulepszania swoich usług. Nie wysyłaj zdjęć ani pytań zawierających dane osobowe.</p>
+
+<h2>Opcjonalne konto i synchronizacja</h2>
+<p>Konto zakładasz tylko wtedy, gdy chcesz mieć te same rośliny na kilku urządzeniach. Usługę świadczy Supabase (Supabase Inc.), a dane są przechowywane na serwerach w Unii Europejskiej (Frankfurt, Niemcy). W koncie zapisywane są:</p>
+<ul>
+  <li>adres e-mail i hasło (przechowywane wyłącznie w postaci zaszyfrowanego skrótu) albo — przy logowaniu przez Google — e-mail, imię i zdjęcie profilowe z konta Google;</li>
+  <li>Twoje rośliny wraz z dziennikiem i ustawieniami podlewania oraz dodane zdjęcia roślin.</li>
+</ul>
+<p>Każdy użytkownik ma dostęp wyłącznie do własnych danych. W Ustawieniach możesz w każdej chwili się wylogować albo użyć „Usuń moje dane z chmury”, co trwale usuwa z chmury rośliny i zdjęcia (na urządzeniu zostają). Usunięcie całego konta wraz z adresem e-mail wykonamy na prośbę wysłaną na adres podany niżej.</p>
+
+<h2>Logowanie przez Google</h2>
+<p>Przy logowaniu przez Google aplikacja prosi wyłącznie o podstawowy profil (e-mail, imię, zdjęcie profilowe) i używa go tylko do zalogowania i rozpoznania Twojego konta. Nie uzyskujemy dostępu do Gmaila, Dysku, kontaktów ani innych danych Google i nie przekazujemy tych informacji nikomu.</p>
+
+<h2>Uprawnienia</h2>
+<ul>
+  <li><strong>Aparat</strong> — do zdjęć roślin, kamery na żywo i miernika światła. Obraz miernika światła jest analizowany tylko na urządzeniu.</li>
+  <li><strong>Powiadomienia</strong> — tylko jeśli je włączysz; przypomnienia o podlewaniu są tworzone na urządzeniu.</li>
+</ul>
+
+<h2>Inne usługi</h2>
+<p>Strona ładuje czcionki z Google Fonts, przy czym Google otrzymuje adres IP urządzenia. Aplikacja jest hostowana w GitHub Pages. Nie używamy plików cookie do śledzenia ani reklam.</p>
+
+<h2>Twoje prawa i kontakt</h2>
+<p>Masz prawo dostępu do swoich danych, ich poprawienia, usunięcia, ograniczenia przetwarzania i przeniesienia, a także prawo skargi do organu nadzorczego (w Polsce: Prezes UODO). Administratorem danych konta jest Beagleapps. Kontakt: <a href="mailto:beagleappsstudio@gmail.com">beagleappsstudio@gmail.com</a>.</p>
+<p>O zmianach tej polityki poinformujemy, aktualizując datę na górze strony.</p>
+</section>
+
+<section class="lang" id="en" lang="en">
+<h1>PlantCare — privacy policy</h1>
+<p class="meta">App: PlantCare (plantcare.beagleapps.pl, Android: com.beagleappsstudio.plantcare) · Publisher: Beagleapps · Effective from 21 November 2026</p>
+
+<h2>In short</h2>
+<p>PlantCare works without an account, shows no ads and uses no analytics or tracking tools. Your plant collection, journal and photos stay on your device. Data leaves your device only when you use an AI feature yourself or create the optional sync account.</p>
+
+<h2>Data on your device</h2>
+<p>Plants, journal entries, photos, scan history, settings and your own Gemini key (if you add one) are stored in the browser or app storage on your device (IndexedDB / localStorage). We do not send them to our server. Uninstalling the app or clearing browser data deletes them permanently — that is why Settings offers a backup export to a JSON file that you save yourself.</p>
+
+<h2>AI features (identification, diagnosis, assistant)</h2>
+<p>When you start plant identification, disease diagnosis or ask the assistant a question, the following is sent: the selected photo (downscaled to about 1280 px) or the conversation text, and for the assistant also the list of plant names in your collection (name and species) so the answer fits your plants.</p>
+<ul>
+  <li><strong>Without your own key</strong> — the request goes through a Beagleapps server (Cloudflare Workers) to Google Gemini. The server stores nothing except a daily usage counter, for which it keeps a hash of your IP address for at most 48 hours.</li>
+  <li><strong>With your own key</strong> (Settings) — the request goes directly from your device to Google.</li>
+</ul>
+<p>Google processes the content under the Gemini API terms; on the free tier Google may use it to improve its services. Do not send photos or questions containing personal data.</p>
+
+<h2>Optional account and sync</h2>
+<p>You create an account only if you want the same plants on several devices. The service is provided by Supabase (Supabase Inc.) and data is stored on servers in the European Union (Frankfurt, Germany). The account stores:</p>
+<ul>
+  <li>your email address and password (stored only as a secure hash) or — when signing in with Google — the email, name and profile picture from your Google account;</li>
+  <li>your plants with journal and watering settings, and the plant photos you add.</li>
+</ul>
+<p>Each user can access only their own data. In Settings you can sign out at any time or use “Delete my cloud data”, which permanently removes plants and photos from the cloud (they stay on your device). We will delete the whole account including the email address on request sent to the address below.</p>
+
+<h2>Sign in with Google</h2>
+<p>When you sign in with Google, the app requests only your basic profile (email, name, profile picture) and uses it solely to sign you in and identify your account. We get no access to Gmail, Drive, contacts or any other Google data and do not share this information with anyone.</p>
+
+<h2>Permissions</h2>
+<ul>
+  <li><strong>Camera</strong> — for plant photos, the live camera and the light meter. Light meter images are analysed on the device only.</li>
+  <li><strong>Notifications</strong> — only if you turn them on; watering reminders are created on the device.</li>
+</ul>
+
+<h2>Other services</h2>
+<p>The site loads fonts from Google Fonts, which receives your device's IP address. The app is hosted on GitHub Pages. We use no cookies for tracking or advertising.</p>
+
+<h2>Your rights and contact</h2>
+<p>You have the right to access, correct, delete, restrict and port your data, and to lodge a complaint with a supervisory authority. The controller of account data is Beagleapps. Contact: <a href="mailto:beagleappsstudio@gmail.com">beagleappsstudio@gmail.com</a>.</p>
+<p>We will announce changes to this policy by updating the date at the top.</p>
+</section>
+
+<section class="lang" id="de" lang="de">
+<h1>PlantCare — Datenschutzerklärung</h1>
+<p class="meta">App: PlantCare (plantcare.beagleapps.pl, Android: com.beagleappsstudio.plantcare) · Anbieter: Beagleapps · Gültig ab 21. November 2026</p>
+
+<h2>Kurz gesagt</h2>
+<p>PlantCare funktioniert ohne Konto, zeigt keine Werbung und nutzt keine Analyse- oder Tracking-Tools. Deine Pflanzensammlung, dein Tagebuch und deine Fotos bleiben auf deinem Gerät. Daten verlassen das Gerät nur, wenn du selbst eine KI-Funktion nutzt oder das optionale Konto zur Synchronisierung anlegst.</p>
+
+<h2>Daten auf deinem Gerät</h2>
+<p>Pflanzen, Tagebucheinträge, Fotos, Scan-Verlauf, Einstellungen und ein eigener Gemini-Schlüssel (falls hinterlegt) werden im Speicher des Browsers bzw. der App auf deinem Gerät gespeichert (IndexedDB / localStorage). Wir senden sie nicht an unseren Server. Beim Deinstallieren der App oder Löschen der Browserdaten gehen sie endgültig verloren — deshalb gibt es in den Einstellungen einen Export als JSON-Datei, die du selbst speicherst.</p>
+
+<h2>KI-Funktionen (Erkennung, Diagnose, Assistent)</h2>
+<p>Wenn du die Pflanzenerkennung, die Krankheitsdiagnose startest oder dem Assistenten eine Frage stellst, wird Folgendes übertragen: das gewählte Foto (verkleinert auf ca. 1280 px) bzw. der Gesprächstext, beim Assistenten zusätzlich die Liste der Pflanzennamen deiner Sammlung (Name und Art), damit die Antwort zu deinen Pflanzen passt.</p>
+<ul>
+  <li><strong>Ohne eigenen Schlüssel</strong> — die Anfrage geht über einen Beagleapps-Server (Cloudflare Workers) an Google Gemini. Der Server speichert nichts außer einem Tageszähler, für den er einen Hash deiner IP-Adresse höchstens 48 Stunden aufbewahrt.</li>
+  <li><strong>Mit eigenem Schlüssel</strong> (Einstellungen) — die Anfrage geht direkt von deinem Gerät an Google.</li>
+</ul>
+<p>Google verarbeitet die Inhalte gemäß den Gemini-API-Bedingungen; im kostenlosen Kontingent kann Google sie zur Verbesserung seiner Dienste nutzen. Sende keine Fotos oder Fragen mit personenbezogenen Daten.</p>
+
+<h2>Optionales Konto und Synchronisierung</h2>
+<p>Ein Konto legst du nur an, wenn du dieselben Pflanzen auf mehreren Geräten haben möchtest. Der Dienst wird von Supabase (Supabase Inc.) bereitgestellt, die Daten liegen auf Servern in der Europäischen Union (Frankfurt, Deutschland). Im Konto gespeichert werden:</p>
+<ul>
+  <li>deine E-Mail-Adresse und dein Passwort (nur als sicherer Hash) oder — bei der Anmeldung mit Google — E-Mail, Name und Profilbild deines Google-Kontos;</li>
+  <li>deine Pflanzen mit Tagebuch und Gießeinstellungen sowie hinzugefügte Pflanzenfotos.</li>
+</ul>
+<p>Jede Person hat nur Zugriff auf ihre eigenen Daten. In den Einstellungen kannst du dich jederzeit abmelden oder „Meine Cloud-Daten löschen“ wählen; damit werden Pflanzen und Fotos endgültig aus der Cloud entfernt (auf dem Gerät bleiben sie erhalten). Das gesamte Konto einschließlich E-Mail-Adresse löschen wir auf Anfrage an die unten genannte Adresse.</p>
+
+<h2>Anmeldung mit Google</h2>
+<p>Bei der Anmeldung mit Google fragt die App nur dein Basisprofil ab (E-Mail, Name, Profilbild) und nutzt es ausschließlich zur Anmeldung und Zuordnung deines Kontos. Wir erhalten keinen Zugriff auf Gmail, Drive, Kontakte oder andere Google-Daten und geben diese Informationen an niemanden weiter.</p>
+
+<h2>Berechtigungen</h2>
+<ul>
+  <li><strong>Kamera</strong> — für Pflanzenfotos, die Live-Kamera und den Lichtmesser. Bilder des Lichtmessers werden nur auf dem Gerät ausgewertet.</li>
+  <li><strong>Benachrichtigungen</strong> — nur wenn du sie einschaltest; Gießerinnerungen entstehen auf dem Gerät.</li>
+</ul>
+
+<h2>Weitere Dienste</h2>
+<p>Die Seite lädt Schriften von Google Fonts; dabei erhält Google die IP-Adresse deines Geräts. Die App wird über GitHub Pages bereitgestellt. Wir verwenden keine Cookies für Tracking oder Werbung.</p>
+
+<h2>Deine Rechte und Kontakt</h2>
+<p>Du hast das Recht auf Auskunft, Berichtigung, Löschung, Einschränkung der Verarbeitung und Datenübertragbarkeit sowie auf Beschwerde bei einer Aufsichtsbehörde. Verantwortlich für die Kontodaten ist Beagleapps. Kontakt: <a href="mailto:beagleappsstudio@gmail.com">beagleappsstudio@gmail.com</a>.</p>
+<p>Änderungen dieser Erklärung kündigen wir durch Aktualisierung des Datums oben an.</p>
+</section>
+</main>
+</body>
+</html>

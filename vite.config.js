@@ -41,7 +41,7 @@ export default defineConfig({
         // Obsługa kliknięcia w powiadomienie (public/sw-notifications.js)
         importScripts: ["sw-notifications.js"],
         // Pomijamy zewnętrzne API w cache (Gemini, Wikimedia)
-        navigateFallbackDenylist: [/^\/api/, /googleapis/, /wikimedia/],
+        navigateFallbackDenylist: [/^\/api/, /googleapis/, /wikimedia/, /\/privacy\.html$/, /^\/\.well-known\//],
         runtimeCaching: [
           {
             // Zdjęcia roślin z Wikimedia Commons — cache na długi czas

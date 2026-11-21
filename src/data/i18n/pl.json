@@ -206,7 +206,8 @@
     "show": "pokaż",
     "exportError": "Błąd eksportu: {detail}",
     "importError": "Błąd importu: {detail}",
-    "apiKeyOptional": "Opcjonalnie: własny darmowy klucz z {link} — wtedy nie obowiązuje dzienny limit wspólnego AI."
+    "apiKeyOptional": "Opcjonalnie: własny darmowy klucz z {link} — wtedy nie obowiązuje dzienny limit wspólnego AI.",
+    "privacy": "Polityka prywatności"
   },
   "notifications": {
     "one": "Jedna roślina czeka na podlanie",

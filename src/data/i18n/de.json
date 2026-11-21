@@ -206,7 +206,8 @@
     "show": "zeigen",
     "exportError": "Exportfehler: {detail}",
     "importError": "Importfehler: {detail}",
-    "apiKeyOptional": "Optional: ein eigener kostenloser Schlüssel von {link} — dann gilt das Tageslimit der gemeinsamen KI nicht."
+    "apiKeyOptional": "Optional: ein eigener kostenloser Schlüssel von {link} — dann gilt das Tageslimit der gemeinsamen KI nicht.",
+    "privacy": "Datenschutzerklärung"
   },
   "notifications": {
     "one": "Eine Pflanze wartet aufs Gießen",

@@ -206,7 +206,8 @@
     "show": "show",
     "exportError": "Export error: {detail}",
     "importError": "Import error: {detail}",
-    "apiKeyOptional": "Optional: your own free key from {link} — then the shared AI daily limit doesn't apply."
+    "apiKeyOptional": "Optional: your own free key from {link} — then the shared AI daily limit doesn't apply.",
+    "privacy": "Privacy policy"
   },
   "notifications": {
     "one": "One plant needs watering",
