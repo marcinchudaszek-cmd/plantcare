@@ -24,10 +24,11 @@ Dane leżą w IndexedDB na urządzeniu.
 
 ## Konto i synchronizacja (Supabase)
 
-Opcjonalne konto (e-mail + hasło; Google po dodaniu klienta OAuth) — projekt Supabase `plantcare`
+Opcjonalne konto (e-mail + hasło albo Google) — projekt Supabase `plantcare`
 (organizacja Beagle Apps, Frankfurt, `iqqhxafnpeyleptjqqeu`). Rośliny w tabeli `plants` (jsonb, RLS),
 zdjęcia w prywatnym buckecie `plant-photos`. Kod: `src/lib/cloudSync.js`, `src/components/AccountCard.jsx`.
 Klucze publiczne w `.env` (`VITE_SUPABASE_URL`, `VITE_SUPABASE_ANON_KEY`) — bez nich karta konta się nie pokazuje.
+Logowanie Google: klient OAuth „PlantCare Supabase” w projekcie Google Cloud `plantcare-515319`; przycisk włącza `VITE_SUPABASE_GOOGLE=1` w `.env`.
 Konfiguracja panelu: `SUPABASE_SETUP.md`.
 
 ## Praca lokalna

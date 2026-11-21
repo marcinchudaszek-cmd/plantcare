@@ -77,6 +77,8 @@ Supabase → **Authentication → Providers → Email**: włączone (domyślnie 
      `https://TWOJPROJEKT.supabase.co/auth/v1/callback`
    - Skopiuj **Client ID** i **Client secret**.
 4. Supabase → **Authentication → Providers → Google** → włącz, wklej Client ID + secret.
+5. W `.env` dopisz `VITE_SUPABASE_GOOGLE=1` i przebuduj — dopiero wtedy aplikacja pokazuje przycisk Google.
+6. Dopóki ekran zgody jest w trybie „Testowanie”, zalogują się tylko użytkownicy testowi (Google Auth Platform → Odbiorcy).
 
 ## 7. Adresy powrotu (redirect)
 Supabase → **Authentication → URL Configuration**:
